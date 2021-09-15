@@ -1,0 +1,25 @@
+Tasks: 
+EVERYONE: 
+  interfaces of classes they implement, as needed
+  Sprites of classes they implement
+  Want to set up sprites early so testing is easier
+    
+WESLEY, MICHAEL:
+Implement player movement & controls (movement commands)
+
+JONAH:
+Implement Sprite factories (for enemy)
+
+MASON:
+Create item classes
+
+ZACH:
+Create block classes
+
+UNASSIGNED:
+Create enemy classes (Implement enemy logic) (maybe start with just 1 enemy)
+
+*Make sure to comment your code
+
+**Stretch goals?***
+Health UI
