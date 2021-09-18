@@ -10,6 +10,7 @@ Link State Transitions
 
 JONAH:
 Implement Sprite factories (for enemy)
+Create enemy classes (Implement enemy logic) (maybe start with just 1 enemy)
 
 MASON:
 Create item classes
@@ -18,7 +19,7 @@ ZACH:
 Create block classes
 
 UNASSIGNED:
-Create enemy classes (Implement enemy logic) (maybe start with just 1 enemy)
+Projectiles
 
 *Make sure to comment your code
 
