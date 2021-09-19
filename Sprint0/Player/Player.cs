@@ -1,7 +1,7 @@
 namespace Player
 {
     public class Player{
-        PlayerState playerState;
+        IPlayerState playerState;
         public Player()
         {
 
