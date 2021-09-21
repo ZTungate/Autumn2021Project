@@ -30,5 +30,9 @@ namespace Sprint0.Enemies
         }
 
         //TODO Add CreateSprite methods for each enemy type
+        public ISprite CreateSkeletonSprite()
+        {
+            return new SkeletonSprite(enemySpriteSheet);
+        }
     }
 }

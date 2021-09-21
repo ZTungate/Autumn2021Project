@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint0.Enemies;
 using System.Collections.Generic;
 
 namespace Sprint0
@@ -15,6 +16,9 @@ namespace Sprint0
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
+        
+        //Sprite factory for enemies
+        public EnemySpriteFactory enemySpriteFactory;
 
         public Game1()
         {
@@ -27,6 +31,9 @@ namespace Sprint0
         {
             // TODO: Add your initialization logic here
             sprite = new NonAnimatedStillSprite(this);
+
+            //Initialize an enemy sprite 
+            enemySpriteFactory = EnemySpriteFactory.Instance;
 
             controllerList = new List<IController>()
             {
@@ -43,6 +50,10 @@ namespace Sprint0
             font = Content.Load<SpriteFont>("Credits");
 
             // TODO: use this.Content to load your game content here
+            //Load all textures from the enemy sprite factory.
+            enemySpriteFactory.LoadAllTextures(Content);
+
+
             sprite.Texture = Content.Load<Texture2D>("ball");
 
         }
