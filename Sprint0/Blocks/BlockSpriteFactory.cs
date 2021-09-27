@@ -30,7 +30,8 @@ namespace Sprint0.Blocks
 
         public IBlocks CreateFloorTile()
         {
-            return null;
+            return new FloorSprite(blockSpriteSheet);
         } 
+        //TODO add the other ten block sprites
     }
 }

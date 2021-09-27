@@ -8,7 +8,7 @@ namespace Sprint0.Blocks
     {
         Texture2D Texture { get; set; }
 
-        Rectangle[] sourceRect { get; set; }
+        Rectangle sourceRect { get; set; }
 
         Vector2 Position { get; set; }
 
