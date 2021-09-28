@@ -6,67 +6,67 @@ using System.Text;
 
 namespace Sprint0.Enemies
 {
-    public class Skeleton
+    public class Slime
     {
-        public ISkeletonState state;
+        public ISlimeState state;
 
-        public ISprite mySprite = EnemySpriteFactory.Instance.CreateSkeletonSprite();
+        public ISprite mySprite = EnemySpriteFactory.Instance.CreateSlimeSprite();
 
-        public Skeleton()
+        public Slime()
         {
-            state = new BaseSkeletonState(this);
+            state = new BaseSlimeState(this);
         }
 
     }
 
 
-    public class BaseSkeletonState : ISkeletonState
+    public class BaseSlimeState : ISlimeState
     {
-        private Skeleton skeleton;
+        private Slime slime;
         private GameTime gameTime;
 
         private int interval = 40;
         private int timer = 0;
 
-        public BaseSkeletonState(Skeleton skeleton)
+        public BaseSlimeState(Slime slime)
         {
-            this.skeleton = skeleton;
-           //skeleton.mySprite =; //TODO Get skeleton sprite from game1's factory.
+            this.slime = slime;
+            //skeleton.mySprite =; //TODO Get skeleton sprite from game1's factory.
         }
 
         public void Update()
         {
-            skeleton.mySprite.Update(gameTime);
+            slime.mySprite.Update(gameTime);
 
             //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
-            if(timer < interval)
+            if (timer < interval)
             {
-                timer+= 5;
+                timer += 5;
             }
             else
             {
                 timer = 0;
-                skeleton.mySprite.Position = randomMove();
+                slime.mySprite.Position = randomMove();
             }
-            
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //Draw the sprite in the provided spritebatch
             spriteBatch.Draw(
-                skeleton.mySprite.Texture, //Use the sprite's texture
-                //Use position stored in mySprite
-                new Rectangle((int)skeleton.mySprite.Position.X, (int)skeleton.mySprite.Position.Y, skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame].Width, skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame].Height),
+                slime.mySprite.Texture, //Use the sprite's texture
+                                           //Use position stored in mySprite
+                new Rectangle((int)slime.mySprite.Position.X, (int)slime.mySprite.Position.Y, slime.mySprite.SourceRect[slime.mySprite.CurrentFrame].Width, slime.mySprite.SourceRect[slime.mySprite.CurrentFrame].Height),
                 //Get the relevant sourceRect from the current frome
-                skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame],
+                slime.mySprite.SourceRect[slime.mySprite.CurrentFrame],
                 //Paint the skeleton white (don't tint)
                 Color.White);
         }
 
         public Vector2 randomMove()
         {
-            Vector2 pos = skeleton.mySprite.Position;
+            Vector2 pos = slime.mySprite.Position;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -80,7 +80,7 @@ namespace Sprint0.Enemies
             {
                 pos.Y += 5;
             }
-            else if (i== 2)
+            else if (i == 2)
             {
                 pos.X -= 5;
             }
@@ -93,5 +93,5 @@ namespace Sprint0.Enemies
         }
 
     }
-        
+
 }

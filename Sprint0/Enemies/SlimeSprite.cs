@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint0
 {
-    public class SkeletonSprite : IAnimatedSprite
+    public class SlimeSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 40f;
@@ -17,18 +17,18 @@ namespace Sprint0
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        public SkeletonSprite(Texture2D spriteSheet)
+        public SlimeSprite(Texture2D spriteSheet)
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
             SourceRect = new Rectangle[2];
 
-            //Set the two frames for the skeleton animation
-            SourceRect[0] = new Rectangle(404, 59, 16, 16);
-            SourceRect[1] = new Rectangle(423, 59, 16, 16);
+            //Set the two frames for the slime animation
+            SourceRect[0] = new Rectangle(1, 11, 8, 16);
+            SourceRect[1] = new Rectangle(10, 11, 8, 16);
 
-            //Dummy position, needs to be fixed by adding pos relevant to the enemy. TODO fix
-            Position = new Vector2(500,100);
+            //Dummy position, needs to be fixed by adding pos relevant to the enemy.
+            Position = new Vector2(500, 100);
         }
 
         public void Update(GameTime gameTime)

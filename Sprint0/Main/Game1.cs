@@ -20,6 +20,10 @@ namespace Sprint0
         //Sprite factory for enemies
         public EnemySpriteFactory enemySpriteFactory;
 
+        //Enemies
+        public Skeleton skeleton;
+        public Slime slime;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -41,6 +45,10 @@ namespace Sprint0
                 new MouseController(this),
             };
 
+            //Initialize Skeleton
+            skeleton = new Skeleton();
+            slime = new Slime();
+
             base.Initialize();
         }
 
@@ -52,6 +60,9 @@ namespace Sprint0
             // TODO: use this.Content to load your game content here
             //Load all textures from the enemy sprite factory.
             enemySpriteFactory.LoadAllTextures(Content);
+
+            skeleton.mySprite = enemySpriteFactory.CreateSkeletonSprite();
+            slime.mySprite = enemySpriteFactory.CreateSlimeSprite();
 
 
             sprite.Texture = Content.Load<Texture2D>("ball");
@@ -70,6 +81,10 @@ namespace Sprint0
 
             sprite.Update(gameTime);
 
+            //Test
+            skeleton.state.Update();
+            slime.state.Update();
+
             base.Update(gameTime);
         }
 
@@ -84,6 +99,9 @@ namespace Sprint0
             _spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect[sprite.CurrentFrame], Color.White, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
             
             _spriteBatch.DrawString(font, "Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/", new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").Y / 2 + 100), Color.Black);
+
+            skeleton.state.Draw(_spriteBatch);
+            slime.state.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

@@ -68,6 +68,30 @@
 /processorParam:TextureFormat=Color
 /build:ItemSpriteSheet.png
 
+#begin LoZ DungeonEnemiesSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:LoZ DungeonEnemiesSheet.png;EnemySpriteSheet.png
+
+#begin LoZ DungeonEnemiesSheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:LoZ DungeonEnemiesSheet.png
+
 #begin PC Computer - BIONICLE The Legend of Mata Nui Prototype - Water Ball.png
 /importer:TextureImporter
 /processor:TextureProcessor
