@@ -8,16 +8,10 @@ namespace Player
 		{
 		}
 
-        public void ChangeDirection()
+        public void Draw()
         {
-            throw new NotImplementedException();
-        }
 
-        public void ChangeWalkingState()
-        {
-            throw new NotImplementedException();
         }
-
         public void Update()
         {
             throw new NotImplementedException();
