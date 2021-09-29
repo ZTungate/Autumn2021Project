@@ -23,40 +23,31 @@ namespace Sprint0.Enemies
     public class BaseSkeletonState : ISkeletonState
     {
         private Skeleton skeleton;
-        private GameTime gameTime;
-
-        private int interval = 40;
-        private int timer = 0;
 
         public BaseSkeletonState(Skeleton skeleton)
         {
             this.skeleton = skeleton;
-           //skeleton.mySprite =; //TODO Get skeleton sprite from game1's factory.
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
+            int lastFrame = skeleton.mySprite.CurrentFrame;
             skeleton.mySprite.Update(gameTime);
 
-            //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
-            if(timer < interval)
+            //Move the skeleton if the animation frame changed
+            if (lastFrame != skeleton.mySprite.CurrentFrame)
             {
-                timer+= 5;
-            }
-            else
-            {
-                timer = 0;
                 skeleton.mySprite.Position = randomMove();
             }
-            
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //Draw the sprite in the provided spritebatch
             spriteBatch.Draw(
-                skeleton.mySprite.Texture, //Use the sprite's texture
-                //Use position stored in mySprite
+                //Use the sprite's texture
+                skeleton.mySprite.Texture, 
+                //Use position stored in mySprite (for destRectangle)
                 new Rectangle((int)skeleton.mySprite.Position.X, (int)skeleton.mySprite.Position.Y, skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame].Width, skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame].Height),
                 //Get the relevant sourceRect from the current frome
                 skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame],

@@ -6,10 +6,10 @@ using System.Text;
 
 namespace Sprint0
 {
-    public class SlimeSprite : IAnimatedSprite
+    public class BatSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
-        public float Interval { get; set; } = 40f;
+        public float Interval { get; set; } = 80f;
         public int CurrentFrame { get; set; } = 0;
         public int FrameCount { get; set; } = 2;
         public float SpriteSpeed { get; set; } = 0;
@@ -17,15 +17,15 @@ namespace Sprint0
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        public SlimeSprite(Texture2D spriteSheet)
+        public BatSprite(Texture2D spriteSheet)
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
             SourceRect = new Rectangle[2];
 
-            //Set the two frames for the slime animation
-            SourceRect[0] = new Rectangle(1, 11, 8, 16);
-            SourceRect[1] = new Rectangle(10, 11, 8, 16);
+            //Set the two frames for the bat animation
+            SourceRect[0] = new Rectangle(183, 11, 16, 16);
+            SourceRect[1] = new Rectangle(200, 11, 16, 16);
 
             //Dummy position, needs to be fixed by adding pos relevant to the enemy.
             Position = new Vector2(500, 100);

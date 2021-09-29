@@ -23,6 +23,7 @@ namespace Sprint0
         //Enemies
         public Skeleton skeleton;
         public Slime slime;
+        public Bat bat;
 
         public Game1()
         {
@@ -45,9 +46,10 @@ namespace Sprint0
                 new MouseController(this),
             };
 
-            //Initialize Skeleton
+            //Initialize enemies (testing only, this will be handled elsewhere later)
             skeleton = new Skeleton();
             slime = new Slime();
+            bat = new Bat();
 
             base.Initialize();
         }
@@ -63,6 +65,7 @@ namespace Sprint0
 
             skeleton.mySprite = enemySpriteFactory.CreateSkeletonSprite();
             slime.mySprite = enemySpriteFactory.CreateSlimeSprite();
+            bat.mySprite = enemySpriteFactory.CreateBatSprite();
 
 
             sprite.Texture = Content.Load<Texture2D>("ball");
@@ -82,8 +85,9 @@ namespace Sprint0
             sprite.Update(gameTime);
 
             //Test
-            skeleton.state.Update();
-            slime.state.Update();
+            skeleton.state.Update(gameTime);
+            slime.state.Update(gameTime);
+            bat.state.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -102,6 +106,7 @@ namespace Sprint0
 
             skeleton.state.Draw(_spriteBatch);
             slime.state.Draw(_spriteBatch);
+            bat.state.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
