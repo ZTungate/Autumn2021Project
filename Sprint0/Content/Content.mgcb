@@ -90,7 +90,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:NES - The Legend of Zelda - Link.png
+/build:NES - The Legend of Zelda - Link.png;LinkSpriteSheet.png
 
 #begin PC Computer - BIONICLE The Legend of Mata Nui Prototype - Water Ball.png
 /importer:TextureImporter
