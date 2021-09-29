@@ -23,7 +23,6 @@ namespace Sprint0.Enemies
     public class BaseSlimeState : ISlimeState
     {
         private Slime slime;
-        private GameTime gameTime;
 
         private int interval = 40;
         private int timer = 0;
@@ -34,7 +33,7 @@ namespace Sprint0.Enemies
             //skeleton.mySprite =; //TODO Get skeleton sprite from game1's factory.
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             slime.mySprite.Update(gameTime);
 
@@ -46,7 +45,7 @@ namespace Sprint0.Enemies
             else
             {
                 timer = 0;
-                slime.mySprite.Position = randomMove();
+                slime.mySprite.Position = slimeRandomMove();
             }
 
         }
@@ -63,31 +62,36 @@ namespace Sprint0.Enemies
                 //Paint the skeleton white (don't tint)
                 Color.White);
         }
-
-        public Vector2 randomMove()
+        //Placeholder movement method, will require reworking when actual level exists.
+        public Vector2 slimeRandomMove()
         {
             Vector2 pos = slime.mySprite.Position;
 
             //Get a random number from 0-3
             Random rand = new Random();
-            int i = rand.Next(4);
+            int i = rand.Next(5);
 
             if (i == 0)
             {
+                //Move right if i = 0
                 pos.X += 5;
             }
             else if (i == 1)
             {
+                //Move up if i = 1
                 pos.Y += 5;
             }
             else if (i == 2)
             {
+                //Move left if i = 2
                 pos.X -= 5;
             }
-            else
+            else if (i==3)
             {
+                //Move down if i = 3
                 pos.Y -= 5;
             }
+            //If i = 4, do nothing, the slime can stand still.
             return pos;
 
         }

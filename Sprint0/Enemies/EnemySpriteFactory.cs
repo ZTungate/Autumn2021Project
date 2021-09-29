@@ -39,5 +39,11 @@ namespace Sprint0.Enemies
         {
             return new SlimeSprite(enemySpriteSheet);
         }
+
+        public ISprite CreateBatSprite()
+        {
+            return new BatSprite(enemySpriteSheet);
+        }
+
     }
 }

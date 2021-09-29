@@ -17,7 +17,7 @@ namespace Sprint0.Enemies
 
         //Skeleton moves aimlessly, this should be the only movement method needed
         Vector2 randomMove();
-        void Update();
+        void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
 
     }

@@ -9,7 +9,7 @@ namespace Sprint0
     public class SkeletonSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
-        public float Interval { get; set; } = 40f;
+        public float Interval { get; set; } = 120f;
         public int CurrentFrame { get; set; } = 0;
         public int FrameCount { get; set; } = 2;
         public float SpriteSpeed { get; set; } = 0;
@@ -46,8 +46,8 @@ namespace Sprint0
             }
             else
             {
-                //dummy timer for delaying frame switch (it'd be a pain to use gametime for this since it'd have to be passed to every enemy from game1)
-                Timer += 10;
+                //Increment timer by the elapsed time in game.
+                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
         }
 

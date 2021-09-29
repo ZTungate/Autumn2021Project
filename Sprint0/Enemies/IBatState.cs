@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint0.Enemies
 {
-    public interface ISlimeState
+    public interface IBatState
     {
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
