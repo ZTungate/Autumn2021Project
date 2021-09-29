@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Player
+namespace Sprint2.Player
 {
 	public class RightIdleState : IPlayerState
 	{

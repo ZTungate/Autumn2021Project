@@ -1,5 +1,5 @@
 using System;
-namespace Player
+namespace Sprint2.Player
 {
 	public interface IPlayerState //Trying to implement using state pattern, NOT state machine
 						   //http://web.cse.ohio-state.edu/~boggus.2/3902/slides/GoombaStateExample.cs
