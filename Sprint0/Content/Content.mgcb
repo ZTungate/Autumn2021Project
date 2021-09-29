@@ -78,9 +78,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:LoZ DungeonEnemiesSheet.png;EnemySpriteSheet.png
+/build:LoZ DungeonEnemiesSheet.png
 
-#begin LoZ DungeonEnemiesSheet.png
+#begin NES - The Legend of Zelda - Link.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -90,7 +90,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:LoZ DungeonEnemiesSheet.png
+/build:NES - The Legend of Zelda - Link.png;LinkSpriteSheet.png
 
 #begin PC Computer - BIONICLE The Legend of Mata Nui Prototype - Water Ball.png
 /importer:TextureImporter

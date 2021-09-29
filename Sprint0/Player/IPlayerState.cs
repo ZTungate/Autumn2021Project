@@ -1,7 +1,7 @@
 using System;
 namespace Player
 {
-	interface IPlayerState //Trying to implement using state pattern, NOT state machine
+	public interface IPlayerState //Trying to implement using state pattern, NOT state machine
 						   //http://web.cse.ohio-state.edu/~boggus.2/3902/slides/GoombaStateExample.cs
 	{
 		void ChangeDirection();
