@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint0.Blocks
+namespace Sprint2.Blocks
 {
     public class FloorSprite : IBlocks
     {

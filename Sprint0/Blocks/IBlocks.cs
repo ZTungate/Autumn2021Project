@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace Sprint0.Blocks
+namespace Sprint2.Blocks
 {
     public interface IBlocks
     {

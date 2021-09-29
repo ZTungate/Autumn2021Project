@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Enemies;
+using Sprint2.Enemies;
 using System.Collections.Generic;
 
-namespace Sprint0
+namespace Sprint2
 {
     public class Game1 : Game
     {

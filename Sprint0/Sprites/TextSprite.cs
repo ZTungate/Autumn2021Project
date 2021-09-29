@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0
+namespace Sprint2
 {
     class TextSprite : ISprite
     {

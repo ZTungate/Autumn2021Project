@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Blocks
+namespace Sprint2.Blocks
 {
     public class BlockSpriteFactory
     {
