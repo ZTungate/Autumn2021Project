@@ -30,14 +30,10 @@ namespace Sprint0
         }
 
         //TODO Add CreateSprite methods for each enemy type
-        public ISprite CreateSkeletonSprite()
+        public ISprite RightIdleLinkSprite()
         {
-            return new SkeletonSprite(linkSpriteSheet);
+            return new RightIdleLinkSprite(linkSpriteSheet);
         }
 
-        public ISprite CreateSlimeSprite()
-        {
-            return new SlimeSprite(linkSpriteSheet);
-        }
     }
 }
