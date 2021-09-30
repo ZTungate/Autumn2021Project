@@ -17,23 +17,22 @@ namespace Sprint2.Player
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        public RightIdleLinkSprite(Texture2D spriteSheet)
+        public RightIdleLinkSprite(Texture2D spriteSheet, Position pos)
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
-            SourceRect = new Rectangle[2];
+            SourceRect = new Rectangle[1];
 
-            //Set the two frames for the skeleton animation
-            SourceRect[0] = new Rectangle(1, 11, 16, 16);
-            SourceRect[1] = new Rectangle(1, 11, 16, 16);
+            //Set the frame for right idle link
+            SourceRect[0] = new Rectangle(35, 11, 16, 16);
 
-            //TODO: Dummy position, needs to be fixed by adding pos relevant to the enemy. TODO fix
-            Position = new Vector2(100,100);
+            //TODO: Dummy position, needs to be fixed by adding pos relevant to link. TODO fix
+            Position = new Vector2(pos.x,pos.y);
         }
 
         public void Update(GameTime gameTime)
         {
-
+            //draw the stuff here
         }
 
 

@@ -3,23 +3,27 @@ using System;
 
 namespace Sprint2.Player
 {
+    public struct Position
+    {
+        public float x;
+        public float y;
+    }
     public class Player{
+        
 
         IPlayerState playerState;
-        struct Position
-        {
-            int x;
-            int y;
-        }
+        public Position position;
+
         public Player()
         {
             playerState = new RightIdleState(); //start the player in the right idle state
+            position = new Position { x = 20, y = 20 };
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Position playerPosition)
         {
             //Draw playerSprite here
-            playerState.Draw(spriteBatch);
+            playerState.Draw(spriteBatch, playerPosition);
         }
     }
 }
