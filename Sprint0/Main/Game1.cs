@@ -120,9 +120,8 @@ namespace Sprint2
             
             _spriteBatch.DrawString(font, "Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/", new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").Y / 2 + 100), Color.Black);
 
-            skeleton.state.Draw(_spriteBatch);
-            slime.state.Draw(_spriteBatch);
-            bat.state.Draw(_spriteBatch);
+            //Draw all active enemies
+            enemySpriteFactory.drawEnemies(_spriteBatch);
 
             items[currentItem].Draw(_spriteBatch);
 

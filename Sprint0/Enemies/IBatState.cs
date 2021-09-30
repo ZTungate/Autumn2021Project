@@ -9,6 +9,6 @@ namespace Sprint2.Enemies
     public interface IBatState
     {
         void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch);
+        
     }
 }

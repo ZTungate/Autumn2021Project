@@ -10,7 +10,7 @@ namespace Sprint2.Enemies
     {
         public ISkeletonState state;
 
-        public ISprite mySprite = EnemySpriteFactory.Instance.CreateSkeletonSprite();
+        public ISprite mySprite;
 
         public Skeleton()
         {
@@ -37,25 +37,11 @@ namespace Sprint2.Enemies
             //Move the skeleton if the animation frame changed
             if (lastFrame != skeleton.mySprite.CurrentFrame)
             {
-                skeleton.mySprite.Position = randomMove();
+                skeleton.mySprite.Position = RandomMove();
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            //Draw the sprite in the provided spritebatch
-            spriteBatch.Draw(
-                //Use the sprite's texture
-                skeleton.mySprite.Texture, 
-                //Use position stored in mySprite (for destRectangle)
-                new Rectangle((int)skeleton.mySprite.Position.X, (int)skeleton.mySprite.Position.Y, skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame].Width, skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame].Height),
-                //Get the relevant sourceRect from the current frome
-                skeleton.mySprite.SourceRect[skeleton.mySprite.CurrentFrame],
-                //Paint the skeleton white (don't tint)
-                Color.White);
-        }
-
-        public Vector2 randomMove()
+        public Vector2 RandomMove()
         {
             Vector2 pos = skeleton.mySprite.Position;
 

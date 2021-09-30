@@ -8,17 +8,9 @@ namespace Sprint2.Enemies
 {
     public interface ISkeletonState
     {
-        //Commands to change location of the skeleton, animation/sprite does not change based on position or direction
-        //Wrong place for these? commented out for now
-        //void MoveUp();
-        //void MoveDown();
-        //void MoveLeft();
-        //void MoveRight();
-
         //Skeleton moves aimlessly, this should be the only movement method needed
-        Vector2 randomMove();
+        Vector2 RandomMove();
         void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch);
 
     }
 }

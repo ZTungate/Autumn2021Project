@@ -10,7 +10,7 @@ namespace Sprint2.Enemies
     {
         public IBatState state;
 
-        public ISprite mySprite = EnemySpriteFactory.Instance.CreateBatSprite();
+        public ISprite mySprite;
 
         public Bat()
         {
@@ -41,18 +41,6 @@ namespace Sprint2.Enemies
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            //Draw the sprite in the provided spritebatch
-            spriteBatch.Draw(
-                bat.mySprite.Texture, //Use the sprite's texture
-                //Use position stored in mySprite
-                new Rectangle((int)bat.mySprite.Position.X, (int)bat.mySprite.Position.Y, bat.mySprite.SourceRect[bat.mySprite.CurrentFrame].Width, bat.mySprite.SourceRect[bat.mySprite.CurrentFrame].Height),
-                //Get the relevant sourceRect from the current frome
-                bat.mySprite.SourceRect[bat.mySprite.CurrentFrame],
-                //Paint the skeleton white (don't tint)
-                Color.White);
-        }
         //Placeholder movement method, will require reworking when actual level exists.
         public Vector2 BatRandomMove()
         {

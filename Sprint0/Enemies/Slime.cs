@@ -10,7 +10,7 @@ namespace Sprint2.Enemies
     {
         public ISlimeState state;
 
-        public ISprite mySprite = EnemySpriteFactory.Instance.CreateSlimeSprite();
+        public ISprite mySprite;
 
         public Slime()
         {

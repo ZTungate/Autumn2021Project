@@ -12,6 +12,8 @@ namespace Sprint2.Enemies
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
+        List<ISprite> enemySprites = new List<ISprite>();
+
         public static EnemySpriteFactory Instance
         {
             get
@@ -32,17 +34,34 @@ namespace Sprint2.Enemies
         //TODO Add CreateSprite methods for each enemy type
         public ISprite CreateSkeletonSprite()
         {
-            return new SkeletonSprite(enemySpriteSheet);
+            //Create a new skeleton sprite, save it to the enemySprites list and return it for external use.
+            ISprite newSprite = new SkeletonSprite(enemySpriteSheet);
+            enemySprites.Add(newSprite);
+            return newSprite;
         }
 
         public ISprite CreateSlimeSprite()
         {
-            return new SlimeSprite(enemySpriteSheet);
+            //Create a new slime sprite, save it to the enemySprites list and return it for external use.
+            ISprite newSprite = new SlimeSprite(enemySpriteSheet);
+            enemySprites.Add(newSprite);
+            return newSprite;
         }
 
         public ISprite CreateBatSprite()
         {
-            return new BatSprite(enemySpriteSheet);
+            //Create a new bat sprite, save it to the enemySprites list and return it for external use.
+            ISprite newSprite = new BatSprite(enemySpriteSheet);
+            enemySprites.Add(newSprite);
+            return newSprite;
+        }
+
+        public void drawEnemies(SpriteBatch spriteBatch)
+        {
+            foreach(ISprite enemySprite in enemySprites)
+            {
+                enemySprite.Draw(spriteBatch);
+            }
         }
 
     }
