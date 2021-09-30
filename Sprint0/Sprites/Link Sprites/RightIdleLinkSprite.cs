@@ -17,7 +17,7 @@ namespace Sprint2.Player
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        public RightIdleLinkSprite(Texture2D spriteSheet, Position pos)
+        public RightIdleLinkSprite(Texture2D spriteSheet)
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
@@ -27,12 +27,12 @@ namespace Sprint2.Player
             SourceRect[0] = new Rectangle(35, 11, 16, 16);
 
             //TODO: Dummy position, needs to be fixed by adding pos relevant to link. TODO fix
-            Position = new Vector2(pos.x,pos.y);
+            Position = new Vector2(100,100); //Why is this here? - Michael
         }
 
         public void Update(GameTime gameTime)
         {
-            //draw the stuff here
+
         }
 
 

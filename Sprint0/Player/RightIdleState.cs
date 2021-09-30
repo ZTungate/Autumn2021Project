@@ -15,7 +15,7 @@ namespace Sprint2.Player
 
         public void Draw(SpriteBatch spriteBatch, Position pos)
         {
-            //Draw playerSprite here
+            //Draw the destination rectangle
             throw new NotImplementedException();
         }
 
