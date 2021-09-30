@@ -27,7 +27,7 @@ namespace Sprint2.Player
             SourceRect[0] = new Rectangle(1, 11, 16, 16);
             SourceRect[1] = new Rectangle(1, 11, 16, 16);
 
-            //Dummy position, needs to be fixed by adding pos relevant to the enemy. TODO fix
+            //TODO: Dummy position, needs to be fixed by adding pos relevant to the enemy. TODO fix
             Position = new Vector2(100,100);
         }
 

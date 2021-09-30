@@ -1,3 +1,6 @@
+using Microsoft.Xna.Framework.Graphics;
+using System;
+
 namespace Sprint2.Player
 {
     public class Player{
@@ -10,7 +13,13 @@ namespace Sprint2.Player
         }
         public Player()
         {
+            playerState = new RightIdleState(); //start the player in the right idle state
+        }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            //Draw playerSprite here
+            playerState.Draw(spriteBatch);
         }
     }
 }

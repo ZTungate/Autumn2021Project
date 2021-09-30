@@ -22,6 +22,8 @@ namespace Sprint2
         }
         private void setKeys()
         {
+
+            //Create commands to change sprites
             this.controllerMappings.Add(Keys.D0, new Quit(myGame));
             this.controllerMappings.Add(Keys.D1, new DisplayNonAniNonMovSprite(myGame));
             this.controllerMappings.Add(Keys.D2, new DisplayAniNonMovSprite(myGame));
