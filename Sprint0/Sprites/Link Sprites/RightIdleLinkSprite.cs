@@ -34,7 +34,11 @@ namespace Sprint2.Player
         {
 
         }
-
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width, SourceRect[CurrentFrame].Height);
+            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
+        }
 
     }
 }

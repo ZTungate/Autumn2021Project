@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    class AnimatedMovingSprite : IAnimatedSprite
+    public class AnimatedMovingSprite : IAnimatedSprite
     {
 
         public bool rightSlide = true;
@@ -86,5 +86,10 @@ namespace Sprint2
             }
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width, SourceRect[CurrentFrame].Height);
+            spriteBatch.Draw(Texture,destRect,SourceRect[CurrentFrame],Color.White);
+        }
     }
 }

@@ -22,6 +22,10 @@ namespace Sprint2
         public Vector2 Position { get; set; }
 
         public void Update(GameTime gameTime) { }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            
+        }
     }
 
 

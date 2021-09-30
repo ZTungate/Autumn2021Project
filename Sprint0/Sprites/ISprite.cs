@@ -19,6 +19,6 @@ namespace Sprint2
         Vector2 Position { get; set; }
 
         void Update(GameTime gameTime);
-
+        void Draw(SpriteBatch spriteBatch);
     }
 }

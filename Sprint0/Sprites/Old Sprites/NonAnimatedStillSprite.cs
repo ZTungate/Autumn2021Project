@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    class NonAnimatedStillSprite : ISprite
+    public class NonAnimatedStillSprite : ISprite
     {
 
 
@@ -38,6 +38,11 @@ namespace Sprint2
         public void Update(GameTime gameTime)
         {
 
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width, SourceRect[CurrentFrame].Height);
+            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
 
     }

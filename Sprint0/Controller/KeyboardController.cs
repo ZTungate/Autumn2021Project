@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using Sprint2.Commands;
 
 namespace Sprint2
 {
@@ -30,14 +31,20 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.D3, new DisplayNonAniMovSprite(myGame));
             this.controllerMappings.Add(Keys.D4, new DisplayAniMovSprite(myGame));
 
+            this.controllerMappings.Add(Keys.U, new PreviousItemCommand(myGame));
+            this.controllerMappings.Add(Keys.I, new NextItemCommand(myGame));
         }
 
+        KeyboardState state;
         public void Update()
         {
-            Keys[] pressedKeys = Keyboard.GetState().GetPressedKeys();
+            KeyboardState lastState = state;
+            state = Keyboard.GetState();
+            Keys[] pressedKeys = state.GetPressedKeys();
 
             foreach (Keys key in pressedKeys) {
-                if (controllerMappings.ContainsKey(key)) {
+                if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
+                {
                     controllerMappings[key].Execute();
                 }
             }

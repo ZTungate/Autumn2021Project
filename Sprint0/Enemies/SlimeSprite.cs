@@ -50,7 +50,11 @@ namespace Sprint2
                 Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
         }
-
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width, SourceRect[CurrentFrame].Height);
+            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
+        }
 
     }
 }

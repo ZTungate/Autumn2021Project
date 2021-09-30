@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint2.Enemies;
+using Sprint2.Items;
 using System.Collections.Generic;
 
 namespace Sprint2
@@ -17,13 +18,19 @@ namespace Sprint2
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
         
-        //Sprite factory for enemies
+        //Sprite factories
         public EnemySpriteFactory enemySpriteFactory;
+        public ItemSpriteFactory itemSpriteFactory;
 
         //Enemies
         public Skeleton skeleton;
         public Slime slime;
         public Bat bat;
+
+        //Items
+        public List<IItem> items;
+        public int currentItem;
+
 
         public Game1()
         {
@@ -39,11 +46,18 @@ namespace Sprint2
 
             //Initialize an enemy sprite 
             enemySpriteFactory = EnemySpriteFactory.Instance;
+            itemSpriteFactory = ItemSpriteFactory.Instance;
 
             controllerList = new List<IController>()
             {
                 new KeyboardController(this),
                 new MouseController(this),
+            };
+
+            items = new List<IItem>()
+            {
+                new ClockItem(new NonAnimatedStillSprite(this)),
+                new BowItem(new NonAnimatedStillSprite(this)),
             };
 
             //Initialize enemies (testing only, this will be handled elsewhere later)
@@ -89,6 +103,8 @@ namespace Sprint2
             slime.state.Update(gameTime);
             bat.state.Update(gameTime);
 
+            items[currentItem].Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -107,6 +123,8 @@ namespace Sprint2
             skeleton.state.Draw(_spriteBatch);
             slime.state.Draw(_spriteBatch);
             bat.state.Draw(_spriteBatch);
+
+            items[currentItem].Draw(_spriteBatch);
 
             _spriteBatch.End();
 

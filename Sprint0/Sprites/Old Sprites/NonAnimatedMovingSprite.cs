@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    class NonAnimatedMovingSprite : ISprite
+    public class NonAnimatedMovingSprite : ISprite
     {
 
         public bool rising = true;
@@ -62,6 +62,11 @@ namespace Sprint2
                     rising = true;
                 }
             }
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width, SourceRect[CurrentFrame].Height);
+            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
     }
 }

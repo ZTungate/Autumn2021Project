@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    class AnimatedStillSprite : IAnimatedSprite
+    public class AnimatedStillSprite : IAnimatedSprite
     {
 
         public float Timer { get; set; } = 0f;
@@ -52,6 +52,11 @@ namespace Sprint2
             else {
                 Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width, SourceRect[CurrentFrame].Height);
+            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
 
     }
