@@ -7,10 +7,9 @@ namespace Sprint2.Player
 	public class RightIdleState : IPlayerState
 	{
 
-        ISprite playerSprite;
-		public RightIdleState(Vector2 position)
+		public RightIdleState()
 		{
-            playerSprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(position); //Initialize game with link facing right, idle.
+            //playerSprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(position); //Initialize game with link facing right, idle.
 		}
 
 

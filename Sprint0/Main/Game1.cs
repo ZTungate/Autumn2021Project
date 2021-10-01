@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Sprint0.Enemies;
+using Sprint2.Player;
 using Sprint2.Enemies;
 using Sprint2.Items;
 using System.Collections.Generic;
@@ -18,10 +19,14 @@ namespace Sprint2
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
-        
+
         //Sprite factories
+        public LinkSpriteFactory linkSpriteFactory;
         public EnemySpriteFactory enemySpriteFactory;
         public ItemSpriteFactory itemSpriteFactory;
+
+        //Link
+        public Link link;
 
         //Enemies
         public List<IEnemy> enemies;
@@ -45,6 +50,7 @@ namespace Sprint2
             sprite = new NonAnimatedStillSprite(this);
 
             //Initialize an enemy sprite 
+            linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
             itemSpriteFactory = ItemSpriteFactory.Instance;
 
@@ -59,6 +65,9 @@ namespace Sprint2
                 new ClockItem(new NonAnimatedStillSprite(this)),
                 new BowItem(new NonAnimatedStillSprite(this)),
             };
+
+            //Initialize Player (Link)
+            link = new Link();
 
             //Initialize enemies 
             enemies = new List<IEnemy>()
@@ -79,9 +88,15 @@ namespace Sprint2
             font = Content.Load<SpriteFont>("Credits");
 
             // TODO: use this.Content to load your game content here
+            //Load all textures from the link sprite factory.
+            linkSpriteFactory.LoadAllTextures(Content);
+
             //Load all textures from the enemy sprite factory.
             enemySpriteFactory.LoadAllTextures(Content);
-            
+
+            //Create sprite for Link
+            link.sprite = linkSpriteFactory.LeftIdleLinkSprite(link.position);
+
             //Create sprites for all enemies.
             foreach(IEnemy enemy in enemies){
                 enemy.Sprite = enemySpriteFactory.makeSprite(enemy);
@@ -103,8 +118,12 @@ namespace Sprint2
             //Update all enemies (for testing purposes)
             //foreach(IEnemy enemy in enemies)
             //{
-             //   enemy.Update(gameTime);
+            //   enemy.Update(gameTime);
             //}
+
+            //Update Link
+            link.Update(gameTime);
+
             //Update the current enemy
             enemies[currentEnemy].Update(gameTime);
 
@@ -123,10 +142,14 @@ namespace Sprint2
        
             _spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect[sprite.CurrentFrame], Color.White, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
             
-            _spriteBatch.DrawString(font, "Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/", new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").Y / 2 + 100), Color.Black);
+            _spriteBatch.DrawString(font, "Controls:\nO and P to swap enemy\nU and I to change items.", new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString("Controls:\nO and P to swap enemy\nU and I to change items.").X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").Y / 2 + 100), Color.Black);
 
             //Draw all active enemies
             //enemySpriteFactory.drawEnemies(_spriteBatch);
+
+            //Draw Link
+            link.Draw(_spriteBatch);
+
             //Draw the current enemy
             enemies[currentEnemy].Sprite.Draw(_spriteBatch);
 

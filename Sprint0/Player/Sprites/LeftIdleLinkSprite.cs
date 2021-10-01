@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2.Player
 {
-    public class RightIdleLinkSprite : IAnimatedSprite
+    public class LeftIdleLinkSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 40f;
@@ -19,7 +19,7 @@ namespace Sprint2.Player
 
         public int scale = 2;
 
-        public RightIdleLinkSprite(Texture2D spriteSheet, Vector2 pos)
+        public LeftIdleLinkSprite(Texture2D spriteSheet, Vector2 pos)
         {
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
@@ -37,7 +37,8 @@ namespace Sprint2.Player
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width*scale, SourceRect[CurrentFrame].Height*scale);
-            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
+            /*            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
+            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1); //Can use this format instead of the other one
         }
 
     }
