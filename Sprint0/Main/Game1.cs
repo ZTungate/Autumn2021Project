@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Sprint0.Enemies;
 using Sprint2.Enemies;
 using Sprint2.Items;
 using System.Collections.Generic;
@@ -23,9 +24,8 @@ namespace Sprint2
         public ItemSpriteFactory itemSpriteFactory;
 
         //Enemies
-        public Skeleton skeleton;
-        public Slime slime;
-        public Bat bat;
+        public List<IEnemy> enemies;
+        public int currentEnemy;
 
         //Items
         public List<IItem> items;
@@ -60,10 +60,14 @@ namespace Sprint2
                 new BowItem(new NonAnimatedStillSprite(this)),
             };
 
-            //Initialize enemies (testing only, this will be handled elsewhere later)
-            skeleton = new Skeleton();
-            slime = new Slime();
-            bat = new Bat();
+            //Initialize enemies 
+            enemies = new List<IEnemy>()
+            {
+                new Dragon(),
+                new Skeleton(),
+                new Bat(),
+                new Slime(),
+            }; 
 
             base.Initialize();
         }
@@ -76,11 +80,11 @@ namespace Sprint2
             // TODO: use this.Content to load your game content here
             //Load all textures from the enemy sprite factory.
             enemySpriteFactory.LoadAllTextures(Content);
-
-            skeleton.mySprite = enemySpriteFactory.CreateSkeletonSprite();
-            slime.mySprite = enemySpriteFactory.CreateSlimeSprite();
-            bat.mySprite = enemySpriteFactory.CreateBatSprite();
-
+            
+            //Create sprites for all enemies.
+            foreach(IEnemy enemy in enemies){
+                enemy.Sprite = enemySpriteFactory.makeSprite(enemy);
+            }
 
             sprite.Texture = Content.Load<Texture2D>("ball");
 
@@ -88,9 +92,6 @@ namespace Sprint2
 
         protected override void Update(GameTime gameTime)
         {
-
-
-
             // TODO: Add your update logic here
             foreach (IController controller in controllerList) {
                 controller.Update();
@@ -98,10 +99,13 @@ namespace Sprint2
 
             sprite.Update(gameTime);
 
-            //Test
-            skeleton.state.Update(gameTime);
-            slime.state.Update(gameTime);
-            bat.state.Update(gameTime);
+            //Update all enemies (for testing purposes)
+            foreach(IEnemy enemy in enemies)
+            {
+                enemy.Update(gameTime);
+            }
+            //Update the current enemy
+            //enemies[0].Update(gameTime);
 
             items[currentItem].Update(gameTime);
 

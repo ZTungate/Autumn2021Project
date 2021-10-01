@@ -1,41 +1,36 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Helpers;
+using Sprint2;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Sprint0.Enemies
 {
-    public class Slime
+    public class Slime : IEnemy
     {
-        public ISlimeState state;
-
-        public ISprite mySprite;
-
-        public Slime()
-        {
-            state = new BaseSlimeState(this);
-        }
-
-    }
-
-
-    public class BaseSlimeState : ISlimeState
-    {
-        private Slime slime;
-
+        //Timers for updating sprite without moving
         private int interval = 40;
         private int timer = 0;
 
-        public BaseSlimeState(Slime slime)
+        //ISprite for the enemy
+        ISprite mySprite;
+        public ISprite Sprite
         {
-            this.slime = slime;
-            //skeleton.mySprite =; //TODO Get skeleton sprite from game1's factory.
+            //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
+            get => mySprite;
+            set => mySprite = value;
+        }
+
+        public EnemyTypes Type
+        {
+            //Return Slime if type is ever asked for.
+            get => EnemyTypes.Slime;
         }
 
         public void Update(GameTime gameTime)
         {
-            slime.mySprite.Update(gameTime);
+            mySprite.Update(gameTime);
 
             //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
             if (timer < interval)
@@ -45,27 +40,18 @@ namespace Sprint2.Enemies
             else
             {
                 timer = 0;
-                slime.mySprite.Position = slimeRandomMove();
+                mySprite.Position = SlimeRandomMove();
             }
-
         }
-
-        public void Draw(SpriteBatch spriteBatch)
+        public Slime()
         {
-            //Draw the sprite in the provided spritebatch
-            spriteBatch.Draw(
-                slime.mySprite.Texture, //Use the sprite's texture
-                                           //Use position stored in mySprite
-                new Rectangle((int)slime.mySprite.Position.X, (int)slime.mySprite.Position.Y, slime.mySprite.SourceRect[slime.mySprite.CurrentFrame].Width, slime.mySprite.SourceRect[slime.mySprite.CurrentFrame].Height),
-                //Get the relevant sourceRect from the current frome
-                slime.mySprite.SourceRect[slime.mySprite.CurrentFrame],
-                //Paint the skeleton white (don't tint)
-                Color.White);
+            //Nothing special about the slime object itself, no implementation required
         }
+
         //Placeholder movement method, will require reworking when actual level exists.
-        public Vector2 slimeRandomMove()
+        public Vector2 SlimeRandomMove()
         {
-            Vector2 pos = slime.mySprite.Position;
+            Vector2 pos = mySprite.Position;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -86,16 +72,13 @@ namespace Sprint2.Enemies
                 //Move left if i = 2
                 pos.X -= 5;
             }
-            else if (i==3)
+            else if (i == 3)
             {
                 //Move down if i = 3
                 pos.Y -= 5;
             }
             //If i = 4, do nothing, the slime can stand still.
             return pos;
-
         }
-
     }
-
 }

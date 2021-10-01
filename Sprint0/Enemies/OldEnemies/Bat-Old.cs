@@ -1,49 +1,51 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint0.Helpers;
-using Sprint2;
+using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Enemies
+namespace Sprint2.Enemies
 {
-    public class Bat : IEnemy
+    public class OldBat
     {
-        //ISprite for the enemy
-        ISprite mySprite;
-        public ISprite Sprite
+        public IBatState bat;
+
+        public ISprite mySprite;
+
+        public OldBat()
         {
-            //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
-            get => mySprite;
-            set => mySprite = value;
+           bat = new BaseBatState(this);
         }
 
-        public EnemyTypes Type
+    }
+
+
+    public class BaseBatState : IBatState
+    {
+        private OldBat bat;
+
+        public BaseBatState(OldBat bat)
         {
-            //Return Bat if type is ever asked for.
-            get => EnemyTypes.Bat;
+            this.bat = bat;
         }
 
         public void Update(GameTime gameTime)
         {
-            int lastFrame = mySprite.CurrentFrame;
-            mySprite.Update(gameTime);
+            int lastFrame = bat.mySprite.CurrentFrame;
+            bat.mySprite.Update(gameTime);
 
             //Move the bat if the animation frame changed
-            if (lastFrame != mySprite.CurrentFrame)
+            if (lastFrame != bat.mySprite.CurrentFrame)
             {
-                mySprite.Position = BatRandomMove();
+                bat.mySprite.Position = BatRandomMove();
             }
-        }
-        public Bat()
-        {
-            //Nothing special about the bat object itself, no implementation required
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
         public Vector2 BatRandomMove()
         {
-            Vector2 pos = mySprite.Position;
+            Vector2 pos = bat.mySprite.Position;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -67,7 +69,7 @@ namespace Sprint0.Enemies
                 pos.X -= 3;
                 pos.Y += 3;
             }
-            else if (i == 3)
+            else if (i==3)
             {
                 //Move left/down if i = 3
                 pos.X -= 3;
@@ -77,5 +79,7 @@ namespace Sprint0.Enemies
             return pos;
 
         }
+
     }
+
 }

@@ -1,49 +1,51 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Enemies;
+using Sprint0.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Sprint2.Enemies
 {
-    public class Skeleton
+    public class Skeleton : IEnemy
     {
-        public ISkeletonState state;
-
-        public ISprite mySprite;
-
-        public Skeleton()
+        //ISprite for the enemy
+        ISprite mySprite;
+        public ISprite Sprite
         {
-            state = new BaseSkeletonState(this);
+            //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
+            get => mySprite;
+            set => mySprite = value;
         }
 
-    }
-
-
-    public class BaseSkeletonState : ISkeletonState
-    {
-        private Skeleton skeleton;
-
-        public BaseSkeletonState(Skeleton skeleton)
+        public EnemyTypes Type
         {
-            this.skeleton = skeleton;
+            //Return Dragon if type is ever asked for.
+            get => EnemyTypes.Skeleton;
         }
 
         public void Update(GameTime gameTime)
         {
-            int lastFrame = skeleton.mySprite.CurrentFrame;
-            skeleton.mySprite.Update(gameTime);
+            //Get the number for the last frame
+            int lastFrame = mySprite.CurrentFrame;
+            //Update the sprite
+            mySprite.Update(gameTime);
 
             //Move the skeleton if the animation frame changed
-            if (lastFrame != skeleton.mySprite.CurrentFrame)
+            if (lastFrame != mySprite.CurrentFrame)
             {
-                skeleton.mySprite.Position = RandomMove();
+                 mySprite.Position = RandomMove();
             }
+        }
+        public Skeleton()
+        {
+            //Nothing special about the dragon object itself, no implementation required
         }
 
         public Vector2 RandomMove()
         {
-            Vector2 pos = skeleton.mySprite.Position;
+            Vector2 pos = mySprite.Position;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -57,7 +59,7 @@ namespace Sprint2.Enemies
             {
                 pos.Y += 5;
             }
-            else if (i== 2)
+            else if (i == 2)
             {
                 pos.X -= 5;
             }
@@ -68,7 +70,5 @@ namespace Sprint2.Enemies
             return pos;
 
         }
-
     }
-        
 }
