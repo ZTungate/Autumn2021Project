@@ -13,14 +13,15 @@ namespace Sprint2.Player
 		}
 
 
-        public void Draw(SpriteBatch spriteBatch, Position pos)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            //Draw the destination rectangle
+
             throw new NotImplementedException();
         }
 
         public void Update()
         {
+            //update the animation of the sprite here
             throw new NotImplementedException();
         }
     }

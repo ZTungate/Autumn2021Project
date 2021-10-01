@@ -15,17 +15,19 @@ namespace Sprint2.Player
 
         IPlayerState playerState;
         public Position position;
+        public ISprite sprite;
 
         public Player()
         {
             playerState = new RightIdleState(); //start the player in the right idle state
+            sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite();
             position = new Position { x = 20, y = 20 };
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             //Draw playerSprite here
-            playerState.Draw(spriteBatch, position);
+            
         }
     }
 }
