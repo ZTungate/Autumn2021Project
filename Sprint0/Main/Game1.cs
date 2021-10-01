@@ -100,12 +100,12 @@ namespace Sprint2
             sprite.Update(gameTime);
 
             //Update all enemies (for testing purposes)
-            foreach(IEnemy enemy in enemies)
-            {
-                enemy.Update(gameTime);
-            }
+            //foreach(IEnemy enemy in enemies)
+            //{
+             //   enemy.Update(gameTime);
+            //}
             //Update the current enemy
-            //enemies[0].Update(gameTime);
+            enemies[currentEnemy].Update(gameTime);
 
             items[currentItem].Update(gameTime);
 
@@ -125,7 +125,9 @@ namespace Sprint2
             _spriteBatch.DrawString(font, "Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/", new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").Y / 2 + 100), Color.Black);
 
             //Draw all active enemies
-            enemySpriteFactory.drawEnemies(_spriteBatch);
+            //enemySpriteFactory.drawEnemies(_spriteBatch);
+            //Draw the current enemy
+            enemies[currentEnemy].Sprite.Draw(_spriteBatch);
 
             items[currentItem].Draw(_spriteBatch);
 

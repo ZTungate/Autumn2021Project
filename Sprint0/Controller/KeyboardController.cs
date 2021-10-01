@@ -33,6 +33,9 @@ namespace Sprint2
 
             this.controllerMappings.Add(Keys.U, new PreviousItemCommand(myGame));
             this.controllerMappings.Add(Keys.I, new NextItemCommand(myGame));
+
+            this.controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame));
+            this.controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame));
         }
 
         KeyboardState state;
