@@ -67,6 +67,7 @@ namespace Sprint2
                 new Skeleton(),
                 new Bat(),
                 new Slime(),
+                new OldMan(),
             }; 
 
             base.Initialize();

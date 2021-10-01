@@ -12,6 +12,7 @@ namespace Sprint2.Enemies
     {
         private Texture2D enemySpriteSheet;
         private Texture2D bossSheet;
+        private Texture2D NPCSheet;
 
         private static EnemySpriteFactory instance = new EnemySpriteFactory();
 
@@ -33,6 +34,7 @@ namespace Sprint2.Enemies
         {
             enemySpriteSheet = content.Load<Texture2D>("EnemySpriteSheet");
             bossSheet = content.Load<Texture2D>("EnemyBossSheet");
+            NPCSheet = content.Load<Texture2D>("NPCSheet");
         }
 
         //TODO Add CreateSprite methods for each enemy type
@@ -67,6 +69,13 @@ namespace Sprint2.Enemies
             return newSprite;
         }
 
+        public ISprite CreateOldManSprite()
+        {
+            ISprite newSprite = new OldManSprite(NPCSheet);
+            enemySprites.Add(newSprite);
+            return newSprite;
+        }
+
         public void drawEnemies(SpriteBatch spriteBatch)
         {
             foreach(ISprite enemySprite in enemySprites)
@@ -88,6 +97,8 @@ namespace Sprint2.Enemies
                     return CreateSkeletonSprite();
                 case EnemyTypes.Slime:
                     return CreateSlimeSprite();
+                case EnemyTypes.OldMan:
+                    return CreateOldManSprite();
                 default:
                     //This should never happen, every enemy has a type.
                     return null;

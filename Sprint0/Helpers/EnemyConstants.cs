@@ -4,5 +4,5 @@ using System.Text;
 
 namespace Sprint0.Helpers
 {
-    public enum EnemyTypes { Dragon, Skeleton, Slime, BoomerangThrower, Bat };
+    public enum EnemyTypes { Dragon, Skeleton, Slime, BoomerangThrower, Bat , OldMan };
 }
