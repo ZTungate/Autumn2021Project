@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace Sprint2.Player
     {
         private Texture2D linkSpriteSheet;
 
-        private static LinkSpriteFactory instance = new LinkSpriteFactory();
+        private static LinkSpriteFactory instance = new LinkSpriteFactory(); //Initializes link's position at (20,20)
 
         public static LinkSpriteFactory Instance
         {
@@ -30,9 +31,9 @@ namespace Sprint2.Player
         }
 
         //TODO Add CreateSprite methods for each enemy type
-        public ISprite RightIdleLinkSprite()
+        public ISprite RightIdleLinkSprite(Vector2 linkPosition)
         {
-            return new RightIdleLinkSprite(linkSpriteSheet);
+            return new RightIdleLinkSprite(linkSpriteSheet, linkPosition);
         }
 
     }
