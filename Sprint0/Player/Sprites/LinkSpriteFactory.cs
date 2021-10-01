@@ -11,7 +11,7 @@ namespace Sprint2.Player
     {
         private Texture2D linkSpriteSheet;
 
-        private static LinkSpriteFactory instance = new LinkSpriteFactory(); //Initializes link's position at (20,20)
+        private static LinkSpriteFactory instance = new LinkSpriteFactory();
 
         public static LinkSpriteFactory Instance
         {

@@ -11,11 +11,13 @@ namespace Sprint2.Player
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 40f;
         public int CurrentFrame { get; set; } = 0;
-        public int FrameCount { get; set; } = 2;
+        public int FrameCount { get; set; } = 1;
         public float SpriteSpeed { get; set; } = 0;
         public Texture2D Texture { get; set; }
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
+
+        public int scale = 2;
 
         public RightIdleLinkSprite(Texture2D spriteSheet, Vector2 pos)
         {
@@ -29,11 +31,12 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
-
+            // Implement animation changes here
         }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width, SourceRect[CurrentFrame].Height);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width*scale, SourceRect[CurrentFrame].Height*scale);
             spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
 
