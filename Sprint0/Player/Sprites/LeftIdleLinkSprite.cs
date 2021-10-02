@@ -9,7 +9,7 @@ namespace Sprint2.Player
     public class LeftIdleLinkSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
-        public float Interval { get; set; } = 40f;
+        public float Interval { get; set; } = 40f; 
         public int CurrentFrame { get; set; } = 0;
         public int FrameCount { get; set; } = 1;
         public float SpriteSpeed { get; set; } = 0;
@@ -32,13 +32,16 @@ namespace Sprint2.Player
         public void Update(GameTime gameTime)
         {
             // Implement animation changes here
+
+            
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width*scale, SourceRect[CurrentFrame].Height*scale);
             /*            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1); //Can use this format instead of the other one
+            //Can use this format instead of the other one
+            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame%FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1);
         }
 
     }
