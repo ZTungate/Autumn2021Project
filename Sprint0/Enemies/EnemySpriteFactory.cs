@@ -76,7 +76,14 @@ namespace Sprint2.Enemies
             return newSprite;
         }
 
-        public void drawEnemies(SpriteBatch spriteBatch)
+        public ISprite CreateThrowerSprite()
+        {
+            ISprite newSprite = new LeftThrowerSprite(enemySpriteSheet);
+            enemySprites.Add(newSprite);
+            return newSprite;
+        }
+
+        public void DrawEnemies(SpriteBatch spriteBatch)
         {
             foreach(ISprite enemySprite in enemySprites)
             {
@@ -84,7 +91,7 @@ namespace Sprint2.Enemies
             }
         }
 
-        public ISprite makeSprite(IEnemy enemy)
+        public ISprite MakeSprite(IEnemy enemy)
         {
             switch (enemy.Type)
             {
@@ -99,6 +106,8 @@ namespace Sprint2.Enemies
                     return CreateSlimeSprite();
                 case EnemyTypes.OldMan:
                     return CreateOldManSprite();
+                case EnemyTypes.Thrower:
+                    return CreateThrowerSprite();
                 default:
                     //This should never happen, every enemy has a type.
                     return null;

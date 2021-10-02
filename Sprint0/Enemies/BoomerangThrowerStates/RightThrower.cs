@@ -13,6 +13,7 @@ namespace Sprint0.Enemies
         {
             mySprite = sprite;
             mySprite.Position = enemy.Position;
+            thrower = enemy;
         }
 
         public void turnDown()

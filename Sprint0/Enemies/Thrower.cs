@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sprint0.Enemies
 {
-    public class BoomerangThrower : IEnemy
+    public class Thrower : IEnemy
     {
         //Sprite for the enemy
         ISprite mySprite;
@@ -35,18 +35,21 @@ namespace Sprint0.Enemies
         EnemyTypes IEnemy.Type
         {
             //Return boomerangThrower as type if requested
-            get => EnemyTypes.BoomerangThrower;
+            get => EnemyTypes.Thrower;
         }
 
         void IEnemy.Update(GameTime gameTime)
         {
+            mySprite.Position = pos;
             mySprite.Update(gameTime);
         }
         
-        public BoomerangThrower()
+        public Thrower()
         {
             //Default a new thrower as a left thrower
             currState = new LeftThrower(mySprite, this);
+            //Assign an arbitrary starting positon for the thrower
+            pos = new Vector2(500, 300);
         }
     }
 }

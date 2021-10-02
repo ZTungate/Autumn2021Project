@@ -77,6 +77,7 @@ namespace Sprint2
                 new Bat(),
                 new Slime(),
                 new OldMan(),
+                new Thrower(),
             }; 
 
             base.Initialize();
@@ -99,7 +100,7 @@ namespace Sprint2
 
             //Create sprites for all enemies.
             foreach(IEnemy enemy in enemies){
-                enemy.Sprite = enemySpriteFactory.makeSprite(enemy);
+                enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
             }
 
             sprite.Texture = Content.Load<Texture2D>("ball");

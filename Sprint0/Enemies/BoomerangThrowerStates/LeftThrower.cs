@@ -11,8 +11,7 @@ namespace Sprint0.Enemies
         private IEnemy thrower;
         public LeftThrower(ISprite sprite, IEnemy enemy)
         {
-            mySprite = sprite;
-            mySprite.Position = enemy.Position;
+            thrower = enemy;
         }
 
         public void turnDown()

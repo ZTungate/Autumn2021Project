@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    public class BatSprite : IAnimatedSprite
+    public class LeftThrowerSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 80f;
@@ -17,18 +17,16 @@ namespace Sprint2
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        public BatSprite(Texture2D spriteSheet)
+        public LeftThrowerSprite(Texture2D spriteSheet)
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
+            //Create a new array to hold the two frames of animation
             SourceRect = new Rectangle[2];
 
-            //Set the two frames for the bat animation
-            SourceRect[0] = new Rectangle(183, 11, 16, 16);
-            SourceRect[1] = new Rectangle(200, 11, 16, 16);
-
-            //Dummy position, needs to be fixed by adding pos relevant to the enemy.
-            //Position = new Vector2(500, 100);
+            //Set the two frames for the animation
+            SourceRect[0] = new Rectangle(256, 28, 16, 16);
+            SourceRect[1] = new Rectangle(273, 28, 16, 16);
         }
 
         public void Update(GameTime gameTime)
