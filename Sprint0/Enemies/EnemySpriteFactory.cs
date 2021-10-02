@@ -85,6 +85,7 @@ namespace Sprint2.Enemies
 
         public void DrawEnemies(SpriteBatch spriteBatch)
         {
+            //Draws all enemies this factory has created, not useful in sprint 2, but will be useful when multiple enemies appear at once.
             foreach(ISprite enemySprite in enemySprites)
             {
                 enemySprite.Draw(spriteBatch);

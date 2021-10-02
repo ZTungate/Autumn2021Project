@@ -1,4 +1,6 @@
-﻿using Sprint2;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Sprint2;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,11 +14,14 @@ namespace Sprint0.Enemies
         public LeftThrower(ISprite sprite, IEnemy enemy)
         {
             thrower = enemy;
+            mySprite = sprite;
         }
 
         public void turnDown()
         {
-            throw new NotImplementedException();
+            Texture2D texture = thrower.Sprite.Texture;
+            mySprite = new DownThrowerSprite(texture);
+            thrower.State = new DownThrower(mySprite, thrower);
         }
 
         public void turnLeft()
@@ -26,17 +31,30 @@ namespace Sprint0.Enemies
 
         public void turnRight()
         {
-            thrower.State = new RightThrower(mySprite,thrower);
+            Texture2D texture = thrower.Sprite.Texture;
+            mySprite = new RightThrowerSprite(texture);
+            thrower.State = new RightThrower(mySprite, thrower);
         }
 
         public void turnUp()
         {
-            throw new NotImplementedException();
+            Texture2D texture = thrower.Sprite.Texture;
+            mySprite = new UpThrowerSprite(texture);
+            thrower.State = new UpThrower(mySprite, thrower);
+        }
+        public void moveForward()
+        {
+            //Get the current position of the thrower
+            Vector2 newPos = thrower.Position;
+            //Move the thrower the relevant direction to the current state.
+            newPos.X -= 5;
+            //Set the thrower's position to the new pos.
+            thrower.Position = newPos;
         }
 
-        public void Update()
+        public void Update(GameTime gameTime, ISprite enemySprite)
         {
-
+            //mySprite = enemySprite;
         }
     }
 }

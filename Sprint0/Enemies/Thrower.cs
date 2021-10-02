@@ -40,8 +40,19 @@ namespace Sprint0.Enemies
 
         void IEnemy.Update(GameTime gameTime)
         {
+            //Get the current frame of animation, set the sprite position to the enemy position, and update the sprite.
+            int lastFrame = mySprite.CurrentFrame;
             mySprite.Position = pos;
             mySprite.Update(gameTime);
+
+            //Update the state
+            currState.Update(gameTime, mySprite);
+            
+            //Perform a random move if the animation frame changed.
+            if(mySprite.CurrentFrame != lastFrame)
+            {
+                RandomMove();
+            }
         }
         
         public Thrower()
@@ -51,5 +62,38 @@ namespace Sprint0.Enemies
             //Assign an arbitrary starting positon for the thrower
             pos = new Vector2(500, 300);
         }
+
+        private void RandomMove()
+        {
+            //Get a random number from 0 to 9
+            Random rand = new Random();
+            int value = rand.Next(10);
+
+            //Change directions or move based on the random number
+            if(value == 0)
+            {
+                currState.turnUp();
+            }
+            else if(value == 1)
+            {
+                currState.turnDown();
+            }
+            else if(value == 2)
+            {
+                currState.turnRight();
+            }
+            else if(value == 3)
+            {
+                currState.turnLeft();
+            }
+            else 
+            {
+                currState.moveForward();
+            }
+
+        }
+
+
+
     }
 }
