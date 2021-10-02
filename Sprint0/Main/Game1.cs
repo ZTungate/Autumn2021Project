@@ -62,7 +62,7 @@ namespace Sprint2
 
             items = new List<IItem>()
             {
-                new ClockItem(new NonAnimatedStillSprite(this)),
+                new ClockItem(new NonAnimatedStillSprite(this)), 
                 new BowItem(new NonAnimatedStillSprite(this)),
             };
 

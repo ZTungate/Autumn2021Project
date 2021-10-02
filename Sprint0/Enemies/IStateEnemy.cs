@@ -9,18 +9,22 @@ using System.Text;
 namespace Sprint0.Enemies
 {
     //This probably needs to be somewhere else.
-    public interface IEnemy
+    public interface IStateEnemy
     {
         public void Update(GameTime gameTime);
 
         public ISprite Sprite { get; set; }
 
-        public EnemyTypes Type { get;}
+        public EnemyTypes Type { get; }
 
         public Vector2 Position { get; set; }
 
-        public IEnemyState State { get; set; }
-        
+        public IBoomerangThrowerState State
+        {
+            get;
+            set;
+        }
+
         //public void Draw(SpriteBatch spriteBatch);
     }
 }

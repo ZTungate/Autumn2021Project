@@ -11,13 +11,27 @@ namespace Sprint0.Enemies
     {
         //ISprite for the enemy
         ISprite mySprite;
+        //Position of the bat.
+        Vector2 pos;
+        //State of the bat (not used yet for this enemy type)
+        IEnemyState state;
         public ISprite Sprite
         {
             //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
             get => mySprite;
             set => mySprite = value;
         }
-
+        public Vector2 Position
+        {
+            get => pos;
+            set => pos = value;
+        }
+        public IEnemyState State
+        {
+            //This will not be used until damage states are added.
+            get => state;
+            set => state = value;
+        }
         public EnemyTypes Type
         {
             //Return Bat if type is ever asked for.
@@ -32,18 +46,20 @@ namespace Sprint0.Enemies
             //Move the bat if the animation frame changed
             if (lastFrame != mySprite.CurrentFrame)
             {
-                mySprite.Position = BatRandomMove();
+                pos = BatRandomMove();
+                mySprite.Position = pos;
             }
         }
         public Bat()
         {
-            //Nothing special about the bat object itself, no implementation required
+            //Assign an arbitrary starting positon for the bat.
+            pos = new Vector2(500, 300);
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
         public Vector2 BatRandomMove()
         {
-            Vector2 pos = mySprite.Position;
+            Vector2 newPosition = pos;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -52,29 +68,29 @@ namespace Sprint0.Enemies
             if (i == 0)
             {
                 //Move right/Up if i = 0
-                pos.X += 3;
-                pos.Y += 3;
+                newPosition.X += 3;
+                newPosition.Y += 3;
             }
             else if (i == 1)
             {
                 //Move right/down if i = 1
-                pos.X += 3;
-                pos.Y -= 3;
+                newPosition.X += 3;
+                newPosition.Y -= 3;
             }
             else if (i == 2)
             {
                 //Move left/up if i = 2
-                pos.X -= 3;
-                pos.Y += 3;
+                newPosition.X -= 3;
+                newPosition.Y += 3;
             }
             else if (i == 3)
             {
                 //Move left/down if i = 3
-                pos.X -= 3;
-                pos.Y -= 3;
+                newPosition.X -= 3;
+                newPosition.Y -= 3;
             }
             //Return the modified position.
-            return pos;
+            return newPosition;
 
         }
     }

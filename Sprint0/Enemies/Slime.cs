@@ -13,6 +13,11 @@ namespace Sprint0.Enemies
         private int interval = 40;
         private int timer = 0;
 
+        //Position of the bat.
+        Vector2 pos;
+        //State of the bat (not used yet for this enemy type)
+        IEnemyState state;
+        
         //ISprite for the enemy
         ISprite mySprite;
         public ISprite Sprite
@@ -21,7 +26,17 @@ namespace Sprint0.Enemies
             get => mySprite;
             set => mySprite = value;
         }
-
+        public Vector2 Position
+        {
+            get => pos;
+            set => pos = value;
+        }
+        public IEnemyState State
+        {
+            //This will not be used until damage states are added.
+            get => state;
+            set => state = value;
+        }
         public EnemyTypes Type
         {
             //Return Slime if type is ever asked for.
@@ -40,18 +55,21 @@ namespace Sprint0.Enemies
             else
             {
                 timer = 0;
-                mySprite.Position = SlimeRandomMove();
+                pos = SlimeRandomMove();
+                mySprite.Position = pos;
             }
         }
         public Slime()
         {
-            //Nothing special about the slime object itself, no implementation required
+            //Assign an arbitrary starting positon for the slime.
+            pos = new Vector2(500, 300);
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
         public Vector2 SlimeRandomMove()
         {
-            Vector2 pos = mySprite.Position;
+            //Get the current position of the slime
+            Vector2 newPosition = pos;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -60,25 +78,25 @@ namespace Sprint0.Enemies
             if (i == 0)
             {
                 //Move right if i = 0
-                pos.X += 5;
+                newPosition.X += 5;
             }
             else if (i == 1)
             {
                 //Move up if i = 1
-                pos.Y += 5;
+                newPosition.Y += 5;
             }
             else if (i == 2)
             {
                 //Move left if i = 2
-                pos.X -= 5;
+                newPosition.X -= 5;
             }
             else if (i == 3)
             {
                 //Move down if i = 3
-                pos.Y -= 5;
+                newPosition.Y -= 5;
             }
             //If i = 4, do nothing, the slime can stand still.
-            return pos;
+            return newPosition;
         }
     }
 }

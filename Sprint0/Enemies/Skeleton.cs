@@ -12,13 +12,27 @@ namespace Sprint2.Enemies
     {
         //ISprite for the enemy
         ISprite mySprite;
+        //Position vector
+        Vector2 pos;
+        //State for this enemy (unused for now for this type)
+        IEnemyState currState;
+        IEnemyState IEnemy.State
+        {
+            //For this enemy type, this should not be used yet.
+            get => currState;
+            set => currState = value;
+        }
+        Vector2 IEnemy.Position
+        {
+            get => pos;
+            set => pos = value;
+        }
         public ISprite Sprite
         {
             //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
             get => mySprite;
             set => mySprite = value;
         }
-
         public EnemyTypes Type
         {
             //Return Dragon if type is ever asked for.
@@ -35,17 +49,19 @@ namespace Sprint2.Enemies
             //Move the skeleton if the animation frame changed
             if (lastFrame != mySprite.CurrentFrame)
             {
-                 mySprite.Position = RandomMove();
+                pos = RandomMove();
+                mySprite.Position = pos;
             }
         }
         public Skeleton()
         {
-            //Nothing special about the dragon object itself, no implementation required
+            //Assign an arbitrary starting positon for the skeleton.
+            pos = new Vector2(500, 300);
         }
 
         public Vector2 RandomMove()
         {
-            Vector2 pos = mySprite.Position;
+            Vector2 newPosition = this.pos;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -53,21 +69,21 @@ namespace Sprint2.Enemies
 
             if (i == 0)
             {
-                pos.X += 5;
+                newPosition.X += 5;
             }
             else if (i == 1)
             {
-                pos.Y += 5;
+                newPosition.Y += 5;
             }
             else if (i == 2)
             {
-                pos.X -= 5;
+                newPosition.X -= 5;
             }
             else
             {
-                pos.Y -= 5;
+                newPosition.Y -= 5;
             }
-            return pos;
+            return newPosition;
 
         }
     }

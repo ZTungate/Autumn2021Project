@@ -13,6 +13,11 @@ namespace Sprint0.Enemies
         //ISprite for the enemy
         ISprite mySprite;
 
+        //Position of the bat.
+        Vector2 pos;
+        //State of the dragon (not used yet for this enemy type)
+        IEnemyState state;
+
         //Timers for updating sprite without moving
         private int interval = 120;
         private int timer = 0;
@@ -22,7 +27,17 @@ namespace Sprint0.Enemies
             get => mySprite;
             set => mySprite = value;
         }
-
+        public Vector2 Position
+        {
+            get => pos;
+            set => pos = value;
+        }
+        public IEnemyState State
+        {
+            //This will not be used until damage states are added.
+            get => state;
+            set => state = value;
+        }
         public EnemyTypes Type
         {
             //Return Dragon if type is ever asked for.
@@ -41,29 +56,31 @@ namespace Sprint0.Enemies
             else
             {
                 timer = 0;
-                mySprite.Position = DragonMove();
+                pos = DragonMove();
+                mySprite.Position = pos;
             }
         }
         public Dragon()
-        {
-            //Nothing special about the dragon object itself, no implementation required
+        { 
+            //Assign an arbitrary starting positon for the bat.
+            pos = new Vector2(500, 300);
         }
 
         public Vector2 DragonMove()
         {
             Random rand = new Random();
-            Vector2 pos = mySprite.Position;
+            Vector2 newPosition = pos;
             int val = rand.Next(3);
 
             if (val == 0)
             {
-                pos.X += 5;
+                newPosition.X += 5;
             }
             else if (val == 1)
             {
-                pos.X -= 5;
+                newPosition.X -= 5;
             }
-                return pos;
+                return newPosition;
             
         }
     }
