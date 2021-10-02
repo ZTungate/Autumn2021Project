@@ -96,7 +96,7 @@ namespace Sprint2
             enemySpriteFactory.LoadAllTextures(Content);
 
             //Create sprite for Link
-            link.sprite = linkSpriteFactory.LeftIdleLinkSprite(link.position);
+            link.sprite = linkSpriteFactory.RightMovingLinkSprite(link.position);
 
             //Create sprites for all enemies.
             foreach(IEnemy enemy in enemies){

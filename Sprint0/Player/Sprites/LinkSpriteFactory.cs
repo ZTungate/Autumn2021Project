@@ -41,5 +41,10 @@ namespace Sprint2.Player
             return new LeftIdleLinkSprite(linkSpriteSheet, linkPosition);
         }
 
+        public ISprite RightMovingLinkSprite(Vector2 linkPosition)
+        {
+            return new RightMovingLinkSprite(linkSpriteSheet, linkPosition);
+        }
+
     }
 }
