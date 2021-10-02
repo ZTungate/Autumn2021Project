@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2.Player
 {
-    public class RightMovingLinkSprite : IAnimatedSprite
+    public class LeftMovingLinkSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 128f; 
@@ -19,7 +19,7 @@ namespace Sprint2.Player
 
         public int scale = 2;
 
-        public RightMovingLinkSprite(Texture2D spriteSheet, Vector2 pos)
+        public LeftMovingLinkSprite(Texture2D spriteSheet, Vector2 pos)
         {
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
@@ -40,7 +40,7 @@ namespace Sprint2.Player
                 CurrentFrame++;
 
 
-                if (CurrentFrame > FrameCount - 1) { //reset the current frame to zero so there are no index errors
+                if (CurrentFrame > FrameCount - 1) {
                     CurrentFrame = 0;
                 }
 
@@ -57,7 +57,7 @@ namespace Sprint2.Player
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame%FrameCount].Width*scale, SourceRect[CurrentFrame%FrameCount].Height*scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1);
 
         }
 

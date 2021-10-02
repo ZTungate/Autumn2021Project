@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2.Player
 {
-    public class RightMovingLinkSprite : IAnimatedSprite
+    public class DownMovingLinkSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 128f; 
@@ -19,14 +19,14 @@ namespace Sprint2.Player
 
         public int scale = 2;
 
-        public RightMovingLinkSprite(Texture2D spriteSheet, Vector2 pos)
+        public DownMovingLinkSprite(Texture2D spriteSheet, Vector2 pos)
         {
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
             SourceRect = new Rectangle[2];
             
-            SourceRect[0] = new Rectangle(52, 11, 16, 16);  //Set the frame for right idle link
-            SourceRect[1] = new Rectangle(35, 11, 16, 16);
+            SourceRect[0] = new Rectangle(18, 11, 16, 16);  //Set the frame for right idle link
+            SourceRect[1] = new Rectangle(1, 11, 16, 16);
             Position = pos;     //Sets the position to Link's position
         }
 
