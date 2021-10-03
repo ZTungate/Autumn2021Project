@@ -5,6 +5,7 @@ using Sprint0.Enemies;
 using Sprint2.Player;
 using Sprint2.Enemies;
 using Sprint2.Items;
+using Sprint2.Blocks;
 using System.Collections.Generic;
 using Sprint0.Projectiles;
 
@@ -25,6 +26,7 @@ namespace Sprint2
         public LinkSpriteFactory linkSpriteFactory;
         public EnemySpriteFactory enemySpriteFactory;
         public ItemSpriteFactory itemSpriteFactory;
+        public BlockSpriteFactory blockSpriteFactory;
 
         //Link
         public Link link;
@@ -39,7 +41,8 @@ namespace Sprint2
 
         //Projectiles
         public ProjectileHandler projectiles;
-
+        //Blocks
+        public IBlocks currentBlock;
 
         public Game1()
         {
@@ -57,6 +60,7 @@ namespace Sprint2
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
             itemSpriteFactory = ItemSpriteFactory.Instance;
+            blockSpriteFactory = BlockSpriteFactory.Instance;
             projectiles = ProjectileHandler.Instance;
 
             controllerList = new List<IController>()
@@ -99,7 +103,9 @@ namespace Sprint2
 
             //Load all textures from the enemy sprite factory.
             enemySpriteFactory.LoadAllTextures(Content);
-
+            //Load all block textures
+            blockSpriteFactory.LoadAllTextures(Content);
+            currentBlock = blockSpriteFactory.NextSprite(); //gets the first sprite to be set as default
             //Create sprite for Link
             link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
@@ -135,6 +141,8 @@ namespace Sprint2
 
             items[currentItem].Update(gameTime);
 
+            currentBlock.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -149,7 +157,7 @@ namespace Sprint2
             _spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect[sprite.CurrentFrame], Color.White, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
 
 
-            string message = "Controls:\nArrow keys and WASD to move\nO and P to swap enemy\nU and I to change items.";
+            string message = "Controls:\nArrow keys and WASD to move\nO and P to swap enemy\nU and I to change items\nT and Y to change blocks.";
             _spriteBatch.DrawString(font, message, new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString(message).X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString(message).Y / 2 + 100), Color.Black);
 
             //Draw all active enemies
@@ -162,6 +170,8 @@ namespace Sprint2
             enemies[currentEnemy].Sprite.Draw(_spriteBatch);
 
             items[currentItem].Draw(_spriteBatch);
+
+            currentBlock.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
