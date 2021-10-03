@@ -17,13 +17,22 @@ namespace Sprint2.Player
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        Link player;
+        public Color[] colors;
+        int colorIndex = 0;
+        int numColors = 2;
+        float colorFlashInterval = 0f;
+
+        ILink player;
 
         public int scale = 2;
 
-        public DownIdleLinkSprite(Texture2D spriteSheet, Link player)
+        public DownIdleLinkSprite(Texture2D spriteSheet, ILink player)
         {
             this.player = player;
+
+            colors = new Color[numColors];
+            colors[0] = Color.White;
+            colors[1] = Color.Red;
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
             SourceRect = new Rectangle[1];
@@ -35,13 +44,30 @@ namespace Sprint2.Player
         public void Update(GameTime gameTime)
         {
             // Implement animation changes here
+ /*           if (player.isDamaged) //color flashing
+            {
+                if(Timer > colorFlashInterval)
+                {
+                    colorIndex++;
+                    Timer = 0;
+                }
+                else
+                {
+                    Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                }
+            }
+            else
+            {
+                colorIndex = 0;
+            }*/
+
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width*scale, SourceRect[CurrentFrame].Height*scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], colors[colorIndex%numColors], 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
         }
 
     }

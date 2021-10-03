@@ -19,8 +19,8 @@ namespace Sprint2.Player
 
         public int scale = 2;
 
-        Link player;
-        public LeftMovingLinkSprite(Texture2D spriteSheet, Link player)
+        ILink player;
+        public LeftMovingLinkSprite(Texture2D spriteSheet, ILink player)
         {
             this.player = player;
 
@@ -36,8 +36,7 @@ namespace Sprint2.Player
         {
             // Implement animation changes here
 
-            player.position.X -= SpriteSpeed;
-
+            player.moveLeft(SpriteSpeed);
             //Animate the sprites (pulled from animatedStillSprite.cs)
             if (Timer > Interval)
             {

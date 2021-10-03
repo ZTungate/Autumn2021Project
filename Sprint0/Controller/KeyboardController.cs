@@ -38,6 +38,8 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
             this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
 
+            //Player Controls
+            this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
 
 
 

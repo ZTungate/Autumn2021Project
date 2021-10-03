@@ -32,41 +32,41 @@ namespace Sprint2.Player
 
         //TODO Add CreateSprite methods for each Link Sprite type
 
-        public ISprite UpIdleLinkSprite(Link player)
+        public ISprite UpIdleLinkSprite(ILink player)
         {
             return new UpIdleLinkSprite(linkSpriteSheet, player);
         }
-        public ISprite RightIdleLinkSprite(Link player)
+        public ISprite RightIdleLinkSprite(ILink player)
         {
             return new RightIdleLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite LeftIdleLinkSprite(Link player)
+        public ISprite LeftIdleLinkSprite(ILink player)
         {
             return new LeftIdleLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite DownIdleLinkSprite(Link player)
+        public ISprite DownIdleLinkSprite(ILink player)
         {
             return new DownIdleLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite UpMovingLinkSprite(Link player)
+        public ISprite UpMovingLinkSprite(ILink player)
         {
             return new UpMovingLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite RightMovingLinkSprite(Link player)
+        public ISprite RightMovingLinkSprite(ILink player)
         {
             return new RightMovingLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite LeftMovingLinkSprite(Link player)
+        public ISprite LeftMovingLinkSprite(ILink player)
         {
             return new LeftMovingLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite DownMovingLinkSprite(Link player)
+        public ISprite DownMovingLinkSprite(ILink player)
         {
             return new DownMovingLinkSprite(linkSpriteSheet, player);
         }

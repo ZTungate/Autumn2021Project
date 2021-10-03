@@ -17,12 +17,21 @@ namespace Sprint2.Player
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
+        public Color[] colors;
+        int colorIndex = 0;
+        int numColors = 2;
+        float colorFlashInterval = 0f;
+
         public int scale = 2;
 
-        Link player;
-        public DownMovingLinkSprite(Texture2D spriteSheet, Link player)
+        ILink player;
+        public DownMovingLinkSprite(Texture2D spriteSheet, ILink player)
         {
             this.player = player;
+
+            colors = new Color[numColors];
+            colors[0] = Color.White;
+            colors[1] = Color.Red;
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
             SourceRect = new Rectangle[2];
@@ -34,9 +43,26 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
+
+            /*   if (player.isDamaged) //damage color flash
+               {
+                   if (Timer > colorFlashInterval)
+                   {
+                       colorIndex++;
+                       Timer = 0;
+                   }
+                   else
+                   {
+                       Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                   }
+               }
+               else
+               {
+                   colorIndex = 0;
+               }*/
             // Implement animation changes here
 
-            player.position.Y += SpriteSpeed;
+            player.moveDown(SpriteSpeed);
 
             //Animate the sprites (pulled from animatedStillSprite.cs)
             if (Timer > Interval)
@@ -61,7 +87,7 @@ namespace Sprint2.Player
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame%FrameCount].Width*scale, SourceRect[CurrentFrame%FrameCount].Height*scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], colors[colorIndex%numColors], 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
 
         }
 

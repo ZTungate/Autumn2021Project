@@ -17,11 +17,11 @@ namespace Sprint2.Player
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        Link player;
+        ILink player;
 
         public int scale = 2;
 
-        public RightIdleLinkSprite(Texture2D spriteSheet, Link player)
+        public RightIdleLinkSprite(Texture2D spriteSheet, ILink player)
         {
             this.player = player;
 

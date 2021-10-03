@@ -17,11 +17,11 @@ namespace Sprint2.Player
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        Link player;
+        ILink player;
 
         public int scale = 2;
 
-        public RightMovingLinkSprite(Texture2D spriteSheet, Link player)
+        public RightMovingLinkSprite(Texture2D spriteSheet, ILink player)
         {
             this.player = player;
 
@@ -37,7 +37,7 @@ namespace Sprint2.Player
         {
             // Implement animation changes here
 
-            player.position.X += SpriteSpeed;
+            player.moveRight(SpriteSpeed);
 
             //Animate the sprites (pulled from animatedStillSprite.cs)
             if (Timer > Interval)

@@ -27,7 +27,7 @@ namespace Sprint2
         public ItemSpriteFactory itemSpriteFactory;
 
         //Link
-        public Link link;
+        public ILink link;
 
         //Enemies
         public List<IEnemy> enemies;

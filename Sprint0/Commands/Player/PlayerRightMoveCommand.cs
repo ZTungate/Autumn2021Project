@@ -14,8 +14,11 @@ namespace Sprint2.Commands
         }
         public void Execute()
         {
-            game.link.sprite = game.linkSpriteFactory.RightMovingLinkSprite(game.link);
-            /*game.link.state = new RightMovingLinkState();*/
+            /*if (game.link.canMove)
+            {*/
+                game.link.sprite = game.linkSpriteFactory.RightMovingLinkSprite(game.link);
+                /*game.link.state = new RightMovingLinkState();*/
+            /*}*/
         }
     }
 }
