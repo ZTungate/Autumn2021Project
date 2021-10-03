@@ -32,7 +32,11 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.D4, new DisplayAniMovSprite(myGame));
 
             //Player Movement
+            this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
             this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
+
 
             //Item Swapping
             this.controllerMappings.Add(Keys.U, new PreviousItemCommand(myGame));

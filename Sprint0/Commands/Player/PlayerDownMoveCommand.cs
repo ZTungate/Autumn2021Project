@@ -5,17 +5,17 @@ using Sprint2.Helpers;
 
 namespace Sprint2.Commands
 {
-    public class PlayerUpIdleCommand : ICommand
+    public class PlayerDownMoveCommand : ICommand
     {
         private Game1 game;
-        public PlayerUpIdleCommand(Game1 game)
+        public PlayerDownMoveCommand(Game1 game)
         {
             this.game = game;
         }
         public void Execute()
         {
-            game.link.sprite = game.linkSpriteFactory.RightIdleLinkSprite(game.link);
-            /*game.link.state = new RightIdleLinkState();*/
+            game.link.sprite = game.linkSpriteFactory.DownMovingLinkSprite(game.link);
+            /*game.link.state = new RightMovingLinkState();*/
         }
     }
 }
