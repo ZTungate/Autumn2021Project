@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Sprint2.Helpers;
 
 namespace Sprint2.Blocks
 {
@@ -32,24 +33,78 @@ namespace Sprint2.Blocks
         {
             blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet");
             blockList.Add(CreateFloorTile());
+            blockList.Add(CreateBlackBox());
+            blockList.Add(CreateEntryFloorTile());
+            blockList.Add(CreateFloorBlockTile());
+            blockList.Add(CreateLadderTile());
+            blockList.Add(CreateLeftStatue());
+            blockList.Add(CreateRightStatue());
+            blockList.Add(CreateBrickTile());
+            blockList.Add(CreateStairTile());
+            blockList.Add(CreateWaterTile());
         }
 
         public IBlocks NextSprite()
         {
             blockTracker++;
-            return blockList[blockTracker % blockList.Count];
+            return blockList[CustomMath.MathMod(blockTracker, blockList.Count)];
         }
 
         public IBlocks PreviousSprite()
         {
-            blockTracker++;
-            return blockList[blockTracker % blockList.Count];
+            blockTracker--;
+            return blockList[CustomMath.MathMod(blockTracker, blockList.Count)];
         }
 
+        public IBlocks CurrentSprite()
+        {
+            return blockList[blockTracker];
+        }
+
+        public void Reset()
+        {
+            blockTracker = 0;
+        }
+
+        public IBlocks CreateBlackBox()
+        {
+            return new BlackBoxSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateEntryFloorTile()
+        {
+            return new EntryFloorSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateFloorBlockTile()
+        {
+            return new FloorBlockSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateLadderTile()
+        {
+            return new LadderSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateLeftStatue()
+        {
+            return new LeftStatueSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateRightStatue()
+        {
+            return new RightStatueSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateBrickTile()
+        {
+            return new MarioBrickSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateStairTile()
+        {
+            return new StairSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
+        public IBlocks CreateWaterTile()
+        {
+            return new WaterSprite(blockSpriteSheet, new Vector2(200, 300));
+        }
         public IBlocks CreateFloorTile()
         {
             return new FloorSprite(blockSpriteSheet, new Vector2(200, 300));
-        } 
-        //TODO add the other ten block sprites
+        }
     }
 }

@@ -105,7 +105,7 @@ namespace Sprint2
             enemySpriteFactory.LoadAllTextures(Content);
             //Load all block textures
             blockSpriteFactory.LoadAllTextures(Content);
-            currentBlock = blockSpriteFactory.NextSprite(); //gets the first sprite to be set as default
+            currentBlock = blockSpriteFactory.CurrentSprite();
             //Create sprite for Link
             link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
