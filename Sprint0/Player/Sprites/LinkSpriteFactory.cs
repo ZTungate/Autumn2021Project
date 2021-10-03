@@ -30,7 +30,7 @@ namespace Sprint2.Player
             linkSpriteSheet = content.Load<Texture2D>("LinkSpriteSheet");
         }
 
-        //TODO Add CreateSprite methods for each enemy type
+        //TODO Add CreateSprite methods for each Link Sprite type
 
         public ISprite UpIdleLinkSprite(Link player)
         {
