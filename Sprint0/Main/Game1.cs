@@ -83,7 +83,7 @@ namespace Sprint2
                 new Slime(),
                 new OldMan(),
                 new Thrower(projectiles),
-            }; 
+            };
 
             base.Initialize();
         }
@@ -101,7 +101,7 @@ namespace Sprint2
             enemySpriteFactory.LoadAllTextures(Content);
 
             //Create sprite for Link
-            link.sprite = linkSpriteFactory.RightMovingLinkSprite(link.position);
+            link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
             //Create sprites for all enemies.
             foreach(IEnemy enemy in enemies){
@@ -147,8 +147,10 @@ namespace Sprint2
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
        
             _spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect[sprite.CurrentFrame], Color.White, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
-            
-            _spriteBatch.DrawString(font, "Controls:\nO and P to swap enemy\nU and I to change items.", new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString("Controls:\nO and P to swap enemy\nU and I to change items.").X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString("Credits\nProgram Made By: Wesley Nguyen\nSprites from: https://www.spriters-resource.com/").Y / 2 + 100), Color.Black);
+
+
+            string message = "Controls:\nArrow keys to move\nO and P to swap enemy\nU and I to change items.";
+            _spriteBatch.DrawString(font, message, new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString(message).X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString(message).Y / 2 + 100), Color.Black);
 
             //Draw all active enemies
             //enemySpriteFactory.drawEnemies(_spriteBatch);

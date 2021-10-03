@@ -31,9 +31,18 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.D3, new DisplayNonAniMovSprite(myGame));
             this.controllerMappings.Add(Keys.D4, new DisplayAniMovSprite(myGame));
 
+            //Player Movement
+            this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
+
+
+            //Item Swapping
             this.controllerMappings.Add(Keys.U, new PreviousItemCommand(myGame));
             this.controllerMappings.Add(Keys.I, new NextItemCommand(myGame));
 
+            //Enemy Swapping
             this.controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame));
             this.controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame));
         }
@@ -45,10 +54,63 @@ namespace Sprint2
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();
 
+            checkPlayerIdle(lastState, state);
+
             foreach (Keys key in pressedKeys) {
-                if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
+                if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key)) //commented out this section to test link movement
                 {
                     controllerMappings[key].Execute();
+                }
+            }
+
+            //Checks if movement controls are released to play the idle animation & stop movement
+            
+
+
+        }
+
+        void checkPlayerIdle(KeyboardState lastState, KeyboardState state)
+        {
+            Keys[] oldPressedKeys = lastState.GetPressedKeys();
+            foreach (Keys oldKey in oldPressedKeys)
+            {
+                switch (oldKey)
+                {
+                    case Keys.Up:
+                        if (state.IsKeyUp(Keys.Up))
+                        {
+                            //UpIdleMovesprite
+                            ICommand UpIdleCommand = new PlayerUpIdleCommand(myGame);
+                            UpIdleCommand.Execute();
+                        }
+                        break;
+                    case Keys.Right:
+                        if (state.IsKeyUp(Keys.Right))
+                        {
+                            //RightIdleMoveSprite
+                            ICommand rightIdleCommand = new PlayerRightIdleCommand(myGame);
+                            rightIdleCommand.Execute();
+                        }
+                        break;
+                    case Keys.Left:
+                        if (state.IsKeyUp(Keys.Left))
+                        {
+                            //LeftIdleMoveSprite
+                            ICommand leftIdleCommand = new PlayerLeftIdleCommand(myGame);
+                            leftIdleCommand.Execute();
+                        }
+                        break;
+                    case Keys.Down:
+                        if (state.IsKeyUp(Keys.Down))
+                        {
+                            //DownIdleMoveSprite
+                            ICommand downIdleCommand = new PlayerDownIdleCommand(myGame);
+                            downIdleCommand.Execute();
+
+                        }
+                        break;
+                    default:
+                        break;
                 }
             }
         }
