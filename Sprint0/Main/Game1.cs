@@ -6,6 +6,7 @@ using Sprint2.Player;
 using Sprint2.Enemies;
 using Sprint2.Items;
 using System.Collections.Generic;
+using Sprint0.Projectiles;
 
 namespace Sprint2
 {
@@ -36,6 +37,9 @@ namespace Sprint2
         public List<IItem> items;
         public int currentItem;
 
+        //Projectiles
+        public ProjectileHandler projectiles;
+
 
         public Game1()
         {
@@ -53,6 +57,7 @@ namespace Sprint2
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
             itemSpriteFactory = ItemSpriteFactory.Instance;
+            projectiles = ProjectileHandler.Instance;
 
             controllerList = new List<IController>()
             {
@@ -77,7 +82,7 @@ namespace Sprint2
                 new Bat(),
                 new Slime(),
                 new OldMan(),
-                new Thrower(),
+                new Thrower(projectiles),
             }; 
 
             base.Initialize();
