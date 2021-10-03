@@ -40,7 +40,7 @@ namespace Sprint2
 
             //Player Controls
             this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
-
+            this.controllerMappings.Add(Keys.D1, new PlayerRightUseItemCommand(myGame));
 
 
             //Item Swapping
@@ -50,6 +50,10 @@ namespace Sprint2
             //Enemy Swapping
             this.controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame));
             this.controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame));
+
+            //Block Swapping
+            this.controllerMappings.Add(Keys.T, new PreviousBlockCommand(myGame));
+            this.controllerMappings.Add(Keys.Y, new NextBlockCommand(myGame));
         }
 
         KeyboardState state;
