@@ -157,7 +157,7 @@ namespace Sprint2
             _spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect[sprite.CurrentFrame], Color.White, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
 
 
-            string message = "Controls:\nArrow keys and WASD to move\nO and P to swap enemy\nU and I to change items.";
+            string message = "Controls:\nArrow keys and WASD to move\nO and P to swap enemy\nU and I to change items\nT and Y to change blocks.";
             _spriteBatch.DrawString(font, message, new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString(message).X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString(message).Y / 2 + 100), Color.Black);
 
             //Draw all active enemies
