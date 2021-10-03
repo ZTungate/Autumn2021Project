@@ -78,7 +78,8 @@ namespace Sprint2
                         if (state.IsKeyUp(Keys.Up))
                         {
                             //UpIdleMovesprite
-
+                            ICommand UpIdleCommand = new PlayerUpIdleCommand(myGame);
+                            UpIdleCommand.Execute();
                         }
                         break;
                     case Keys.Right:
