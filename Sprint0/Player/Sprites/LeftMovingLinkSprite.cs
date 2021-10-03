@@ -22,7 +22,7 @@ namespace Sprint2.Player
         Link player;
         public LeftMovingLinkSprite(Texture2D spriteSheet, Link player)
         {
-            this.player = player
+            this.player = player;
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
             SourceRect = new Rectangle[2];
