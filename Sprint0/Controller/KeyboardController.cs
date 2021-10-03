@@ -25,17 +25,20 @@ namespace Sprint2
         {
 
             //Create commands to change sprites
-            this.controllerMappings.Add(Keys.D0, new Quit(myGame));
-            this.controllerMappings.Add(Keys.D1, new DisplayNonAniNonMovSprite(myGame));
-            this.controllerMappings.Add(Keys.D2, new DisplayAniNonMovSprite(myGame));
-            this.controllerMappings.Add(Keys.D3, new DisplayNonAniMovSprite(myGame));
-            this.controllerMappings.Add(Keys.D4, new DisplayAniMovSprite(myGame));
+            this.controllerMappings.Add(Keys.Q, new Quit(myGame));
+
 
             //Player Movement
             this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.W, new PlayerUpMoveCommand(myGame));
             this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.D, new PlayerRightMoveCommand(myGame));
             this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.A, new PlayerLeftMoveCommand(myGame));
             this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
+
+
 
 
             //Item Swapping
@@ -106,6 +109,41 @@ namespace Sprint2
                         break;
                     case Keys.Down:
                         if (state.IsKeyUp(Keys.Down))
+                        {
+                            //DownIdleMoveSprite
+                            ICommand downIdleCommand = new PlayerDownIdleCommand(myGame);
+                            downIdleCommand.Execute();
+
+                        }
+                        break;
+
+
+                    case Keys.W:
+                        if (state.IsKeyUp(Keys.W))
+                        {
+                            //UpIdleMovesprite
+                            ICommand UpIdleCommand = new PlayerUpIdleCommand(myGame);
+                            UpIdleCommand.Execute();
+                        }
+                        break;
+                    case Keys.D:
+                        if (state.IsKeyUp(Keys.D))
+                        {
+                            //RightIdleMoveSprite
+                            ICommand rightIdleCommand = new PlayerRightIdleCommand(myGame);
+                            rightIdleCommand.Execute();
+                        }
+                        break;
+                    case Keys.A:
+                        if (state.IsKeyUp(Keys.A))
+                        {
+                            //LeftIdleMoveSprite
+                            ICommand leftIdleCommand = new PlayerLeftIdleCommand(myGame);
+                            leftIdleCommand.Execute();
+                        }
+                        break;
+                    case Keys.S:
+                        if (state.IsKeyUp(Keys.S))
                         {
                             //DownIdleMoveSprite
                             ICommand downIdleCommand = new PlayerDownIdleCommand(myGame);

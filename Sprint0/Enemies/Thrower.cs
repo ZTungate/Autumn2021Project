@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Sprint0.Helpers;
+using Sprint0.Projectiles;
 using Sprint2;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace Sprint0.Enemies
         Vector2 pos;
         //State
         IEnemyState currState;
+        //Projectile controller
+        ProjectileHandler projectiles;
         IEnemyState IEnemy.State
         {
             get => currState;
@@ -55,12 +58,14 @@ namespace Sprint0.Enemies
             }
         }
         
-        public Thrower()
+        public Thrower(ProjectileHandler projectileHandler)
         {
             //Default a new thrower as a left thrower
             currState = new LeftThrower(mySprite, this);
             //Assign an arbitrary starting positon for the thrower
             pos = new Vector2(500, 300);
+            //Pass the projectile handler in
+            projectiles = projectileHandler;
         }
 
         private void RandomMove()
