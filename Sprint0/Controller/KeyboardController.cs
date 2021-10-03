@@ -38,7 +38,7 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
             this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
 
-
+            this.controllerMappings.Add(Keys.D1, new PlayerRightUseItemCommand(myGame));
 
 
             //Item Swapping
