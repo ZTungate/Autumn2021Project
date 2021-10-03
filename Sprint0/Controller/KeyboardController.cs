@@ -45,6 +45,10 @@ namespace Sprint2
             //Enemy Swapping
             this.controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame));
             this.controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame));
+
+            //Block Swapping
+            this.controllerMappings.Add(Keys.T, new PreviousBlockCommand(myGame));
+            this.controllerMappings.Add(Keys.Y, new NextBlockCommand(myGame));
         }
 
         KeyboardState state;
