@@ -54,19 +54,17 @@ namespace Sprint2
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();
 
+            checkPlayerIdle(lastState, state);
+
             foreach (Keys key in pressedKeys) {
                 if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key)) //commented out this section to test link movement
                 {
                     controllerMappings[key].Execute();
-                    
-                    
-
-
                 }
             }
 
             //Checks if movement controls are released to play the idle animation & stop movement
-            checkPlayerIdle(lastState, state);
+            
 
 
         }
@@ -98,12 +96,17 @@ namespace Sprint2
                         if (state.IsKeyUp(Keys.Left))
                         {
                             //LeftIdleMoveSprite
+                            ICommand leftIdleCommand = new PlayerLeftIdleCommand(myGame);
+                            leftIdleCommand.Execute();
                         }
                         break;
                     case Keys.Down:
                         if (state.IsKeyUp(Keys.Down))
                         {
                             //DownIdleMoveSprite
+                            ICommand downIdleCommand = new PlayerDownIdleCommand(myGame);
+                            downIdleCommand.Execute();
+
                         }
                         break;
                     default:
