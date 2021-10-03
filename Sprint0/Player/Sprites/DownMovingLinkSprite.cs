@@ -19,15 +19,17 @@ namespace Sprint2.Player
 
         public int scale = 2;
 
-        public DownMovingLinkSprite(Texture2D spriteSheet, Vector2 pos)
+        Link player;
+        public DownMovingLinkSprite(Texture2D spriteSheet, Link player)
         {
+            this.player = player;
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
             SourceRect = new Rectangle[2];
             
             SourceRect[0] = new Rectangle(18, 11, 16, 16);  //Set the frame for right idle link
             SourceRect[1] = new Rectangle(1, 11, 16, 16);
-            Position = pos;     //Sets the position to Link's position
+            /*Position = pos;*/     //Sets the position to Link's position
         }
 
         public void Update(GameTime gameTime)
@@ -57,7 +59,7 @@ namespace Sprint2.Player
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame%FrameCount].Width*scale, SourceRect[CurrentFrame%FrameCount].Height*scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
 
         }
 

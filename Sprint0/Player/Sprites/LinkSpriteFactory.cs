@@ -31,19 +31,19 @@ namespace Sprint2.Player
         }
 
         //TODO Add CreateSprite methods for each enemy type
-        public ISprite RightIdleLinkSprite(Vector2 linkPosition)
+        public ISprite RightIdleLinkSprite(Link player)
         {
-            return new RightIdleLinkSprite(linkSpriteSheet, linkPosition);
+            return new RightIdleLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite LeftIdleLinkSprite(Vector2 linkPosition)
+        public ISprite LeftIdleLinkSprite(Link player)
         {
-            return new LeftIdleLinkSprite(linkSpriteSheet, linkPosition);
+            return new LeftIdleLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite RightMovingLinkSprite(Vector2 linkPosition)
+        public ISprite RightMovingLinkSprite(Link player)
         {
-            return new RightMovingLinkSprite(linkSpriteSheet, linkPosition);
+            return new RightMovingLinkSprite(linkSpriteSheet, player);
         }
 
     }

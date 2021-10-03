@@ -78,7 +78,7 @@ namespace Sprint2
                 new Slime(),
                 new OldMan(),
                 new Thrower(),
-            }; 
+            };
 
             base.Initialize();
         }
@@ -96,7 +96,7 @@ namespace Sprint2
             enemySpriteFactory.LoadAllTextures(Content);
 
             //Create sprite for Link
-            link.sprite = linkSpriteFactory.RightMovingLinkSprite(link.position);
+            link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
             //Create sprites for all enemies.
             foreach(IEnemy enemy in enemies){
