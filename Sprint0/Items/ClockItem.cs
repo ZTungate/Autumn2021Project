@@ -7,15 +7,9 @@ namespace Sprint2.Items
 {
     public class ClockItem : AbstractItem
     {
-        public ClockItem(NonAnimatedStillSprite sprite) : base (sprite)
+        public ClockItem(Vector2 pos) : base (ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Clock), pos)
         {
-
-        }
-        public override void Update(GameTime gameTime)
-        {
-            //Temporary just to set sprite location for testing
-            this.sprite.Position = new Vector2(50, 50);
-            base.Update(gameTime);
+            
         }
     }
 }

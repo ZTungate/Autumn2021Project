@@ -75,9 +75,6 @@ namespace Sprint2
             }
 
             //Checks if movement controls are released to play the idle animation & stop movement
-            
-
-
         }
 
         void checkPlayerIdle(KeyboardState lastState, KeyboardState state)
