@@ -197,17 +197,38 @@ namespace Sprint2
             base.Draw(gameTime);
         }
 
-        public void reset()
+        public void Reset()
         {
             link = new Link();
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
             blockSpriteFactory.Reset();
             currentBlock = blockSpriteFactory.CurrentSprite();
-            
+
+            //Set the enemy sprite factory to a new instance
+            enemySpriteFactory = EnemySpriteFactory.Instance;
+
+            //Reset the enemy list to all new instances of enemies.
+            enemies = new List<IEnemy>()
+            {
+                new Dragon(projectileFactory),
+                new Skeleton(),
+                new Bat(),
+                new Slime(),
+                new OldMan(),
+                new Thrower(projectileFactory),
+            };
+            //Create sprites for all enemies.
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
+            }
+
+            //Re-Initialize the projectile factory.
+            projectileFactory.Initalize();
 
 
         }
-        public void quit()
+        public void Quit()
         {
             Exit();
         }
