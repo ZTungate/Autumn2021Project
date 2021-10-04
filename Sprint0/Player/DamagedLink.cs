@@ -54,7 +54,11 @@ namespace Sprint2.Player
             game.link = decoratedLink;
         }
 
-        public void moveUp(float speed)
+        public void move(Vector2 moveDirection)
+        {
+            decoratedLink.move(moveDirection);
+        }
+/*        public void moveUp(float speed)
         {
             decoratedLink.moveUp(speed);
         }
@@ -72,6 +76,6 @@ namespace Sprint2.Player
         public void moveDown(float speed)
         {
             decoratedLink.moveDown(speed);
-        }
+        }*/
     }
 }

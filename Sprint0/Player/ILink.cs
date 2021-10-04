@@ -18,10 +18,11 @@ namespace Sprint2.Player
 
         void Draw(SpriteBatch spriteBatch);
 
-        void moveUp(float speed);
+        void move(Vector2 moveDirection);
+        /*void moveUp(float speed);
         void moveRight(float speed);
         void moveLeft(float speed);
-        void moveDown(float speed);
+        void moveDown(float speed);*/
 
     }
 }
