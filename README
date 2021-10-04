@@ -10,7 +10,8 @@ Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
 Enemy position doesn't reset when swapping
 
-We
+We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
+
 Code Metrics:
 Project: Sprint0
 Configuration: Debug
