@@ -196,6 +196,12 @@ namespace Sprint2
             base.Draw(gameTime);
         }
 
+        public void reset()
+        {
+            link = new Link();
+            link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
+            blockSpriteFactory.Reset();
+        }
         public void quit()
         {
             Exit();
