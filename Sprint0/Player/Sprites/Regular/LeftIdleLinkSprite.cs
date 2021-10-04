@@ -72,7 +72,7 @@ public int scale = 2;
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width*scale, SourceRect[CurrentFrame].Height*scale);
             /*            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
             //Can use this format instead of the other one
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame%FrameCount], colors[colorIndex%numColors], 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame%FrameCount], player.color, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1);
         }
 
     }
