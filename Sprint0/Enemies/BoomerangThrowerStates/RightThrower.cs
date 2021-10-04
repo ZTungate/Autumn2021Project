@@ -21,14 +21,14 @@ namespace Sprint0.Enemies
             thrower.Sprite = mySprite;
         }
 
-        public void turnDown()
+        public void TurnDown()
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new DownThrowerSprite(texture);
             thrower.State = new DownThrower(mySprite, thrower);
         }
 
-        public void turnLeft()
+        public void TurnLeft()
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new LeftThrowerSprite(texture);
@@ -38,18 +38,18 @@ namespace Sprint0.Enemies
             thrower.State = new LeftThrower(mySprite, thrower);
         }
 
-        public void turnRight()
+        public void TurnRight()
         {
             //No implementation needed
         }
 
-        public void turnUp()
+        public void TurnUp()
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new UpThrowerSprite(texture);
             thrower.State = new UpThrower(mySprite, thrower);
         }
-        public void moveForward()
+        public void MoveForward()
         {
             //Get the current position of the thrower
             Vector2 newPos = thrower.Position;
@@ -58,7 +58,11 @@ namespace Sprint0.Enemies
             //Set the thrower's position to the new pos.
             thrower.Position = newPos;
         }
-
+        public Vector2 AttackDirection()
+        {
+            //Return a vector pointing Right
+            return new Vector2(1, 0);
+        }
         public void Update(GameTime gameTime, ISprite enemySprite)
         {
             mySprite = enemySprite;

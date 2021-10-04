@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class BoomerangSprite : ISprite
+    public class StationaryBoomerangSprite : ISprite
     {
         public int CurrentFrame { get; set; } = 0;
         public int FrameCount { get; set; } = 1;
@@ -15,7 +15,7 @@ namespace Sprint2.Items.ItemSprites
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
 
-        public BoomerangSprite(Texture2D spriteSheet)
+        public StationaryBoomerangSprite(Texture2D spriteSheet)
         {
             Texture = spriteSheet;
             SourceRect = new Rectangle[1];

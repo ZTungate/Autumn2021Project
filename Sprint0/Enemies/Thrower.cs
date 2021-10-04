@@ -18,6 +18,9 @@ namespace Sprint0.Enemies
         IEnemyState currState;
         //Projectile controller
         ProjectileFactory projectiles;
+        //Timer for throwing projectiles and waiting to update while the boomerang is out.
+        int wait = 0;
+        int throwDelay = 4000;
         IEnemyState IEnemy.State
         {
             get => currState;
@@ -43,29 +46,49 @@ namespace Sprint0.Enemies
 
         void IEnemy.Update(GameTime gameTime)
         {
-            //Get the current frame of animation, set the sprite position to the enemy position, and update the sprite.
-            int lastFrame = mySprite.CurrentFrame;
-            mySprite.Position = pos;
-            mySprite.Update(gameTime);
-
-            //Update the state
-            currState.Update(gameTime, mySprite);
-            
-            //Perform a random move if the animation frame changed.
-            if(mySprite.CurrentFrame != lastFrame)
+            //Only update the sprite and movement if we are not waiting for the boomerang to return.
+            if (wait <= 0)
             {
-                RandomMove();
+                //Get the current frame of animation, set the sprite position to the enemy position, and update the sprite.
+                int lastFrame = mySprite.CurrentFrame;
+                mySprite.Position = pos;
+                mySprite.Update(gameTime);
+
+                //Update the state
+                currState.Update(gameTime, mySprite);
+
+                //Perform a random move if the animation frame changed.
+                if (mySprite.CurrentFrame != lastFrame)
+                {
+                    RandomMove();
+                }
+
+                if (throwDelay <= 0)
+                {
+                    Attack();
+                    wait = 3000; //Set the thrower to wait 3 seconds (the life of a boomerang)
+                    throwDelay = 4000;//Reset the delay
+                }
+                else
+                {
+                    throwDelay -= gameTime.ElapsedGameTime.Milliseconds;
+                }
+            }
+            else
+            {
+                //If we are still waiting for a projectile to return, reduce the timer by the elapsed time.
+                wait -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
         
-        public Thrower(ProjectileFactory projectileHandler)
+        public Thrower(ProjectileFactory projectileFactory)
         {
             //Default a new thrower as a left thrower
             currState = new LeftThrower(mySprite, this);
             //Assign an arbitrary starting positon for the thrower
             pos = new Vector2(500, 300);
             //Pass the projectile handler in
-            projectiles = projectileHandler;
+            projectiles = projectileFactory;
         }
 
         private void RandomMove()
@@ -77,27 +100,31 @@ namespace Sprint0.Enemies
             //Change directions or move based on the random number
             if(value == 0)
             {
-                currState.turnUp();
+                currState.TurnUp();
             }
             else if(value == 1)
             {
-                currState.turnDown();
+                currState.TurnDown();
             }
             else if(value == 2)
             {
-                currState.turnRight();
+                currState.TurnRight();
             }
             else if(value == 3)
             {
-                currState.turnLeft();
+                currState.TurnLeft();
             }
             else 
             {
-                currState.moveForward();
+                currState.MoveForward();
             }
 
         }
-
+        private void Attack()
+        {
+            //Create a new boomerang moving the direction given at 3 pixels per tick.
+            projectiles.NewBoomerang(pos, 3 * currState.AttackDirection());
+        }
 
 
     }

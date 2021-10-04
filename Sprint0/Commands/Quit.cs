@@ -15,7 +15,7 @@ namespace Sprint2
 
         public void Execute()
         {
-            myGame.quit();
+            myGame.Quit();
         }
     }
 }

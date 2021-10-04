@@ -15,7 +15,7 @@ namespace Sprint0.Projectiles
 
         public Vector2 Velocity { get; set; }
 
-        public double Life { get;}
+        public int Life { get;}
         public void Update(GameTime gameTime);
     }
 }

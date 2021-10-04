@@ -103,9 +103,9 @@ namespace Sprint0.Enemies
         public void Attack()
         {
             //Generate three fireballs starting at the dragon's location.
-            projectiles.NewFireBall(myPosition, new Vector2(-1, -1)); //This one moves up and left.
-            projectiles.NewFireBall(myPosition, new Vector2(-1, 0)); //This one moves straight left.
-            projectiles.NewFireBall(myPosition, new Vector2(-1, 1)); //This one moves down and left.
+            projectiles.NewFireBall(myPosition, new Vector2(-3, -2)); //This one moves up and left.
+            projectiles.NewFireBall(myPosition, new Vector2(-3, 0)); //This one moves straight left.
+            projectiles.NewFireBall(myPosition, new Vector2(-3, 2)); //This one moves down and left.
         }
     }
 }

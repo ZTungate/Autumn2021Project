@@ -8,11 +8,12 @@ namespace Sprint0.Enemies
 {
     public interface IEnemyState
     {
-            public void turnUp();
-            public void turnDown();
-            public void turnLeft();
-            public void turnRight();
-            public void moveForward();
-            public void Update(GameTime gameTime, ISprite sprite);
+            public void TurnUp();
+            public void TurnDown();
+            public void TurnLeft();
+            public void TurnRight();
+            public void MoveForward();
+            public Vector2 AttackDirection();
+        public void Update(GameTime gameTime, ISprite sprite);
     }
 }

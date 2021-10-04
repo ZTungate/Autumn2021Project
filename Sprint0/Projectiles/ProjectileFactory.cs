@@ -26,7 +26,6 @@ namespace Sprint0.Projectiles
 
         private ProjectileFactory()
         {
-
         }
 
         public void Initalize()
@@ -86,6 +85,18 @@ namespace Sprint0.Projectiles
             fireball.Sprite = CreateFireballSprite();
         }
 
+        public ISprite CreateBoomerangSprite()
+        {
+            return new BoomerangSprite(enemySpriteSheet);
+        }
+
+        public void NewBoomerang(Vector2 position, Vector2 velocity)
+        {
+            //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile boomerang = new BoomerangProjectile(position, velocity);
+            projectiles.Add(boomerang);
+            boomerang.Sprite = CreateBoomerangSprite();
+        }
         
 
     }

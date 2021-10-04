@@ -16,7 +16,7 @@ namespace Sprint2.Player
         public Color color { get; set; }
 
         float damageTimer;
-        Color[] damageColors;
+        Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
         public float Timer = 0f;
         float damageFlashRate = 50f;
         public bool canMove = true;
@@ -29,9 +29,6 @@ namespace Sprint2.Player
         {
             state = new RightState(this); //start the player in the right idle state
             position = new Vector2(20, 20);  //Link's initial position
-            damageColors = new Color[2];
-            damageColors[0] = Color.Red;
-            damageColors[1] = Color.Blue;
 
 
             colorIndex = 0;
@@ -108,24 +105,35 @@ namespace Sprint2.Player
                 position += moveDirection;
             }   
         }
-/*        public void moveUp(float speed)
-        {
-            position += new Vector2(0, -speed);
-        }
+        /*        public void moveUp(float speed)
+                {
+                    position += new Vector2(0, -speed);
+                }
 
-        public void moveRight(float speed)
-        {
-            position += new Vector2(speed, 0);
-        }
+                public void moveRight(float speed)
+                {
+                    position += new Vector2(speed, 0);
+                }
 
-        public void moveLeft(float speed)
-        {
-            position += new Vector2(-speed, 0);
-        }
+                public void moveLeft(float speed)
+                {
+                    position += new Vector2(-speed, 0);
+                }
 
-        public void moveDown(float speed)
+                public void moveDown(float speed)
+                {
+                    position += new Vector2(0, speed);
+                }*/
+        public void Reset()
         {
-            position += new Vector2(0, speed);
-        }*/
+            //This may not work, since the state does not determine the sprite
+            state = new RightIdleState(); //start the player in the right idle state
+            position = new Vector2(20, 20);  //Link's initial position
+
+            colorIndex = 0;
+
+            color = Color.White;
+        }
     }
+    
 }
