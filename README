@@ -1,0 +1,24 @@
+Boggus Poggus Group
+
+Program Controls: 
+Arrow keys and WASD to move 
+O and P to swap enemy
+U and I to change items
+T and Y to change blocks
+
+Known Bugs:
+Multiple key presses with links movement doesn't behave properly.
+Enemy position doesn't reset when swapping
+
+We
+Code Metrics:
+Project: Sprint0
+Configuration: Debug
+Scope: Assembly
+Assembly: C:\Users\Zach\source\repos\ZTungate\Au2021-3902\Sprint0\bin\Debug\netcoreapp3.1\Sprint0.dll
+Maintainability Index: 87
+Cyclomatic Complexity: 1,395
+Depth of Inheritance: 2
+Class Coupling: 162
+Lines of Source code: 5,402
+Lines of Executable code: 1,344
