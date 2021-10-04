@@ -71,7 +71,7 @@ namespace Sprint2.Player
             return new DownMovingLinkSprite(linkSpriteSheet, player);
         }
 
-        public ISprite RightUseItemLinkSprite(Link player)
+        public ISprite RightUseItemLinkSprite(ILink player)
         {
             return new RightUseItemLinkSprite(linkSpriteSheet, player);
         }
