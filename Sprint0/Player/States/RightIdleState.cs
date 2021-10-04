@@ -19,6 +19,11 @@ namespace Sprint2.Player
             throw new NotImplementedException();
         }
 
+        public void takeDamage()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Update()
         {
             //What needs to be updated in the State?

@@ -6,6 +6,7 @@ namespace Sprint2.Player
 						   //http://web.cse.ohio-state.edu/~boggus.2/3902/slides/GoombaStateExample.cs
 	{
 		void Update();
+		void takeDamage();
 		//Damage should be implemented as a decorator on the player, not the state (look at notes on cse3902 homepage)
 	}
 }
