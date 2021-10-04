@@ -4,13 +4,14 @@ using System;
 
 namespace Sprint2.Player
 {
-	public class RightIdleState : IPlayerState
+	public class RightState : ILinkState
 	{
-
-		public RightIdleState()
+        private ILink link;
+		public RightState(ILink Link)
 		{
+            this.link = Link;
             //playerSprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(position); //Initialize game with link facing right, idle.
-		}
+        }
 
 
         public void Draw(SpriteBatch spriteBatch)
@@ -28,6 +29,11 @@ namespace Sprint2.Player
         {
             //What needs to be updated in the State?
             throw new NotImplementedException();
+        }
+
+        public void useItem(Game1 game)
+        {
+            game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
         }
     }
 }

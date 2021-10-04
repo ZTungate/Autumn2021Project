@@ -10,7 +10,7 @@ namespace Sprint2.Player
         //Game class contains a sprite factory, which creates each sprite with a source rectangle. this is saved in spriteBatch
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
 
-        public IPlayerState state { get; set; }
+        public ILinkState state { get; set; }
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
         public Color color { get; set; }
@@ -27,11 +27,12 @@ namespace Sprint2.Player
 
         public Link()
         {
-            state = new RightIdleState(); //start the player in the right idle state
+            state = new RightState(this); //start the player in the right idle state
             position = new Vector2(20, 20);  //Link's initial position
             damageColors = new Color[2];
             damageColors[0] = Color.Red;
             damageColors[1] = Color.Blue;
+
 
             colorIndex = 0;
 
@@ -56,7 +57,7 @@ namespace Sprint2.Player
                 {
                     colorIndex++;
                 }
-                if (damageTimer <= 0f)
+                if (damageTimer <= 50f)
                 { //damage invincibility time
                     isDamaged = false;
                     color = Color.White;
@@ -93,6 +94,11 @@ namespace Sprint2.Player
             }
             /*state.takeDamage();*/
 
+        }
+
+        public void useItem(Game1 game)
+        {
+            state.useItem(game);
         }
 
         public void move(Vector2 moveDirection)

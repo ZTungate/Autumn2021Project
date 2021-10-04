@@ -41,7 +41,7 @@ namespace Sprint2
 
             //Player Controls
             this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
-            this.controllerMappings.Add(Keys.D1, new PlayerRightUseItemCommand(myGame));
+            this.controllerMappings.Add(Keys.D1, new PlayerUseItemCommand(myGame));
             this.controllerMappings.Add(Keys.N, new PlayerRightSwordCommand(myGame));
 
 

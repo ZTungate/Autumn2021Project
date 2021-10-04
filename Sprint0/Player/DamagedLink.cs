@@ -10,7 +10,7 @@ namespace Sprint2.Player
         //Game class contains a sprite factory, which creates each sprite with a source rectangle. this is saved in spriteBatch
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
 
-        public IPlayerState state { get; set; }
+        public ILinkState state { get; set; }
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
         public Color color { get; set; }

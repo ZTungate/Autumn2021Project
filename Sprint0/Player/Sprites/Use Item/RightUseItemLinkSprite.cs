@@ -35,6 +35,13 @@ namespace Sprint2.Player
         public void Update(GameTime gameTime)
         {
             // Implement animation changes here
+            if (Timer > Interval) {
+                player.state = new RightState(player);
+            }
+            else {
+                //Increment timer by the elapsed time in game.
+                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

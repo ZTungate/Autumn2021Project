@@ -8,11 +8,13 @@ namespace Sprint2.Player
 {
     public interface ILink
     {
-        public IPlayerState state { get; set; }
+        public ILinkState state { get; set; }
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
 
         public Color color {get;set;}
+
+        enum Direction { };
         void takeDamage();
         void Update(GameTime gameTime);
 
