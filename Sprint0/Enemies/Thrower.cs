@@ -17,7 +17,7 @@ namespace Sprint0.Enemies
         //State
         IEnemyState currState;
         //Projectile controller
-        ProjectileHandler projectiles;
+        ProjectileFactory projectiles;
         IEnemyState IEnemy.State
         {
             get => currState;
@@ -58,7 +58,7 @@ namespace Sprint0.Enemies
             }
         }
         
-        public Thrower(ProjectileHandler projectileHandler)
+        public Thrower(ProjectileFactory projectileHandler)
         {
             //Default a new thrower as a left thrower
             currState = new LeftThrower(mySprite, this);

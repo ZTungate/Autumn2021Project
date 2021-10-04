@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Sprint0.Helpers;
+using Sprint0.Projectiles;
 using Sprint2;
 using Sprint2.Enemies;
 using System;
@@ -12,15 +13,18 @@ namespace Sprint0.Enemies
     {
         //ISprite for the enemy
         ISprite mySprite;
-
-        //Position of the bat.
-        Vector2 pos;
+        //Position of the dragon.
+        Vector2 myPosition;
         //State of the dragon (not used yet for this enemy type)
         IEnemyState state;
+        //ProjectileHandler for spawning fireballs during an attack
+        ProjectileFactory projectiles;
 
         //Timers for updating sprite without moving
         private int interval = 120;
         private int timer = 0;
+        private int attackTimer = 0;
+        private int attackInterval = 4000;
         public ISprite Sprite
         {
             //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
@@ -29,8 +33,8 @@ namespace Sprint0.Enemies
         }
         public Vector2 Position
         {
-            get => pos;
-            set => pos = value;
+            get => myPosition;
+            set => myPosition = value;
         }
         public IEnemyState State
         {
@@ -56,22 +60,35 @@ namespace Sprint0.Enemies
             else
             {
                 timer = 0;
-                pos = DragonMove();
-                mySprite.Position = pos;
+                myPosition = DragonMove();
+                mySprite.Position = myPosition;
+            }
+
+            if(attackTimer < attackInterval)
+            {
+                attackTimer += gameTime.ElapsedGameTime.Milliseconds;
+            }
+            else
+            {
+                attackTimer = 0;
+                Attack();
             }
         }
-        public Dragon()
+        public Dragon(ProjectileFactory projectileHandler)
         { 
             //Assign an arbitrary starting positon for the bat.
-            pos = new Vector2(500, 300);
+            myPosition = new Vector2(500, 300);
+            projectiles = projectileHandler;
         }
 
         public Vector2 DragonMove()
         {
+            //Initialize an RNG to randomly move the dragon.
             Random rand = new Random();
-            Vector2 newPosition = pos;
+            Vector2 newPosition = myPosition;
             int val = rand.Next(3);
 
+            //1/3 chance to move forwards, 1/3 chance to move back, and 1/3 chance to do nothing.
             if (val == 0)
             {
                 newPosition.X += 5;
@@ -81,7 +98,14 @@ namespace Sprint0.Enemies
                 newPosition.X -= 5;
             }
                 return newPosition;
-            
+        }
+
+        public void Attack()
+        {
+            //Generate three fireballs starting at the dragon's location.
+            projectiles.NewFireBall(myPosition, new Vector2(-1, -1)); //This one moves up and left.
+            projectiles.NewFireBall(myPosition, new Vector2(-1, 0)); //This one moves straight left.
+            projectiles.NewFireBall(myPosition, new Vector2(-1, 1)); //This one moves down and left.
         }
     }
 }

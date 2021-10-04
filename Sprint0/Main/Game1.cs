@@ -40,7 +40,7 @@ namespace Sprint2
         public int currentItem;
 
         //Projectiles
-        public ProjectileHandler projectiles;
+        public ProjectileFactory projectileFactory;
         //Blocks
         public IBlocks currentBlock;
 
@@ -56,12 +56,13 @@ namespace Sprint2
             // TODO: Add your initialization logic here
             sprite = new NonAnimatedStillSprite(this);
 
-            //Initialize an enemy sprite 
+            //Initialize the sprite factories
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
             itemSpriteFactory = ItemSpriteFactory.Instance;
             blockSpriteFactory = BlockSpriteFactory.Instance;
-            projectiles = ProjectileHandler.Instance;
+            projectileFactory = ProjectileFactory.Instance;
+            projectileFactory.Initalize();
 
             controllerList = new List<IController>()
             {
@@ -75,12 +76,12 @@ namespace Sprint2
             //Initialize enemies 
             enemies = new List<IEnemy>()
             {
-                new Dragon(),
+                new Dragon(projectileFactory),
                 new Skeleton(),
                 new Bat(),
                 new Slime(),
                 new OldMan(),
-                new Thrower(projectiles),
+                new Thrower(projectileFactory),
             };
 
             base.Initialize();
@@ -97,6 +98,9 @@ namespace Sprint2
 
             //Load all textures from the enemy sprite factory.
             enemySpriteFactory.LoadAllTextures(Content);
+            //Load all textures for the projectile factory.
+            projectileFactory.LoadAllTextures(Content);
+
             //Load all block textures
             blockSpriteFactory.LoadAllTextures(Content);
             currentBlock = blockSpriteFactory.CurrentSprite();
@@ -144,17 +148,14 @@ namespace Sprint2
 
             sprite.Update(gameTime);
 
-            //Update all enemies (for testing purposes)
-            //foreach(IEnemy enemy in enemies)
-            //{
-            //   enemy.Update(gameTime);
-            //}
-
             //Update Link
             link.Update(gameTime);
 
             //Update the current enemy
             enemies[currentEnemy].Update(gameTime);
+
+            //Update the projectiles
+            projectileFactory.UpdateProjectiles(gameTime);
 
             items[currentItem].Update(gameTime);
 
@@ -177,14 +178,14 @@ namespace Sprint2
             string message = "Controls:\nArrow keys and WASD to move\nO and P to swap enemy\nU and I to change items\nT and Y to change blocks.";
             _spriteBatch.DrawString(font, message, new Vector2(_graphics.PreferredBackBufferWidth / 2 - font.MeasureString(message).X / 2, _graphics.PreferredBackBufferHeight / 2 - font.MeasureString(message).Y / 2 + 100), Color.Black);
 
-            //Draw all active enemies
-            //enemySpriteFactory.drawEnemies(_spriteBatch);
-
             //Draw Link
             link.Draw(_spriteBatch);
 
             //Draw the current enemy
             enemies[currentEnemy].Sprite.Draw(_spriteBatch);
+
+            //Draw all projectiles
+            projectileFactory.DrawProjectiles(_spriteBatch);
 
             items[currentItem].Draw(_spriteBatch);
 
