@@ -9,3 +9,6 @@ Very little abstraction of different enemy types so lots of classes.
 A possible change to make: 
 Add more abstraction to lower down the number of classes for example: SmallEnemey, BossEnemy, LargeEnemy, ThrowingEnemy. 
 The current implementation could support this pretty easily by adding some parameters for where to grab the sprite.
+
+
+Comments on readability: The class is pretty easy to read with most of the methods explaining themselves with comments to clarify.
