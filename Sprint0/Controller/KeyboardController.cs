@@ -18,10 +18,11 @@ namespace Sprint2
 
             myGame = game;
 
-            setKeys();
+
+            setKeys(myGame.link);
 
         }
-        private void setKeys()
+        private void setKeys(Player.ILink link)
         {
 
             //Create commands to change sprites
@@ -41,6 +42,7 @@ namespace Sprint2
             //Player Controls
             this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
             this.controllerMappings.Add(Keys.D1, new PlayerRightUseItemCommand(myGame));
+            this.controllerMappings.Add(Keys.N, new PlayerRightSwordCommand(myGame));
 
 
             //Item Swapping
