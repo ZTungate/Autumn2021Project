@@ -1,11 +1,15 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace Sprint2.Items
 {
-    public class HeartItem
+    public class HeartItem : AbstractItem
     {
+        public HeartItem(Vector2 pos) : base(ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Heart), pos)
+        {
+
+        }
     }
 }

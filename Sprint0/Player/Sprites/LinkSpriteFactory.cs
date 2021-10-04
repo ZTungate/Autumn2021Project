@@ -76,5 +76,14 @@ namespace Sprint2.Player
             return new RightUseItemLinkSprite(linkSpriteSheet, player);
         }
 
+        public ISprite DownSwordLinkSprite(ILink player)
+        {
+            return new DownSwordLinkSprite(linkSpriteSheet, player);
+        }
+
+        public ISprite RightSwordLinkSprite(ILink player)
+        {
+            return new RightSwordLinkSprite(linkSpriteSheet, player);
+        }
     }
 }
