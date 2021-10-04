@@ -189,8 +189,8 @@ namespace Sprint2
 
             items[currentItem].Draw(_spriteBatch);
 
-            currentBlock = blockSpriteFactory.CurrentSprite();
             currentBlock.Draw(_spriteBatch);
+
 
             _spriteBatch.End();
 
@@ -202,8 +202,10 @@ namespace Sprint2
             link = new Link();
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
             blockSpriteFactory.Reset();
+            currentBlock = blockSpriteFactory.CurrentSprite();
             
-            
+
+
         }
         public void quit()
         {
