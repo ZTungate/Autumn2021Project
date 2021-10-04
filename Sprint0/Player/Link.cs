@@ -12,44 +12,53 @@ namespace Sprint2.Player
 
         public IPlayerState state { get; set; }
         public Vector2 position { get; set; }
-        public ISprite sprite { get; set; } 
+        public ISprite sprite { get; set; }
+        public Color color { get; set; }
 
+        float damageTimer;
+        Color[] colors;
         public float Timer = 0f;
         float damageFlashRate = 50f;
         public bool canMove = true;
         public bool isDamaged = false;
-        public Color[] colors;
         int colorIndex = 0;
 
         public Link()
         {
             state = new RightIdleState(); //start the player in the right idle state
-            position = new Vector2(20,20);  //Link's initial position
-            
+            position = new Vector2(20, 20);  //Link's initial position
             colors = new Color[2];
             colors[0] = Color.White;
             colors[1] = Color.Red;
+
+            colorIndex = 0;
+
+            color = colors[colorIndex];
+
         }
 
         public void Update(GameTime gameTime)
         {
             if (isDamaged)
             {
-                if (Timer % (damageFlashRate) > damageFlashRate * 2)
+                
+                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                if (damageTimer % (damageFlashRate) > damageFlashRate * 2)
                 {
                     colorIndex++;
                 }
-                if (Timer > 500f)
+                if (damageTimer < 500f)
                 { //damage invincibility time
                     isDamaged = false;
-                    Timer = 0;
-                } 
-                else if (Timer > 250f) //hit stun duration
+                    damageTimer = 1000f;
+                }
+                else if (damageTimer < 750f) //hit stun duration
                 {
                     canMove = true;
                 }
-                    Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                
+                damageTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
             }
             else
             {
@@ -68,9 +77,12 @@ namespace Sprint2.Player
 
         public void takeDamage()
         {
-            canMove = false;
-            isDamaged = true;
-            Timer = 0;
+            if (!isDamaged) {
+                isDamaged = true;
+                canMove = true;
+                damageTimer = 1000f;
+            }
+            /*state.takeDamage();*/
             
         }
 

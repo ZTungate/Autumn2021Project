@@ -13,13 +13,10 @@ namespace Sprint2.Player
         public IPlayerState state { get; set; }
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
+        public Color color { get; set; }
 
-        public float Timer = 0f;
-        float damageFlashRate = 50f;
-        public bool canMove = true;
-        public bool isDamaged = false;
-        public Color[] colors;
-        int colorIndex = 0;
+        float timer = 1000f;
+
 
         Game1 game;
         ILink decoratedLink;
@@ -33,8 +30,8 @@ namespace Sprint2.Player
         public void Update(GameTime gameTime)
         {
 
-            Timer--;
-                if (Timer == 0)
+            timer-= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if (timer <= 0)
             {
                 RemoveDecorator();
             }
