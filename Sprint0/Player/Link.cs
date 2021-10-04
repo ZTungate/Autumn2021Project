@@ -5,51 +5,68 @@ using System;
 namespace Sprint2.Player
 {
 
-    public class Link: ILink{
-        
+    public class Link : ILink {
+
         //Game class contains a sprite factory, which creates each sprite with a source rectangle. this is saved in spriteBatch
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
 
         public IPlayerState state { get; set; }
         public Vector2 position { get; set; }
-        public ISprite sprite { get; set; } 
+        public ISprite sprite { get; set; }
+        public Color color { get; set; }
 
+        float damageTimer;
+        Color[] damageColors;
         public float Timer = 0f;
         float damageFlashRate = 50f;
         public bool canMove = true;
         public bool isDamaged = false;
-        public Color[] colors;
         int colorIndex = 0;
+        float invincibilityFramesDuration = 2000f;
+        float hitStunDuration = 500f;
 
         public Link()
         {
             state = new RightIdleState(); //start the player in the right idle state
-            position = new Vector2(20,20);  //Link's initial position
-            
-            colors = new Color[2];
-            colors[0] = Color.White;
-            colors[1] = Color.Red;
+            position = new Vector2(20, 20);  //Link's initial position
+            damageColors = new Color[2];
+            damageColors[0] = Color.Red;
+            damageColors[1] = Color.Blue;
+
+            colorIndex = 0;
+
+            color = Color.White;
+
         }
 
         public void Update(GameTime gameTime)
         {
             if (isDamaged)
             {
-                if (Timer % (damageFlashRate) > damageFlashRate * 2)
+
+                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+                if(invincibilityFramesDuration - damageTimer % damageFlashRate == 0)
+                {
+                    colorIndex++;
+                    color = damageColors[colorIndex % damageColors.Length];
+                }
+
+
+                if (damageTimer % (damageFlashRate) > damageFlashRate * 2)
                 {
                     colorIndex++;
                 }
-                if (Timer > 500f)
+                if (damageTimer <= 0f)
                 { //damage invincibility time
                     isDamaged = false;
-                    Timer = 0;
-                } 
-                else if (Timer > 250f) //hit stun duration
+                    color = Color.White;
+                }
+                else if (damageTimer < (invincibilityFramesDuration-hitStunDuration)) //hit stun duration
                 {
                     canMove = true;
                 }
-                    Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                
+                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
             }
             else
             {
@@ -68,13 +85,24 @@ namespace Sprint2.Player
 
         public void takeDamage()
         {
-            canMove = false;
-            isDamaged = true;
-            Timer = 0;
-            
+            if (!isDamaged) {
+                isDamaged = true;
+                canMove = false;
+                color = Color.Red;
+                damageTimer = invincibilityFramesDuration;
+            }
+            /*state.takeDamage();*/
+
         }
 
-        public void moveUp(float speed)
+        public void move(Vector2 moveDirection)
+        {
+            if (canMove) 
+            {
+                position += moveDirection;
+            }   
+        }
+/*        public void moveUp(float speed)
         {
             position += new Vector2(0, -speed);
         }
@@ -92,6 +120,6 @@ namespace Sprint2.Player
         public void moveDown(float speed)
         {
             position += new Vector2(0, speed);
-        }
+        }*/
     }
 }

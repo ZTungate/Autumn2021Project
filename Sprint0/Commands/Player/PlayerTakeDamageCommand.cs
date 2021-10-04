@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Sprint2.Helpers;
+using Sprint2.Player;
 
 namespace Sprint2.Commands
 {
@@ -15,6 +16,7 @@ namespace Sprint2.Commands
         public void Execute()
         {
             game.link.takeDamage();
+/*            game.link = new DamagedLink(game.link, game);*/ //Decorator for taking damage (State design pattern)
             /*game.link.state = new RightIdleLinkState();*/
         }
     }

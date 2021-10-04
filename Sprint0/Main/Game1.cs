@@ -54,7 +54,7 @@ namespace Sprint2
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            sprite = new NonAnimatedStillSprite(this);
+            /*sprite = new NonAnimatedStillSprite(this);*/
 
             //Initialize the sprite factories
             linkSpriteFactory = LinkSpriteFactory.Instance;
@@ -135,7 +135,7 @@ namespace Sprint2
                 enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
             }
 
-            sprite.Texture = Content.Load<Texture2D>("ball");
+            /*sprite.Texture = Content.Load<Texture2D>("ball");*/
 
         }
 
@@ -146,7 +146,7 @@ namespace Sprint2
                 controller.Update();
             }
 
-            sprite.Update(gameTime);
+            /*sprite.Update(gameTime);*/
 
             //Update Link
             link.Update(gameTime);
@@ -172,7 +172,7 @@ namespace Sprint2
             //Using front to back sorting, and point clamp to improve look of pixel art sprites
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
        
-            _spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect[sprite.CurrentFrame], Color.White, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+/*            _spriteBatch.Draw(sprite.Texture, sprite.Position, sprite.SourceRect[sprite.CurrentFrame], Color.White, 0f, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);*/
 
 
             string message = "Controls:\nArrow keys and WASD to move\nO and P to swap enemy\nU and I to change items\nT and Y to change blocks.";
