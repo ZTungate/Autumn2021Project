@@ -34,7 +34,7 @@ namespace Sprint2.Items
 
             itemSpriteDictionary.Add(ItemEnum.Arrow, new ArrowSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Bomb, new BombSprite(itemSpriteSheet));
-            itemSpriteDictionary.Add(ItemEnum.Boomerang, new BoomerangSprite(itemSpriteSheet));
+            itemSpriteDictionary.Add(ItemEnum.Boomerang, new StationaryBoomerangSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Bow, new BowSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Clock, new ClockSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Compass, new CompassSprite(itemSpriteSheet));

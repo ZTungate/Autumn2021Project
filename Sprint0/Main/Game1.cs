@@ -204,6 +204,9 @@ namespace Sprint2
             blockSpriteFactory.Reset();
             currentBlock = blockSpriteFactory.CurrentSprite();
 
+            //Reset item
+            currentItem = 0;
+
             //Set the enemy sprite factory to a new instance
             enemySpriteFactory = EnemySpriteFactory.Instance;
 
