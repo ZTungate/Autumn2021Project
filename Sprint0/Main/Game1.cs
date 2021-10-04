@@ -191,11 +191,22 @@ namespace Sprint2
 
             currentBlock.Draw(_spriteBatch);
 
+
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
+        public void reset()
+        {
+            link = new Link();
+            link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
+            blockSpriteFactory.Reset();
+            currentBlock = blockSpriteFactory.CurrentSprite();
+            
+
+
+        }
         public void quit()
         {
             Exit();
