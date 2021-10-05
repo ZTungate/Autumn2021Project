@@ -25,6 +25,11 @@ namespace Sprint2.Player
         void Draw(SpriteBatch spriteBatch);
 
         void move(Vector2 moveDirection);
+
+        void RegBoomerangAttack();
+
+        void BlueBoomerangAttack();
+
         /*void moveUp(float speed);
         void moveRight(float speed);
         void moveLeft(float speed);

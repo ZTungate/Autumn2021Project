@@ -40,7 +40,6 @@ namespace Sprint2.Player
             //Animate the sprites (pulled from animatedStillSprite.cs)
             if (Timer > Interval)
             {
-                player.move(new Vector2(SpriteSpeed, 0));
 
                 if (CurrentFrame > FrameCount - 1) {
                     CurrentFrame = 0;

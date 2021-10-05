@@ -41,8 +41,10 @@ namespace Sprint2
 
             //Player Controls
             this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
-            this.controllerMappings.Add(Keys.D1, new PlayerUseItemCommand(myGame));
+            this.controllerMappings.Add(Keys.D1, new PlayerUseRegBoomerangCommand(myGame));
+            this.controllerMappings.Add(Keys.D2, new PlayerUseBlueBoomerangCommand(myGame));
             this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
+            this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
 
 
             //Item Swapping

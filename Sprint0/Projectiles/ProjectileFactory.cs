@@ -12,6 +12,7 @@ namespace Sprint0.Projectiles
     {
         private List<IProjectile> projectiles;
         private Texture2D enemySpriteSheet;
+        private Texture2D linkSpriteSheet;
 
 
         private static ProjectileFactory instance = new ProjectileFactory();
@@ -37,6 +38,7 @@ namespace Sprint0.Projectiles
         public void LoadAllTextures(ContentManager content)
         {
             enemySpriteSheet = content.Load<Texture2D>("EnemySpriteSheet");
+            linkSpriteSheet = content.Load<Texture2D>("LinkSpriteSheet");
         }
 
         public void UpdateProjectiles(GameTime gameTime)
@@ -90,6 +92,11 @@ namespace Sprint0.Projectiles
             return new BoomerangSprite(enemySpriteSheet);
         }
 
+        public ISprite CreateBlueBoomerangSprite()
+        {
+            return new BlueBoomerangSprite(linkSpriteSheet);
+        }
+
         public void NewBoomerang(Vector2 position, Vector2 velocity)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
@@ -97,7 +104,14 @@ namespace Sprint0.Projectiles
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
         }
-        
+
+        public void NewBlueBoomerang(Vector2 position, Vector2 velocity)
+        {
+            //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile boomerang = new BoomerangProjectile(position, velocity);
+            projectiles.Add(boomerang);
+            boomerang.Sprite = CreateBlueBoomerangSprite();
+        }
 
     }
 }

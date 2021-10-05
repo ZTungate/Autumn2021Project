@@ -71,7 +71,7 @@ namespace Sprint2
             };
 
             //Initialize Player (Link)
-            link = new Link();
+            link = new Link(projectileFactory);
 
             //Initialize enemies 
             enemies = new List<IEnemy>()
@@ -199,7 +199,7 @@ namespace Sprint2
 
         public void Reset()
         {
-            link = new Link();
+            link = new Link(projectileFactory);
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
             blockSpriteFactory.Reset();
             currentBlock = blockSpriteFactory.CurrentSprite();

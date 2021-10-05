@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-
+using Sprint0.Projectiles;
 namespace Sprint2.Player
 {
 
@@ -27,7 +27,10 @@ namespace Sprint2.Player
         float invincibilityFramesDuration = 2000f;
         float hitStunDuration = 500f;
 
-        public Link()
+        public ProjectileFactory projectile;
+
+
+        public Link(ProjectileFactory ProjectileFactory)
         {
             state = new RightState(this); //start the player in the right idle state
             position = new Vector2(20, 20);  //Link's initial position
@@ -36,6 +39,8 @@ namespace Sprint2.Player
             colorIndex = 0;
 
             color = Color.White;
+
+            projectile = ProjectileFactory;
 
         }
 
@@ -136,6 +141,47 @@ namespace Sprint2.Player
             colorIndex = 0;
 
             color = Color.White;
+        }
+
+
+        public void RegBoomerangAttack()
+        {
+            //Create a new boomerang moving the direction given at 3 pixels per tick.
+            switch (facing) {
+                case direction.right:
+                    projectile.NewBoomerang(position, 3 * new Vector2(1, 0));
+                    break;
+                case direction.left:
+                    projectile.NewBoomerang(position, 3 * new Vector2(-1, 0));
+                    break;
+                case direction.down:
+                    projectile.NewBoomerang(position, 3 * new Vector2(0, 1));
+                    break;
+                case direction.up:
+                    projectile.NewBoomerang(position, 3 * new Vector2(0, -1));
+                    break;
+
+            }
+        }
+
+        public void BlueBoomerangAttack()
+        {
+            //Create a new boomerang moving the direction given at 3 pixels per tick.
+            switch (facing) {
+                case direction.right:
+                    projectile.NewBlueBoomerang(position, 6 * new Vector2(1, 0));
+                    break;
+                case direction.left:
+                    projectile.NewBlueBoomerang(position, 6 * new Vector2(-1, 0));
+                    break;
+                case direction.down:
+                    projectile.NewBlueBoomerang(position, 6 * new Vector2(0, 1));
+                    break;
+                case direction.up:
+                    projectile.NewBlueBoomerang(position, 6 * new Vector2(0, -1));
+                    break;
+
+            }
         }
     }
     

@@ -60,24 +60,35 @@ namespace Sprint2.Player
         {
             decoratedLink.move(moveDirection);
         }
-/*        public void moveUp(float speed)
+
+        public void RegBoomerangAttack()
         {
-            decoratedLink.moveUp(speed);
+            decoratedLink.RegBoomerangAttack();
         }
 
-        public void moveRight(float speed)
+        public void BlueBoomerangAttack()
         {
-            decoratedLink.moveRight(speed);
+            decoratedLink.BlueBoomerangAttack();
         }
 
-        public void moveLeft(float speed)
-        {
-            decoratedLink.moveLeft(speed);
-        }
+        /*        public void moveUp(float speed)
+                {
+                    decoratedLink.moveUp(speed);
+                }
 
-        public void moveDown(float speed)
-        {
-            decoratedLink.moveDown(speed);
-        }*/
+                public void moveRight(float speed)
+                {
+                    decoratedLink.moveRight(speed);
+                }
+
+                public void moveLeft(float speed)
+                {
+                    decoratedLink.moveLeft(speed);
+                }
+
+                public void moveDown(float speed)
+                {
+                    decoratedLink.moveDown(speed);
+                }*/
     }
 }

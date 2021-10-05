@@ -62,7 +62,7 @@ namespace Sprint2.Player
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame%FrameCount].Width*scale, SourceRect[CurrentFrame%FrameCount].Height*scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, new Vector2(player.position.X, player.position.Y + 27), SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, SourceRect[CurrentFrame % FrameCount].Height), scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, new Vector2(player.position.X, player.position.Y + 32), SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, SourceRect[CurrentFrame % FrameCount].Height), scale, SpriteEffects.None, 1);
 
         }
 
