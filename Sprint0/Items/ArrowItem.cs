@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class ArrowItem : AbstractItem
     {
-        public ArrowItem(Vector2 pos) : base(ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Arrow), pos)
+        public ArrowItem(Vector2 pos) : base(ItemEnum.Arrow, pos)
         {
 
         }

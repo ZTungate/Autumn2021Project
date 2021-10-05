@@ -31,7 +31,8 @@ namespace Sprint2.Blocks
 
         public void LoadAllTextures(ContentManager content)
         {
-            blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet");
+            blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet"); //loads the texture atlas
+            //loads all the block sprites into a list
             blockList.Add(CreateFloorTile());
             blockList.Add(CreateBlackBox());
             blockList.Add(CreateEntryFloorTile());
@@ -44,28 +45,33 @@ namespace Sprint2.Blocks
             blockList.Add(CreateWaterTile());
         }
 
+        //returns the next sprite in the list
         public IBlocks NextSprite()
         {
             blockTracker++;
             return blockList[CustomMath.MathMod(blockTracker, blockList.Count)];
         }
 
+        //returns the previous sprite in the list
         public IBlocks PreviousSprite()
         {
             blockTracker--;
             return blockList[CustomMath.MathMod(blockTracker, blockList.Count)];
         }
 
+        //returns the current sprite
         public IBlocks CurrentSprite()
         {
             return blockList[blockTracker];
         }
 
+        //resets the list to the initial state
         public void Reset()
         {
             blockTracker = 0;
         }
 
+        //flowing methods return a sprite object for the block
         public IBlocks CreateBlackBox()
         {
             return new BlackBoxSprite(blockSpriteSheet, new Vector2(200, 300));

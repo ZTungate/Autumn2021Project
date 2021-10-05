@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class TriforcePieceItem : AbstractItem
     {
-        public TriforcePieceItem(Vector2 pos) : base(ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.TriforcePiece), pos)
+        public TriforcePieceItem(Vector2 pos) : base(ItemEnum.TriforcePiece, pos)
         {
 
         }

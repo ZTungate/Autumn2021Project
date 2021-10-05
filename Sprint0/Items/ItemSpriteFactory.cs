@@ -31,7 +31,7 @@ namespace Sprint2.Items
         public void LoadAllTextures(ContentManager content)
         {
             itemSpriteSheet = content.Load<Texture2D>("ItemSpriteSheet");
-
+            //For each item in the enum add its corresponding item sprite class to the dictionary
             itemSpriteDictionary.Add(ItemEnum.Arrow, new ArrowSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Bomb, new BombSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Boomerang, new StationaryBoomerangSprite(itemSpriteSheet));
@@ -44,10 +44,10 @@ namespace Sprint2.Items
             itemSpriteDictionary.Add(ItemEnum.Key, new KeySprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Rupee, new RupeeSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.TriforcePiece, new TriforcePieceSprite(itemSpriteSheet));
-
         }
         public ISprite GetItemSprite(ItemEnum item)
         {
+            //Get corresponding item sprite of given item enum
             return itemSpriteDictionary[item];
         }
     }

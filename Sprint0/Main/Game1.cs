@@ -73,6 +73,24 @@ namespace Sprint2
             //Initialize Player (Link)
             link = new Link(projectileFactory);
 
+            //Temorary variable for item location
+            Vector2 itemPos = new Vector2(300, 100);
+            items = new List<IItem>()
+            {
+                new ArrowItem(itemPos),
+                new BombItem(itemPos),
+                new BoomerangItem(itemPos),
+                new BowItem(itemPos),
+                new ClockItem(itemPos),
+                new CompassItem(itemPos),
+                new FairyItem(itemPos),
+                new HeartContainerItem(itemPos),
+                new HeartItem(itemPos),
+                new KeyItem(itemPos),
+                new RupeeItem(itemPos),
+                new TriforcePieceItem(itemPos),
+            };
+
             //Initialize enemies 
             enemies = new List<IEnemy>()
             {
@@ -108,24 +126,10 @@ namespace Sprint2
             //Load all item textures and generate items (must be done after textures are loaded)
             itemSpriteFactory.LoadAllTextures(Content);
 
-            //Temorary variable for item location
-            Vector2 itemPos = new Vector2(300, 100);
-            items = new List<IItem>()
+            foreach(IItem item in items)
             {
-                new ArrowItem(itemPos),
-                new BombItem(itemPos),
-                new BoomerangItem(itemPos),
-                new BowItem(itemPos),
-                new ClockItem(itemPos),
-                new CompassItem(itemPos),
-                new FairyItem(itemPos),
-                new HeartContainerItem(itemPos),
-                new HeartItem(itemPos),
-                new KeyItem(itemPos),
-                new RupeeItem(itemPos),
-                new TriforcePieceItem(itemPos),
-            };
-
+                item.CreateSprite();
+            }
 
             //Create sprite for Link
             link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
@@ -191,7 +195,6 @@ namespace Sprint2
 
             currentBlock.Draw(_spriteBatch);
 
-
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -228,8 +231,6 @@ namespace Sprint2
 
             //Re-Initialize the projectile factory.
             projectileFactory.Initalize();
-
-
         }
         public void Quit()
         {
