@@ -13,7 +13,13 @@ Implement Sprite factories (for enemy)
 Create enemy classes (Implement enemy logic) (maybe start with just 1 enemy)
 
 MASON:
-Create item classes
+Create items -> Finished in 4.5 hours:
+	-IItem and Abstract Item - 1 hour
+	-Individual item classes - 30 minutes
+	-ItemSpriteFactory - 30 minutes
+	-Item Switching - 1.5 hours
+	-Individual Item Sprites - 1 hour
+	-Bug fixing/readability fixes(due to bad code quality etc.)- 1 hour
 
 ZACH:
 Create block classes - Finished with time of 6 hours
