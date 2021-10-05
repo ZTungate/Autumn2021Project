@@ -51,9 +51,6 @@ namespace Sprint2
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-            /*sprite = new NonAnimatedStillSprite(this);*/
-
             //Initialize the sprite factories
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
@@ -108,7 +105,6 @@ namespace Sprint2
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Credits");
 
-            // TODO: use this.Content to load your game content here
             //Load all textures from the link sprite factory.
             linkSpriteFactory.LoadAllTextures(Content);
 
@@ -137,8 +133,6 @@ namespace Sprint2
                 enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
             }
 
-            /*sprite.Texture = Content.Load<Texture2D>("ball");*/
-
         }
 
         protected override void Update(GameTime gameTime)
@@ -147,8 +141,6 @@ namespace Sprint2
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-
-            /*sprite.Update(gameTime);*/
 
             //Update Link
             link.Update(gameTime);
@@ -204,6 +196,9 @@ namespace Sprint2
 
             //Set the enemy sprite factory to a new instance
             enemySpriteFactory = EnemySpriteFactory.Instance;
+
+            //Reset currentEnemy
+            currentEnemy = 0;
 
             //Reset the enemy list to all new instances of enemies.
             enemies = new List<IEnemy>()

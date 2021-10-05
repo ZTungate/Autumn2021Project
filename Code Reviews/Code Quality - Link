@@ -1,0 +1,13 @@
+Author: Jonah Silsdorf
+Date: 10/4/2021
+File being Reviewed: Link.cs
+Author of file: Michael
+Sprint 2
+Time spent on review: 20 mins
+
+Comments on code quality: 
+The player class could benefit greatly from using the state design pattern.
+There are some large blocks of commented code, some of which is framework for the state pattern not yet used.
+The update class is using several if statements that fall into each other as well as a large nested if statement.
+The link/player functionality is working, and the character moves around and uses items as expected.
+All in all, could use some cleaning, but functional.
