@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class CompassItem : AbstractItem
     {
-        public CompassItem(Vector2 pos) : base(ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Compass), pos)
+        public CompassItem(Vector2 pos) : base(ItemEnum.Compass, pos)
         {
 
         }

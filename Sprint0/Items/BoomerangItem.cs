@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class BoomerangItem : AbstractItem
     {
-        public BoomerangItem(Vector2 pos) : base(ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Boomerang), pos)
+        public BoomerangItem(Vector2 pos) : base(ItemEnum.Boomerang, pos)
         {
 
         }

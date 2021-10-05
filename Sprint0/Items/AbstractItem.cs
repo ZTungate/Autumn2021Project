@@ -11,10 +11,14 @@ namespace Sprint2.Items
         protected ISprite sprite;
         protected ItemEnum itemType;
         protected Vector2 position;
-        public AbstractItem(ISprite sprite, Vector2 pos)
+        public AbstractItem(ItemEnum itemType, Vector2 pos)
         {
-            this.sprite = sprite;
+            this.itemType = itemType;
             this.position = pos;
+        }
+        public virtual void CreateSprite()
+        {
+            this.sprite = ItemSpriteFactory.Instance.GetItemSprite(itemType);
         }
         public virtual void Update(GameTime gameTime)
         {

@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class ClockItem : AbstractItem
     {
-        public ClockItem(Vector2 pos) : base (ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Clock), pos)
+        public ClockItem(Vector2 pos) : base (ItemEnum.Clock, pos)
         {
             
         }
