@@ -18,9 +18,7 @@ namespace Sprint2.Player
         public Vector2 Position { get; set; }
 
         public Color[] colors;
-        int colorIndex = 0;
         int numColors = 2;
-        float colorFlashInterval = 0f;
 
         ILink player;
 

@@ -20,9 +20,7 @@ namespace Sprint2.Player
         ILink player;
 
         public Color[] colors;
-        int colorIndex = 0;
         int numColors = 2;
-        float colorFlashInterval = 0f;
 
 
 
