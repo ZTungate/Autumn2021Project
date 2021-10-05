@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Projectiles
+namespace Sprint2.Projectiles
 {
     public class ProjectileFactory
     {
@@ -79,12 +79,126 @@ namespace Sprint0.Projectiles
         {
             return new FireballSprite(enemySpriteSheet);
         }
+
+        public ISprite CreateBombSprite()
+        {
+            return new BombSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateRightRegArrowSprite()
+        {
+            return new RightRegArrowSprite(linkSpriteSheet);
+        }
+        public ISprite CreateLeftRegArrowSprite()
+        {
+            return new LeftRegArrowSprite(linkSpriteSheet);
+        }
+        public ISprite CreateUpRegArrowSprite()
+        {
+            return new UpRegArrowSprite(linkSpriteSheet);
+        }
+        public ISprite CreateDownRegArrowSprite()
+        {
+            return new DownRegArrowSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateRightBlueArrowSprite()
+        {
+            return new RightBlueArrowSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateLeftBlueArrowSprite()
+        {
+            return new LeftBlueArrowSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateUpBlueArrowSprite()
+        {
+            return new UpBlueArrowSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateDownBlueArrowSprite()
+        {
+            return new DownBlueArrowSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateFireSprite()
+        {
+            return new FireSprite(linkSpriteSheet);
+        }
+
+        public void NewRegArrow(Vector2 position, Vector2 velocity, Player.direction facing)
+        {
+            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile regArrow;
+            switch (facing) {
+                case Player.direction.right:
+                    regArrow = new RegArrowProjectile(position, 6 * new Vector2(1, 0));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateRightRegArrowSprite();
+                    break;
+                case Player.direction.left:
+                    regArrow = new RegArrowProjectile(position, 6 * new Vector2(-1, 0));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateLeftRegArrowSprite();
+                    break;
+                case Player.direction.up:
+                    regArrow = new RegArrowProjectile(position, 6 * new Vector2(0, -1));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateUpRegArrowSprite();
+                    break;
+                case Player.direction.down:
+                    regArrow = new RegArrowProjectile(position, 6 * new Vector2(0, 1));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateDownRegArrowSprite();
+                    break;
+
+            }
+        }
+
+        public void NewBlueArrow(Vector2 position, Vector2 velocity, Player.direction facing)
+        {
+            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile regArrow;
+            switch (facing) {
+                case Player.direction.right:
+                    regArrow = new BlueArrowProjectile(position, 6 * new Vector2(1, 0));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateRightBlueArrowSprite();
+                    break;
+                case Player.direction.left:
+                    regArrow = new BlueArrowProjectile(position, 6 * new Vector2(-1, 0));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateLeftBlueArrowSprite();
+                    break;
+                case Player.direction.up:
+                    regArrow = new BlueArrowProjectile(position, 6 * new Vector2(0, -1));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateUpBlueArrowSprite();
+                    break;
+                case Player.direction.down:
+                    regArrow = new BlueArrowProjectile(position, 6 * new Vector2(0, 1));
+                    projectiles.Add(regArrow);
+                    regArrow.Sprite = CreateDownBlueArrowSprite();
+                    break;
+
+            }
+        }
+
         public void NewFireBall(Vector2 position, Vector2 velocity)
         {
             //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile fireball = new FireballProjectile(position, velocity);
             projectiles.Add(fireball);
             fireball.Sprite = CreateFireballSprite();
+        }
+
+        public void NewBomb(Vector2 position)
+        {
+            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile bomb = new BombProjectile(position);
+            projectiles.Add(bomb);
+            bomb.Sprite = CreateBombSprite();
         }
 
         public ISprite CreateBoomerangSprite()
@@ -111,6 +225,14 @@ namespace Sprint0.Projectiles
             IProjectile boomerang = new BoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBlueBoomerangSprite();
+        }
+
+        public void NewFire(Vector2 position, Vector2 velocity)
+        {
+            //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile fire = new FireProjectile(position, velocity);
+            projectiles.Add(fire);
+            fire.Sprite = CreateFireSprite();
         }
 
     }

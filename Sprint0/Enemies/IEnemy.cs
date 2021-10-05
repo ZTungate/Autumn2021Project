@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Helpers;
+using Sprint2.Helpers;
 using Sprint2;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Enemies
+namespace Sprint2.Enemies
 {
     //This probably needs to be somewhere else.
     public interface IEnemy

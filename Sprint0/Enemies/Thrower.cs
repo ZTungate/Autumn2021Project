@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint0.Helpers;
-using Sprint0.Projectiles;
+using Sprint2.Helpers;
+using Sprint2.Projectiles;
 using Sprint2;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Enemies
+namespace Sprint2.Enemies
 {
     public class Thrower : IEnemy
     {

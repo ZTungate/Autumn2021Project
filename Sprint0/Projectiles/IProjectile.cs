@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Projectiles
+namespace Sprint2.Projectiles
 {
     public interface IProjectile
     {

@@ -30,6 +30,13 @@ namespace Sprint2.Player
 
         void BlueBoomerangAttack();
 
+        void RegArrowAttack();
+
+        void BlueArrowAttack();
+
+        void BombAttack();
+
+        void FireAttack();
         /*void moveUp(float speed);
         void moveRight(float speed);
         void moveLeft(float speed);

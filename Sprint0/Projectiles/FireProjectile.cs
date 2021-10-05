@@ -6,25 +6,27 @@ using System.Text;
 
 namespace Sprint2.Projectiles
 {
-    public class FireballProjectile : IProjectile
+    public class FireProjectile : IProjectile
     {
         //Fields for storing the sprite, velocity, and position.
         private ISprite mySprite;
         private Vector2 myPosition;
         private Vector2 myVelocity;
         private int myLife;
-        public ISprite Sprite 
+        //Boomerang will require acceleration to turn around and come back
+        private Vector2 accelleration;
+        public ISprite Sprite
         {
             get => mySprite;
             set => mySprite = value;
         }
-        public Vector2 Position 
-        { 
+        public Vector2 Position
+        {
             get => myPosition;
             set => myPosition = value;
         }
-        public Vector2 Velocity 
-        { 
+        public Vector2 Velocity
+        {
             get => myVelocity;
             set => myVelocity = value;
         }
@@ -35,21 +37,27 @@ namespace Sprint2.Projectiles
 
         public void Update(GameTime gameTime)
         {
-            //Move the fireball according to its velocity.
+            //Move the boomerang according to its velocity.
             myPosition += myVelocity;
             mySprite.Position = Position;
             mySprite.Update(gameTime);
 
-            myLife -= gameTime.ElapsedGameTime.Milliseconds;
+            //Cut the projectile's life by the elapsed time
+            int timePassed = gameTime.ElapsedGameTime.Milliseconds;
+            myLife -= timePassed;
+            //Reduce the velocity by the acceleration * elapsed time
+            Velocity -= (accelleration * (int)timePassed);
         }
 
-        public FireballProjectile(Vector2 position, Vector2 velocity)
+        public FireProjectile(Vector2 position, Vector2 velocity)
         {
             //Set the velocity and position to the passed values.
             myPosition = position;
             myVelocity = velocity;
-            //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            myLife = 4000;
+            //Boomerangs have a life of 3 seconds. (could be changed).
+            myLife = 1000;
+            //Set the acceleration to be enough to completley reverse velocity over myLife.
+            accelleration = velocity / myLife;
         }
     }
 }

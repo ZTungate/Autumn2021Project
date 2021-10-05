@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Sprint0.Enemies;
+using Sprint2.Enemies;
 using Sprint2.Player;
 using Sprint2.Enemies;
 using Sprint2.Items;
 using Sprint2.Blocks;
 using System.Collections.Generic;
-using Sprint0.Projectiles;
+using Sprint2.Projectiles;
 
 namespace Sprint2
 {

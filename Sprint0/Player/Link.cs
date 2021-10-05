@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Sprint0.Projectiles;
+using Sprint2.Projectiles;
 namespace Sprint2.Player
 {
 
@@ -179,6 +179,61 @@ namespace Sprint2.Player
                     break;
                 case direction.up:
                     projectile.NewBlueBoomerang(position, 6 * new Vector2(0, -1));
+                    break;
+
+            }
+        }
+
+        public void RegArrowAttack()
+        {
+            //Create a new boomerang moving the direction given at 3 pixels per tick.
+            projectile.NewRegArrow(position, 6 * new Vector2(1, 0), facing);
+
+        }
+
+        public void BlueArrowAttack()
+        {
+            //Create a new boomerang moving the direction given at 3 pixels per tick.
+            projectile.NewBlueArrow(position, 6 * new Vector2(1, 0), facing);
+
+        }
+
+        public void BombAttack()
+        {
+            //Create a new bomb
+            switch (facing) {
+                case direction.right:
+                    projectile.NewBomb(new Vector2(position.X + sprite.SourceRect[sprite.CurrentFrame].Width * 2, position.Y));
+                    break;
+                case direction.left:
+                    projectile.NewBomb(new Vector2(position.X - sprite.SourceRect[sprite.CurrentFrame].Width, position.Y));
+                    break;
+                case direction.down:
+                    projectile.NewBomb(new Vector2(position.X , position.Y + sprite.SourceRect[sprite.CurrentFrame].Height * 2));
+                    break;
+                case direction.up:
+                    projectile.NewBomb(new Vector2(position.X, position.Y - sprite.SourceRect[sprite.CurrentFrame].Height * 2));
+                    break;
+
+            }
+
+        }
+
+        public void FireAttack()
+        {
+            //Create a new boomerang moving the direction given at 3 pixels per tick.
+            switch (facing) {
+                case direction.right:
+                    projectile.NewFire(position, 6 * new Vector2(1, 0));
+                    break;
+                case direction.left:
+                    projectile.NewFire(position, 6 * new Vector2(-1, 0));
+                    break;
+                case direction.down:
+                    projectile.NewFire(position, 6 * new Vector2(0, 1));
+                    break;
+                case direction.up:
+                    projectile.NewFire(position, 6 * new Vector2(0, -1));
                     break;
 
             }

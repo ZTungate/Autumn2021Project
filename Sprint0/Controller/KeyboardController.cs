@@ -43,6 +43,10 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
             this.controllerMappings.Add(Keys.D1, new PlayerUseRegBoomerangCommand(myGame));
             this.controllerMappings.Add(Keys.D2, new PlayerUseBlueBoomerangCommand(myGame));
+            this.controllerMappings.Add(Keys.D3, new PlayerUseRegArrowCommand(myGame));
+            this.controllerMappings.Add(Keys.D4, new PlayerUseBlueArrowCommand(myGame));
+            this.controllerMappings.Add(Keys.D5, new PlayerUseBombCommand(myGame));
+            this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
             this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
             this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Enemies;
-using Sprint0.Helpers;
+using Sprint2.Enemies;
+using Sprint2.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;

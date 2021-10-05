@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Projectiles
+namespace Sprint2.Projectiles
 {
     public class BoomerangProjectile : IProjectile
     {
@@ -57,7 +57,7 @@ namespace Sprint0.Projectiles
             //Boomerangs have a life of 3 seconds. (could be changed).
             myLife = 3000;
             //Set the acceleration to be enough to completley reverse velocity over myLife.
-            accelleration = 2 * (velocity / (int)myLife);
+            accelleration = 2 * (velocity / myLife);
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2.Projectiles
 {
-    public class FireballProjectile : IProjectile
+    public class RegArrowProjectile : IProjectile
     {
         //Fields for storing the sprite, velocity, and position.
         private ISprite mySprite;
@@ -35,21 +35,25 @@ namespace Sprint2.Projectiles
 
         public void Update(GameTime gameTime)
         {
-            //Move the fireball according to its velocity.
-            myPosition += myVelocity;
-            mySprite.Position = Position;
+            //Move the arrow according to its velocity.
+            if (myLife > 200) {
+                myPosition += myVelocity;
+                mySprite.Position = Position;
+
+            }
             mySprite.Update(gameTime);
 
             myLife -= gameTime.ElapsedGameTime.Milliseconds;
+
         }
 
-        public FireballProjectile(Vector2 position, Vector2 velocity)
+        public RegArrowProjectile(Vector2 position, Vector2 velocity)
         {
             //Set the velocity and position to the passed values.
             myPosition = position;
             myVelocity = velocity;
             //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            myLife = 4000;
+            myLife = 700;
         }
     }
 }

@@ -71,6 +71,26 @@ namespace Sprint2.Player
             decoratedLink.BlueBoomerangAttack();
         }
 
+        public void RegArrowAttack()
+        {
+            decoratedLink.RegArrowAttack();
+        }
+
+        public void BlueArrowAttack()
+        {
+            decoratedLink.BlueArrowAttack();
+        }
+
+        public void BombAttack()
+        {
+            decoratedLink.BombAttack();
+        }
+
+        public void FireAttack()
+        {
+            decoratedLink.FireAttack();
+        }
+
         /*        public void moveUp(float speed)
                 {
                     decoratedLink.moveUp(speed);
