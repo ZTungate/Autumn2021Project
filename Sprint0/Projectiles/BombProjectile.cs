@@ -13,8 +13,6 @@ namespace Sprint2.Projectiles
         private Vector2 myPosition;
         private Vector2 myVelocity;
         private int myLife;
-        //Boomerang will require acceleration to turn around and come back
-        private Vector2 accelleration;
         public ISprite Sprite
         {
             get => mySprite;
