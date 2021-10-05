@@ -1,0 +1,13 @@
+Author: Zach Tungate
+Date: 10/4/2021
+File being Reviewed: EnemySpriteFactory.cs
+Author of file: Jonah
+Sprint number: 2
+
+Comments on code quality: 
+It would be helpful to pass in an X and Y value when you create a new sprite to create a sprite wherever the enemy might move to. 
+Very little abstraction of different enemy types so lots of classes.
+A possible change to make: 
+Add more abstraction to lower down the number of classes for example: SmallEnemey, BossEnemy, LargeEnemy, ThrowingEnemy. 
+The current implementation could support this pretty easily by adding some parameters for where to grab the sprite.
+

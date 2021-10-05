@@ -1,0 +1,11 @@
+Author: Michael Fong
+Date: 10/4/2021
+File being Reviewed: BlockSpriteFactory.cs
+Author of file: Zach
+Sprint number: 2
+
+Comments on code quality: 
+I'm not sure what the CustomMath.MathMod function does, and the customMath.cs file doesn't explain either.
+The Create[TILE] functions might benefit from accepting a vector2 so we can place them wherever we want, but otherwise they seem fine.
+May be able to combine the Create[TILE] functions into a single create() function that accepts an Enum of the block types and a vector
+Overall, the code is very readable and quite simple. The changes I proposed would be fairly easy to implement, since it's really only creating an enum.
