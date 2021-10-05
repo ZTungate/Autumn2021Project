@@ -1,0 +1,9 @@
+Author: Mason Pacenta
+Date: 10/4/2021
+Sprint 2
+BoomerangProjectile.cs
+Author of .cs File: Jonah Silsdorf
+15 Minutes
+Readability: Very readable code, each line of the code is clear as to what it is trying to do, my only suggestion
+would be to add a few more comments, for example above calling update on sprite letting other teammates know what is happening
+in your sprite update and why it needs to be called without jumping to the sprite class itself

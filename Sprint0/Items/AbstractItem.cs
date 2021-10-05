@@ -22,6 +22,8 @@ namespace Sprint2.Items
         }
         public virtual void Update(GameTime gameTime)
         {
+            //Update position of sprite to item position
+            //NOTE: THIS SHOULD BE DONE IN THE DRAW CALL, IT IS BAD PRACTICE TO HAVE DUPLICATE POSITION VARIABLES IN ITEM AND SPRITE
             this.sprite.Position = position;
             this.sprite.Update(gameTime);
         }

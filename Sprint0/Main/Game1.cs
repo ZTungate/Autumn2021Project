@@ -195,7 +195,6 @@ namespace Sprint2
 
             currentBlock.Draw(_spriteBatch);
 
-
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -232,8 +231,6 @@ namespace Sprint2
 
             //Re-Initialize the projectile factory.
             projectileFactory.Initalize();
-
-
         }
         public void Quit()
         {

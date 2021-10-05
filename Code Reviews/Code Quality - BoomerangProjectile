@@ -1,0 +1,9 @@
+Author: Mason Pacenta
+Date: 10/4/2021
+Sprint 2
+BoomerangProjectile.cs
+Author of .cs File: Jonah Silsdorf
+Quality: The quality of the code is very good, my only change would be to move the myLife variable into the constructor
+that way you can modularly change how long you want a boomerang to last depending on certain factors. Possibly obfuscating some code
+and moving some methods for the boomerang projectile into an AbstractProjectile class would clean up your code. For example it would remove
+the need to implement the get and set for your properties each time you make a new type of projectile.
