@@ -5,6 +5,13 @@ Arrow keys and WASD to move
 O and P to swap enemy
 U and I to change items
 T and Y to change blocks
+Z and N to use sword
+1 to throw regular boomerang
+2 to throw magic boomerang
+3 to fire a regular arrow
+4 to fire a blue arrow
+5 to place a bomb
+6 to cast a fireball
 
 Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
