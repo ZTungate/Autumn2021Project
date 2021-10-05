@@ -19,14 +19,13 @@ Enemy position doesn't reset when swapping
 
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
 
-Code Metrics:
 Project: Sprint0
 Configuration: Debug
 Scope: Assembly
-Assembly: C:\Users\Zach\source\repos\ZTungate\Au2021-3902\Sprint0\bin\Debug\netcoreapp3.1\Sprint0.dll
+Assembly: C:\Users\Michael\source\repos\ZTungate\Au2021-3902\Sprint0\bin\Debug\netcoreapp3.1\Sprint0.dll
 Maintainability Index: 87
-Cyclomatic Complexity: 1,395
+Cyclomatic Complexity: 1,937
 Depth of Inheritance: 2
-Class Coupling: 162
-Lines of Source code: 5,402
-Lines of Executable code: 1,344
+Class Coupling: 189
+Lines of Source code: 7,313
+Lines of Executable code: 1,835
