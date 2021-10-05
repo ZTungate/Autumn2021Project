@@ -16,7 +16,9 @@ namespace Sprint2.Commands
         {
             /*if (game.link.canMove)
             {*/
-                game.link.sprite = game.linkSpriteFactory.RightMovingLinkSprite(game.link);
+            game.link.facing = Player.direction.right;
+
+            game.link.sprite = game.linkSpriteFactory.RightMovingLinkSprite(game.link);
                 /*game.link.state = new RightMovingLinkState();*/
             /*}*/
         }

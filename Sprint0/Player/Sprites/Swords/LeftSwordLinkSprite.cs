@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2.Player
 {
-    public class RightSwordLinkSprite : IAnimatedSprite
+    public class LeftSwordLinkSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 64f; 
@@ -20,7 +20,7 @@ namespace Sprint2.Player
         public int scale = 2;
 
         ILink player;
-        public RightSwordLinkSprite(Texture2D spriteSheet, ILink player)
+        public LeftSwordLinkSprite(Texture2D spriteSheet, ILink player)
         {
             this.player = player;
 
@@ -63,7 +63,7 @@ namespace Sprint2.Player
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame%FrameCount].Width*scale, SourceRect[CurrentFrame%FrameCount].Height*scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, new Vector2(player.position.X + 27 , player.position.Y), SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(SourceRect[CurrentFrame % FrameCount].Width, 0), scale, SpriteEffects.FlipHorizontally, 1);
 
         }
 

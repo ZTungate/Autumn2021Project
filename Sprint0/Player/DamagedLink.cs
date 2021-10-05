@@ -15,6 +15,8 @@ namespace Sprint2.Player
         public ISprite sprite { get; set; }
         public Color color { get; set; }
 
+        public direction facing { get; set; }
+
         float timer = 1000f;
 
 

@@ -5,32 +5,31 @@ using Sprint2.Helpers;
 
 namespace Sprint2.Commands
 {
-    public class PlayerUseItemCommand : ICommand
+    public class PlayerSwordCommand : ICommand
     {
         private Game1 game;
-        public PlayerUseItemCommand(Game1 game)
+        public PlayerSwordCommand(Game1 game)
         {
             this.game = game;
         }
         public void Execute()
         {
 
-
             switch (game.link.facing) {
                 case Player.direction.up:
-                    game.link.sprite = game.linkSpriteFactory.UpUseItemLinkSprite(game.link);
+                    game.link.sprite = game.linkSpriteFactory.UpSwordLinkSprite(game.link);
 
                     break;
                 case Player.direction.down:
-                    game.link.sprite = game.linkSpriteFactory.DownUseItemLinkSprite(game.link);
+                    game.link.sprite = game.linkSpriteFactory.DownSwordLinkSprite(game.link);
 
                     break;
                 case Player.direction.left:
-                    game.link.sprite = game.linkSpriteFactory.LeftUseItemLinkSprite(game.link);
+                    game.link.sprite = game.linkSpriteFactory.LeftSwordLinkSprite(game.link);
 
                     break;
                 case Player.direction.right:
-                    game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+                    game.link.sprite = game.linkSpriteFactory.RightSwordLinkSprite(game.link);
 
                     break;
                 default:

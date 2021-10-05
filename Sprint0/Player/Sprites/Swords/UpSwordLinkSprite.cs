@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sprint2.Player
 {
-    public class RightSwordLinkSprite : IAnimatedSprite
+    public class UpSwordLinkSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 64f; 
@@ -20,18 +20,18 @@ namespace Sprint2.Player
         public int scale = 2;
 
         ILink player;
-        public RightSwordLinkSprite(Texture2D spriteSheet, ILink player)
+        public UpSwordLinkSprite(Texture2D spriteSheet, ILink player)
         {
             this.player = player;
 
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
             SourceRect = new Rectangle[5];
             
-            SourceRect[0] = new Rectangle(1, 77, 16, 16);  //Set the frame for right idle link
-            SourceRect[1] = new Rectangle(18, 77, 27, 16);
-            SourceRect[2] = new Rectangle(46, 77, 23, 16);
-            SourceRect[3] = new Rectangle(70, 77, 19, 16);
-            SourceRect[4] = new Rectangle(35, 11, 16, 16);  //Set the frame for right idle link
+            SourceRect[0] = new Rectangle(1, 97, 16, 27);  //Set the frame for right idle link
+            SourceRect[1] = new Rectangle(18, 97, 16, 27);
+            SourceRect[2] = new Rectangle(35, 97, 16, 27);
+            SourceRect[3] = new Rectangle(52, 97, 16, 27);
+            SourceRect[4] = new Rectangle(69, 11, 16, 16);  //Set the frame for right idle link
 
             /*Position = pos;*/     //Sets the position to Link's position
         }
@@ -39,7 +39,6 @@ namespace Sprint2.Player
         public void Update(GameTime gameTime)
         {
             // Implement animation changes here
-
             //Animate the sprites (pulled from animatedStillSprite.cs)
             if (CurrentFrame < 4) {
                 if (Timer > Interval) {
@@ -63,7 +62,7 @@ namespace Sprint2.Player
         {
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame%FrameCount].Width*scale, SourceRect[CurrentFrame%FrameCount].Height*scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, new Vector2(player.position.X, player.position.Y + 27), SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, SourceRect[CurrentFrame % FrameCount].Height), scale, SpriteEffects.None, 1);
 
         }
 

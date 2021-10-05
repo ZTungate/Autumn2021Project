@@ -6,6 +6,8 @@ using System.Text;
 
 namespace Sprint2.Player
 {
+    public enum direction { up, down, left, right };
+
     public interface ILink
     {
         public ILinkState state { get; set; }
@@ -13,6 +15,8 @@ namespace Sprint2.Player
         public ISprite sprite { get; set; }
 
         public Color color {get;set;}
+
+        public direction facing { get; set; }
 
         enum Direction { };
         void takeDamage();

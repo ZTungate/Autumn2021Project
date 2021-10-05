@@ -10,6 +10,7 @@ namespace Sprint2.Player
 		public RightState(ILink Link)
 		{
             this.link = Link;
+ 
             //playerSprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(position); //Initialize game with link facing right, idle.
         }
 
@@ -25,10 +26,10 @@ namespace Sprint2.Player
             throw new NotImplementedException();
         }
 
-        public void Update()
+        public void Update(GameTime gameTime)
         {
             //What needs to be updated in the State?
-            throw new NotImplementedException();
+
         }
 
         public void useItem(Game1 game)

@@ -80,14 +80,32 @@ namespace Sprint2.Player
             return new LeftUseItemLinkSprite(linkSpriteSheet, player);
         }
 
+        public ISprite UpUseItemLinkSprite(ILink player)
+        {
+            return new UpUseItemLinkSprite(linkSpriteSheet, player);
+        }
+        public ISprite DownUseItemLinkSprite(ILink player)
+        {
+            return new DownUseItemLinkSprite(linkSpriteSheet, player);
+        }
         public ISprite DownSwordLinkSprite(ILink player)
         {
             return new DownSwordLinkSprite(linkSpriteSheet, player);
         }
 
+        public ISprite UpSwordLinkSprite(ILink player)
+        {
+            return new UpSwordLinkSprite(linkSpriteSheet, player);
+        }
+
         public ISprite RightSwordLinkSprite(ILink player)
         {
             return new RightSwordLinkSprite(linkSpriteSheet, player);
+        }
+
+        public ISprite LeftSwordLinkSprite(ILink player)
+        {
+            return new LeftSwordLinkSprite(linkSpriteSheet, player);
         }
     }
 }

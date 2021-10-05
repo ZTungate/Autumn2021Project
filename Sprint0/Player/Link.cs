@@ -15,6 +15,8 @@ namespace Sprint2.Player
         public ISprite sprite { get; set; }
         public Color color { get; set; }
 
+        public direction facing {get; set;}
+
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
         public float Timer = 0f;
@@ -29,7 +31,7 @@ namespace Sprint2.Player
         {
             state = new RightState(this); //start the player in the right idle state
             position = new Vector2(20, 20);  //Link's initial position
-
+            facing = direction.right;
 
             colorIndex = 0;
 
@@ -71,6 +73,7 @@ namespace Sprint2.Player
                 canMove = true;
                 colorIndex = 0;
             }
+            state.Update(gameTime);
             sprite.Update(gameTime);
             /*playerState.Update();*/
         }
@@ -127,7 +130,7 @@ namespace Sprint2.Player
         public void Reset()
         {
             //This may not work, since the state does not determine the sprite
-            state = new RightIdleState(); //start the player in the right idle state
+            state = new RightState(this); //start the player in the right idle state
             position = new Vector2(20, 20);  //Link's initial position
 
             colorIndex = 0;
