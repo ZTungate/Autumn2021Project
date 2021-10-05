@@ -1,0 +1,10 @@
+Author: Jonah Silsdorf
+Date: 10/4/2021
+Sprint 2
+KeyboardController.cs
+Author of .cs File: Wesley (edited by all)
+Time spent reviewing: 15 minutes
+Readability: 
+Readability is pretty good, most of the mappings and commands are grouped undre relevant comments
+Naming of fields seems logical, names make sense as to what they are doing.
+Adding comments to clarify what is happening with the switch statement in checkPlayerIdle() would be helpful.
