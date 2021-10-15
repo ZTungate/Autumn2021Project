@@ -33,7 +33,7 @@ namespace Sprint2.Items
             itemSpriteSheet = content.Load<Texture2D>("ItemSpriteSheet");
             //For each item in the enum add its corresponding item sprite class to the dictionary
             itemSpriteDictionary.Add(ItemEnum.Arrow, new ArrowSprite(itemSpriteSheet));
-            itemSpriteDictionary.Add(ItemEnum.Bomb, new BombSprite(itemSpriteSheet));
+            itemSpriteDictionary.Add(ItemEnum.Bomb, new BombItemSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Boomerang, new StationaryBoomerangSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Bow, new BowSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Clock, new ClockSprite(itemSpriteSheet));
