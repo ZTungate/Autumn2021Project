@@ -11,10 +11,17 @@ namespace Sprint2.Player
 		void useItem(Game1 game);
 
 		/*
+		 * These will be used to change between the link states
 		 * void turnLeft();
 		 * void turnRight();
 		 * void turnUp();
 		 * void turnDown(); for what
+		 * void moveForward();
+		 * void standStill();
+		 */
+		
+		 /*
+		 *These may be covered by the link object sufficently, not sure.
 		 * void RegBoomerangAttack();
 	     * void BlueBoomerangAttack();
          * void RegArrowAttack();
