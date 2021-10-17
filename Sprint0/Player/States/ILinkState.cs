@@ -10,12 +10,10 @@ namespace Sprint2.Player
 		void takeDamage();
 		void useItem(Game1 game);
 
+		//void ChangeDirection(direction direction);
+
 		/*
 		 * These will be used to change between the link states
-		 * void turnLeft();
-		 * void turnRight();
-		 * void turnUp();
-		 * void turnDown(); for what
 		 * void moveForward();
 		 * void standStill();
 		 */
