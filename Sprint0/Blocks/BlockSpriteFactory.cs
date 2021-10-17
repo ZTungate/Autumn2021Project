@@ -33,16 +33,16 @@ namespace Sprint2.Blocks
         {
             blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet"); //loads the texture atlas
             //loads all the block sprites into a list
-            blockList.Add(CreateFloorTile());
-            blockList.Add(CreateBlackBox());
-            blockList.Add(CreateEntryFloorTile());
-            blockList.Add(CreateFloorBlockTile());
-            blockList.Add(CreateLadderTile());
-            blockList.Add(CreateLeftStatue());
-            blockList.Add(CreateRightStatue());
-            blockList.Add(CreateBrickTile());
-            blockList.Add(CreateStairTile());
-            blockList.Add(CreateWaterTile());
+            blockList.Add(CreateFloorTile(new Vector2(200, 300)));
+            blockList.Add(CreateBlackBox(new Vector2(200, 300)));
+            blockList.Add(CreateEntryFloorTile(new Vector2(200, 300)));
+            blockList.Add(CreateFloorBlockTile(new Vector2(200, 300)));
+            blockList.Add(CreateLadderTile(new Vector2(200, 300)));
+            blockList.Add(CreateLeftStatue(new Vector2(200, 300)));
+            blockList.Add(CreateRightStatue(new Vector2(200, 300)));
+            blockList.Add(CreateBrickTile(new Vector2(200, 300)));
+            blockList.Add(CreateStairTile(new Vector2(200, 300)));
+            blockList.Add(CreateWaterTile(new Vector2(200, 300)));
         }
 
         //returns the next sprite in the list
@@ -72,45 +72,45 @@ namespace Sprint2.Blocks
         }
 
         //flowing methods return a sprite object for the block
-        public IBlocks CreateBlackBox()
+        public IBlocks CreateBlackBox(Vector2 dest)
         {
-            return new BlackBoxSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new BlackBoxSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateEntryFloorTile()
+        public IBlocks CreateEntryFloorTile(Vector2 dest)
         {
-            return new EntryFloorSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new EntryFloorSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateFloorBlockTile()
+        public IBlocks CreateFloorBlockTile(Vector2 dest)
         {
-            return new FloorBlockSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new FloorBlockSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateLadderTile()
+        public IBlocks CreateLadderTile(Vector2 dest)
         {
-            return new LadderSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new LadderSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateLeftStatue()
+        public IBlocks CreateLeftStatue(Vector2 dest)
         {
-            return new LeftStatueSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new LeftStatueSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateRightStatue()
+        public IBlocks CreateRightStatue(Vector2 dest)
         {
-            return new RightStatueSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new RightStatueSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateBrickTile()
+        public IBlocks CreateBrickTile(Vector2 dest)
         {
-            return new MarioBrickSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new MarioBrickSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateStairTile()
+        public IBlocks CreateStairTile(Vector2 dest)
         {
-            return new StairSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new StairSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateWaterTile()
+        public IBlocks CreateWaterTile(Vector2 dest)
         {
-            return new WaterSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new WaterSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateFloorTile()
+        public IBlocks CreateFloorTile(Vector2 dest)
         {
-            return new FloorSprite(blockSpriteSheet, new Vector2(200, 300));
+            return new FloorSprite(blockSpriteSheet, dest);
         }
     }
 }
