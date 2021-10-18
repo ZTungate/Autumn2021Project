@@ -4,21 +4,21 @@ using System;
 
 namespace Sprint2.Player
 {
-	public class RightItemUsingLinkState : ILinkState
-	{
+    public class LeftItemUsingLinkState : ILinkState
+    {
         private ILink link;
         private ISprite mySprite;
 
         private int stateTime;
-        public RightItemUsingLinkState(ILink Link, ISprite sprite)
-		{
+        public LeftItemUsingLinkState(ILink Link, ISprite sprite)
+        {
             link = Link;
-            mySprite = new RightUseItemLinkSprite(sprite.Texture, Link);
+            mySprite = new LeftUseItemLinkSprite(sprite.Texture, Link);
             link.sprite = mySprite;
             stateTime = 300; //300 miliseconds of time to be throwing the projectile
         }
 
-        public void takeDamage()
+        public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
             link.takeDamage();
@@ -27,20 +27,21 @@ namespace Sprint2.Player
         public void Update(GameTime gameTime)
         {
             //What needs to be updated in the State?
-            if(stateTime > 0)
+            if (stateTime > 0)
             {
                 stateTime -= gameTime.ElapsedGameTime.Milliseconds;
             }
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
-                link.state = new RightIdleLinkState(link,mySprite);
+                link.state = new LeftIdleLinkState(link, mySprite);
             }
         }
 
-        public void useItem(Game1 game)
+        public void UseItem()
         {
-            game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+            //Create a new item using state if an item is used before this one is done.
+            link.state = new LeftItemUsingLinkState(link, mySprite);
         }
     }
 }

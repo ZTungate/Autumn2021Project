@@ -4,18 +4,18 @@ using System;
 
 namespace Sprint2.Player
 {
-    public class LeftIdleLinkState : ILinkState
+    public class DownIdleLinkState : ILinkState
     {
         private ILink link;
         private ISprite mySprite;
-        public LeftIdleLinkState(ILink Link, ISprite sprite)
+        public DownIdleLinkState(ILink Link, ISprite sprite)
         {
             link = Link;
-            mySprite = new LeftIdleLinkSprite(sprite.Texture, link);
+            mySprite = new DownIdleLinkSprite(sprite.Texture, link);
             link.sprite = mySprite;
         }
 
-        public void takeDamage()
+        public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
             link.takeDamage();
@@ -26,9 +26,10 @@ namespace Sprint2.Player
             //Nothing needs updated in an idle state?
         }
 
-        public void useItem(Game1 game)
+        public void UseItem()
         {
-            //game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+            //Change link to an item using state.
+            link.state = new DownItemUsingLinkState(link, mySprite);
         }
     }
 }

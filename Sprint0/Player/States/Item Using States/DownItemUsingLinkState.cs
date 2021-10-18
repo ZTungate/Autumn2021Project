@@ -18,7 +18,7 @@ namespace Sprint2.Player
             stateTime = 300; //300 miliseconds of time to be throwing the projectile
         }
 
-        public void takeDamage()
+        public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
             link.takeDamage();
@@ -38,9 +38,10 @@ namespace Sprint2.Player
             }
         }
 
-        public void useItem(Game1 game)
+        public void UseItem()
         {
-            game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+            //Create a new item using state if an item is used before this one is done.
+            link.state = new DownItemUsingLinkState(link, mySprite);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Sprint2.Player
             link.sprite = mySprite;
         }
 
-        public void takeDamage()
+        public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
             link.takeDamage();
@@ -26,9 +26,10 @@ namespace Sprint2.Player
             //Nothing needs updated in an idle state?
         }
 
-        public void useItem(Game1 game)
+        public void UseItem()
         {
-            //game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+            //Change link to an item using state.
+            link.state = new UpItemUsingLinkState(link, mySprite);
         }
     }
 }

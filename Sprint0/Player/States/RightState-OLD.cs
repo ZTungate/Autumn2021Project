@@ -21,7 +21,7 @@ namespace Sprint2.Player
             throw new NotImplementedException();
         }
 
-        public void takeDamage()
+        public void TakeDamage()
         {
             throw new NotImplementedException();
         }
@@ -32,9 +32,9 @@ namespace Sprint2.Player
 
         }
 
-        public void useItem(Game1 game)
+        public void UseItem()
         {
-            game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+            //No.
         }
     }
 }
