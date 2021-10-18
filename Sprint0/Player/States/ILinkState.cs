@@ -10,7 +10,7 @@ namespace Sprint2.Player
 		void TakeDamage();
 		void UseItem();
 
-		//void ChangeDirection(direction direction);
+		void Move(direction direction);
 
 		/*
 		 * These will be used to change between the link states

@@ -11,6 +11,7 @@ namespace Sprint2
     {
         private Game1 myGame;
         private Dictionary<Keys, ICommand> controllerMappings;
+        private List<Keys> movementKeys;
 
         public KeyboardController(Game1 game)
         {
@@ -19,10 +20,23 @@ namespace Sprint2
             myGame = game;
 
 
-            setKeys(myGame.link);
+            SetKeys(myGame.link);
+
+            //Create a new list to hold the keys relevant to movement.
+            movementKeys = new List<Keys>
+            {
+                Keys.W,
+                Keys.A,
+                Keys.S,
+                Keys.D,
+                Keys.Up,
+                Keys.Left,
+                Keys.Down,
+                Keys.Right
+            };
 
         }
-        private void setKeys(Player.ILink link)
+        private void SetKeys(Player.ILink link)
         {
 
             //Create commands to change sprites
@@ -74,8 +88,14 @@ namespace Sprint2
             checkPlayerIdle(lastState, state);
 
             foreach (Keys key in pressedKeys) {
-                if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key)) //commented out this section to test link movement
+                if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
                 {
+                    //If this key is bound to a command, and was not down last tick, execute the relevant command.
+                    controllerMappings[key].Execute();
+                }
+                else if (controllerMappings.ContainsKey(key) && movementKeys.Contains(key))
+                {
+                    //If this key is pressed, was pressed last tick, and is a movement key, execute the command.
                     controllerMappings[key].Execute();
                 }
             }

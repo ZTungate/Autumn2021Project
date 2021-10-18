@@ -4,18 +4,15 @@ using System;
 
 namespace Sprint2.Player
 {
-    public class DownItemUsingLinkState : ILinkState
+    public class DownMovingLinkState : ILinkState
     {
         private ILink link;
         private ISprite mySprite;
-
-        private int stateTime;
-        public DownItemUsingLinkState(ILink Link, ISprite sprite)
+        public DownMovingLinkState(ILink Link, ISprite sprite)
         {
             link = Link;
-            mySprite = new DownUseItemLinkSprite(sprite.Texture, Link);
+            mySprite = new DownMovingLinkSprite(sprite.Texture, link);
             link.sprite = mySprite;
-            stateTime = 300; //300 miliseconds of time to be throwing the projectile
             link.facing = direction.down;
         }
 
@@ -27,32 +24,22 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
-            //What needs to be updated in the State?
-            if (stateTime > 0)
-            {
-                stateTime -= gameTime.ElapsedGameTime.Milliseconds;
-            }
-            else
-            {
-                //If the timer is up for this state, revert to an idle state for this direction.
-                link.state = new DownIdleLinkState(link, mySprite);
-            }
+            //Nothing needs updated in an idle state?
         }
 
         public void UseItem()
         {
-            //Create a new item using state if an item is used before this one is done.
+            //Change link to an item using state.
             link.state = new DownItemUsingLinkState(link, mySprite);
         }
 
         public void Move(direction direction)
         {
-            //If told to move in the direction this state is facing, switch to a moving state. Otherwise, switch to an idle state in that direction.
+            //This is already a moving state, change to an idle state if a direction change is desired, othewise do nothing.
             switch (direction)
             {
                 case direction.down:
-                    //Change to down moving state if told to move down.
-                    link.state = new DownMovingLinkState(link, mySprite);
+                    //Current movement direction. Do nothing.
                     break;
                 case direction.right:
                     //Change to a right idle state if told to move right.

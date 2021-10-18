@@ -4,16 +4,16 @@ using System;
 
 namespace Sprint2.Player
 {
-    public class DownIdleLinkState : ILinkState
+    public class UpMovingLinkState : ILinkState
     {
         private ILink link;
         private ISprite mySprite;
-        public DownIdleLinkState(ILink Link, ISprite sprite)
+        public UpMovingLinkState(ILink Link, ISprite sprite)
         {
             link = Link;
-            mySprite = new DownIdleLinkSprite(sprite.Texture, link);
+            mySprite = new UpMovingLinkSprite(sprite.Texture, link);
             link.sprite = mySprite;
-            link.facing = direction.down;
+            link.facing = direction.up;
         }
 
         public void TakeDamage()
@@ -30,31 +30,30 @@ namespace Sprint2.Player
         public void UseItem()
         {
             //Change link to an item using state.
-            link.state = new DownItemUsingLinkState(link, mySprite);
+            link.state = new UpItemUsingLinkState(link, mySprite);
         }
+
         public void Move(direction direction)
         {
-            //If told to move in the direction this state is facing, switch to a moving state. Otherwise, switch to an idle state in that direction.
+            //This is already a moving state, change to an idle state if a direction change is desired, othewise do nothing.
             switch (direction)
             {
                 case direction.down:
-                    //This is a down state, begin movement if told to move down.
-                    link.state = new DownMovingLinkState(link, mySprite);
+                    //Change to down idles tate if told to move down.
+                    link.state = new DownIdleLinkState(link, mySprite);
                     break;
                 case direction.right:
-                    //Change to a right idle state if told to move right
+                    //Change to a right idle state if told to move right.
                     link.state = new RightIdleLinkState(link, mySprite);
                     break;
                 case direction.left:
-                    //Change to a left idle state if told to move left
+                    //Change to a left idle state if told to move left.
                     link.state = new LeftIdleLinkState(link, mySprite);
                     break;
                 case direction.up:
-                    //Change to an up idle state if told to move up
-                    link.state = new UpIdleLinkState(link, mySprite);
+                    //Current movement direction. No change required.
                     break;
             }
         }
-
     }
 }

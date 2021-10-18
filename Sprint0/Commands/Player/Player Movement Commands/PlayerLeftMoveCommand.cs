@@ -14,13 +14,8 @@ namespace Sprint2.Commands
         }
         public void Execute()
         {
-            /*if (game.link.canMove)
-            {*/
-            game.link.facing = Player.direction.left;
-
-            game.link.sprite = game.linkSpriteFactory.LeftMovingLinkSprite(game.link);
-                /*game.link.state = new RightMovingLinkState();*/
-            /*}*/
+            //Have link's current state move left
+            game.link.state.Move(Player.direction.left);
         }
     }
 }

@@ -14,13 +14,8 @@ namespace Sprint2.Commands
         }
         public void Execute()
         {
-            /*if (game.link.canMove)
-            {*/
-            game.link.facing = Player.direction.up;
-
-            game.link.sprite = game.linkSpriteFactory.UpMovingLinkSprite(game.link);
-                /*game.link.state = new RightMovingLinkState();*/
-            /*}*/
+            //Call on link's state to move up.
+            game.link.state.Move(Player.direction.up);
         }
     }
 }

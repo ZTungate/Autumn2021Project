@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Sprint2.Player
+/*namespace Sprint2.Player
 {
 	public class RightState : ILinkState
 	{
@@ -37,4 +37,4 @@ namespace Sprint2.Player
             //No.
         }
     }
-}
+}*/

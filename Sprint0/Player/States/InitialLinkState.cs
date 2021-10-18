@@ -34,5 +34,10 @@ namespace Sprint2.Player
             //This state lasts no longer than 1 tick, no time for it to use items.
             //No implementation needed
         }
+
+        public void Move(direction direction)
+        {
+            //This state does not require movement code.
+        }
     }
 }

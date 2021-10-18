@@ -135,7 +135,7 @@ namespace Sprint2.Player
         public void Reset()
         {
             //This may not work, since the state does not determine the sprite
-            state = new RightState(this); //start the player in the right idle state
+            state = new InitialLinkState(this, sprite); //start the player in the right idle state
             position = new Vector2(20, 20);  //Link's initial position
 
             colorIndex = 0;
@@ -143,7 +143,7 @@ namespace Sprint2.Player
             color = Color.White;
         }
 
-
+        //Attacks
         public void RegBoomerangAttack()
         {
             //Create a new boomerang moving the direction given at 3 pixels per tick.
@@ -160,7 +160,6 @@ namespace Sprint2.Player
                 case direction.up:
                     projectile.NewBoomerang(position, 3 * new Vector2(0, -1));
                     break;
-
             }
         }
 
