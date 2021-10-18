@@ -4,14 +4,14 @@ using System;
 
 namespace Sprint2.Player
 {
-	public class RightIdleLinkState : ILinkState
-	{
+    public class LeftIdleLinkState : ILinkState
+    {
         private ILink link;
         private ISprite mySprite;
-        public RightIdleLinkState(ILink Link, ISprite sprite)
-		{
+        public LeftIdleLinkState(ILink Link, ISprite sprite)
+        {
             link = Link;
-            mySprite = new RightIdleLinkSprite(sprite.Texture, link);
+            mySprite = new LeftIdleLinkSprite(sprite.Texture, link);
             link.sprite = mySprite;
         }
 

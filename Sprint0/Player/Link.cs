@@ -32,7 +32,7 @@ namespace Sprint2.Player
 
         public Link(ProjectileFactory ProjectileFactory)
         {
-            state = new RightState(this); //start the player in the right idle state
+            state = new DefaultState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             position = new Vector2(20, 20);  //Link's initial position
             facing = direction.right;
 

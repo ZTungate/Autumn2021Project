@@ -4,15 +4,17 @@ using System;
 
 namespace Sprint2.Player
 {
-	public class RightIdleLinkState : ILinkState
-	{
+    public class DefaultState : ILinkState
+    {
         private ILink link;
         private ISprite mySprite;
-        public RightIdleLinkState(ILink Link, ISprite sprite)
-		{
+        public DefaultState(ILink Link, ISprite sprite)
+        {
+            /* 
+             * This state is for first initialization where no textures are loaded for sprites yet.
+             * This state replaces itself with rightIdleState at first update (after textures are loaded and Link gets a default sprite).
+             */
             link = Link;
-            mySprite = new RightIdleLinkSprite(sprite.Texture, link);
-            link.sprite = mySprite;
         }
 
         public void takeDamage()
@@ -23,7 +25,8 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
-            //Nothing needs updated in an idle state?
+            //Replace this state with a right idle state.
+            link.state = new RightIdleLinkState(link, link.sprite);
         }
 
         public void useItem(Game1 game)
