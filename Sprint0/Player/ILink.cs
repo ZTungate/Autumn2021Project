@@ -22,6 +22,7 @@ namespace Sprint2.Player
         void move(Vector2 moveDirection);
 
 
+        void SwordAttack();
         void RegBoomerangAttack();
         void BlueBoomerangAttack();
         void RegArrowAttack();

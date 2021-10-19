@@ -144,6 +144,12 @@ namespace Sprint2.Player
         }
 
         //Attacks
+
+        public void SwordAttack()
+        {
+
+        }
+
         public void RegBoomerangAttack()
         {
             //Create a new boomerang moving the direction given at 3 pixels per tick.

@@ -61,6 +61,10 @@ namespace Sprint2.Player
             decoratedLink.move(moveDirection);
         }
 
+        public void SwordAttack()
+        {
+            decoratedLink.SwordAttack();
+        }
         public void RegBoomerangAttack()
         {
             decoratedLink.RegBoomerangAttack();
