@@ -7,7 +7,6 @@ namespace Sprint2.Player
     public class InitialLinkState : ILinkState
     {
         private ILink link;
-        private ISprite mySprite;
         public InitialLinkState(ILink Link, ISprite sprite)
         {
             /* 
