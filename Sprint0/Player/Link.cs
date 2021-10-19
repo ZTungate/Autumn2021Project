@@ -112,6 +112,7 @@ namespace Sprint2.Player
         {
             if (canMove) 
             {
+                canAttack = true;
                 position += moveDirection;
             }   
         }
