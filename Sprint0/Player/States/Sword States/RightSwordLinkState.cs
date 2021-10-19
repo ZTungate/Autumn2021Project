@@ -17,6 +17,7 @@ namespace Sprint2.Player
             link.sprite = mySprite;
             stateTime = 300; //300 miliseconds of time to be throwing the projectile
             link.facing = direction.right;
+            link.canAttack = false; //disable link's attack
         }
 
         public void TakeDamage()
@@ -34,7 +35,8 @@ namespace Sprint2.Player
             }
             else
             {
-                //If the timer is up for this state, revert to an idle state for this direction.
+                //If the timer is up for this state, revert to an idle state for this direction
+                link.canAttack = true; //re-enable link attack
                 link.state = new RightIdleLinkState(link,mySprite);
             }
         }

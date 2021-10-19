@@ -16,7 +16,8 @@ namespace Sprint2.Player
             mySprite = new UpSwordLinkSprite(sprite.Texture, Link);
             link.sprite = mySprite;
             stateTime = 300; //300 miliseconds of time to be throwing the projectile
-            link.facing = direction.up;
+            link.facing = direction.up; 
+            link.canAttack = false; //disable link from attacking
         }
 
         public void TakeDamage()
@@ -35,6 +36,7 @@ namespace Sprint2.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
+                link.canAttack = true; //re-enable link attacking
                 link.state = new UpIdleLinkState(link, mySprite);
             }
         }

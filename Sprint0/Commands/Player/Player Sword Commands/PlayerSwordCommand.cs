@@ -15,8 +15,8 @@ namespace Sprint2.Commands
         }
         public void Execute()
         {
-
-            switch (game.link.facing) {
+            game.link.SwordAttack();
+            /*switch (game.link.facing) {
                 case Player.direction.up:
                     //                    game.link.sprite = game.linkSpriteFactory.UpSwordLinkSprite(game.link);
                     game.link.state = new UpSwordLinkState(game.link,game.link.sprite);
@@ -35,7 +35,7 @@ namespace Sprint2.Commands
                     break;
                 default:
                     break;
-            }
+            }*/
         }
     }
 }

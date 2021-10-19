@@ -17,6 +17,8 @@ namespace Sprint2.Player
 
         public direction facing { get; set; }
 
+        public Boolean canAttack { get; set; }
+
         float timer = 1000f;
 
 
