@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Sprint2.Helpers;
+using Sprint2.Player;
 
 namespace Sprint2.Commands
 {
@@ -15,28 +16,31 @@ namespace Sprint2.Commands
         public void Execute()
         {
 
-            switch (game.link.facing) {
+            switch (game.link.facing)
+            {
+                //Set link's state to the relevant item using state for current player direction.
                 case Player.direction.up:
-                    game.link.sprite = game.linkSpriteFactory.UpUseItemLinkSprite(game.link);
+                    game.link.state = new UpItemUsingLinkState(game.link, game.link.sprite);
 
                     break;
                 case Player.direction.down:
-                    game.link.sprite = game.linkSpriteFactory.DownUseItemLinkSprite(game.link);
+                    game.link.state = new DownItemUsingLinkState(game.link, game.link.sprite);
 
                     break;
                 case Player.direction.left:
-                    game.link.sprite = game.linkSpriteFactory.LeftUseItemLinkSprite(game.link);
+                    game.link.state = new LeftItemUsingLinkState(game.link, game.link.sprite);
 
                     break;
                 case Player.direction.right:
-                    game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+                    game.link.state = new RightItemUsingLinkState(game.link, game.link.sprite);
 
                     break;
                 default:
+                    //Should never occur, link is always facing one of the four directions.
                     break;
             }
             game.link.RegArrowAttack();
-            
+
         }
     }
 }

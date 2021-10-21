@@ -7,11 +7,12 @@ namespace Sprint2.Player
 	public class RightIdleLinkState : ILinkState
 	{
         private ILink link;
-        private ISprite sprite;
+        private ISprite mySprite;
         public RightIdleLinkState(ILink Link, ISprite sprite)
 		{
-            this.link = Link;
-            this.sprite = sprite;
+            link = Link;
+            mySprite = new RightIdleLinkSprite(sprite.Texture, link);
+            link.sprite = mySprite;
         }
 
         public void takeDamage()
@@ -22,13 +23,12 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
-            //What needs to be updated in the State?
-
+            //Nothing needs updated in an idle state?
         }
 
         public void useItem(Game1 game)
         {
-            game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
+            //game.link.sprite = game.linkSpriteFactory.RightUseItemLinkSprite(game.link);
         }
     }
 }

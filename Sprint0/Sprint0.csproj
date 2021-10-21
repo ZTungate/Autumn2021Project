@@ -29,5 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Player\Sprites\Use Item\Items\" />
+    <Folder Include="Player\States\Moving\" />
   </ItemGroup>
 </Project>
