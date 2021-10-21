@@ -33,5 +33,13 @@ namespace Sprint2.Items
         {
             this.sprite.Draw(batch, this.rect);
         }
+        public virtual void SetRectangle(Rectangle rect)
+        {
+            this.rect = rect;
+        }
+        public virtual Rectangle GetRectangle()
+        {
+            return this.rect;
+        }
     }
 }
