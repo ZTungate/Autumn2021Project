@@ -6,6 +6,7 @@ using Sprint2.Items;
 using Sprint2.Blocks;
 using System.Collections.Generic;
 using Sprint2.Projectiles;
+using Sprint0.Collisions;
 
 namespace Sprint2
 {
@@ -16,6 +17,8 @@ namespace Sprint2
         private SpriteFont font;
 
         public List<IController> controllerList;
+
+        public ICollision collision;
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;

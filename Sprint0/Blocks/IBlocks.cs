@@ -10,7 +10,7 @@ namespace Sprint2.Blocks
 
         Rectangle sourceRect { get; set; }
 
-        Vector2 Position { get; set; }
+        Rectangle destRect { get; set; }
 
         void Update(GameTime gameTime);
 
