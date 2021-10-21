@@ -3,33 +3,35 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint2.Items.ItemSprites;
 
 namespace Sprint2.Items
 {
     public abstract class AbstractItem : IItem
     {
-        protected ISprite sprite;
+        protected AbstractItemSprite sprite;
         protected ItemEnum itemType;
-        protected Vector2 position;
-        public AbstractItem(ItemEnum itemType, Vector2 pos)
+        protected Rectangle rect;
+        public AbstractItem(ItemEnum itemType, Rectangle rect)
         {
             this.itemType = itemType;
-            this.position = pos;
+            this.rect = rect;
         }
         public virtual void CreateSprite()
         {
             this.sprite = ItemSpriteFactory.Instance.GetItemSprite(itemType);
+            Rectangle spriteRect = this.sprite.SourceRect[0];
+            this.rect.Width = spriteRect.Width * 2;
+            this.rect.Height = spriteRect.Height * 2;
         }
         public virtual void Update(GameTime gameTime)
         {
-            //Update position of sprite to item position
-            //NOTE: THIS SHOULD BE DONE IN THE DRAW CALL, IT IS BAD PRACTICE TO HAVE DUPLICATE POSITION VARIABLES IN ITEM AND SPRITE
-            this.sprite.Position = position;
+            
             this.sprite.Update(gameTime);
         }
         public virtual void Draw(SpriteBatch batch)
         {
-            this.sprite.Draw(batch);
+            this.sprite.Draw(batch, this.rect);
         }
     }
 }

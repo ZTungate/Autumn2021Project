@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class BombItem : AbstractItem
     {
-        public BombItem(Vector2 pos) : base(ItemEnum.Bomb, pos)
+        public BombItem(Rectangle rect) : base(ItemEnum.Bomb, rect)
         {
 
         }

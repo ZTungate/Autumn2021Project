@@ -6,14 +6,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class BombItemSprite : ISprite
+    public class BombItemSprite : AbstractItemSprite
     {
-        public int CurrentFrame { get; set; } = 0;
-        public int FrameCount { get; set; } = 1;
-        public float SpriteSpeed { get; set; } = 0;
-        public Texture2D Texture { get; set; }
-        public Rectangle[] SourceRect { get; set; }
-        public Vector2 Position { get; set; }
 
         public BombItemSprite(Texture2D spriteSheet)
         {
@@ -21,16 +15,6 @@ namespace Sprint2.Items.ItemSprites
             SourceRect = new Rectangle[1];
 
             SourceRect[0] = new Rectangle(136, 0, 8, 14);
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            //no-op
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width * 2, SourceRect[CurrentFrame].Height * 2);
-            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
     }
 }

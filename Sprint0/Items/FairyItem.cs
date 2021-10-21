@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class FairyItem : AbstractItem
     {
-        public FairyItem(Vector2 pos) : base(ItemEnum.Fairy, pos)
+        public FairyItem(Rectangle rect) : base(ItemEnum.Fairy, rect)
         {
 
         }

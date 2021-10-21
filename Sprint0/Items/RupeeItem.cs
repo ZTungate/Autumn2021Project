@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class RupeeItem : AbstractItem
     {
-        public RupeeItem(Vector2 pos) : base(ItemEnum.Rupee, pos)
+        public RupeeItem(Rectangle rect) : base(ItemEnum.Rupee, rect)
         {
 
         }

@@ -72,21 +72,21 @@ namespace Sprint2
             link = new Link(projectileFactory);
 
             //Temorary variable for item location
-            Vector2 itemPos = new Vector2(300, 100);
+            Point itemPos = new Point(300, 100);
             items = new List<IItem>()
             {
-                new ArrowItem(itemPos),
-                new BombItem(itemPos),
-                new BoomerangItem(itemPos),
-                new BowItem(itemPos),
-                new ClockItem(itemPos),
-                new CompassItem(itemPos),
-                new FairyItem(itemPos),
-                new HeartContainerItem(itemPos),
-                new HeartItem(itemPos),
-                new KeyItem(itemPos),
-                new RupeeItem(itemPos),
-                new TriforcePieceItem(itemPos),
+                new ArrowItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new BombItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new BoomerangItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new BowItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new ClockItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new CompassItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new FairyItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new HeartContainerItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new HeartItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new KeyItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new RupeeItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
+                new TriforcePieceItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0))
             };
 
             //Initialize enemies 

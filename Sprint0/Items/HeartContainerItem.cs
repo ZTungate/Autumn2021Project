@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class HeartContainerItem : AbstractItem
     {
-        public HeartContainerItem(Vector2 pos) : base(ItemEnum.HeartContainer, pos)
+        public HeartContainerItem(Rectangle rect) : base(ItemEnum.HeartContainer, rect)
         {
 
         }

@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class KeyItem : AbstractItem
     {
-        public KeyItem(Vector2 pos) : base(ItemEnum.Key, pos)
+        public KeyItem(Rectangle rect) : base(ItemEnum.Key, rect)
         {
 
         }

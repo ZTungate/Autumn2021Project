@@ -7,7 +7,7 @@ namespace Sprint2.Items
 {
     public class BowItem : AbstractItem
     {
-        public BowItem(Vector2 pos) : base(ItemEnum.Bow, pos)
+        public BowItem(Rectangle rect) : base(ItemEnum.Bow, rect)
         {
 
         }
