@@ -15,7 +15,7 @@ namespace Sprint3.Player
         public ISprite sprite { get; set; }
         public Color color { get; set; }
 
-        public direction facing {get; set;}
+        public direction facing {get; set;} //try to remove
 
         public Boolean canAttack { get; set; }
 
@@ -74,7 +74,7 @@ namespace Sprint3.Player
                 }
                 damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            }
+            } //move to another method, maybe DamagedUpdate()
             else
             {
                 canMove = true;
@@ -148,11 +148,11 @@ namespace Sprint3.Player
 
         //Attacks
 
-        public void SwordAttack()
+        public void SwordAttack() //move to player state
         {
             if (canAttack)
             {
-                switch (facing)
+                switch (facing) 
                 {
                     case Player.direction.up:
                         state = new UpSwordLinkState(this, sprite);
