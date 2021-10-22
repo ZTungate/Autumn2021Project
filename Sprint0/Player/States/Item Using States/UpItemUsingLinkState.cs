@@ -47,26 +47,7 @@ namespace Sprint2.Player
 
         public void Move(direction direction)
         {
-            //If told to move in the direction this state is facing, switch to a moving state. Otherwise, switch to an idle state in that direction.
-            switch (direction)
-            {
-                case direction.down:
-                    //Change to down idles tate if told to move down.
-                    link.state = new DownIdleLinkState(link, mySprite);
-                    break;
-                case direction.right:
-                    //Change to a right idle state if told to move right.
-                    link.state = new RightIdleLinkState(link, mySprite);
-                    break;
-                case direction.left:
-                    //Change to a left idle state if told to move left.
-                    link.state = new LeftIdleLinkState(link, mySprite);
-                    break;
-                case direction.up:
-                    //Change to an up Moving state if told to move up.
-                    link.state = new UpMovingLinkState(link, mySprite);
-                    break;
-            }
+            //Link can not move while throwing an item.
         }
     }
 }
