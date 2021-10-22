@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint2.Blocks
+namespace Sprint3.Blocks
 {
     public class WaterSprite : IBlocks
     {

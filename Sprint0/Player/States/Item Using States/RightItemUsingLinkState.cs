@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Sprint2.Player
+namespace Sprint3.Player
 {
 	public class RightItemUsingLinkState : ILinkState
 	{

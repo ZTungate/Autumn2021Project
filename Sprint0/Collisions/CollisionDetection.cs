@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Sprint2;
-using Sprint2.Blocks;
-using Sprint2.Enemies;
-using Sprint2.Items;
-using Sprint2.Player;
-using Sprint2.Projectiles;
+using Sprint3;
+using Sprint3.Blocks;
+using Sprint3.Enemies;
+using Sprint3.Items;
+using Sprint3.Player;
+using Sprint3.Projectiles;
 
-namespace Sprint0.Collisions
+namespace Sprint3.Collisions
 {
     class CollisionDetection
     {
 
+        public CollisionDetector()
+        {
+
+        }
 
         //heavilly overloaded to check collisions
         public ICollision detectCollision(IBlocks object1, IBlocks object2)

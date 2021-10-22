@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Sprint2.Projectiles;
-namespace Sprint2.Player
+using Sprint3.Projectiles;
+namespace Sprint3.Player
 {
 
     public class Link : ILink {

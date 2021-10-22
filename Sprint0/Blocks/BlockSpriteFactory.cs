@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
+using Sprint3.Helpers;
 
-namespace Sprint2.Blocks
+namespace Sprint3.Blocks
 {
     public class BlockSpriteFactory
     {

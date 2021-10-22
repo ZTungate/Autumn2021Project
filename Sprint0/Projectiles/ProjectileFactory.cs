@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2;
+using Sprint3;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Projectiles
+namespace Sprint3.Projectiles
 {
     public class ProjectileFactory
     {

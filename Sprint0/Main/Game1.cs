@@ -1,15 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2.Enemies;
-using Sprint2.Player;
-using Sprint2.Items;
-using Sprint2.Blocks;
+using Sprint3.Enemies;
+using Sprint3.Player;
+using Sprint3.Items;
+using Sprint3.Blocks;
 using System.Collections.Generic;
-using Sprint2.Projectiles;
-using Sprint0.Collisions;
-using Sprint0.Levels;
+using Sprint3.Projectiles;
+using Sprint3.Collisions;
+using Sprint3.Levels;
 
-namespace Sprint2
+namespace Sprint3
 {
     public class Game1 : Game
     {

@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using Sprint2.Commands;
+using Sprint3.Commands;
 
-namespace Sprint2
+namespace Sprint3
 {
     class KeyboardController : IController
     {
@@ -20,7 +20,7 @@ namespace Sprint2
             myGame = game;
 
 
-            SetKeys(myGame.link);
+            SetKeys();
 
             //Create a new list to hold the keys relevant to movement.
             movementKeys = new List<Keys>
@@ -36,7 +36,7 @@ namespace Sprint2
             };
 
         }
-        private void SetKeys(Player.ILink link)
+        private void SetKeys()
         {
 
             //Create commands to change sprites
@@ -85,7 +85,7 @@ namespace Sprint2
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();
 
-            checkPlayerIdle(lastState, state);
+            CheckPlayerIdle(lastState, state);
 
             foreach (Keys key in pressedKeys) {
                 if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
@@ -103,7 +103,7 @@ namespace Sprint2
             //Checks if movement controls are released to play the idle animation & stop movement
         }
 
-        void checkPlayerIdle(KeyboardState lastState, KeyboardState state)
+        void CheckPlayerIdle(KeyboardState lastState, KeyboardState state)
         {
             Keys[] oldPressedKeys = lastState.GetPressedKeys();
             foreach (Keys oldKey in oldPressedKeys)

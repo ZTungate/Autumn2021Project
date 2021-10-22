@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
-using Sprint2.Player;
+using Sprint3.Helpers;
+using Sprint3.Player;
 
-namespace Sprint2.Commands
+namespace Sprint3.Commands
 {
     public class PlayerUseBlueBoomerangCommand : ICommand
     {

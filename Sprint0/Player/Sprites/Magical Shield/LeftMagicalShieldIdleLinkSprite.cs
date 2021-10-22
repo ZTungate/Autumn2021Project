@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Player
+namespace Sprint3.Player
 {
     public class LeftMagicalShieldIdleLinkSprite : IAnimatedSprite
     {

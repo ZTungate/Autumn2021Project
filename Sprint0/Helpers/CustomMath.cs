@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Helpers
+namespace Sprint3.Helpers
 {
     public static class CustomMath
     {

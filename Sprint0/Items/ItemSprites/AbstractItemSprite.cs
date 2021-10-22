@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2;
+using Sprint3;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Items.ItemSprites
+namespace Sprint3.Items.ItemSprites
 {
     public abstract class AbstractItemSprite : ISprite
     {

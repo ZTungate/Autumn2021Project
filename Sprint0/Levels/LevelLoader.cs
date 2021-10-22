@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
-using Sprint2.Blocks;
+using Sprint3.Blocks;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint0.Levels
+namespace Sprint3.Levels
 {
     public class LevelLoader
     {

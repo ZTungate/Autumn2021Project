@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2;
+using Sprint3;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Sprint3.Enemies
 {
     public interface IEnemyState
     {

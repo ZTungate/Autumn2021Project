@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
-namespace Sprint2.Commands
+using Sprint3.Helpers;
+namespace Sprint3.Commands
 {
     public class PreviousEnemyCommand : ICommand
     {

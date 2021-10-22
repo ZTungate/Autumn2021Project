@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint2.Items.ItemSprites
+namespace Sprint3.Items.ItemSprites
 {
     public class HeartContainerSprite : AbstractItemSprite
     {

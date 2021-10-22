@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-namespace Sprint2.Player
+namespace Sprint3.Player
 {
 	public interface ILinkState //Trying to implement using state pattern, NOT state machine
 						   //http://web.cse.ohio-state.edu/~boggus.2/3902/slides/GoombaStateExample.cs

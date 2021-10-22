@@ -1,13 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Helpers;
-using Sprint2.Projectiles;
-using Sprint2;
-using Sprint2.Enemies;
+using Sprint3.Helpers;
+using Sprint3.Projectiles;
+using Sprint3;
+using Sprint3.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Sprint3.Enemies
 {
     public class Dragon : IEnemy
     {

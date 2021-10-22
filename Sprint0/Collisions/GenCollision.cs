@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Collisions
+namespace Sprint3.Collisions
 {
     class GenCollision : ICollision
     {
