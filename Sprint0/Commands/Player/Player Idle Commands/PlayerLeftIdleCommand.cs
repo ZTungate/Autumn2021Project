@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Sprint2.Helpers;
+using Sprint2.Player;
 
 namespace Sprint2.Commands
 {
@@ -14,8 +15,7 @@ namespace Sprint2.Commands
         }
         public void Execute()
         {
-            game.link.sprite = game.linkSpriteFactory.LeftIdleLinkSprite(game.link);
-            /*game.link.state = new RightIdleLinkState();*/
+            game.link.state = new LeftIdleLinkState(game.link, game.link.sprite);
         }
     }
 }

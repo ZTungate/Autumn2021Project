@@ -15,32 +15,11 @@ namespace Sprint2.Commands
         }
         public void Execute()
         {
+            //Call useItem on link's current state.
+            game.link.state.UseItem();
 
-            switch (game.link.facing)
-            {
-                //Set link's state to the relevant item using state for current player direction.
-                case Player.direction.up:
-                    game.link.state = new UpItemUsingLinkState(game.link, game.link.sprite);
-
-                    break;
-                case Player.direction.down:
-                    game.link.state = new DownItemUsingLinkState(game.link, game.link.sprite);
-
-                    break;
-                case Player.direction.left:
-                    game.link.state = new LeftItemUsingLinkState(game.link, game.link.sprite);
-
-                    break;
-                case Player.direction.right:
-                    game.link.state = new RightItemUsingLinkState(game.link, game.link.sprite);
-
-                    break;
-                default:
-                    //Should never occur, link is always facing one of the four directions.
-                    break;
-            }
+            //Call the link's attack method to spawn the projectile.
             game.link.BombAttack();
-
         }
     }
 }

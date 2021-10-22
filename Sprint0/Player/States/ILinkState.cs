@@ -7,25 +7,15 @@ namespace Sprint2.Player
 						   //http://web.cse.ohio-state.edu/~boggus.2/3902/slides/GoombaStateExample.cs
 	{
 		void Update(GameTime gameTime);
-		void takeDamage();
-		void useItem(Game1 game);
+		void TakeDamage();
+		void UseItem();
 
-		//void ChangeDirection(direction direction);
+		void Move(direction direction);
 
 		/*
 		 * These will be used to change between the link states
 		 * void moveForward();
 		 * void standStill();
-		 */
-		
-		 /*
-		 *These may be covered by the link object sufficently, not sure.
-		 * void RegBoomerangAttack();
-	     * void BlueBoomerangAttack();
-         * void RegArrowAttack();
-         * void BlueArrowAttack();
-         * void BombAttack();
-         * void FireAttack();
 		 */
 		//Damage should be implemented as a decorator on the player, not the state (look at notes on cse3902 homepage)
 	}

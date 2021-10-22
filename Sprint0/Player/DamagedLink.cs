@@ -17,6 +17,8 @@ namespace Sprint2.Player
 
         public direction facing { get; set; }
 
+        public Boolean canAttack { get; set; }
+
         float timer = 1000f;
 
 
@@ -61,6 +63,10 @@ namespace Sprint2.Player
             decoratedLink.move(moveDirection);
         }
 
+        public void SwordAttack()
+        {
+            decoratedLink.SwordAttack();
+        }
         public void RegBoomerangAttack()
         {
             decoratedLink.RegBoomerangAttack();

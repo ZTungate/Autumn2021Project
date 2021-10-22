@@ -14,12 +14,8 @@ namespace Sprint2.Commands
         }
         public void Execute()
         {
-            /*if (game.link.canMove)
-            {*/
-            game.link.facing = Player.direction.down;
-            game.link.sprite = game.linkSpriteFactory.DownMovingLinkSprite(game.link);
-                /*game.link.state = new RightMovingLinkState();*/
-            /*}*/
+            //Have link's current state move down.
+            game.link.state.Move(Player.direction.down);
         }
     }
 }
