@@ -20,66 +20,36 @@ namespace Sprint2.Player
         public Boolean canAttack { get; set; }
 
         float damageTimer;
-        Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
-        public float Timer = 0f;
-        float damageFlashRate = 50f;
-        public bool canMove = true;
-        public bool isDamaged = false;
-        int colorIndex = 0;
-        float invincibilityFramesDuration = 2000f;
-        float hitStunDuration = 500f;
 
+        public float Timer = 0f;
+
+        public bool canMove { get; set; }
+        public bool isDamaged = false;
+        
+
+
+
+        private Game1 game;
         public ProjectileFactory projectile;
 
 
-        public Link(ProjectileFactory ProjectileFactory)
+        public Link(Game1 game)
         {
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             position = new Vector2(20, 20);  //Link's initial position
             facing = direction.right;
             canAttack = true;
-            colorIndex = 0;
-
+            canMove = true;
             color = Color.White;
 
-            projectile = ProjectileFactory;
+            this.game = game;
+            projectile = game.projectileFactory;
 
         }
 
         public void Update(GameTime gameTime)
         {
-            if (isDamaged)
-            {
-
-                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if(invincibilityFramesDuration - damageTimer % damageFlashRate == 0)
-                {
-                    colorIndex++;
-                    color = damageColors[colorIndex % damageColors.Length];
-                }
-
-
-                if (damageTimer % (damageFlashRate) > damageFlashRate * 2)
-                {
-                    colorIndex++;
-                }
-                if (damageTimer <= 50f)
-                { //damage invincibility time
-                    isDamaged = false;
-                    color = Color.White;
-                }
-                else if (damageTimer < (invincibilityFramesDuration-hitStunDuration)) //hit stun duration
-                {
-                    canMove = true;
-                }
-                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            }
-            else
-            {
-                canMove = true;
-                colorIndex = 0;
-            }
+            
             state.Update(gameTime);
             sprite.Update(gameTime);
             /*playerState.Update();*/
@@ -93,12 +63,13 @@ namespace Sprint2.Player
 
         public void takeDamage()
         {
-            if (!isDamaged) {
+            game.link = new DamagedLink(this, game);
+            /*if (!isDamaged) {
                 isDamaged = true;
                 canMove = false;
                 color = Color.Red;
-                damageTimer = invincibilityFramesDuration;
-            }
+*//*                damageTimer = invincibilityFramesDuration;*//*
+            }*/
             /*state.takeDamage();*/
 
         }
@@ -141,8 +112,8 @@ namespace Sprint2.Player
             state = new InitialLinkState(this, sprite); //start the player in the right idle state
             position = new Vector2(20, 20);  //Link's initial position
 
-            colorIndex = 0;
-
+            /*            colorIndex = 0;*/
+            game.link = new Link(game);
             color = Color.White;
         }
 

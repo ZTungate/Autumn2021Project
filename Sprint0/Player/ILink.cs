@@ -13,23 +13,35 @@ namespace Sprint2.Player
         public ILinkState state { get; set; }
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
+
         public Color color {get;set;}
+
         public direction facing { get; set; }
 
-        public Boolean canAttack { get; set; }
         enum Direction { };
+
+        public Boolean canAttack { get; set; }
+        bool canMove { get; set; }
+
         void takeDamage();
         void Update(GameTime gameTime);
+
         void Draw(SpriteBatch spriteBatch);
+
         void move(Vector2 moveDirection);
 
+        public void SwordAttack();
 
-        void SwordAttack();
         void RegBoomerangAttack();
+
         void BlueBoomerangAttack();
+
         void RegArrowAttack();
+
         void BlueArrowAttack();
+
         void BombAttack();
+
         void FireAttack();
         /*void moveUp(float speed);
         void moveRight(float speed);

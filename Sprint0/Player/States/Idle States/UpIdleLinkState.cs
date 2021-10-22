@@ -11,7 +11,7 @@ namespace Sprint2.Player
         public UpIdleLinkState(ILink Link, ISprite sprite)
         {
             link = Link;
-            mySprite = new UpIdleLinkSprite(sprite.Texture, link);
+            mySprite = new UpIdleLinkSprite(sprite.Texture, link); //perhaps this could be moved to the Sprite factory
             link.sprite = mySprite;
             link.facing = direction.up;
         }
