@@ -10,6 +10,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Player\States\Moving\**" />
+    <EmbeddedResource Remove="Player\States\Moving\**" />
+    <None Remove="Player\States\Moving\**" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="Icon.ico" />
     <None Remove="Icon.bmp" />
   </ItemGroup>
@@ -29,6 +34,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Player\Sprites\Use Item\Items\" />
-    <Folder Include="Player\States\Moving\" />
   </ItemGroup>
 </Project>
