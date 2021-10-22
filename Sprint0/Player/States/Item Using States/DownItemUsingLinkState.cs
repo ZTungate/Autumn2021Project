@@ -41,8 +41,7 @@ namespace Sprint2.Player
 
         public void UseItem()
         {
-            //Create a new item using state if an item is used before this one is done.
-            link.state = new DownItemUsingLinkState(link, mySprite);
+            //Link is already using an item, do nothing.
         }
 
         public void SwordAttack()
