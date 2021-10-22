@@ -44,6 +44,10 @@ namespace Sprint2.Blocks
             blockList.Add(CreateStairTile(new Vector2(200, 300)));
             blockList.Add(CreateWaterTile(new Vector2(200, 300)));
         }
+        public Texture2D GetBlockSpriteSheet()
+        {
+            return this.blockSpriteSheet;
+        }
 
         //returns the next sprite in the list
         public IBlocks NextSprite()

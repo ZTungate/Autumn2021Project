@@ -7,6 +7,7 @@ using Sprint2.Blocks;
 using System.Collections.Generic;
 using Sprint2.Projectiles;
 using Sprint0.Collisions;
+using Sprint0.Levels;
 
 namespace Sprint2
 {
@@ -136,6 +137,8 @@ namespace Sprint2
                 enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
             }
 
+
+            LevelLoader.instance.LoadAllLevels();
         }
 
         protected override void Update(GameTime gameTime)
@@ -181,6 +184,9 @@ namespace Sprint2
             items[currentItem].Draw(_spriteBatch);
 
             currentBlock.Draw(_spriteBatch);
+
+            //temporary
+            LevelLoader.instance.DrawLevels(_spriteBatch);
 
             _spriteBatch.End();
 

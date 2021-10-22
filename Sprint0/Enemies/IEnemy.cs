@@ -19,7 +19,8 @@ namespace Sprint2.Enemies
 
         public Vector2 Position { get; set; }
 
-        public IEnemyState State { get; set; }
+        public IEnemyState State { get; set; } //May not need this in interface if it only applies to 1 enemy
+        //(move to Thrower instead)
         
         //public void Draw(SpriteBatch spriteBatch);
     }
