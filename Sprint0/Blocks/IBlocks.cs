@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2.Blocks
 {
-    public interface IBlocks
+    public interface IBlocks //rename to IBlock?
     {
-        Texture2D Texture { get; set; }
+        Texture2D Texture { get; set; } //may have this as a private field (does it need to be externally referenced?)
 
         Rectangle sourceRect { get; set; }
 
@@ -16,5 +16,6 @@ namespace Sprint2.Blocks
 
         void Draw(SpriteBatch spriteBatch);
 
+        //Texture and sourceRect replace with Sprite?
     }
 }

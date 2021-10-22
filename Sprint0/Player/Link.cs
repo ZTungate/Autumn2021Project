@@ -148,7 +148,7 @@ namespace Sprint2.Player
 
         //Attacks
 
-        public void SwordAttack()
+        public void SwordAttack() //move internal code to state, have a timer to prevent sword spam
         {
             if (canAttack)
             {
