@@ -33,6 +33,10 @@ namespace Sprint2.Player
             //This state lasts no longer than 1 tick, no time for it to use items.
             //No implementation needed
         }
+        public void SwordAttack()
+        {
+            //No Implementation needed.
+        }
 
         public void Move(direction direction)
         {

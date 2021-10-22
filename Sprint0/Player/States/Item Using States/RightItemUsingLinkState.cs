@@ -44,6 +44,10 @@ namespace Sprint2.Player
             //Create a new item using state if an item is used before this one is done.
             link.state = new RightItemUsingLinkState(link, mySprite);
         }
+        public void SwordAttack()
+        {
+            link.state = new RightSwordLinkState(link, mySprite);
+        }
         public void Move(direction direction)
         {
             //Link can not move while throwing an item.

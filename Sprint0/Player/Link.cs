@@ -14,10 +14,7 @@ namespace Sprint2.Player
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
         public Color color { get; set; }
-
         public direction facing {get; set;}
-
-        public Boolean canAttack { get; set; }
 
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
@@ -37,7 +34,6 @@ namespace Sprint2.Player
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             position = new Vector2(20, 20);  //Link's initial position
             facing = direction.right;
-            canAttack = true;
             colorIndex = 0;
 
             color = Color.White;
@@ -112,7 +108,6 @@ namespace Sprint2.Player
         {
             if (canMove) 
             {
-                canAttack = true;
                 position += moveDirection;
             }   
         }
@@ -150,26 +145,7 @@ namespace Sprint2.Player
 
         public void SwordAttack()
         {
-            if (canAttack)
-            {
-                switch (facing)
-                {
-                    case Player.direction.up:
-                        state = new UpSwordLinkState(this, sprite);
-                        break;
-                    case Player.direction.down:
-                        state = new DownSwordLinkState(this, sprite);
-                        break;
-                    case Player.direction.left:
-                        state = new LeftSwordLinkState(this, sprite);
-                        break;
-                    case Player.direction.right:
-                        state = new RightSwordLinkState(this, sprite);
-                        break;
-                    default:
-                        break;
-                }
-            }
+            state.SwordAttack();
         }
 
         public void RegBoomerangAttack()

@@ -17,7 +17,6 @@ namespace Sprint2.Player
             link.sprite = mySprite;
             stateTime = 300; //300 miliseconds of time to be throwing the projectile
             link.facing = direction.up; 
-            link.canAttack = false; //disable link from attacking
         }
 
         public void TakeDamage()
@@ -36,7 +35,6 @@ namespace Sprint2.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
-                link.canAttack = true; //re-enable link attacking
                 link.state = new UpIdleLinkState(link, mySprite);
             }
         }
@@ -45,6 +43,11 @@ namespace Sprint2.Player
         {
             //Create a new item using state if an item is used before this one is done.
             link.state = new UpItemUsingLinkState(link, mySprite);
+        }
+
+        public void SwordAttack()
+        {
+            //Link can not stab while already stabbing.
         }
 
         public void Move(direction direction)

@@ -16,7 +16,6 @@ namespace Sprint2.Player
         public Color color {get;set;}
         public direction facing { get; set; }
 
-        public Boolean canAttack { get; set; }
         enum Direction { };
         void takeDamage();
         void Update(GameTime gameTime);

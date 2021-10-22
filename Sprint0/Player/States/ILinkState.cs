@@ -9,14 +9,9 @@ namespace Sprint2.Player
 		void Update(GameTime gameTime);
 		void TakeDamage();
 		void UseItem();
-
+		void SwordAttack();
 		void Move(direction direction);
 
-		/*
-		 * These will be used to change between the link states
-		 * void moveForward();
-		 * void standStill();
-		 */
 		//Damage should be implemented as a decorator on the player, not the state (look at notes on cse3902 homepage)
 	}
 }

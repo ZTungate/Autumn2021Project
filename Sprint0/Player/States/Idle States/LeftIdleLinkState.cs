@@ -33,6 +33,11 @@ namespace Sprint2.Player
             link.state = new LeftItemUsingLinkState(link, mySprite);
         }
 
+        public void SwordAttack()
+        {
+            link.state = new LeftSwordLinkState(link, mySprite);
+        }
+
         public void Move(direction direction)
         {
             //If told to move in the direction this state is facing, switch to a moving state. Otherwise, switch to an idle state in that direction.

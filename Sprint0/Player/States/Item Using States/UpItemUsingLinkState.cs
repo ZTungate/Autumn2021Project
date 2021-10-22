@@ -45,6 +45,11 @@ namespace Sprint2.Player
             link.state = new UpItemUsingLinkState(link, mySprite);
         }
 
+        public void SwordAttack()
+        {
+            link.state = new UpSwordLinkState(link, mySprite);
+        }
+
         public void Move(direction direction)
         {
             //Link can not move while throwing an item.
