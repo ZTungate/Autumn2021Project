@@ -21,7 +21,6 @@ namespace Sprint2.Enemies
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new DownThrowerSprite(texture);
-            thrower.State = new DownThrower(mySprite, thrower);
         }
 
         public void TurnLeft()
@@ -33,14 +32,12 @@ namespace Sprint2.Enemies
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new RightThrowerSprite(texture);
-            thrower.State = new RightThrower(mySprite, thrower);
         }
 
         public void TurnUp()
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new UpThrowerSprite(texture);
-            thrower.State = new UpThrower(mySprite, thrower);
         }
         public void MoveForward()
         {

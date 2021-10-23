@@ -25,7 +25,6 @@ namespace Sprint2.Enemies
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new DownThrowerSprite(texture);
-            thrower.State = new DownThrower(mySprite, thrower);
         }
 
         public void TurnLeft()
@@ -35,14 +34,12 @@ namespace Sprint2.Enemies
             //manually assign the sprite for leftThrower (leftthrower can't since it is the default.)
             thrower.Sprite = mySprite;
             thrower.Sprite.Position = thrower.Position;
-            thrower.State = new LeftThrower(mySprite, thrower);
         }
 
         public void TurnRight()
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new RightThrowerSprite(texture);
-            thrower.State = new RightThrower(mySprite, thrower);
         }
 
         public void TurnUp()

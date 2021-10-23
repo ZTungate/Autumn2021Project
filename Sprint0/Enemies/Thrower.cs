@@ -15,17 +15,13 @@ namespace Sprint2.Enemies
         //Position vector
         Vector2 pos;
         //State
-        IEnemyState currState;
+        public IEnemyState currState;
         //Projectile controller
         ProjectileFactory projectiles;
         //Timer for throwing projectiles and waiting to update while the boomerang is out.
         int wait = 0;
         int throwDelay = 4000;
-        IEnemyState IEnemy.State
-        {
-            get => currState;
-            set => currState = value;
-        }
+
 
         Vector2 IEnemy.Position
         {
@@ -100,18 +96,22 @@ namespace Sprint2.Enemies
             //Change directions or move based on the random number
             if(value == 0)
             {
+                currState = new UpThrower(mySprite, this);
                 currState.TurnUp();
             }
             else if(value == 1)
             {
+                currState = new DownThrower(mySprite, this);
                 currState.TurnDown();
             }
             else if(value == 2)
             {
+                currState = new RightThrower(mySprite, this);
                 currState.TurnRight();
             }
             else if(value == 3)
             {
+                currState = new LeftThrower(mySprite, this);
                 currState.TurnLeft();
             }
             else 
