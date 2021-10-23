@@ -12,7 +12,7 @@ namespace Sprint2.Enemies
         //ISprite for the enemy
         ISprite mySprite;
         //Position of the bat.
-        Vector2 pos;
+        Rectangle destRect;
         //State of the bat (not used yet for this enemy type)
         IEnemyState state;
         public ISprite Sprite
@@ -21,10 +21,10 @@ namespace Sprint2.Enemies
             get => mySprite;
             set => mySprite = value;
         }
-        public Vector2 Position
+        public Rectangle Rect
         {
-            get => pos;
-            set => pos = value;
+            get => destRect;
+            set => destRect = value;
         }
         public IEnemyState State
         {
@@ -46,20 +46,23 @@ namespace Sprint2.Enemies
             //Move the bat if the animation frame changed
             if (lastFrame != mySprite.CurrentFrame)
             {
-                pos = BatRandomMove();
-                mySprite.Position = pos;
+                Vector2 pos = BatRandomMove();
+                this.destRect.X = (int)pos.X;
+                this.destRect.Y = (int)pos.Y;
+                //mySprite.Position = pos;
             }
         }
         public Bat()
         {
             //Assign an arbitrary starting positon for the bat.
-            pos = new Vector2(500, 300);
+            //pos = new Vector2(500, 300);
+            this.destRect = new Rectangle(500, 300, 0, 0);
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
         public Vector2 BatRandomMove()
         {
-            Vector2 newPosition = pos;
+            Vector2 newPosition = new Vector2(this.destRect.X, this.destRect.Y);
 
             //Get a random number from 0-3
             Random rand = new Random();

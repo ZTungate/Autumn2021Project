@@ -6,55 +6,22 @@ using System.Text;
 
 namespace Sprint2
 {
-    public class SlimeSprite : IAnimatedSprite
+    public class SlimeSprite : AbstractSprite
     {
-        public float Timer { get; set; } = 0f;
-        public float Interval { get; set; } = 40f;
-        public int CurrentFrame { get; set; } = 0;
-        public int FrameCount { get; set; } = 2;
-        public float SpriteSpeed { get; set; } = 0;
-        public Texture2D Texture { get; set; }
-        public Rectangle[] SourceRect { get; set; }
-        public Vector2 Position { get; set; }
-
-        public SlimeSprite(Texture2D spriteSheet)
+        public SlimeSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[2])
         {
-            //Set the texture2D to the provided spriteSheet (already initialized by factory)
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[2];
-
             //Set the two frames for the slime animation
             SourceRect[0] = new Rectangle(1, 11, 8, 16);
             SourceRect[1] = new Rectangle(10, 11, 8, 16);
+            this.Interval = 40;
 
             //Dummy position, needs to be fixed by adding pos relevant to the enemy.
-            Position = new Vector2(500, 100);
+            //Position = new Vector2(500, 100);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            //Animate the sprites (pulled from animatedStillSprite.cs)
-            if (Timer > Interval)
-            {
-                CurrentFrame++;
-
-                if (CurrentFrame > FrameCount - 1)
-                {
-                    CurrentFrame = 0;
-                }
-                Timer = 0;
-            }
-            else
-            {
-                //Increment timer based on the elapsed time from the last check.
-                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            }
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            //Draw enemy at its position at twice its source size.
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width * 2, SourceRect[CurrentFrame].Height * 2);
-            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
+            this.FrameStep(gameTime);
         }
 
     }

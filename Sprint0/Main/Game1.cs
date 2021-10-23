@@ -176,7 +176,7 @@ namespace Sprint2
             link.Draw(_spriteBatch);
 
             //Draw the current enemy
-            enemies[currentEnemy].Sprite.Draw(_spriteBatch);
+            enemies[currentEnemy].Sprite.Draw(_spriteBatch, enemies[currentEnemy].destRect);
 
             //Draw all projectiles
             projectileFactory.DrawProjectiles(_spriteBatch);

@@ -16,9 +16,7 @@ namespace Sprint2
 
         Rectangle[] SourceRect { get; set; }
 
-        Vector2 Position { get; set; }
-
         void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch, Rectangle rect);
     }
 }
