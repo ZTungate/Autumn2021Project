@@ -15,8 +15,6 @@ namespace Sprint2.Enemies
 
         //Position of the old man.
         Vector2 pos;
-        //State of the old man (not used for this enemy type)
-        IEnemyState state;
         public ISprite Sprite
         {
             get => mySprite;
@@ -30,12 +28,6 @@ namespace Sprint2.Enemies
         {
             get => pos;
             set => pos = value;
-        }
-        public IEnemyState State 
-        {
-            //This should not be used.
-            get => state;
-            set => state = value;
         }
 
         public void Update(GameTime gameTime)

@@ -13,8 +13,7 @@ namespace Sprint2.Enemies
         ISprite mySprite;
         //Position of the bat.
         Vector2 pos;
-        //State of the bat (not used yet for this enemy type)
-        IEnemyState state;
+
         public ISprite Sprite
         {
             //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
@@ -26,12 +25,7 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
-        public IEnemyState State
-        {
-            //This will not be used until damage states are added.
-            get => state;
-            set => state = value;
-        }
+
         public EnemyTypes Type
         {
             //Return Bat if type is ever asked for.

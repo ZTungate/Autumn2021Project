@@ -15,8 +15,7 @@ namespace Sprint2.Enemies
         ISprite mySprite;
         //Position of the dragon.
         Vector2 myPosition;
-        //State of the dragon (not used yet for this enemy type)
-        IEnemyState state;
+
         //ProjectileHandler for spawning fireballs during an attack
         ProjectileFactory projectiles;
 
@@ -36,12 +35,7 @@ namespace Sprint2.Enemies
             get => myPosition;
             set => myPosition = value;
         }
-        public IEnemyState State
-        {
-            //This will not be used until damage states are added.
-            get => state;
-            set => state = value;
-        }
+
         public EnemyTypes Type
         {
             //Return Dragon if type is ever asked for.

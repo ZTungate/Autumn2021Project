@@ -14,14 +14,6 @@ namespace Sprint2.Enemies
         ISprite mySprite;
         //Position vector
         Vector2 pos;
-        //State for this enemy (unused for now for this type)
-        IEnemyState currState;
-        IEnemyState IEnemy.State
-        {
-            //For this enemy type, this should not be used yet.
-            get => currState;
-            set => currState = value;
-        }
         Vector2 IEnemy.Position
         {
             get => pos;
