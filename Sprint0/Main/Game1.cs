@@ -98,7 +98,7 @@ namespace Sprint2
                 new Bat(),
                 new Slime(),
                 new OldMan(),
-                new Thrower(projectileFactory),
+                new Thrower(projectileFactory, enemySpriteFactory),
             };
 
             base.Initialize();
@@ -217,7 +217,7 @@ namespace Sprint2
                 new Bat(),
                 new Slime(),
                 new OldMan(),
-                new Thrower(projectileFactory),
+                new Thrower(projectileFactory, enemySpriteFactory),
             };
             //Create sprites for all enemies.
             foreach (IEnemy enemy in enemies)
