@@ -11,7 +11,8 @@ namespace Sprint0.Collisions
 
         public GenCollision(ColDirections direction, bool IsCollision)
         {
-
+            this.direction = direction;
+            this.IsCollision = IsCollision;
         }
     }
 }

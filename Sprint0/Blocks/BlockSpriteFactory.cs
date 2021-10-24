@@ -12,7 +12,7 @@ namespace Sprint2.Blocks
     {
         private Texture2D blockSpriteSheet;
 
-        private List<IBlocks> blockList = new List<IBlocks>();
+        private List<IBlock> blockList = new List<IBlock>();
 
         private static int blockTracker;
 
@@ -50,21 +50,21 @@ namespace Sprint2.Blocks
         }
 
         //returns the next sprite in the list
-        public IBlocks NextSprite()
+        public IBlock NextSprite()
         {
             blockTracker++;
             return blockList[CustomMath.MathMod(blockTracker, blockList.Count)];
         }
 
         //returns the previous sprite in the list
-        public IBlocks PreviousSprite()
+        public IBlock PreviousSprite()
         {
             blockTracker--;
             return blockList[CustomMath.MathMod(blockTracker, blockList.Count)];
         }
 
         //returns the current sprite
-        public IBlocks CurrentSprite()
+        public IBlock CurrentSprite()
         {
             return blockList[blockTracker];
         }
@@ -76,43 +76,43 @@ namespace Sprint2.Blocks
         }
 
         //flowing methods return a sprite object for the block
-        public IBlocks CreateBlackBox(Vector2 dest)
+        public IBlock CreateBlackBox(Vector2 dest)
         {
             return new BlackBoxSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateEntryFloorTile(Vector2 dest)
+        public IBlock CreateEntryFloorTile(Vector2 dest)
         {
             return new EntryFloorSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateFloorBlockTile(Vector2 dest)
+        public IBlock CreateFloorBlockTile(Vector2 dest)
         {
             return new FloorBlockSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateLadderTile(Vector2 dest)
+        public IBlock CreateLadderTile(Vector2 dest)
         {
             return new LadderSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateLeftStatue(Vector2 dest)
+        public IBlock CreateLeftStatue(Vector2 dest)
         {
             return new LeftStatueSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateRightStatue(Vector2 dest)
+        public IBlock CreateRightStatue(Vector2 dest)
         {
             return new RightStatueSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateBrickTile(Vector2 dest)
+        public IBlock CreateBrickTile(Vector2 dest)
         {
             return new MarioBrickSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateStairTile(Vector2 dest)
+        public IBlock CreateStairTile(Vector2 dest)
         {
             return new StairSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateWaterTile(Vector2 dest)
+        public IBlock CreateWaterTile(Vector2 dest)
         {
             return new WaterSprite(blockSpriteSheet, dest);
         }
-        public IBlocks CreateFloorTile(Vector2 dest)
+        public IBlock CreateFloorTile(Vector2 dest)
         {
             return new FloorSprite(blockSpriteSheet, dest);
         }

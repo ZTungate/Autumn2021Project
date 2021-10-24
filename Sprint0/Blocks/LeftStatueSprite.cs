@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Blocks
 {
-    public class LeftStatueSprite : IBlocks
+    public class LeftStatueSprite : IBlock
     {
-        public Texture2D Texture { get; set; }
+        private Texture2D Texture { get; set; }
         public Rectangle sourceRect { get; set; }
         public Rectangle destRect { get; set; }
 

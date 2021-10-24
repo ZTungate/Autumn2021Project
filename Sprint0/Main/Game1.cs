@@ -44,7 +44,7 @@ namespace Sprint2
         //Projectiles
         public ProjectileFactory projectileFactory;
         //Blocks
-        public IBlocks currentBlock;
+        public IBlock currentBlock;
 
         public Game1()
         {
