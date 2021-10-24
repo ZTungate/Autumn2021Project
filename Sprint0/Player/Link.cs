@@ -16,7 +16,6 @@ namespace Sprint2.Player
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
         public Color color { get; set; }
-        public direction facing {get; set;}
         public ProjectileFactory ProjectileFactory { get; set; }
 
         float damageTimer;
@@ -33,7 +32,6 @@ namespace Sprint2.Player
         {
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             position = new Vector2(20, 20);  //Link's initial position
-            facing = direction.right;
             colorIndex = 0;
 
             color = Color.White;
@@ -75,13 +73,11 @@ namespace Sprint2.Player
             }
             state.Update(gameTime);
             sprite.Update(gameTime);
-            /*playerState.Update();*/
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             sprite.Draw(spriteBatch);   //draw the player sprite
-            /*playerState.Draw(SpriteBatch);*/
         }
 
         public void takeDamage()
@@ -93,7 +89,6 @@ namespace Sprint2.Player
                 damageTimer = invincibilityFramesDuration;
             }
             /*state.takeDamage();*/
-
         }
 
         public void UseItem(ProjectileTypes item)
@@ -121,7 +116,7 @@ namespace Sprint2.Player
 
         //Attacks
 
-        public void SwordAttack() //move internal code to state, have a timer to prevent sword spam
+        public void SwordAttack()
         {
             state.SwordAttack();
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Player;
 using Sprint0.Projectiles;
 using System;
 using static Sprint0.Projectiles.ProjectileConstants;
@@ -17,8 +18,7 @@ namespace Sprint2.Player
             link = Link;
             mySprite = new DownUseItemLinkSprite(sprite.Texture, Link);
             link.sprite = mySprite;
-            stateTime = 300; //300 miliseconds of time to be throwing the projectile
-            link.facing = direction.down;
+            stateTime = LinkConstants.itemUseTime;
             Attack(item);
         }
 

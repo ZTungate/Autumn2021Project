@@ -14,7 +14,6 @@ namespace Sprint2.Player
             link = Link;
             mySprite = new UpIdleLinkSprite(sprite.Texture, link);
             link.sprite = mySprite;
-            link.facing = direction.up;
         }
 
         public void TakeDamage()

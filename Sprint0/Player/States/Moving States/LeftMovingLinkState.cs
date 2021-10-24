@@ -14,7 +14,6 @@ namespace Sprint2.Player
             link = Link;
             mySprite = new LeftMovingLinkSprite(sprite.Texture, link);
             link.sprite = mySprite;
-            link.facing = direction.left;
         }
 
         public void TakeDamage()

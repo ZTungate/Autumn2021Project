@@ -16,7 +16,6 @@ namespace Sprint2.Player
         public Vector2 position { get; set; }
         public ISprite sprite { get; set; }
         public Color color {get;set;}
-        public direction facing { get; set; }
         public ProjectileFactory ProjectileFactory { get;  set; }
 
         enum Direction { };
