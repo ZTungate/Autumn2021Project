@@ -19,6 +19,7 @@ namespace Sprint2
 
         public List<IController> controllerList;
 
+        public CollisionDetection detector = new CollisionDetection();
         public ICollision collision;
 
         public GraphicsDeviceManager _graphics;
@@ -150,7 +151,7 @@ namespace Sprint2
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-
+            
             //Update Link
             link.Update(gameTime);
 
