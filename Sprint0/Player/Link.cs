@@ -2,6 +2,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Sprint2.Projectiles;
+using static Sprint0.Projectiles.ProjectileConstants;
+
 namespace Sprint2.Player
 {
 
@@ -15,6 +17,7 @@ namespace Sprint2.Player
         public ISprite sprite { get; set; }
         public Color color { get; set; }
         public direction facing {get; set;}
+        public ProjectileFactory ProjectileFactory { get; set; }
 
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
@@ -26,10 +29,7 @@ namespace Sprint2.Player
         float invincibilityFramesDuration = 2000f;
         float hitStunDuration = 500f;
 
-        public ProjectileFactory projectile;
-
-
-        public Link(ProjectileFactory ProjectileFactory)
+        public Link()
         {
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             position = new Vector2(20, 20);  //Link's initial position
@@ -37,9 +37,6 @@ namespace Sprint2.Player
             colorIndex = 0;
 
             color = Color.White;
-
-            projectile = ProjectileFactory;
-
         }
 
         public void Update(GameTime gameTime)
@@ -99,37 +96,18 @@ namespace Sprint2.Player
 
         }
 
-        public void UseItem()
+        public void UseItem(ProjectileTypes item)
         {
-            state.UseItem();
+            state.UseItem(item);
         }
 
-        public void move(Vector2 moveDirection)
+        public void Move(Vector2 moveDirection)
         {
             if (canMove) 
             {
                 position += moveDirection;
             }   
         }
-        /*        public void moveUp(float speed)
-                {
-                    position += new Vector2(0, -speed);
-                }
-
-                public void moveRight(float speed)
-                {
-                    position += new Vector2(speed, 0);
-                }
-
-                public void moveLeft(float speed)
-                {
-                    position += new Vector2(-speed, 0);
-                }
-
-                public void moveDown(float speed)
-                {
-                    position += new Vector2(0, speed);
-                }*/
         public void Reset()
         {
             //This may not work, since the state does not determine the sprite
@@ -146,100 +124,6 @@ namespace Sprint2.Player
         public void SwordAttack() //move internal code to state, have a timer to prevent sword spam
         {
             state.SwordAttack();
-        }
-
-        public void RegBoomerangAttack()
-        {
-            //Create a new boomerang moving the direction given at 3 pixels per tick.
-            switch (facing) {
-                case direction.right:
-                    projectile.NewBoomerang(position, 3 * new Vector2(1, 0));
-                    break;
-                case direction.left:
-                    projectile.NewBoomerang(position, 3 * new Vector2(-1, 0));
-                    break;
-                case direction.down:
-                    projectile.NewBoomerang(position, 3 * new Vector2(0, 1));
-                    break;
-                case direction.up:
-                    projectile.NewBoomerang(position, 3 * new Vector2(0, -1));
-                    break;
-            }
-        }
-
-        public void BlueBoomerangAttack()
-        {
-            //Create a new boomerang moving the direction given at 3 pixels per tick.
-            switch (facing) {
-                case direction.right:
-                    projectile.NewBlueBoomerang(position, 6 * new Vector2(1, 0));
-                    break;
-                case direction.left:
-                    projectile.NewBlueBoomerang(position, 6 * new Vector2(-1, 0));
-                    break;
-                case direction.down:
-                    projectile.NewBlueBoomerang(position, 6 * new Vector2(0, 1));
-                    break;
-                case direction.up:
-                    projectile.NewBlueBoomerang(position, 6 * new Vector2(0, -1));
-                    break;
-
-            }
-        }
-
-        public void RegArrowAttack()
-        {
-            //Create a new boomerang moving the direction given at 3 pixels per tick.
-            projectile.NewRegArrow(position, 6 * new Vector2(1, 0), facing);
-
-        }
-
-        public void BlueArrowAttack()
-        {
-            //Create a new boomerang moving the direction given at 3 pixels per tick.
-            projectile.NewBlueArrow(position, 6 * new Vector2(1, 0), facing);
-
-        }
-
-        public void BombAttack()
-        {
-            //Create a new bomb
-            switch (facing) {
-                case direction.right:
-                    projectile.NewBomb(new Vector2(position.X + sprite.SourceRect[sprite.CurrentFrame].Width * 2, position.Y));
-                    break;
-                case direction.left:
-                    projectile.NewBomb(new Vector2(position.X - sprite.SourceRect[sprite.CurrentFrame].Width, position.Y));
-                    break;
-                case direction.down:
-                    projectile.NewBomb(new Vector2(position.X , position.Y + sprite.SourceRect[sprite.CurrentFrame].Height * 2));
-                    break;
-                case direction.up:
-                    projectile.NewBomb(new Vector2(position.X, position.Y - sprite.SourceRect[sprite.CurrentFrame].Height * 2));
-                    break;
-
-            }
-
-        }
-
-        public void FireAttack()
-        {
-            //Create a new boomerang moving the direction given at 3 pixels per tick.
-            switch (facing) {
-                case direction.right:
-                    projectile.NewFire(position, 6 * new Vector2(1, 0));
-                    break;
-                case direction.left:
-                    projectile.NewFire(position, 6 * new Vector2(-1, 0));
-                    break;
-                case direction.down:
-                    projectile.NewFire(position, 6 * new Vector2(0, 1));
-                    break;
-                case direction.up:
-                    projectile.NewFire(position, 6 * new Vector2(0, -1));
-                    break;
-
-            }
         }
     }
     

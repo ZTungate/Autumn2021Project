@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using static Sprint0.Projectiles.ProjectileConstants;
 
 namespace Sprint2.Player
 {
@@ -10,13 +11,14 @@ namespace Sprint2.Player
         private ISprite mySprite;
 
         private int stateTime;
-        public RightItemUsingLinkState(ILink Link, ISprite sprite)
-		{
+        public RightItemUsingLinkState(ILink Link, ISprite sprite, ProjectileTypes item)
+        {
             link = Link;
             mySprite = new RightUseItemLinkSprite(sprite.Texture, Link);
             link.sprite = mySprite;
             stateTime = 300; //300 miliseconds of time to be throwing the projectile
             link.facing = direction.right;
+            Attack(item);
         }
 
         public void TakeDamage()
@@ -39,7 +41,7 @@ namespace Sprint2.Player
             }
         }
 
-        public void UseItem()
+        public void UseItem(ProjectileTypes item)
         {
             //Link is already using an item, do nothing.
         }
@@ -50,6 +52,33 @@ namespace Sprint2.Player
         public void Move(direction direction)
         {
             //Link can not move while throwing an item.
+        }
+
+        private void Attack(ProjectileTypes item)
+        {
+            Vector2 directionVector = new Vector2(1, 0);
+            switch (item)
+            {
+                //Spawn the relevant projectile moving downwards.
+                case ProjectileTypes.redArrow:
+                    link.ProjectileFactory.NewRegArrow(link.position, direction.right);
+                    break;
+                case ProjectileTypes.blueArrow:
+                    link.ProjectileFactory.NewBlueArrow(link.position, direction.right);
+                    break;
+                case ProjectileTypes.linkBoomerang:
+                    link.ProjectileFactory.NewBoomerang(link.position, RegBoomerangVelocity * directionVector);
+                    break;
+                case ProjectileTypes.blueBoomerang:
+                    link.ProjectileFactory.NewBlueBoomerang(link.position, BlueBoomerangVelocity * directionVector);
+                    break;
+                case ProjectileTypes.fire:
+                    link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
+                    break;
+                case ProjectileTypes.bomb:
+                    link.ProjectileFactory.NewBomb(new Vector2(link.position.X + link.sprite.SourceRect[link.sprite.CurrentFrame].Width * 2, link.position.Y));
+                    break;
+            }
         }
     }
 }

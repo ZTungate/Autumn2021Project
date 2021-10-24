@@ -1,8 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint2.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static Sprint0.Projectiles.ProjectileConstants;
 
 namespace Sprint2.Player
 {
@@ -15,25 +17,14 @@ namespace Sprint2.Player
         public ISprite sprite { get; set; }
         public Color color {get;set;}
         public direction facing { get; set; }
+        public ProjectileFactory ProjectileFactory { get;  set; }
 
         enum Direction { };
         void takeDamage();
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
-        void move(Vector2 moveDirection);
-
-
+        void Move(Vector2 moveDirection);
+        void UseItem(ProjectileTypes item);
         void SwordAttack();
-        void RegBoomerangAttack();
-        void BlueBoomerangAttack();
-        void RegArrowAttack();
-        void BlueArrowAttack();
-        void BombAttack();
-        void FireAttack();
-        /*void moveUp(float speed);
-        void moveRight(float speed);
-        void moveLeft(float speed);
-        void moveDown(float speed);*/
-
     }
 }

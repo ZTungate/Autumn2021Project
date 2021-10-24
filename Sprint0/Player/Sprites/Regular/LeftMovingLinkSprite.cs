@@ -36,7 +36,7 @@ namespace Sprint2.Player
         {
             // Implement animation changes here
 
-            player.move(new Vector2(-SpriteSpeed, 0));
+            player.Move(new Vector2(-SpriteSpeed, 0));
 
             //Animate the sprites (pulled from animatedStillSprite.cs)
             if (Timer > Interval)
