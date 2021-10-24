@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Player;
 using System;
+using static Sprint0.Projectiles.ProjectileConstants;
 
 namespace Sprint2.Player
 {
@@ -15,8 +17,7 @@ namespace Sprint2.Player
             link = Link;
             mySprite = new UpSwordLinkSprite(sprite.Texture, Link);
             link.sprite = mySprite;
-            stateTime = 300; //300 miliseconds of time to be throwing the projectile
-            link.facing = direction.up; 
+            stateTime = LinkConstants.swordAttackTime;
         }
 
         public void TakeDamage()
@@ -39,10 +40,9 @@ namespace Sprint2.Player
             }
         }
 
-        public void UseItem()
+        public void UseItem(ProjectileTypes item)
         {
-            //Create a new item using state if an item is used before this one is done.
-            link.state = new UpItemUsingLinkState(link, mySprite);
+            //Link is already attacking, do nothing.
         }
 
         public void SwordAttack()
@@ -52,26 +52,7 @@ namespace Sprint2.Player
 
         public void Move(direction direction)
         {
-            //No moving during item/sword usage?
-            /*switch (direction)
-            {
-                case direction.down:
-                    //Change to down idles tate if told to move down.
-                    link.state = new DownIdleLinkState(link, mySprite);
-                    break;
-                case direction.right:
-                    //Change to a right idle state if told to move right.
-                    link.state = new RightIdleLinkState(link, mySprite);
-                    break;
-                case direction.left:
-                    //Change to a left idle state if told to move left.
-                    link.state = new LeftIdleLinkState(link, mySprite);
-                    break;
-                case direction.up:
-                    //Change to an up Moving state if told to move up.
-                    link.state = new UpMovingLinkState(link, mySprite);
-                    break;
-            }*/
+            //Link can not move while attacking. Do nothing.
         }
     }
 }

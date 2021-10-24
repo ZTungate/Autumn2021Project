@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using static Sprint0.Projectiles.ProjectileConstants;
+
 namespace Sprint2.Player
 {
 	public interface ILinkState //Trying to implement using state pattern, NOT state machine
@@ -8,7 +10,7 @@ namespace Sprint2.Player
 	{
 		void Update(GameTime gameTime);
 		void TakeDamage();
-		void UseItem();
+		void UseItem(ProjectileTypes item);
 		void SwordAttack();
 		void Move(direction direction);
 

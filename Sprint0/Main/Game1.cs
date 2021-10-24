@@ -72,7 +72,10 @@ namespace Sprint2
             };
 
             //Initialize Player (Link)
-            link = new Link(projectileFactory);
+            link = new Link
+            {
+                ProjectileFactory = projectileFactory
+            };
 
             //Temorary variable for item location
             Point itemPos = new Point(300, 100);
@@ -203,7 +206,7 @@ namespace Sprint2
 
         public void Reset()
         {
-            link = new Link(projectileFactory);
+            link = new Link();
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
             blockSpriteFactory.Reset();
             currentBlock = blockSpriteFactory.CurrentSprite();

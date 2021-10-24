@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using static Sprint0.Projectiles.ProjectileConstants;
 
 namespace Sprint2.Player
 {
@@ -13,7 +14,6 @@ namespace Sprint2.Player
             link = Link;
             mySprite = new UpIdleLinkSprite(sprite.Texture, link);
             link.sprite = mySprite;
-            link.facing = direction.up;
         }
 
         public void TakeDamage()
@@ -27,10 +27,9 @@ namespace Sprint2.Player
             //Nothing needs updated in an idle state?
         }
 
-        public void UseItem()
+        public void UseItem(ProjectileTypes item)
         {
-            //Change link to an item using state.
-            link.state = new UpItemUsingLinkState(link, mySprite);
+            link.state = new UpItemUsingLinkState(link, mySprite, item);
         }
 
         public void SwordAttack()
