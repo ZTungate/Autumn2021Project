@@ -10,11 +10,11 @@ namespace Sprint0.Collisions
         public bool IsCollision { get; set; }
         public ColDirections direction { get; set; }
 
-        public IBlocks block1 { get; set; }
+        public IBlock block1 { get; set; }
 
-        public IBlocks block2 { get; set; }
+        public IBlock block2 { get; set; }
 
-        public B2BCollision(ColDirections direction, bool IsCollision, IBlocks block1, IBlocks block2)
+        public B2BCollision(ColDirections direction, bool IsCollision, IBlock block1, IBlock block2)
         {
             this.direction = direction;
             this.IsCollision = IsCollision;

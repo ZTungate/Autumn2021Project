@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Blocks
 {
-    public class BlackBoxSprite : IBlocks
+    public class BlackBoxSprite : IBlock
     {
         public Texture2D Texture { get; set; }
         public Rectangle sourceRect { get; set; }

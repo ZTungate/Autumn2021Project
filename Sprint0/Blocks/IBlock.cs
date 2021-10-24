@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Sprint2.Blocks
 {
-    public interface IBlocks //rename to IBlock?
+    public interface IBlock //rename to IBlock?
     {
         Texture2D Texture { get; set; } //may have this as a private field (does it need to be externally referenced?)
 

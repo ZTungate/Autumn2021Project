@@ -41,7 +41,7 @@ namespace Sprint0.Levels
 
                     object instance = Activator.CreateInstance(objectType, objectParams);
 
-                    tempLevel.AddBlock(new Point(x, y), (IBlocks)instance);
+                    tempLevel.AddBlock(new Point(x, y), (IBlock)instance);
                 }
                 reader.Close();
             }

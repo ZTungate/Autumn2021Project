@@ -38,7 +38,7 @@ namespace Sprint0.Collisions
             return location;
         }
         //heavilly overloaded to check collisions
-        public ICollision detectCollision(IBlocks object1, IBlocks object2) //returns B2B Collision
+        public ICollision detectCollision(IBlock object1, IBlock object2) //returns B2B Collision
         {
             Rectangle one = object1.destRect;
             Rectangle two = object2.destRect;
@@ -57,7 +57,7 @@ namespace Sprint0.Collisions
             return collision;
         }
 
-        public ICollision detectCollision(IEnemy object1, IBlocks object2) //Collisions between enemies similar logic different set up due to differences
+        public ICollision detectCollision(IEnemy object1, IBlock object2) //Collisions between enemies similar logic different set up due to differences
         {
             Vector2 holder1 = object1.Position;
             
@@ -90,7 +90,7 @@ namespace Sprint0.Collisions
             return collision;
         }
 
-        public ICollision detectCollision(ILink object1, IBlocks object2) //Collisions between enemies similar logic different set up due to differences
+        public ICollision detectCollision(ILink object1, IBlock object2) //Collisions between enemies similar logic different set up due to differences
         {
             Vector2 holder1 = object1.position;
 
@@ -101,7 +101,7 @@ namespace Sprint0.Collisions
             return collision;
         }
 
-            public ICollision detectCollision(IBlocks object1, ILink object2) //Collisions between enemies similar logic different set up due to differences
+            public ICollision detectCollision(IBlock object1, ILink object2) //Collisions between enemies similar logic different set up due to differences
             {
                 Vector2 holder1 = object2.position;
 
@@ -183,7 +183,7 @@ namespace Sprint0.Collisions
             Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * 2, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * 2);
             Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * 2, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * 2);
 
-            ICollision collision = new GenCollision(directionDetect(one, two), one.Intersects(two));
+            ICollision collision = new P2PCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
 
             return collision;
         }
@@ -195,12 +195,25 @@ namespace Sprint0.Collisions
             Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * 2, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * 2);
             Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * 2, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * 2);
             
-            ICollision collision = new GenCollision(directionDetect(one, two), one.Intersects(two));
+            ICollision collision = new P2LCollision(directionDetect(one, two), one.Intersects(two), object2, object1);
 
             return collision;
         }
 
-        public ICollision detectCollision(IBlocks object1, IProjectile object2) //Collisions between enemies similar logic different set up due to differences
+        public ICollision detectCollision(IProjectile object1, ILink object2) //Collisions between enemies similar logic different set up due to differences
+        {
+            Vector2 holder1 = object1.Position;
+            Vector2 holder2 = object2.position;
+
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * 2, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * 2);
+            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * 2, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * 2);
+
+            ICollision collision = new P2LCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
+
+            return collision;
+        }
+
+        public ICollision detectCollision(IBlock object1, IProjectile object2) //Collisions between enemies similar logic different set up due to differences
         {
             
             Vector2 holder2 = object2.Position;

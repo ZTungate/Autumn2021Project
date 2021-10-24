@@ -33,9 +33,9 @@ namespace Sprint0.Collisions
 
         public ILink Link1 { get; set; }
 
-        public IBlocks block2 { get; set; }
+        public IBlock block2 { get; set; }
 
-        public L2BCollision(ColDirections direction, bool IsCollision, ILink Link1, IBlocks Block2)
+        public L2BCollision(ColDirections direction, bool IsCollision, ILink Link1, IBlock Block2)
         {
             this.direction = direction;
             this.IsCollision = IsCollision;

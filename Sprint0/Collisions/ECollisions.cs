@@ -14,9 +14,9 @@ namespace Sprint0.Collisions
 
         public IEnemy enemy1 { get; set; }
 
-        public IBlocks block2 { get; set; }
+        public IBlock block2 { get; set; }
 
-        public E2BCollision(ColDirections direction, bool IsCollision, IEnemy enemy1, IBlocks block2)
+        public E2BCollision(ColDirections direction, bool IsCollision, IEnemy enemy1, IBlock block2)
         {
             this.direction = direction;
             this.IsCollision = IsCollision;

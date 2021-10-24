@@ -14,26 +14,26 @@ namespace Sprint0.Levels
     class Level
     {
         Point location;
-        Dictionary<Point, IBlocks> blocks;
+        Dictionary<Point, IBlock> blocks;
         List<IEnemy> enemies;
         List<IItem> items;
         ILink link;
         public Level(ILink link, Point location)
         {
             this.location = location;
-            blocks = new Dictionary<Point, IBlocks>();
+            blocks = new Dictionary<Point, IBlock>();
             enemies = new List<IEnemy>();
             items = new List<IItem>();
             this.link = link;
         }
         public void Draw(SpriteBatch batch)
         {
-            foreach(KeyValuePair<Point,IBlocks> entry in blocks)
+            foreach(KeyValuePair<Point,IBlock> entry in blocks)
             {
                 entry.Value.Draw(batch);
             }
         }
-        public bool AddBlock(Point p, IBlocks block)
+        public bool AddBlock(Point p, IBlock block)
         {
             return blocks.TryAdd(p, block);
         }
