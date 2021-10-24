@@ -11,9 +11,12 @@ using Sprint2.Projectiles;
 
 namespace Sprint0.Collisions
 {
-    class CollisionDetection
+    public class CollisionDetection
     {
+        public CollisionDetection()
+        {
 
+        }
         private ColDirections directionDetect(Rectangle one, Rectangle two)
         {
             Rectangle Overlap = Rectangle.Intersect(one, two);
