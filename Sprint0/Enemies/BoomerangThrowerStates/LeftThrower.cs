@@ -13,8 +13,12 @@ namespace Sprint2.Enemies
         private IEnemy thrower;
         public LeftThrower(ISprite sprite, IEnemy enemy)
         {
-            thrower = enemy;
+            //Get the sprite and enemy passed in, and the position of the enemy
             mySprite = sprite;
+            mySprite.Position = enemy.Position;
+            thrower = enemy;
+            //Set the enemy's sprite to this state's sprite.
+            thrower.Sprite = mySprite;
         }
 
         public void TurnDown()

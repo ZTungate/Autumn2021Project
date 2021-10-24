@@ -32,9 +32,6 @@ namespace Sprint2.Enemies
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new LeftThrowerSprite(texture);
-            //manually assign the sprite for leftThrower (leftthrower can't since it is the default.)
-            thrower.Sprite = mySprite;
-            thrower.Sprite.Position = thrower.Position;
             thrower.State = new LeftThrower(mySprite, thrower);
         }
 
