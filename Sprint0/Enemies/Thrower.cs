@@ -84,7 +84,7 @@ namespace Sprint2.Enemies
         public Thrower(ProjectileFactory projectileFactory)
         {
             //Default a new thrower as a left thrower
-            currState = new LeftThrower(mySprite, this);
+            currState = new InitialThrower(mySprite, this);
             //Assign an arbitrary starting positon for the thrower
             pos = new Vector2(500, 300);
             //Pass the projectile handler in
