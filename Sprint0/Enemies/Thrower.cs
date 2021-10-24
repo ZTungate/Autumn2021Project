@@ -18,6 +18,9 @@ namespace Sprint2.Enemies
         public IEnemyState currState;
         //Projectile controller
         ProjectileFactory projectiles;
+        //Sprite Factory
+        EnemySpriteFactory spriteFactory;
+
         //Timer for throwing projectiles and waiting to update while the boomerang is out.
         int wait = 0;
         int throwDelay = 4000;
@@ -28,7 +31,7 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
-        ISprite IEnemy.Sprite 
+        ISprite IEnemy.Sprite
         {
             get => mySprite;
             set => mySprite = value;
@@ -39,7 +42,17 @@ namespace Sprint2.Enemies
             //Return boomerangThrower as type if requested
             get => EnemyTypes.Thrower;
         }
-
+        public Thrower(ProjectileFactory projectileFactory, EnemySpriteFactory spriteFactory)
+        {
+            //Default a new thrower as a left thrower
+            currState = new InitialThrower(mySprite, this);
+            //Assign an arbitrary starting positon for the thrower
+            pos = new Vector2(500, 300);
+            //Pass the projectile handler in
+            projectiles = projectileFactory;
+            this.spriteFactory = spriteFactory;
+            mySprite = spriteFactory.CreateThrowerSprite();
+        }
         void IEnemy.Update(GameTime gameTime)
         {
             //Only update the sprite and movement if we are not waiting for the boomerang to return.
@@ -76,16 +89,8 @@ namespace Sprint2.Enemies
                 wait -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
-        
-        public Thrower(ProjectileFactory projectileFactory)
-        {
-            //Default a new thrower as a left thrower
-            currState = new LeftThrower(mySprite, this);
-            //Assign an arbitrary starting positon for the thrower
-            pos = new Vector2(500, 300);
-            //Pass the projectile handler in
-            projectiles = projectileFactory;
-        }
+
+
 
         private void RandomMove()
         {
@@ -94,27 +99,27 @@ namespace Sprint2.Enemies
             int value = rand.Next(10);
 
             //Change directions or move based on the random number
-            if(value == 0)
+            if (value == 0)
             {
-                currState = new UpThrower(mySprite, this);
-                currState.TurnUp();
+                /*                currState.TurnUp();*/
+                currState = new UpThrower(this);
             }
-            else if(value == 1)
+            else if (value == 1)
             {
-                currState = new DownThrower(mySprite, this);
-                currState.TurnDown();
+                /*                currState.TurnDown();*/
+                currState = new DownThrower(this);
             }
-            else if(value == 2)
+            else if (value == 2)
             {
-                currState = new RightThrower(mySprite, this);
-                currState.TurnRight();
+                /*                currState.TurnRight();*/
+                currState = new RightThrower(this);
             }
-            else if(value == 3)
+            else if (value == 3)
             {
-                currState = new LeftThrower(mySprite, this);
-                currState.TurnLeft();
+                /*                currState.TurnLeft();*/
+                currState = new LeftThrower(this);
             }
-            else 
+            else
             {
                 currState.MoveForward();
             }

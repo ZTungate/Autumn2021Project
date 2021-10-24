@@ -9,43 +9,40 @@ namespace Sprint2.Enemies
 {
     public class DownThrower : IEnemyState
     {
-        private ISprite mySprite;
+        /*        private ISprite mySprite;*/
         private IEnemy thrower;
-        public DownThrower(ISprite sprite, IEnemy enemy)
+        public DownThrower(IEnemy enemy)
         {
-            //Get the sprite and enemy passed in, and the position of the enemy
-            mySprite = sprite;
-            mySprite.Position = enemy.Position;
-            thrower = enemy;
-            //Set the enemy's sprite to this state's sprite.
-            thrower.Sprite = mySprite;
+            enemy.Sprite = new DownThrowerSprite(enemy.Sprite.Texture); //Set the enemy's sprite to this state's sprite.
+            enemy.Sprite.Position = enemy.Position;                     //Set the enemy's sprite position to the enemy's position
+            thrower = enemy;                                            //update state's enemy to match the actual enemy
         }
 
-        public void TurnDown()
-        {
-            //No implementation needed
-        }
+        /* public void TurnDown()
+         {
+             //No implementation needed
+         }
 
-        public void TurnLeft()
-        {
-            Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new LeftThrowerSprite(texture);
-            //manually assign the sprite for leftThrower (leftthrower can't since it is the default.)
-            thrower.Sprite = mySprite;
-            thrower.Sprite.Position = thrower.Position;
-        }
+         public void TurnLeft()
+         {
+             Texture2D texture = thrower.Sprite.Texture;
+             mySprite = new LeftThrowerSprite(texture);
+             //manually assign the sprite for leftThrower (leftthrower can't since it is the default.)
+             thrower.Sprite = mySprite;
+             thrower.Sprite.Position = thrower.Position;
+         }
 
-        public void TurnRight()
-        {
-            Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new RightThrowerSprite(texture);
-        }
+         public void TurnRight()
+         {
+             Texture2D texture = thrower.Sprite.Texture;
+             mySprite = new RightThrowerSprite(texture);
+         }
 
-        public void TurnUp()
-        {
-            Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new UpThrowerSprite(texture);
-        }
+         public void TurnUp()
+         {
+             Texture2D texture = thrower.Sprite.Texture;
+             mySprite = new UpThrowerSprite(texture);
+         }*/
         public void MoveForward()
         {
             //Get the current position of the thrower
@@ -62,7 +59,7 @@ namespace Sprint2.Enemies
         }
         public void Update(GameTime gameTime, ISprite enemySprite)
         {
-            //mySprite = enemySprite;
+            thrower.Sprite = enemySprite;
         }
     }
 }

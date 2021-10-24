@@ -9,43 +9,40 @@ namespace Sprint2.Enemies
 {
     public class UpThrower : IEnemyState
     {
-        private ISprite mySprite;
+        /*private ISprite mySprite;*/
         private IEnemy thrower;
-        public UpThrower(ISprite sprite, IEnemy enemy)
+        public UpThrower(IEnemy enemy)
         {
-            //Get the sprite and enemy passed in, and the position of the enemy
-            mySprite = sprite;
-            mySprite.Position = enemy.Position;
-            thrower = enemy;
-            //Set the enemy's sprite to this state's sprite.
-            thrower.Sprite = mySprite;
+            enemy.Sprite = new UpThrowerSprite(enemy.Sprite.Texture);   //Set the enemy's sprite to this state's sprite.
+            enemy.Sprite.Position = enemy.Position;                     //Set the enemy's sprite position to the enemy's position
+            thrower = enemy;                                            //update state's enemy to match the actual enemy
         }
 
-        public void TurnDown()
-        {
-            Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new DownThrowerSprite(texture);
-        }
+        /* public void TurnDown()
+         {
+             Texture2D texture = thrower.Sprite.Texture;
+             mySprite = new DownThrowerSprite(texture);
+         }
 
-        public void TurnLeft()
-        {
-            Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new LeftThrowerSprite(texture);
-            //manually assign the sprite for leftThrower (leftthrower can't since it is the default.)
-            thrower.Sprite = mySprite;
-            thrower.Sprite.Position = thrower.Position;
-        }
+         public void TurnLeft()
+         {
+             Texture2D texture = thrower.Sprite.Texture;
+             mySprite = new LeftThrowerSprite(texture);
+             //manually assign the sprite for leftThrower (leftthrower can't since it is the default.)
+             thrower.Sprite = mySprite;
+             thrower.Sprite.Position = thrower.Position;
+         }
 
-        public void TurnRight()
-        {
-            Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new RightThrowerSprite(texture);
-        }
+         public void TurnRight()
+         {
+             Texture2D texture = thrower.Sprite.Texture;
+             mySprite = new RightThrowerSprite(texture);
+         }
 
-        public void TurnUp()
-        {
-            //Already facing up, no implementation required.
-        }
+         public void TurnUp()
+         {
+             //Already facing up, no implementation required.
+         }*/
 
         public void MoveForward()
         {
@@ -63,7 +60,7 @@ namespace Sprint2.Enemies
         }
         public void Update(GameTime gameTime, ISprite enemySprite)
         {
-            mySprite = enemySprite;
+            thrower.Sprite = enemySprite;
         }
     }
 }
