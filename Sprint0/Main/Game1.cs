@@ -21,6 +21,7 @@ namespace Sprint2
 
         public CollisionDetection detector = new CollisionDetection();
         public ICollision collision;
+        public CollisionHandler handler;
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
@@ -67,7 +68,7 @@ namespace Sprint2
             controllerList = new List<IController>()
             {
                 new KeyboardController(this),
-                new MouseController(this),
+                new MouseController(this)
             };
 
             //Initialize Player (Link)
@@ -101,6 +102,9 @@ namespace Sprint2
                 new OldMan(),
                 new Thrower(projectileFactory),
             };
+
+            handler = new CollisionHandler(this);
+
 
             base.Initialize();
         }
@@ -148,6 +152,9 @@ namespace Sprint2
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
+
+            //TODO: poop
+            handler.Update();
             
             //Update Link
             link.Update(gameTime);
