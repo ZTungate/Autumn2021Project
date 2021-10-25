@@ -69,19 +69,19 @@ namespace Sprint2.Enemies
 
             if (i == 0)
             {
-                newPosition.X += 5;
+                newPosition.X += EnemyConstants.skeletonMoveSpeed;
             }
             else if (i == 1)
             {
-                newPosition.Y += 5;
+                newPosition.Y += EnemyConstants.skeletonMoveSpeed;
             }
             else if (i == 2)
             {
-                newPosition.X -= 5;
+                newPosition.X -= EnemyConstants.skeletonMoveSpeed;
             }
             else
             {
-                newPosition.Y -= 5;
+                newPosition.Y -= EnemyConstants.skeletonMoveSpeed;
             }
             return newPosition;
 

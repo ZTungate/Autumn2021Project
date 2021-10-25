@@ -49,7 +49,7 @@ namespace Sprint2.Enemies
             //Get the current position of the thrower
             Vector2 newPos = thrower.Position;
             //Move the thrower the relevant direction to the current state.
-            newPos.X -= 5;
+            newPos.X -= EnemyConstants.throwerMoveSpeed;
             //Set the thrower's position to the new pos.
             thrower.Position = newPos;
         }

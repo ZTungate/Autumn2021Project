@@ -78,22 +78,22 @@ namespace Sprint2.Enemies
             if (i == 0)
             {
                 //Move right if i = 0
-                newPosition.X += 5;
+                newPosition.X += EnemyConstants.slimeMoveSpeed;
             }
             else if (i == 1)
             {
                 //Move up if i = 1
-                newPosition.Y += 5;
+                newPosition.Y += EnemyConstants.slimeMoveSpeed;
             }
             else if (i == 2)
             {
                 //Move left if i = 2
-                newPosition.X -= 5;
+                newPosition.X -= EnemyConstants.slimeMoveSpeed;
             }
             else if (i == 3)
             {
                 //Move down if i = 3
-                newPosition.Y -= 5;
+                newPosition.Y -= EnemyConstants.slimeMoveSpeed;
             }
             //If i = 4, do nothing, the slime can stand still.
             return newPosition;

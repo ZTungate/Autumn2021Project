@@ -91,11 +91,11 @@ namespace Sprint2.Enemies
             //1/3 chance to move forwards, 1/3 chance to move back, and 1/3 chance to do nothing.
             if (val == 0)
             {
-                newPosition.X += 5;
+                newPosition.X += EnemyConstants.dragonMoveSpeed;
             }
             else if (val == 1)
             {
-                newPosition.X -= 5;
+                newPosition.X -= EnemyConstants.dragonMoveSpeed;
             }
                 return newPosition;
         }

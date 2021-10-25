@@ -68,26 +68,26 @@ namespace Sprint2.Enemies
             if (i == 0)
             {
                 //Move right/Up if i = 0
-                newPosition.X += 3;
-                newPosition.Y += 3;
+                newPosition.X += EnemyConstants.batMoveSpeed;
+                newPosition.Y += EnemyConstants.batMoveSpeed;
             }
             else if (i == 1)
             {
                 //Move right/down if i = 1
-                newPosition.X += 3;
-                newPosition.Y -= 3;
+                newPosition.X += EnemyConstants.batMoveSpeed;
+                newPosition.Y -= EnemyConstants.batMoveSpeed;
             }
             else if (i == 2)
             {
                 //Move left/up if i = 2
-                newPosition.X -= 3;
-                newPosition.Y += 3;
+                newPosition.X -= EnemyConstants.batMoveSpeed;
+                newPosition.Y += EnemyConstants.batMoveSpeed;
             }
             else if (i == 3)
             {
                 //Move left/down if i = 3
-                newPosition.X -= 3;
-                newPosition.Y -= 3;
+                newPosition.X -= EnemyConstants.batMoveSpeed;
+                newPosition.Y -= EnemyConstants.batMoveSpeed;
             }
             //Return the modified position.
             return newPosition;

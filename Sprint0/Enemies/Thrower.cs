@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Helpers;
 using Sprint2.Projectiles;
 using Sprint2;
 using System;
