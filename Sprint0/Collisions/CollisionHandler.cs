@@ -86,6 +86,18 @@ namespace Sprint0.Collisions
                 }
             }
 
+            Rectangle[] bounds = myGame.GetDungeon().GetCurrentLevel().GetBoundsAsArray();
+            foreach(Rectangle rectangle in bounds)
+            {
+                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, rectangle);
+                System.Diagnostics.Debug.WriteLine(rectangle);
+                if (boundLink.IsCollision)
+                {
+                    System.Diagnostics.Debug.WriteLine("Collision!");
+                    myLink.position = myLink.oldPosition;
+                }
+            }
+
             //handle block projectile collision
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                 //foreach (IBlock block in myLevel.blocks) {

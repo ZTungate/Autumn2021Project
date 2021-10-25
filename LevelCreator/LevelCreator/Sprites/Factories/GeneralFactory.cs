@@ -13,6 +13,7 @@ namespace LevelCreator.Sprites.Factories
         ISprite background;
         ISprite textFieldSprite;
         ISprite buttonSprite;
+        Texture2D whiteSquare;
         SpriteFont font;
         Dictionary<string, Texture2D> spriteSheets = new Dictionary<string, Texture2D>();
         public Texture2D GetSpriteSheet(string name)
@@ -29,6 +30,8 @@ namespace LevelCreator.Sprites.Factories
             spriteSheets.Add("ENEMYSPRITESHEET", content.Load<Texture2D>("EnemySpriteSheet"));
             spriteSheets.Add("BOSSSPRITESHEET", content.Load<Texture2D>("BossSpriteSheet"));
             spriteSheets.Add("ITEMSPRITESHEET", content.Load<Texture2D>("ItemSpriteSheet"));
+
+            whiteSquare = content.Load<Texture2D>("WhiteSquare");
 
 
             buttonSprite = new ConcreteSprite(content.Load<Texture2D>("BlockSpriteSheet"), new Rectangle(0,0,1,1), Color.White);
@@ -54,6 +57,10 @@ namespace LevelCreator.Sprites.Factories
         public ISprite GetButtonSprite()
         {
             return this.buttonSprite;
+        }
+        public Texture2D GetWhiteSquare()
+        {
+            return this.whiteSquare;
         }
     }
 }

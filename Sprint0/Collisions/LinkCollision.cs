@@ -5,6 +5,7 @@ using Sprint2.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace Sprint0.Collisions
 {
@@ -41,6 +42,24 @@ namespace Sprint0.Collisions
             this.IsCollision = IsCollision;
             this.Link1 = Link1;
             this.block2 = Block2;
+        }
+    }
+
+    class L2RCollision : ICollision
+    {
+        public bool IsCollision { get; set; }
+        public ColDirections direction { get; set; }
+
+        public ILink Link1 { get; set; }
+
+        public Rectangle rectangle2 { get; set; }
+
+        public L2RCollision(ColDirections direction, bool IsCollision, ILink Link1, Rectangle rectangle2)
+        {
+            this.direction = direction;
+            this.IsCollision = IsCollision;
+            this.Link1 = Link1;
+            this.rectangle2 = rectangle2;
         }
     }
 

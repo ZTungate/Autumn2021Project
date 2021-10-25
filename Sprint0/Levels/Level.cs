@@ -19,6 +19,7 @@ namespace Sprint0.Levels
         public Dictionary<Point, IBlock> blocks;
         List<IEnemy> enemies;
         List<IItem> items;
+        List<Rectangle> boundingBoxList;
         ILink link;
         public Level(ILink link, Point location)
         {
@@ -27,7 +28,12 @@ namespace Sprint0.Levels
             blocks = new Dictionary<Point, IBlock>();
             enemies = new List<IEnemy>();
             items = new List<IItem>();
+            boundingBoxList = new List<Rectangle>();
             this.link = link;
+        }
+        public Rectangle[] GetBoundsAsArray()
+        {
+            return this.boundingBoxList.ToArray();
         }
         public void UpdateContentPosition(Point p)
         {
@@ -83,6 +89,30 @@ namespace Sprint0.Levels
         public Point GetPosition()
         {
             return this.location;
+        }
+        public void AddNewBoundingBox(Point p1, Point p2)
+        {
+            int width = p2.X - p1.X;
+            int height = p2.Y - p1.Y;
+            if(width == 0)
+            {
+                width = 5;
+            }
+            if (height == 0)
+            {
+                height = 5;
+            }
+            if(width < 0)
+            {
+                p1 = p2;
+                width = -width;
+            }
+            if(height < 0)
+            {
+                p1 = p2;
+                height = -height;
+            }
+            this.boundingBoxList.Add(new Rectangle(p1.X, p1.Y, width, height));
         }
         public bool AddBlock(Point p, IBlock block)
         {

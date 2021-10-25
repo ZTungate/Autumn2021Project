@@ -6,3 +6,5 @@ Level4:-1,0
 MoveableLevel:0,-1
 ItemLevel:-1,1
 EnemyLevel:-2,0
+BoundingLevel:0,-2
+OneBound:0,1

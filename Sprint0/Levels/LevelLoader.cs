@@ -35,7 +35,6 @@ namespace Sprint0.Levels
                 XmlReader reader = XmlReader.Create(File.OpenRead(fileName), settings);
                 reader.ReadToDescendant("root");
                 string levelName = reader.GetAttribute("xmlns");
-                System.Diagnostics.Debug.WriteLine(levelName);
 
                 while (reader.Read())
                 {
@@ -73,7 +72,6 @@ namespace Sprint0.Levels
                     }
                     if (reader.IsStartElement() && reader.Name == "Item")
                     {
-                        System.Diagnostics.Debug.Write("Item: ");
                         reader.ReadToDescendant("Object");
                         string itemName = reader.ReadElementContentAsString();
                         itemName += "Item";
@@ -104,7 +102,6 @@ namespace Sprint0.Levels
                     }
                     if (reader.IsStartElement() && reader.Name == "Enemy")
                     {
-                        System.Diagnostics.Debug.Write("Enemy: ");
                         reader.ReadToDescendant("Object");
                         string enemyName = reader.ReadElementContentAsString();
 
@@ -134,6 +131,31 @@ namespace Sprint0.Levels
                         EnemyConstants.scaleY = scaleY;
 
                         newLevel.AddEnemy(enemy);
+                    }
+                    if (reader.IsStartElement() && reader.Name == "Bound")
+                    {
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+
+                        reader.ReadToDescendant("Start");
+                        reader.MoveToContent();
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int startX = (int)(int.Parse(xString) * scaleX);
+                        int startY = (int)(int.Parse(yString) * scaleY);
+
+                        reader.ReadToDescendant("End");
+                        reader.MoveToContent();
+                        location = reader.ReadElementContentAsString();
+                        commaLoc = location.IndexOf(",");
+                        xString = location.Substring(0, commaLoc);
+                        yString = location.Substring(commaLoc + 1);
+                        int endX = (int)(int.Parse(xString) * scaleX);
+                        int endY = (int)(int.Parse(yString) * scaleY);
+
+                        newLevel.AddNewBoundingBox(new Point(startX, startY), new Point(endX, endY));
                     }
                     reader.MoveToElement();
                 }

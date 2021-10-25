@@ -18,6 +18,7 @@ namespace LevelCreator
         Dictionary<Point, LevelObject> blocks;
         List<LevelObject> enemies;
         List<LevelObject> items;
+        List<LineSprite> bounds;
         public Level(string levelName)
         {
             background = GeneralFactory.instance.GetBackground();
@@ -25,6 +26,7 @@ namespace LevelCreator
             blocks = new Dictionary<Point, LevelObject>();
             items = new List<LevelObject>();
             enemies = new List<LevelObject>();
+            bounds = new List<LineSprite>();
         }
         public void Draw(SpriteBatch batch)
         {
@@ -42,6 +44,18 @@ namespace LevelCreator
             {
                 levelObject.Draw(batch);
             }
+            foreach(LineSprite line in bounds)
+            {
+                line.Draw(batch, new Rectangle(0, 0, 4, 0));
+            }
+        }
+        public List<LineSprite> GetBoundList()
+        {
+            return this.bounds;
+        }
+        public void AddBound(LineSprite bound)
+        {
+            this.bounds.Add(bound);
         }
         public void AddItem(LevelObject item)
         {
@@ -120,7 +134,7 @@ namespace LevelCreator
             {
                 writer.WriteStartElement(null, "Item", null);
                 writer.WriteElementString("Object", item.GetInfo().GetName());
-                writer.WriteElementString("Location", item.GetX()/3 + "," + item.GetY()/3);
+                writer.WriteElementString("Location", item.GetX() / 3 + "," + item.GetY() / 3);
                 writer.WriteElementString("Conditions", " ");
                 writer.WriteEndElement();
             }
@@ -131,8 +145,18 @@ namespace LevelCreator
             {
                 writer.WriteStartElement(null, "Enemy", null);
                 writer.WriteElementString("Object", enemy.GetInfo().GetName());
-                writer.WriteElementString("Location", enemy.GetX()/3 + "," + enemy.GetY()/3);
+                writer.WriteElementString("Location", enemy.GetX() / 3 + "," + enemy.GetY() / 3);
                 writer.WriteElementString("Conditions", " ");
+                writer.WriteEndElement();
+            }
+            writer.WriteEndElement();
+
+            writer.WriteStartElement(null, "Bounds", null);
+            foreach (LineSprite bound in bounds)
+            {
+                writer.WriteStartElement(null, "Bound", null);
+                writer.WriteElementString("Start", bound.GetP1().X / 3 + "," + bound.GetP1().Y / 3);
+                writer.WriteElementString("End", bound.GetP2().X / 3 + "," + bound.GetP2().Y / 3);
                 writer.WriteEndElement();
             }
             writer.WriteEndElement();
@@ -227,6 +251,29 @@ namespace LevelCreator
                     LevelObjectInfo info = LevelObjectFactory.instance.GetLevelObjectInfo(enemyName);
                     LevelObject levelObject = LevelObjectFactory.instance.CreateNewLevelObject(enemyName, new Rectangle(x, y, info.GetSourceRectangle().Width * 3, info.GetSourceRectangle().Height * 3));
                     newLevel.AddEnemy(levelObject);
+                }
+                if (reader.IsStartElement() && reader.Name == "Bound")
+                {
+                    reader.ReadToDescendant("Start");
+                    reader.MoveToContent();
+                    string location = reader.ReadElementContentAsString();
+                    int commaLoc = location.IndexOf(",");
+                    string xString = location.Substring(0, commaLoc);
+                    string yString = location.Substring(commaLoc + 1);
+                    int startX = int.Parse(xString) * 3;
+                    int startY = int.Parse(yString) * 3;
+
+                    reader.ReadToDescendant("End");
+                    reader.MoveToContent();
+                    location = reader.ReadElementContentAsString();
+                    commaLoc = location.IndexOf(",");
+                    xString = location.Substring(0, commaLoc);
+                    yString = location.Substring(commaLoc + 1);
+                    int endX = int.Parse(xString) * 3;
+                    int endY = int.Parse(yString) * 3;
+
+                    LineSprite bound = new LineSprite(Color.White, new Point(startX, startY), new Point(endX, endY));
+                    newLevel.AddBound(bound);
                 }
                 reader.MoveToElement();
             }
