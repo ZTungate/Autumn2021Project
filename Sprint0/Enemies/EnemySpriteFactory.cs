@@ -83,6 +83,20 @@ namespace Sprint2.Enemies
             return newSprite;
         }
 
+        public ISprite CreateBladeTrapSprite()
+        {
+            ISprite newSprite = new BladeTrapSprite(enemySpriteSheet);
+            enemySprites.Add(newSprite);
+            return newSprite;
+        }
+
+        public ISprite CreateGrabberSPrite()
+        {
+            ISprite newSprite = new GrabberSprite(enemySpriteSheet);
+            enemySprites.Add(newSprite);
+            return newSprite;
+        }
+
         public void DrawEnemies(SpriteBatch spriteBatch)
         {
             //Draws all enemies this factory has created, not useful in sprint 2, but will be useful when multiple enemies appear at once.
@@ -109,6 +123,10 @@ namespace Sprint2.Enemies
                     return CreateOldManSprite();
                 case EnemyTypes.Thrower:
                     return CreateThrowerSprite();
+                case EnemyTypes.BladeTrap:
+                    return CreateBladeTrapSprite();
+                case EnemyTypes.Grabber:
+                    return CreateGrabberSPrite();
                 default:
                     //This should never happen, every enemy has a type.
                     return null;
