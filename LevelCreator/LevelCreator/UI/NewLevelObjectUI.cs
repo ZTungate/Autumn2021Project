@@ -18,6 +18,7 @@ namespace LevelCreator.UI
         TextField locationXField, locationYField;
         TextField widthField, heightField;
         TextField nameField;
+        TextField typeField;
         Button addButton;
 
         Point start;
@@ -39,7 +40,9 @@ namespace LevelCreator.UI
             this.heightField = new TextField(new Rectangle(start.X + 110, start.Y + 150, 100, 50), GeneralFactory.instance.GetTextFieldSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "", Color.White));
 
             this.nameField = new TextField(new Rectangle(start.X, start.Y + 225, 200, 50), GeneralFactory.instance.GetTextFieldSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "", Color.White));
-            this.addButton = new Button(new Rectangle(start.X, start.Y + 300, 100, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Create", Color.White));
+            this.typeField = new TextField(new Rectangle(start.X, start.Y + 300, 200, 50), GeneralFactory.instance.GetTextFieldSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "", Color.White));
+
+            this.addButton = new Button(new Rectangle(start.X, start.Y + 375, 100, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Create", Color.White));
 
             textFields = new List<TextField>();
             textFields.Add(spriteSheetField);
@@ -48,6 +51,7 @@ namespace LevelCreator.UI
             textFields.Add(widthField);
             textFields.Add(heightField);
             textFields.Add(nameField);
+            textFields.Add(typeField);
 
             this.placeUI = placeUI;
         }
@@ -72,9 +76,9 @@ namespace LevelCreator.UI
                 }
                 if (addButton.IsPointOver(mousePos))
                 {
-                    placeUI.AddNewObject(nameField.GetText(), spriteSheetField.GetText(), locationXField.GetText(), locationYField.GetText(), widthField.GetText(), heightField.GetText());
+                    placeUI.AddNewObject(nameField.GetText(), typeField.GetText(), spriteSheetField.GetText(), locationXField.GetText(), locationYField.GetText(), widthField.GetText(), heightField.GetText());
 
-                    WriteObject(nameField.GetText(), spriteSheetField.GetText(), locationXField.GetText(), locationYField.GetText(), widthField.GetText(), heightField.GetText());
+                    WriteObject(nameField.GetText(), typeField.GetText(), spriteSheetField.GetText(), locationXField.GetText(), locationYField.GetText(), widthField.GetText(), heightField.GetText());
                     foreach (TextField field in textFields)
                     {
                         field.ClearText();
@@ -100,10 +104,11 @@ namespace LevelCreator.UI
             }
             addButton.Draw(batch);
         }
-        public void WriteObject(string name, string spriteSheet, string x, string y, string width, string height)
+        public void WriteObject(string name, string type, string spriteSheet, string x, string y, string width, string height)
         {
             StreamWriter writer = File.CreateText(Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName + "\\Placeable\\" + name + ".data");
             writer.WriteLine(name);
+            writer.WriteLine(type);
             writer.WriteLine(spriteSheet);
             writer.WriteLine(x);
             writer.WriteLine(y);

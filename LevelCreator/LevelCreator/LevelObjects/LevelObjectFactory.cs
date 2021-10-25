@@ -20,13 +20,13 @@ namespace LevelCreator.LevelObjects
             infoDictionary.TryGetValue(s, out info);
             return info;
         }
-        public LevelObjectInfo CreateLevelObjectInfo(string name, string spriteSheet, string xString, string yString, string widthString, string heightString)
+        public LevelObjectInfo CreateLevelObjectInfo(string name, string type, string spriteSheet, string xString, string yString, string widthString, string heightString)
         {
             int x = int.Parse(xString);
             int y = int.Parse(yString);
             int width = int.Parse(widthString);
             int height = int.Parse(heightString);
-            return new LevelObjectInfo(spriteSheet.ToUpper(), new Microsoft.Xna.Framework.Rectangle(x, y, width, height), name);
+            return new LevelObjectInfo(spriteSheet.ToUpper(), new Microsoft.Xna.Framework.Rectangle(x, y, width, height), name, type);
         }
         public LevelObject CreateNewLevelObject(string name, Rectangle rect)
         {

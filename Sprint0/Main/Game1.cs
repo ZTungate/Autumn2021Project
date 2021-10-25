@@ -13,6 +13,7 @@ namespace Sprint2
 {
     public class Game1 : Game
     {
+        private Dungeon dungeon;
         public ISprite sprite;
 
         private SpriteFont font;
@@ -146,7 +147,7 @@ namespace Sprint2
             }
 
 
-            LevelLoader.instance.LoadAllLevels();
+            LevelLoader.instance.LoadAllLevels(Content);
         }
 
         protected override void Update(GameTime gameTime)
@@ -182,7 +183,10 @@ namespace Sprint2
             
             //Using front to back sorting, and point clamp to improve look of pixel art sprites
             _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
-   
+
+            //temporary
+            LevelLoader.instance.DrawLevels(_spriteBatch);
+
             //Draw Link
             link.Draw(_spriteBatch);
 
@@ -196,8 +200,6 @@ namespace Sprint2
 
             currentBlock.Draw(_spriteBatch);
 
-            //temporary
-            LevelLoader.instance.DrawLevels(_spriteBatch);
 
             _spriteBatch.End();
 
@@ -238,6 +240,10 @@ namespace Sprint2
 
             //Re-Initialize the projectile factory.
             projectileFactory.Initalize();
+        }
+        public Dungeon GetDungeon()
+        {
+            return this.dungeon;
         }
         public void Quit()
         {

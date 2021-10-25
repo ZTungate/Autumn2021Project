@@ -29,13 +29,21 @@ namespace LevelCreator.LevelObjects
             this.myRect.X = p.X;
             this.myRect.Y = p.Y;
         }
+        public int GetX()
+        {
+            return this.myRect.X;
+        }
+        public int GetY()
+        {
+            return this.myRect.Y;
+        }
         public bool IsPointOver(Point p)
         {
             return myRect.Contains(p);
         }
-        public void Draw(SpriteBatch batch)
+        public void Draw(SpriteBatch batch, float order)
         {
-            mySprite.Draw(batch,myRect);
+            mySprite.Draw(batch, myRect, order);
         }
         public Rectangle GetRectangle()
         {

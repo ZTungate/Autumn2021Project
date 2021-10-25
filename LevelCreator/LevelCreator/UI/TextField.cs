@@ -82,8 +82,8 @@ namespace LevelCreator.UI
         }
         public void Draw(SpriteBatch batch)
         {
-            if (backgroundSprite != null) backgroundSprite.Draw(batch, textFieldRect);
-            if (textSprite != null) textSprite.Draw(batch, textFieldRect);
+            if (backgroundSprite != null) backgroundSprite.Draw(batch, textFieldRect, 0.0f);
+            if (textSprite != null) textSprite.Draw(batch, textFieldRect, 1.0f);
         }
         public void SetClickedOn(bool clicked)
         {

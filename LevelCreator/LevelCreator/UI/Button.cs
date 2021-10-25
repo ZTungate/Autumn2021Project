@@ -25,8 +25,8 @@ namespace LevelCreator.UI
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (backgroundSprite != null) backgroundSprite.Draw(spriteBatch, buttonRect);
-            if (textSprite != null) textSprite.Draw(spriteBatch, buttonRect);
+            if (backgroundSprite != null) backgroundSprite.Draw(spriteBatch, buttonRect, 0.0f);
+            if (textSprite != null) textSprite.Draw(spriteBatch, buttonRect, 1.0f);
         }
         public bool IsPointOver(Point p)
         {
