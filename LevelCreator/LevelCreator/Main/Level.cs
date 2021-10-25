@@ -141,5 +141,96 @@ namespace LevelCreator
 
             writer.Close();
         }
+        public static Level LoadLevel(string levelName)
+        {
+            string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
+            XmlReaderSettings settings = new XmlReaderSettings();
+            FileStream stream;
+            try
+            {
+                stream = File.OpenRead(dir + "\\Levels\\" + levelName + ".xml");
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+            XmlReader reader = XmlReader.Create(stream);
+
+            reader.ReadToDescendant("root");
+            string levelNameFromFile = reader.GetAttribute("xmlns");
+            Level newLevel = new Level(levelNameFromFile);
+
+            while (reader.Read())
+            {
+                if (reader.IsStartElement() && reader.Name == "Block")
+                {
+                    reader.ReadToDescendant("Object");
+                    string blockName = reader.ReadElementContentAsString();
+
+                    reader.ReadToDescendant("Location");
+                    reader.MoveToContent();
+                    string location = reader.ReadElementContentAsString();
+                    int commaLoc = location.IndexOf(",");
+                    string xString = location.Substring(0, commaLoc);
+                    string yString = location.Substring(commaLoc + 1);
+                    int x = int.Parse(xString) * 3;
+                    int y = int.Parse(yString) * 3;
+
+                    reader.ReadToDescendant("Conditions");
+                    reader.MoveToContent();
+                    string conditions = reader.ReadElementContentAsString();
+
+                    LevelObjectInfo info = LevelObjectFactory.instance.GetLevelObjectInfo(blockName);
+                    LevelObject levelObject = LevelObjectFactory.instance.CreateNewLevelObject(blockName, new Rectangle(x, y, info.GetSourceRectangle().Width * 3, info.GetSourceRectangle().Height * 3));
+                    newLevel.AddBlock(new Point(x,y), levelObject);
+                }
+                if (reader.IsStartElement() && reader.Name == "Item")
+                {
+                    reader.ReadToDescendant("Object");
+                    string itemName = reader.ReadElementContentAsString();
+
+                    reader.ReadToDescendant("Location");
+                    reader.MoveToContent();
+                    string location = reader.ReadElementContentAsString();
+                    int commaLoc = location.IndexOf(",");
+                    string xString = location.Substring(0, commaLoc);
+                    string yString = location.Substring(commaLoc + 1);
+                    int x = int.Parse(xString) * 3;
+                    int y = int.Parse(yString) * 3;
+
+                    reader.ReadToDescendant("Conditions");
+                    reader.MoveToContent();
+                    string conditions = reader.ReadElementContentAsString();
+
+                    LevelObjectInfo info = LevelObjectFactory.instance.GetLevelObjectInfo(itemName);
+                    LevelObject levelObject = LevelObjectFactory.instance.CreateNewLevelObject(itemName, new Rectangle(x, y, info.GetSourceRectangle().Width * 3, info.GetSourceRectangle().Height * 3));
+                    newLevel.AddItem(levelObject);
+                }
+                if (reader.IsStartElement() && reader.Name == "Enemy")
+                {
+                    reader.ReadToDescendant("Object");
+                    string enemyName = reader.ReadElementContentAsString();
+
+                    reader.ReadToDescendant("Location");
+                    reader.MoveToContent();
+                    string location = reader.ReadElementContentAsString();
+                    int commaLoc = location.IndexOf(",");
+                    string xString = location.Substring(0, commaLoc);
+                    string yString = location.Substring(commaLoc + 1);
+                    int x = int.Parse(xString) * 3;
+                    int y = int.Parse(yString) * 3;
+
+                    reader.ReadToDescendant("Conditions");
+                    reader.MoveToContent();
+                    string conditions = reader.ReadElementContentAsString();
+
+                    LevelObjectInfo info = LevelObjectFactory.instance.GetLevelObjectInfo(enemyName);
+                    LevelObject levelObject = LevelObjectFactory.instance.CreateNewLevelObject(enemyName, new Rectangle(x, y, info.GetSourceRectangle().Width * 3, info.GetSourceRectangle().Height * 3));
+                    newLevel.AddEnemy(levelObject);
+                }
+                reader.MoveToElement();
+            }
+            return newLevel;
+        }
     }
 }

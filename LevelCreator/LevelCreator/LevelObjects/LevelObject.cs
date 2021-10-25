@@ -23,6 +23,8 @@ namespace LevelCreator.LevelObjects
             this.myRect = levelObject.myRect;
             this.mySprite = levelObject.mySprite;
             this.myInfo = levelObject.myInfo;
+            this.myRect.Width = levelObject.myInfo.GetSourceRectangle().Width * 3;
+            this.myRect.Height = levelObject.myInfo.GetSourceRectangle().Height * 3;
         }
         public void SetPos(Point p)
         {
