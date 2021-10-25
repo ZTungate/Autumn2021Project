@@ -59,10 +59,10 @@ namespace Sprint2.Enemies
                 mySprite.Position = pos;
             }
         }
-        public Slime()
+        public Slime(Vector2 pos)
         {
             //Assign an arbitrary starting positon for the slime.
-            pos = new Vector2(500, 300);
+            this.pos = pos;
         }
 
         //Placeholder movement method, will require reworking when actual level exists.

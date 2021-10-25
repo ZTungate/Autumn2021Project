@@ -44,10 +44,10 @@ namespace Sprint2.Enemies
             mySprite.Update(gameTime);
         }
 
-        public OldMan()
+        public OldMan(Vector2 pos)
         {
             //Assign an arbitrary starting positon for the old man.
-            pos = new Vector2(500, 300);
+            this.pos = pos;
         }
 
     }

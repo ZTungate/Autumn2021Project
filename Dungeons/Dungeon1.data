@@ -5,3 +5,4 @@ Level3:1,1
 Level4:-1,0
 MoveableLevel:0,-1
 ItemLevel:-1,1
+EnemyLevel:-2,0

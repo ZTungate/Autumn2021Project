@@ -9,6 +9,7 @@ using System.Xml;
 using Sprint2;
 using Microsoft.Xna.Framework.Content;
 using Sprint2.Items;
+using Sprint2.Enemies;
 
 namespace Sprint0.Levels
 {
@@ -105,17 +106,34 @@ namespace Sprint0.Levels
                     {
                         System.Diagnostics.Debug.Write("Enemy: ");
                         reader.ReadToDescendant("Object");
-                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+                        string enemyName = reader.ReadElementContentAsString();
 
                         reader.ReadToDescendant("Location");
                         reader.MoveToContent();
-                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int x = int.Parse(xString);
+                        int y = int.Parse(yString);
 
                         reader.ReadToDescendant("Conditions");
                         reader.MoveToContent();
-                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "\n");
+                        string conditions = reader.ReadElementContentAsString();
 
-                        //newLevel.AddEnemy();
+                        Object[] objectParams = new Object[1];
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+                        objectParams[0] = new Vector2((int)(x * scaleX), (int)(y*scaleY));
+                        Type enemyType = Type.GetType("Sprint2.Enemies." + enemyName);
+                        object instance = Activator.CreateInstance(enemyType, objectParams);
+                        IEnemy enemy = (IEnemy)instance;
+                        enemy.Sprite = EnemySpriteFactory.Instance.MakeSprite(enemy);
+
+                        EnemyConstants.scaleX = scaleX;
+                        EnemyConstants.scaleY = scaleY;
+
+                        newLevel.AddEnemy(enemy);
                     }
                     reader.MoveToElement();
                 }

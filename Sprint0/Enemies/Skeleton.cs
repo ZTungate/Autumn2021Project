@@ -53,10 +53,10 @@ namespace Sprint2.Enemies
                 mySprite.Position = pos;
             }
         }
-        public Skeleton()
+        public Skeleton(Vector2 pos)
         {
             //Assign an arbitrary starting positon for the skeleton.
-            pos = new Vector2(500, 300);
+            this.pos = pos;
         }
 
         public Vector2 RandomMove()

@@ -84,12 +84,12 @@ namespace Sprint2
             //Initialize enemies 
             enemies = new List<IEnemy>()
             {
-                new Dragon(projectileFactory),
-                new Skeleton(),
-                new Bat(),
-                new Slime(),
-                new OldMan(),
-                new Thrower(projectileFactory),
+                new Dragon(new Vector2(600,300)),
+                new Skeleton(new Vector2(600,300)),
+                new Bat(new Vector2(600,300)),
+                new Slime(new Vector2(600,300)),
+                new OldMan(new Vector2(600,300)),
+                new Thrower(new Vector2(600,300)),
             };
 
             handler = new CollisionHandler(this);
@@ -200,12 +200,12 @@ namespace Sprint2
             //Reset the enemy list to all new instances of enemies.
             enemies = new List<IEnemy>()
             {
-                new Dragon(projectileFactory),
-                new Skeleton(),
-                new Bat(),
-                new Slime(),
-                new OldMan(),
-                new Thrower(projectileFactory),
+                new Dragon(new Vector2(600,300)),
+                new Skeleton(new Vector2(600,300)),
+                new Bat(new Vector2(600,300)),
+                new Slime(new Vector2(600,300)),
+                new OldMan(new Vector2(600,300)),
+                new Thrower(new Vector2(600,300)),
             };
             //Create sprites for all enemies.
             foreach (IEnemy enemy in enemies)

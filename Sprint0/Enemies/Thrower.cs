@@ -80,14 +80,14 @@ namespace Sprint2.Enemies
             }
         }
         
-        public Thrower(ProjectileFactory projectileFactory)
+        public Thrower(Vector2 pos)
         {
             //Default a new thrower as a left thrower
             currState = new InitialThrower(mySprite, this);
             //Assign an arbitrary starting positon for the thrower
-            pos = new Vector2(500, 300);
+            this.pos = pos;
             //Pass the projectile handler in
-            projectiles = projectileFactory;
+            projectiles = ProjectileFactory.Instance;
         }
 
         private void RandomMove()

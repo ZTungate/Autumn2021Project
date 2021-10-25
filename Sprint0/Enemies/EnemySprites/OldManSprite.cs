@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Sprint2.Enemies;
 
 namespace Sprint2
 {
@@ -40,7 +41,7 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             //Draw enemy at its position at twice its source size.
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width * 2, SourceRect[CurrentFrame].Height * 2);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(SourceRect[CurrentFrame].Width * EnemyConstants.scaleX), (int)(SourceRect[CurrentFrame].Height * EnemyConstants.scaleY));
             spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
 

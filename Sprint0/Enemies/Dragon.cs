@@ -74,11 +74,11 @@ namespace Sprint2.Enemies
                 Attack();
             }
         }
-        public Dragon(ProjectileFactory projectileHandler)
-        { 
+        public Dragon(Vector2 pos)
+        {
             //Assign an arbitrary starting positon for the bat.
-            myPosition = new Vector2(500, 300);
-            projectiles = projectileHandler;
+            myPosition = pos;
+            projectiles = ProjectileFactory.Instance;
         }
 
         public Vector2 DragonMove()

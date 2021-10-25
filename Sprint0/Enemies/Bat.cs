@@ -50,10 +50,10 @@ namespace Sprint2.Enemies
                 mySprite.Position = pos;
             }
         }
-        public Bat()
+        public Bat(Vector2 pos)
         {
             //Assign an arbitrary starting positon for the bat.
-            pos = new Vector2(500, 300);
+            this.pos = pos;
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
