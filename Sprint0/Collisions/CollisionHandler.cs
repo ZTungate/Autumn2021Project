@@ -90,10 +90,8 @@ namespace Sprint0.Collisions
             foreach(Rectangle rectangle in bounds)
             {
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, rectangle);
-                System.Diagnostics.Debug.WriteLine(rectangle);
                 if (boundLink.IsCollision)
                 {
-                    System.Diagnostics.Debug.WriteLine("Collision!");
                     myLink.position = myLink.oldPosition;
                 }
             }
