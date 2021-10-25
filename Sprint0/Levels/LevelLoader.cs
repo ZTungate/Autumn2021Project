@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Xml;
 using Sprint2;
 using Microsoft.Xna.Framework.Content;
+using Sprint2.Items;
 
 namespace Sprint0.Levels
 {
@@ -73,18 +74,32 @@ namespace Sprint0.Levels
                     {
                         System.Diagnostics.Debug.Write("Item: ");
                         reader.ReadToDescendant("Object");
-                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+                        string itemName = reader.ReadElementContentAsString();
+                        itemName += "Item";
 
                         reader.ReadToDescendant("Location");
                         reader.MoveToContent();
-                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int x = int.Parse(xString);
+                        int y = int.Parse(yString);
 
                         reader.ReadToDescendant("Conditions");
                         reader.MoveToContent();
-                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "\n");
+                        string conditions = reader.ReadElementContentAsString();
 
-                        //newLevel.AddItem();
+                        Object[] objectParams = new Object[1];
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+                        objectParams[0] = new Rectangle((int)(x * scaleX), (int)(y * scaleY), (int)(16*scaleX), (int)(16*scaleY));
+                        Type itemType = Type.GetType("Sprint2.Items." + itemName);
+                        object instance = Activator.CreateInstance(itemType, objectParams);
+                        IItem item = (IItem)instance;
+                        item.CreateSprite(scaleX, scaleY);
 
+                        newLevel.AddItem(item);
                     }
                     if (reader.IsStartElement() && reader.Name == "Enemy")
                     {

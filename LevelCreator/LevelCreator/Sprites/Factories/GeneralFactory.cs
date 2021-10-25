@@ -26,6 +26,10 @@ namespace LevelCreator.Sprites.Factories
             //spriteSheet = content.Load<Texture2D>(imageName);
             font = content.Load<SpriteFont>("Arial");
             spriteSheets.Add("BLOCKSPRITESHEET",content.Load<Texture2D>("BlockSpriteSheet"));
+            spriteSheets.Add("ENEMYSPRITESHEET", content.Load<Texture2D>("EnemySpriteSheet"));
+            spriteSheets.Add("BOSSSPRITESHEET", content.Load<Texture2D>("BossSpriteSheet"));
+            spriteSheets.Add("ITEMSPRITESHEET", content.Load<Texture2D>("ItemSpriteSheet"));
+
 
             buttonSprite = new ConcreteSprite(content.Load<Texture2D>("BlockSpriteSheet"), new Rectangle(0,0,1,1), Color.White);
             textFieldSprite = new ConcreteSprite(content.Load<Texture2D>("BlockSpriteSheet"), new Rectangle(625, 517, 1, 1), Color.White);

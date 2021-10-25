@@ -19,6 +19,10 @@ namespace Sprint0.Levels
             this.levelWidth = levelWidth;
             this.levelHeight = levelHeight;
         }
+        public void UpdateCurrent(GameTime gameTime)
+        {
+            currentLevel.Update(gameTime);
+        }
         public void SwitchLevel(Point direction)
         {
             Point nextLevelPoint = currentLevelPoint + direction;

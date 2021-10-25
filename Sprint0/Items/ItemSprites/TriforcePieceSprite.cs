@@ -13,7 +13,7 @@ namespace Sprint2.Items.ItemSprites
             Texture = spriteSheet;
             SourceRect = new Rectangle[2];
 
-            Interval = 80f;
+            Interval = 128f;
             FrameCount = 2;
 
             SourceRect[0] = new Rectangle(275, 3, 10, 10);
