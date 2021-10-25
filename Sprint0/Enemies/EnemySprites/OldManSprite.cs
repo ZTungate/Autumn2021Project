@@ -40,7 +40,7 @@ namespace Sprint2
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            //Draw enemy at its position at twice its source size.
+            //Draw enemy at its position at a given scale.
             Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(SourceRect[CurrentFrame].Width * EnemyConstants.scaleX), (int)(SourceRect[CurrentFrame].Height * EnemyConstants.scaleY));
             spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
