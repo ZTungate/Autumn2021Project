@@ -1,49 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root xmlns="Level2">
+<root xmlns="Level3">
   <Blocks>
     <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>160,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
       <Object>Stair</Object>
-      <Location>32,32</Location>
+      <Location>208,32</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Stair</Object>
-      <Location>48,32</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Stair</Object>
-      <Location>128,48</Location>
+      <Location>208,128</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>MarioBrick</Object>
-      <Location>160,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>MarioBrick</Object>
-      <Location>192,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>MarioBrick</Object>
-      <Location>144,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>MarioBrick</Object>
-      <Location>160,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>MarioBrick</Object>
-      <Location>176,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>MarioBrick</Object>
-      <Location>192,112</Location>
+      <Location>208,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
