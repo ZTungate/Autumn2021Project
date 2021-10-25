@@ -236,5 +236,10 @@ namespace Sprint2.Projectiles
             fire.Sprite = CreateFireSprite();
         }
 
+        public List<IProjectile> getProjs()
+        {
+            return projectiles;
+        }
+
     }
 }

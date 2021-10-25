@@ -155,12 +155,12 @@ namespace Sprint2
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-
-            //TODO: poop
-            handler.Update();
             
             //Update Link
             link.Update(gameTime);
+
+            //TODO: poop
+            handler.Update();
 
             //Update the current enemy
             enemies[currentEnemy].Update(gameTime);
