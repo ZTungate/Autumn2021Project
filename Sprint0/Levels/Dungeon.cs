@@ -5,8 +5,21 @@ using Microsoft.Xna.Framework;
 
 namespace Sprint0.Levels
 {
-    class Dungeon
+    public class Dungeon
     {
         Dictionary<Point, Level> levelDictionary = new Dictionary<Point, Level>();
+        Level currentLevel;
+        public Dungeon()
+        {
+
+        }
+        public Level GetCurrentLevel()
+        {
+            return this.currentLevel;
+        }
+        public void LoadDungeon()
+        {
+
+        }
     }
 }

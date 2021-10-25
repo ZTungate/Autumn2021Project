@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint0.Levels
 {
-    class Level
+    public class Level
     {
         Point location;
         Dictionary<Point, IBlock> blocks;
@@ -40,6 +40,10 @@ namespace Sprint0.Levels
         public void AddEnemy(IEnemy enemy)
         {
             enemies.Add(enemy);
+        }
+        public void AddItem(IItem item)
+        {
+            items.Add(item);
         }
     }
 }

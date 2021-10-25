@@ -25,12 +25,13 @@ namespace LevelCreator.UI
             {
                 StreamReader reader = File.OpenText(s);
                 string nameString = reader.ReadLine();
+                string typeString = reader.ReadLine();
                 string spriteSheet = reader.ReadLine();
                 string xString = reader.ReadLine();
                 string yString = reader.ReadLine();
                 string widthString = reader.ReadLine();
                 string heightString = reader.ReadLine();
-                AddNewObject(nameString, spriteSheet, xString, yString, widthString, heightString);
+                AddNewObject(nameString, typeString, spriteSheet, xString, yString, widthString, heightString);
                 reader.Close();
             }
 
@@ -40,7 +41,7 @@ namespace LevelCreator.UI
             if (!IsVisible()) return;
             foreach(LevelObject levelObject in placeableObjects)
             {
-                levelObject.Draw(batch);
+                levelObject.Draw(batch, 0.0f);
             }
         }
         public Point GetPos()
@@ -63,9 +64,9 @@ namespace LevelCreator.UI
             levelObject.SetRectangle(new Rectangle((start.X + 1) + 52 * (placeableObjects.Count % 4), (start.Y + 1) + 52 * (placeableObjects.Count / 4),48,48));
             this.placeableObjects.Add(levelObject);
         }
-        public void AddNewObject(string name, string spriteSheet, string x, string y, string width, string height)
+        public void AddNewObject(string name, string type, string spriteSheet, string x, string y, string width, string height)
         {
-            LevelObjectInfo newInfo = LevelObjectFactory.instance.CreateLevelObjectInfo(name, spriteSheet, x, y, width, height);
+            LevelObjectInfo newInfo = LevelObjectFactory.instance.CreateLevelObjectInfo(name, type, spriteSheet, x, y, width, height);
             LevelObjectFactory.instance.AddLevelObjectInfo(name, newInfo);
 
             AddPlaceable(LevelObjectFactory.instance.CreateNewLevelObject(name, new Rectangle(0, 0, 0, 0)));

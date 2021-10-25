@@ -5,50 +5,112 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Sprint2.Blocks;
 using Microsoft.Xna.Framework.Graphics;
+using System.Xml;
+using Sprint2;
+using Microsoft.Xna.Framework.Content;
 
 namespace Sprint0.Levels
 {
     public class LevelLoader
     {
         public static LevelLoader instance = new LevelLoader();
-        private Level tempLevel;
-        public void LoadAllLevels()
+        private ISprite defaultBackground;
+        private Dictionary<string, Level> levels = new Dictionary<string, Level>();
+        public void LoadAllLevels(ContentManager content)
         {
+            defaultBackground = new BackgroundSprite(content.Load<Texture2D>("BlockSpriteSheet"));
+            defaultBackground.Position = new Vector2(0, 0);
+
             string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
             string[] fileNames = Directory.GetFiles(dir + "\\Levels");
+            XmlReaderSettings settings = new XmlReaderSettings();
+
             foreach (string fileName in fileNames)
             {
-                tempLevel = new Level(null, new Point(0, 0));
-                StreamReader reader = File.OpenText(fileName);
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                Level newLevel = new Level(null, Point.Zero);
+
+                XmlReader reader = XmlReader.Create(File.OpenRead(fileName), settings);
+                reader.ReadToDescendant("root");
+                string levelName = reader.GetAttribute("xmlns");
+                System.Diagnostics.Debug.WriteLine(levelName);
+
+                while (reader.Read())
                 {
-                    int equalPos = line.IndexOf("=");
-                    int commaPos = line.IndexOf(",");
-                    string blockName = line.Substring(0, equalPos);
-                    string xPos = line.Substring(equalPos + 1, commaPos - equalPos-1);
-                    string yPos = line.Substring(commaPos + 1);
-                    
-                    blockName += "Sprite";
-                    int x = int.Parse(xPos);
-                    int y = int.Parse(yPos);
+                    if (reader.IsStartElement() && reader.Name == "Block")
+                    {
+                        System.Diagnostics.Debug.Write("Block: ");
+                        reader.ReadToDescendant("Object");
+                        string blockName = reader.ReadElementContentAsString();
+                        blockName += "Sprite";
 
-                    Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
+                        reader.ReadToDescendant("Location");
+                        reader.MoveToContent();
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int x = int.Parse(xString);
+                        int y = int.Parse(yString);
 
-                    Object[] objectParams = new Object[2];
-                    objectParams[0] = BlockSpriteFactory.Instance.GetBlockSpriteSheet();
-                    objectParams[1] = new Vector2(x, y);
+                        reader.ReadToDescendant("Conditions");
+                        reader.MoveToContent();
+                        string conditions = reader.ReadElementContentAsString();
 
-                    object instance = Activator.CreateInstance(objectType, objectParams);
+                        Object[] objectParams = new Object[2];
+                        objectParams[0] = BlockSpriteFactory.Instance.GetBlockSpriteSheet();
+                        objectParams[1] = new Vector2(x * 2, y * 2);
 
-                    tempLevel.AddBlock(new Point(x, y), (IBlock)instance);
+                        Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
+                        object instance = Activator.CreateInstance(objectType, objectParams);
+
+                        newLevel.AddBlock(new Point(x,y), (IBlock)instance);
+                    }
+                    if (reader.IsStartElement() && reader.Name == "Item")
+                    {
+                        System.Diagnostics.Debug.Write("Item: ");
+                        reader.ReadToDescendant("Object");
+                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+
+                        reader.ReadToDescendant("Location");
+                        reader.MoveToContent();
+                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+
+                        reader.ReadToDescendant("Conditions");
+                        reader.MoveToContent();
+                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "\n");
+
+                        //newLevel.AddItem();
+
+                    }
+                    if (reader.IsStartElement() && reader.Name == "Enemy")
+                    {
+                        System.Diagnostics.Debug.Write("Enemy: ");
+                        reader.ReadToDescendant("Object");
+                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+
+                        reader.ReadToDescendant("Location");
+                        reader.MoveToContent();
+                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "   ");
+
+                        reader.ReadToDescendant("Conditions");
+                        reader.MoveToContent();
+                        System.Diagnostics.Debug.Write(reader.ReadElementContentAsString() + "\n");
+
+                        //newLevel.AddEnemy();
+                    }
+                    reader.MoveToElement();
                 }
-                reader.Close();
+
+                levels.Add(levelName, newLevel);
             }
         }
         public void DrawLevels(SpriteBatch batch)
         {
-            tempLevel.Draw(batch);
+            defaultBackground.Draw(batch);
+            foreach(KeyValuePair<string, Level> entry in levels)
+            {
+                entry.Value.Draw(batch);
+            }
         }
     }
 }

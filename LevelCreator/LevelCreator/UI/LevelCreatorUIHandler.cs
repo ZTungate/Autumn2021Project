@@ -51,11 +51,29 @@ namespace LevelCreator.UI
             {
                 if(placing != null && mousePos.X < placeObjectUI.GetPos().X)
                 {
-                    int size = placing.GetRectangle().Width;
-                    Point placePos = new Point((mousePos.X / size) * size, (mousePos.Y / size) * size);
-                    LevelObject newLevelObject = new LevelObject(placing);
-                    newLevelObject.SetPos(placePos);
-                    LevelCreator.instace.currentLevel.AddBlock(placePos, newLevelObject);
+                    Point middleMousePos = mousePos - new Point(placing.GetRectangle().Width / 2, placing.GetRectangle().Height / 2);
+                    if (placing.GetInfo().GetLevelObjectType() == LevelObjectType.Block)
+                    {
+                        int size = placing.GetRectangle().Width;
+                        Point placePos = new Point((mousePos.X / size) * size, (mousePos.Y / size) * size);
+                        LevelObject newLevelObject = new LevelObject(placing);
+                        newLevelObject.SetPos(placePos);
+                        LevelCreator.instace.currentLevel.AddBlock(placePos, newLevelObject);
+                    }
+                    if (placing.GetInfo().GetLevelObjectType() == LevelObjectType.Item)
+                    {
+                        Point placePos = new Point(middleMousePos.X, middleMousePos.Y);
+                        LevelObject newLevelObject = new LevelObject(placing);
+                        newLevelObject.SetPos(placePos);
+                        LevelCreator.instace.currentLevel.AddItem(newLevelObject);
+                    }
+                    if (placing.GetInfo().GetLevelObjectType() == LevelObjectType.Enemy)
+                    {
+                        Point placePos = new Point(middleMousePos.X, middleMousePos.Y);
+                        LevelObject newLevelObject = new LevelObject(placing);
+                        newLevelObject.SetPos(placePos);
+                        LevelCreator.instace.currentLevel.AddEnemy(newLevelObject);
+                    }
                 }
 
                 if (placeObjectButton.IsPointOver(mousePos))
@@ -92,17 +110,23 @@ namespace LevelCreator.UI
             }
             if (state.RightButton == ButtonState.Pressed && lastState.RightButton != ButtonState.Pressed)
             {
-                KeyValuePair<Point,LevelObject> entry = LevelCreator.instace.currentLevel.GetEntryContainingPosition(mousePos);
-                if(entry.Value != null)
+                if(!LevelCreator.instace.currentLevel.RemoveEnemy(mousePos))
                 {
-                    LevelCreator.instace.currentLevel.RemoveBlock(entry.Key);
+                    if (!LevelCreator.instace.currentLevel.RemoveItem(mousePos))
+                    {
+                        KeyValuePair<Point, LevelObject> entry = LevelCreator.instace.currentLevel.GetEntryContainingPosition(mousePos);
+                        if (entry.Value != null)
+                        {
+                            LevelCreator.instace.currentLevel.RemoveBlock(entry.Key);
+                        }
+                    }
                 }
             }
             if (placing != null) placing.SetPos(mousePos - new Point(placing.GetRectangle().Width / 2, placing.GetRectangle().Height/2));
         }
         public override void Draw(SpriteBatch batch)
         {
-            background.Draw(batch, new Rectangle(0, 0, 256*3, 176*3));
+            background.Draw(batch, new Rectangle(0, 0, 256*3, 176*3), 0.0f);
             placeObjectButton.Draw(batch);
             addObjectButton.Draw(batch);
 
@@ -111,7 +135,7 @@ namespace LevelCreator.UI
             placeObjectUI.Draw(batch);
             newObjectUI.Draw(batch);
 
-            if (placing != null) placing.Draw(batch);
+            if (placing != null) placing.Draw(batch, 0.1f);
         }
     }
 }
