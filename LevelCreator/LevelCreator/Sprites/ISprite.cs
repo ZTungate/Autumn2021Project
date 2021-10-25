@@ -9,6 +9,6 @@ namespace LevelCreator.Sprites
     public interface ISprite
     {
         void Update(GameTime gameTime);
-        void Draw(SpriteBatch spriteBatch, Rectangle destRect, float order);
+        void Draw(SpriteBatch spriteBatch, Rectangle destRect);
     }
 }

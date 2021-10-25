@@ -22,8 +22,6 @@ namespace LevelCreator
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
-            currentLevel = new Level("Level1");
         }
 
         protected override void Initialize()
@@ -41,6 +39,8 @@ namespace LevelCreator
 
             GeneralFactory.instance.LoadAllContent(Content);
             uiHandler = new LevelCreatorUIHandler(new Point(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
+
+            currentLevel = new Level("UnnamedLevel");
         }
 
         protected override void Update(GameTime gameTime)
@@ -57,11 +57,10 @@ namespace LevelCreator
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
-
-            uiHandler.Draw(spriteBatch);
+            spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp);
 
             currentLevel.Draw(spriteBatch);
+            uiHandler.Draw(spriteBatch);
 
             spriteBatch.End();
 

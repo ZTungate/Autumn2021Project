@@ -17,20 +17,20 @@ namespace LevelCreator.UI
         public Button placeObjectButton;
         public Button newLevelButton;
         public Button exportLevelButton;
+        public TextField levelNameField;
         public NewLevelObjectUI newObjectUI;
         public PlaceLevelObjectUI placeObjectUI;
-        public ISprite background;
 
         public LevelCreatorUIHandler(Point screenSize)
         {
             this.screenSize = screenSize;
 
-            background = GeneralFactory.instance.GetBackground();
-
             placeObjectButton = new Button(new Rectangle(screenSize.X - 250, 0, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Place Object", Color.Black));
             addObjectButton = new Button(new Rectangle(screenSize.X - 125, 0, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Add Object", Color.Black));
 
             exportLevelButton = new Button(new Rectangle(screenSize.X - 125, screenSize.Y - 50, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Export Level", Color.Black));
+
+            levelNameField = new TextField(new Rectangle(screenSize.X - 300, screenSize.Y - 50, 175, 50), GeneralFactory.instance.GetTextFieldSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "", Color.White));
 
             placeObjectUI = new PlaceLevelObjectUI(new Point(screenSize.X - 250, 50), screenSize);
             newObjectUI = new NewLevelObjectUI(new Point(screenSize.X - 250, 50), screenSize, placeObjectUI);
@@ -41,6 +41,7 @@ namespace LevelCreator.UI
         MouseState state;
         public override void Update(GameTime gameTime)
         {
+            levelNameField.Update(gameTime);
             newObjectUI.Update(gameTime);
             placeObjectUI.Update(gameTime);
 
@@ -49,7 +50,15 @@ namespace LevelCreator.UI
             Point mousePos = new Point(state.X, state.Y);
             if (state.LeftButton == ButtonState.Pressed && lastState.LeftButton != ButtonState.Pressed)
             {
-                if(placing != null && mousePos.X < placeObjectUI.GetPos().X)
+                if (levelNameField.GetTextFieldRectangle().Contains(mousePos))
+                {
+                    levelNameField.SetClickedOn(true);
+                }
+                else
+                {
+                    levelNameField.SetClickedOn(false);
+                }
+                if (placing != null && mousePos.X < placeObjectUI.GetPos().X)
                 {
                     Point middleMousePos = mousePos - new Point(placing.GetRectangle().Width / 2, placing.GetRectangle().Height / 2);
                     if (placing.GetInfo().GetLevelObjectType() == LevelObjectType.Block)
@@ -100,7 +109,7 @@ namespace LevelCreator.UI
                     }
                     if (exportLevelButton.IsPointOver(mousePos))
                     {
-                        LevelCreator.instace.currentLevel.GenerateLevelXml();
+                        LevelCreator.instace.currentLevel.GenerateLevelXml(levelNameField.GetText());
                     }
                 }
                 else if (newObjectUI.IsVisible() && mousePos.X >= newObjectUI.GetPos().X && mousePos.Y >= newObjectUI.GetPos().Y)
@@ -126,7 +135,8 @@ namespace LevelCreator.UI
         }
         public override void Draw(SpriteBatch batch)
         {
-            background.Draw(batch, new Rectangle(0, 0, 256*3, 176*3), 0.0f);
+            levelNameField.Draw(batch);
+
             placeObjectButton.Draw(batch);
             addObjectButton.Draw(batch);
 
@@ -135,7 +145,7 @@ namespace LevelCreator.UI
             placeObjectUI.Draw(batch);
             newObjectUI.Draw(batch);
 
-            if (placing != null) placing.Draw(batch, 0.1f);
+            if (placing != null) placing.Draw(batch);
         }
     }
 }

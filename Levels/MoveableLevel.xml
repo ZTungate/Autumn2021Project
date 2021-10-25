@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="MoveableLevel">
+  <Blocks>
+    <Block>
+      <Object>MoveableFloorBlock</Object>
+      <Location>128,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items />
+  <Enemies />
+</root>

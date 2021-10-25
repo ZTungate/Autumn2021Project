@@ -17,7 +17,7 @@ namespace LevelCreator.Sprites
             this.text = text;
             this.color = color;
         }
-        public void Draw(SpriteBatch spriteBatch, Rectangle destRect, float order)
+        public void Draw(SpriteBatch spriteBatch, Rectangle destRect)
         {
             spriteBatch.DrawString(font, text, new Vector2(destRect.X, destRect.Y), color, 0, Vector2.Zero, 1, SpriteEffects.None, 1.0f);
         }

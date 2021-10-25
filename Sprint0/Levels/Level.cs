@@ -48,6 +48,21 @@ namespace Sprint0.Levels
                 item.rect = new Rectangle(item.rect.X + p.X, item.rect.Y + p.Y, item.rect.Width, item.rect.Height);
             }
         }
+        public void Update(GameTime gameTime)
+        {
+            foreach (KeyValuePair<Point, IBlock> entry in blocks)
+            {
+                entry.Value.Update(gameTime);
+            }
+            foreach (IEnemy enemy in enemies)
+            {
+                enemy.Update(gameTime);
+            }
+            foreach (IItem item in items)
+            {
+                item.Update(gameTime);
+            }
+        }
         public void Draw(SpriteBatch batch)
         {
             this.backgroundSprite.Draw(batch);

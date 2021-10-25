@@ -13,19 +13,18 @@ namespace Sprint2.Items
         protected ItemEnum itemType;
         protected Rectangle rect;
 
-        Rectangle IItem.rect { get => rect; set => this.rect = value; }
+        Rectangle IItem.rect { get => this.rect; set => this.rect = value; }
 
         public AbstractItem(ItemEnum itemType, Rectangle rect)
         {
             this.itemType = itemType;
             this.rect = rect;
         }
-        public virtual void CreateSprite()
+        public virtual void CreateSprite(float scaleX, float scaleY)
         {
             this.sprite = ItemSpriteFactory.Instance.GetItemSprite(itemType);
-            Rectangle spriteRect = this.sprite.SourceRect[0];
-            this.rect.Width = spriteRect.Width * 2;
-            this.rect.Height = spriteRect.Height * 2;
+            this.rect.Width = (int)(sprite.SourceRect[0].Width * scaleX);
+            this.rect.Height = (int)(sprite.SourceRect[0].Height * scaleY);
         }
         public virtual void Update(GameTime gameTime)
         {

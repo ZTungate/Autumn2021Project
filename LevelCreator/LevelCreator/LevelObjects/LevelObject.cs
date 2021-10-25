@@ -41,9 +41,9 @@ namespace LevelCreator.LevelObjects
         {
             return myRect.Contains(p);
         }
-        public void Draw(SpriteBatch batch, float order)
+        public void Draw(SpriteBatch batch)
         {
-            mySprite.Draw(batch, myRect, order);
+            mySprite.Draw(batch, myRect);
         }
         public Rectangle GetRectangle()
         {

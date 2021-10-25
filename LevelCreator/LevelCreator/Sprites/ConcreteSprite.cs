@@ -23,10 +23,10 @@ namespace LevelCreator.Sprites
         {
             //no-op
         }
-        public void Draw(SpriteBatch spriteBatch, Rectangle destRect, float order)
+        public void Draw(SpriteBatch spriteBatch, Rectangle destRect)
         {
             this.destRect = destRect;
-            spriteBatch.Draw(texture, this.destRect, sourceRect, color, 0, Vector2.Zero, SpriteEffects.None, order);
+            spriteBatch.Draw(texture, this.destRect, sourceRect, color);
         }
         public Rectangle GetDestinationRect()
         {

@@ -6,17 +6,21 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using LevelCreator.LevelObjects;
 using Microsoft.Xna.Framework.Graphics;
+using LevelCreator.Sprites;
+using LevelCreator.Sprites.Factories;
 
 namespace LevelCreator
 {
     public class Level
     {
+        ISprite background;
         private string levelName;
         Dictionary<Point, LevelObject> blocks;
         List<LevelObject> enemies;
         List<LevelObject> items;
         public Level(string levelName)
         {
+            background = GeneralFactory.instance.GetBackground();
             this.levelName = levelName;
             blocks = new Dictionary<Point, LevelObject>();
             items = new List<LevelObject>();
@@ -24,17 +28,19 @@ namespace LevelCreator
         }
         public void Draw(SpriteBatch batch)
         {
-            foreach(KeyValuePair<Point,LevelObject> entry in blocks)
+            background.Draw(batch, new Rectangle(0, 0, 256 * 3, 176 * 3));
+
+            foreach (KeyValuePair<Point,LevelObject> entry in blocks)
             {
-                entry.Value.Draw(batch, 0.0f);
+                entry.Value.Draw(batch);
             }
-            foreach(LevelObject levelObject in enemies)
+            foreach (LevelObject levelObject in items)
             {
-                levelObject.Draw(batch, 0.1f);
+                levelObject.Draw(batch);
             }
-            foreach(LevelObject levelObject in items)
+            foreach (LevelObject levelObject in enemies)
             {
-                levelObject.Draw(batch, 0.2f);
+                levelObject.Draw(batch);
             }
         }
         public void AddItem(LevelObject item)
@@ -87,8 +93,10 @@ namespace LevelCreator
             }
             return new KeyValuePair<Point, LevelObject>(new Point(0,0), null);
         }
-        public void GenerateLevelXml()
+        public void GenerateLevelXml(string name)
         {
+            this.levelName = name;
+
             XmlWriterSettings settings = new XmlWriterSettings();
             settings.Indent = true;
             settings.NewLineOnAttributes = true;
