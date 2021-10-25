@@ -45,7 +45,7 @@ namespace Sprint0.Levels
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width * 2, SourceRect[CurrentFrame].Height * 2);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, Game1.instance._graphics.PreferredBackBufferWidth, Game1.instance._graphics.PreferredBackBufferHeight);
             spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
     }
