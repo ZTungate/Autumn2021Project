@@ -17,7 +17,7 @@ namespace Sprint2
         }
         public void Execute()
         {
-            //game.GetDungeon().NextLevel(direction);
+            game.GetDungeon().SwitchLevel(direction);
         }
     }
 }

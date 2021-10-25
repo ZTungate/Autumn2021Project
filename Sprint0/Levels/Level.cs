@@ -22,7 +22,7 @@ namespace Sprint0.Levels
         ILink link;
         public Level(ILink link, Point location)
         {
-            backgroundSprite = LevelLoader.instance.GetBackgroundSprite();
+            backgroundSprite = LevelLoader.instance.GetNewBackgroundSprite();
             this.location = location;
             blocks = new Dictionary<Point, IBlock>();
             enemies = new List<IEnemy>();
@@ -50,7 +50,6 @@ namespace Sprint0.Levels
         }
         public void Draw(SpriteBatch batch)
         {
-            this.backgroundSprite.Position = new Vector2(location.X, location.Y);
             this.backgroundSprite.Draw(batch);
 
             foreach(KeyValuePair<Point,IBlock> entry in blocks)

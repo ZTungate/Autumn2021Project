@@ -14,12 +14,13 @@ namespace Sprint0.Levels
     public class LevelLoader
     {
         public static LevelLoader instance = new LevelLoader();
-        private ISprite defaultBackground;
+        private Texture2D blockSpriteSheet;
         private Dictionary<string, Level> levels = new Dictionary<string, Level>();
         public void LoadAllLevels(ContentManager content)
         {
-            defaultBackground = new BackgroundSprite(content.Load<Texture2D>("BlockSpriteSheet"));
-            defaultBackground.Position = new Vector2(0, 0);
+            blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet");
+
+            BackgroundSprite defaultBackground = new BackgroundSprite(blockSpriteSheet);
 
             string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
             string[] fileNames = Directory.GetFiles(dir + "\\Levels");
@@ -120,9 +121,9 @@ namespace Sprint0.Levels
                 entry.Value.Draw(batch);
             }
         }
-        public ISprite GetBackgroundSprite()
+        public ISprite GetNewBackgroundSprite()
         {
-            return this.defaultBackground;
+            return new BackgroundSprite(blockSpriteSheet);
         }
     }
 }

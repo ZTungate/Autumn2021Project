@@ -19,6 +19,22 @@ namespace Sprint0.Levels
             this.levelWidth = levelWidth;
             this.levelHeight = levelHeight;
         }
+        public void SwitchLevel(Point direction)
+        {
+            Point nextLevelPoint = currentLevelPoint + direction;
+            if (levelDictionary.ContainsKey(nextLevelPoint))
+            {
+                SetCurrentLevel(nextLevelPoint);
+                UpdateLevelContentPositions(new Point(-direction.X * levelWidth, -direction.Y * levelHeight));
+            }
+        }
+        public void UpdateLevelContentPositions(Point direction)
+        {
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                entry.Value.UpdateContentPosition(direction);
+            }
+        }
         public void UpdateLevelContentPositions()
         {
             foreach(KeyValuePair<Point,Level> entry in levelDictionary)
