@@ -14,6 +14,7 @@ namespace Sprint2.Player
 
         public ILinkState state { get; set; }
         public Vector2 position { get; set; }
+        public Vector2 oldPosition { get; set; }
         public ISprite sprite { get; set; }
         public Color color { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
@@ -39,6 +40,8 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = position;
+
             if (isDamaged)
             {
 

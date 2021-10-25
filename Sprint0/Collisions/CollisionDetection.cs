@@ -24,17 +24,17 @@ namespace Sprint0.Collisions
             if (Overlap.Width <= Overlap.Height) //this would mean left-right collision
             {
                 int check = one.X - two.X;
-                if (check < 0) location = ColDirections.East; //right collision
+                if (check < 0) location = ColDirections.West; //right collision
 
-                else location = ColDirections.West; //left collision
+                else location = ColDirections.East; //left collision
 
             }
             else //this means top-bottom collision 
             {
                 int check = one.Y - two.Y;
-                if (check < 0) location = ColDirections.South; //Bottom collision
+                if (check < 0) location = ColDirections.North; //Bottom collision
 
-                else location = ColDirections.North; //Top collision
+                else location = ColDirections.South; //Top collision
             }
 
 

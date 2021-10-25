@@ -14,7 +14,7 @@ namespace Sprint2.Blocks
         {
             Texture = spriteSheet;
             sourceRect = new Rectangle(386, 81, 16, 16);
-            destRect = new Rectangle((int)Destination.X, (int)Destination.Y, sourceRect.Width * 2, sourceRect.Height * 2); //height adjustment just for visability
+            destRect = new Rectangle((int)Destination.X, (int)Destination.Y, sourceRect.Width, sourceRect.Height); //height adjustment just for visability
         }
         public void Draw(SpriteBatch spriteBatch) //TODO figure out where I want to actually draw this
         {

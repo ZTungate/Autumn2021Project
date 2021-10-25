@@ -220,10 +220,26 @@ namespace Sprint2.Projectiles
             boomerang.Sprite = CreateBoomerangSprite();
         }
 
+        public void LinkBoomerang(Vector2 position, Vector2 velocity)
+        {
+            //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity);
+            projectiles.Add(boomerang);
+            boomerang.Sprite = CreateBoomerangSprite();
+        }
+
         public void NewBlueBoomerang(Vector2 position, Vector2 velocity)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile boomerang = new BoomerangProjectile(position, velocity);
+            projectiles.Add(boomerang);
+            boomerang.Sprite = CreateBlueBoomerangSprite();
+        }
+
+        public void LinkBlueBoomerang(Vector2 position, Vector2 velocity)
+        {
+            //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBlueBoomerangSprite();
         }
@@ -234,6 +250,11 @@ namespace Sprint2.Projectiles
             IProjectile fire = new FireProjectile(position, velocity);
             projectiles.Add(fire);
             fire.Sprite = CreateFireSprite();
+        }
+
+        public List<IProjectile> getProjs()
+        {
+            return projectiles;
         }
 
     }

@@ -13,6 +13,7 @@ namespace Sprint2
 {
     public class Game1 : Game
     {
+        public static Game1 instance;
         private Dungeon dungeon;
         public ISprite sprite;
 
@@ -22,6 +23,7 @@ namespace Sprint2
 
         public CollisionDetection detector = new CollisionDetection();
         public ICollision collision;
+        public CollisionHandler handler;
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
@@ -50,6 +52,8 @@ namespace Sprint2
 
         public Game1()
         {
+            instance = this;
+
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -57,6 +61,10 @@ namespace Sprint2
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 704;
+            _graphics.ApplyChanges();
+
             //Initialize the sprite factories
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
@@ -68,7 +76,7 @@ namespace Sprint2
             controllerList = new List<IController>()
             {
                 new KeyboardController(this),
-                new MouseController(this),
+                new MouseController(this)
             };
 
             //Initialize Player (Link)
@@ -105,6 +113,9 @@ namespace Sprint2
                 new OldMan(),
                 new Thrower(projectileFactory),
             };
+
+            handler = new CollisionHandler(this);
+
 
             base.Initialize();
         }
@@ -144,6 +155,7 @@ namespace Sprint2
 
 
             LevelLoader.instance.LoadAllLevels(Content);
+            DungeonLoader.instance.LoadDungeons();
         }
 
         protected override void Update(GameTime gameTime)
@@ -166,6 +178,9 @@ namespace Sprint2
 
             currentBlock.Update(gameTime);
 
+            //TODO: poop
+            handler.Update();
+
             base.Update(gameTime);
         }
 
@@ -175,24 +190,22 @@ namespace Sprint2
 
             
             //Using front to back sorting, and point clamp to improve look of pixel art sprites
-            _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
+            _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp);
 
-            //temporary
-            LevelLoader.instance.DrawLevels(_spriteBatch);
+            dungeon.DrawCurrent(_spriteBatch);
 
-            //Draw Link
-            link.Draw(_spriteBatch);
+            currentBlock.Draw(_spriteBatch);
 
             //Draw the current enemy
             enemies[currentEnemy].Sprite.Draw(_spriteBatch);
 
+            items[currentItem].Draw(_spriteBatch);
+
             //Draw all projectiles
             projectileFactory.DrawProjectiles(_spriteBatch);
 
-            items[currentItem].Draw(_spriteBatch);
-
-            currentBlock.Draw(_spriteBatch);
-
+            //Draw Link
+            link.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
@@ -233,6 +246,10 @@ namespace Sprint2
 
             //Re-Initialize the projectile factory.
             projectileFactory.Initalize();
+        }
+        public void SetDungeon(Dungeon dungeon)
+        {
+            this.dungeon = dungeon;
         }
         public Dungeon GetDungeon()
         {
