@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="Level4">
+  <Blocks>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>48,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>64,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>80,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>96,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>208,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>192,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>176,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>160,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>144,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>112,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>112,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>112,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>160,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>176,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>192,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>144,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>208,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>96,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>80,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>64,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>48,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>32,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items />
+  <Enemies />
+</root>
