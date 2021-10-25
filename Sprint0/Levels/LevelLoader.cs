@@ -14,12 +14,13 @@ namespace Sprint0.Levels
     public class LevelLoader
     {
         public static LevelLoader instance = new LevelLoader();
-        private ISprite defaultBackground;
+        private Texture2D blockSpriteSheet;
         private Dictionary<string, Level> levels = new Dictionary<string, Level>();
         public void LoadAllLevels(ContentManager content)
         {
-            defaultBackground = new BackgroundSprite(content.Load<Texture2D>("BlockSpriteSheet"));
-            defaultBackground.Position = new Vector2(0, 0);
+            blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet");
+
+            BackgroundSprite defaultBackground = new BackgroundSprite(blockSpriteSheet);
 
             string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
             string[] fileNames = Directory.GetFiles(dir + "\\Levels");
@@ -38,7 +39,6 @@ namespace Sprint0.Levels
                 {
                     if (reader.IsStartElement() && reader.Name == "Block")
                     {
-                        System.Diagnostics.Debug.Write("Block: ");
                         reader.ReadToDescendant("Object");
                         string blockName = reader.ReadElementContentAsString();
                         blockName += "Sprite";
@@ -58,12 +58,16 @@ namespace Sprint0.Levels
 
                         Object[] objectParams = new Object[2];
                         objectParams[0] = BlockSpriteFactory.Instance.GetBlockSpriteSheet();
-                        objectParams[1] = new Vector2(x * 2, y * 2);
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+                        objectParams[1] = new Vector2(x * scaleX, y * scaleY);
 
                         Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
                         object instance = Activator.CreateInstance(objectType, objectParams);
+                        IBlock newBlock = (IBlock)instance;
+                        newBlock.destRect = new Rectangle(newBlock.destRect.X, newBlock.destRect.Y, (int)(newBlock.sourceRect.Width*scaleX), (int)(newBlock.sourceRect.Height*scaleY));
 
-                        newLevel.AddBlock(new Point(x,y), (IBlock)instance);
+                        newLevel.AddBlock(new Point(x,y), newBlock);
                     }
                     if (reader.IsStartElement() && reader.Name == "Item")
                     {
@@ -104,13 +108,22 @@ namespace Sprint0.Levels
                 levels.Add(levelName, newLevel);
             }
         }
+        public Level GetLevel(string name)
+        {
+            Level outLevel;
+            levels.TryGetValue(name, out outLevel);
+            return outLevel;
+        }
         public void DrawLevels(SpriteBatch batch)
         {
-            defaultBackground.Draw(batch);
             foreach(KeyValuePair<string, Level> entry in levels)
             {
                 entry.Value.Draw(batch);
             }
+        }
+        public ISprite GetNewBackgroundSprite()
+        {
+            return new BackgroundSprite(blockSpriteSheet);
         }
     }
 }

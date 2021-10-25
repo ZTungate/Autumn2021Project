@@ -12,6 +12,9 @@ namespace Sprint2.Items
         protected AbstractItemSprite sprite;
         protected ItemEnum itemType;
         protected Rectangle rect;
+
+        Rectangle IItem.rect { get => rect; set => this.rect = value; }
+
         public AbstractItem(ItemEnum itemType, Rectangle rect)
         {
             this.itemType = itemType;

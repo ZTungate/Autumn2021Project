@@ -76,6 +76,11 @@ namespace Sprint2
             //Block Swapping
             this.controllerMappings.Add(Keys.T, new PreviousBlockCommand(myGame));
             this.controllerMappings.Add(Keys.Y, new NextBlockCommand(myGame));
+
+            this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
+            this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
+            this.controllerMappings.Add(Keys.NumPad2, new SwitchLevelCommand(myGame, new Point(0, -1)));
+            this.controllerMappings.Add(Keys.NumPad4, new SwitchLevelCommand(myGame, new Point(-1, 0)));
         }
 
         KeyboardState state;
