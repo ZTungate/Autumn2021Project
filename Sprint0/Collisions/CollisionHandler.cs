@@ -20,7 +20,6 @@ namespace Sprint0.Collisions
         private Dungeon myDungeon;
         private Level myLevel;
         private CollisionDetection detector;
-        private Dictionary<ICollision, ICommand> collisionMappings;
         public List<ICollision> collides;
 
 
@@ -38,18 +37,6 @@ namespace Sprint0.Collisions
 
             detector = myGame.detector;
         }
-
-
-
-        private void setResponse()
-        {
-            //this.collisionMappings.Add(new L2ECollision(ColDirections.North, true, myGame.link, myGame.enemies[0]), new PlayerTakeDamageCommand(myGame));
-            //this.collisionMappings.Add(new L2ECollision(ColDirections.East, true, myGame.link, myGame.enemies[0]), new PlayerTakeDamageCommand(myGame));
-            //this.collisionMappings.Add(new L2ECollision(ColDirections.South, true, myGame.link, myGame.enemies[0]), new PlayerTakeDamageCommand(myGame));
-            //this.collisionMappings.Add(new L2ECollision(ColDirections.West, true, myGame.link, myGame.enemies[0]), new PlayerTakeDamageCommand(myGame));
-
-        }
-
         
         public void Update()
         {
