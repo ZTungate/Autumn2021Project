@@ -16,6 +16,7 @@ namespace LevelCreator.UI
         public Button addObjectButton;
         public Button placeObjectButton;
         public Button newLevelButton;
+        public Button loadLevelButton;
         public Button exportLevelButton;
         public TextField levelNameField;
         public NewLevelObjectUI newObjectUI;
@@ -28,6 +29,7 @@ namespace LevelCreator.UI
             placeObjectButton = new Button(new Rectangle(screenSize.X - 250, 0, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Place Object", Color.Black));
             addObjectButton = new Button(new Rectangle(screenSize.X - 125, 0, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Add Object", Color.Black));
 
+            loadLevelButton = new Button(new Rectangle(screenSize.X - 125, screenSize.Y - 100, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Load Level", Color.Black));
             exportLevelButton = new Button(new Rectangle(screenSize.X - 125, screenSize.Y - 50, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Export Level", Color.Black));
 
             levelNameField = new TextField(new Rectangle(screenSize.X - 300, screenSize.Y - 50, 175, 50), GeneralFactory.instance.GetTextFieldSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "", Color.White));
@@ -111,6 +113,13 @@ namespace LevelCreator.UI
                     {
                         LevelCreator.instace.currentLevel.GenerateLevelXml(levelNameField.GetText());
                     }
+                    if (loadLevelButton.IsPointOver(mousePos))
+                    {
+                        Level returnLevel;
+                        if((returnLevel = Level.LoadLevel(levelNameField.GetText())) != null){
+                            LevelCreator.instace.currentLevel = returnLevel;
+                        }
+                    }
                 }
                 else if (newObjectUI.IsVisible() && mousePos.X >= newObjectUI.GetPos().X && mousePos.Y >= newObjectUI.GetPos().Y)
                 {
@@ -140,6 +149,7 @@ namespace LevelCreator.UI
             placeObjectButton.Draw(batch);
             addObjectButton.Draw(batch);
 
+            loadLevelButton.Draw(batch);
             exportLevelButton.Draw(batch);
 
             placeObjectUI.Draw(batch);

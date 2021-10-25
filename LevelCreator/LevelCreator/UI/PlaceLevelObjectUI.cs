@@ -84,7 +84,7 @@ namespace LevelCreator.UI
         }
         public void AddPlaceable(LevelObject levelObject)
         {
-            levelObject.SetRectangle(new Rectangle((start.X + 1) + 52 * (placeableObjects.Count % 4), (start.Y + 30) + 52 * (placeableObjects.Count / 4), levelObject.GetInfo().GetSourceRectangle().Width*3, levelObject.GetInfo().GetSourceRectangle().Height*3));
+            levelObject.SetRectangle(new Rectangle((start.X + 1) + 52 * (placeableObjects.Count % 4), (start.Y + 30) + 52 * (placeableObjects.Count / 4), 48, 48));
             this.placeableObjects.Add(levelObject);
         }
         public void AddNewObject(string name, string type, string spriteSheet, string x, string y, string width, string height)
