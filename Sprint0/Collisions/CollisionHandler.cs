@@ -1,4 +1,7 @@
-﻿using Sprint2;
+﻿using Microsoft.Xna.Framework;
+using Sprint0.Levels;
+using Sprint2;
+using Sprint2.Blocks;
 using Sprint2.Commands;
 using Sprint2.Enemies;
 using Sprint2.Player;
@@ -14,6 +17,8 @@ namespace Sprint0.Collisions
     {
         private Game1 myGame;
         private ILink myLink;
+        private Dungeon myDungeon;
+        private Level myLevel;
         private CollisionDetection detector;
         private Dictionary<ICollision, ICommand> collisionMappings;
         public List<ICollision> collides;
@@ -22,6 +27,10 @@ namespace Sprint0.Collisions
         public CollisionHandler(Game1 game)
         {
             myGame = game;
+
+            myDungeon = myGame.GetDungeon();
+
+            //myLevel = myDungeon.GetCurrentLevel();
 
             myLink = myGame.link;
 
@@ -50,23 +59,56 @@ namespace Sprint0.Collisions
 
             collides.Add(detector.detectCollision(myLink, myGame.currentBlock));
 
-
+            //handle link enemy collision
             foreach (IEnemy ene in myGame.enemies) {
-                collides.Add(detector.detectCollision(myLink, ene));
+                L2ECollision eneLink = (L2ECollision)detector.detectCollision(myLink, ene);
+                if (eneLink.IsCollision) {
+                    new PlayerTakeDamageCommand(myGame).Execute();
+                }
+            }
+            //handle link projectile collision
+            foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
+                //collides.Add(detector.detectCollision(proj, myLink));
+                P2LCollision projLink = (P2LCollision)detector.detectCollision(proj, myLink);
+                if (projLink.IsCollision) {
+                    projLink.proj1.Life = 0;
+                    //check if shield face projectile
+                    if (projLink.link2.state is DownIdleLinkState && projLink.direction is ColDirections.South) {
+
+                    }
+                    else if (projLink.link2.state is RightIdleLinkState && projLink.direction is ColDirections.East) {
+
+                    }
+                    else if (projLink.link2.state is LeftIdleLinkState && projLink.direction is ColDirections.West) {
+
+                    }
+                    else if (projLink.link2.state is UpIdleLinkState && projLink.direction is ColDirections.North) {
+
+                    }
+                    else {
+                        new PlayerTakeDamageCommand(myGame).Execute();
+                    }
+
+                }
             }
 
-            foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
-                collides.Add(detector.detectCollision(myLink, proj));
-            }
+
+
+
+            //handle link block collision
+            //foreach (KeyValuePair<Point, IBlock> block in myLevel.blocks) {
+            //    collides.Add(detector.detectCollision(myLink, block.Value));
+            //}
 
             foreach (ICollision col in collides) {
                 if (col.IsCollision) {
-                    if (col is L2ECollision) {
-                        new PlayerTakeDamageCommand(myGame).Execute();
-                    }
                     if (col is L2BCollision) {
                         myLink.position = myLink.oldPosition;
                     }
+                    if (col is P2LCollision) {
+
+                    }
+
 
                 }
             }

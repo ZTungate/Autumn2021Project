@@ -14,7 +14,7 @@ namespace Sprint0.Levels
     public class Level
     {
         Point location;
-        Dictionary<Point, IBlock> blocks;
+        public Dictionary<Point, IBlock> blocks;
         List<IEnemy> enemies;
         List<IItem> items;
         ILink link;

@@ -160,9 +160,6 @@ namespace Sprint2
             //Update Link
             link.Update(gameTime);
 
-            //TODO: poop
-            handler.Update();
-
             //Update the current enemy
             enemies[currentEnemy].Update(gameTime);
 
@@ -172,6 +169,9 @@ namespace Sprint2
             items[currentItem].Update(gameTime);
 
             currentBlock.Update(gameTime);
+
+            //TODO: poop
+            handler.Update();
 
             base.Update(gameTime);
         }
