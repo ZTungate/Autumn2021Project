@@ -90,6 +90,7 @@ namespace Sprint2
                 new Slime(new Vector2(600,300)),
                 new OldMan(new Vector2(600,300)),
                 new Thrower(new Vector2(600,300)),
+                new BladeTrap(link, new Vector2(600,300)),
             };
 
             handler = new CollisionHandler(this);

@@ -13,14 +13,17 @@ namespace Sprint2.Enemies
         IEnemyState currState;
         ILink link;
         Vector2 homePos;
-        Vector2 moveVector;
+        Vector2 moveVector = new Vector2(0,0);
+        int attackTimer = 0;
+        int returnTimer = 0;
+        direction attackDirection;
 
         public ISprite Sprite
         {
             get => mySprite;
             set => mySprite = value;
         }
-        public EnemyTypes Type => EnemyTypes.SpikeTrap;
+        public EnemyTypes Type => EnemyTypes.BladeTrap;
 
         public Vector2 Position
         { get => currPos;
@@ -35,7 +38,8 @@ namespace Sprint2.Enemies
         public BladeTrap(ILink gameLink, Vector2 originPos)
         {
             link = gameLink;
-            homePos = originPos; 
+            homePos = originPos;
+            currPos = originPos;
         }
 
         public void Update(GameTime gameTime)
@@ -43,13 +47,35 @@ namespace Sprint2.Enemies
             //Change positions if the movement vector is not zero.
             if (!moveVector.Equals(new Vector2(0,0)))
             {
-                currPos += moveVector;
+                if (attackTimer > 0)
+                {//Move into the attack and decrement attackTimer
+                    currPos += moveVector;
+                    attackTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
+                /*else if (returnTimer == EnemyConstants.horizBladeMoveTime * 2 || returnTimer == EnemyConstants.vertBladeMoveTime * 2)
+                {//Set moveVector back towards home
+                    returnTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                    moveVector = ReturnHome();
+                }*/
+                else if (returnTimer > 0)
+                {//Move back towards home, and decrement returnTimer
+                    moveVector = ReturnHome();
+                    currPos += moveVector;
+                    returnTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
+                else
+                {//Stop movement and reset the timers
+                    moveVector = new Vector2(0, 0);
+                    attackTimer = 0;
+                    returnTimer = 0;
+                }
             }
             else
             {
                 //If moveVector is 0, try to attack
                 moveVector = TryAttack();
             }
+            mySprite.Position = currPos;
         }
 
         private Vector2 TryAttack()
@@ -58,13 +84,19 @@ namespace Sprint2.Enemies
             {//If link is within the X dimensions of the blade trap, check if he's above or below.
                 if (link.position.Y < currPos.Y)
                 {
-                    //Link is above, move upwards
+                    //Link is above, move upwards and set timers
                     moveVector = new Vector2(0, -EnemyConstants.bladeAttackSpeed);
+                    attackTimer = EnemyConstants.vertBladeMoveTime;
+                    returnTimer = EnemyConstants.vertBladeMoveTime * 2;
+                    attackDirection = direction.up;
                 }
                 else
                 {
-                    //Link is below.
+                    //Link is below, move downwards and set timers.
                     moveVector = new Vector2(0, EnemyConstants.bladeAttackSpeed);
+                    attackTimer = EnemyConstants.vertBladeMoveTime;
+                    returnTimer = EnemyConstants.vertBladeMoveTime * 2;
+                    attackDirection = direction.down;
                 }
             }
             else if(currPos.Y < link.position.Y && link.position.Y < (currPos.Y + EnemyConstants.stdEnemySize.Width))
@@ -72,16 +104,26 @@ namespace Sprint2.Enemies
                 if (link.position.X < currPos.X)
                 {
                     moveVector = new Vector2(-EnemyConstants.bladeAttackSpeed, 0);
+                    attackTimer = EnemyConstants.horizBladeMoveTime;
+                    returnTimer = EnemyConstants.horizBladeMoveTime * 2;
+                    attackDirection = direction.left;
                 }
                 else
                 {
                     moveVector = new Vector2(EnemyConstants.bladeAttackSpeed, 0);
+                    attackTimer = EnemyConstants.horizBladeMoveTime;
+                    returnTimer = EnemyConstants.horizBladeMoveTime * 2;
+                    attackDirection = direction.right;
                 }
             }
             return moveVector;
         }
 
-
-
+        private Vector2 ReturnHome()
+        {
+            Vector2 dist = homePos - currPos;
+            moveVector = dist / EnemyConstants.bladeAttackSpeed; //TODO:Figure out an appropriate return speed.
+            return moveVector;
+        }
     }
 }

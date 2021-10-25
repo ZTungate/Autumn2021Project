@@ -25,7 +25,7 @@ namespace Sprint2
             SourceRect = new Rectangle[1];
 
             //Set the source rectangle
-            SourceRect[0] = new Rectangle(164, 59, EnemyConstants.stdEnemySize.Width, EnemyConstants.stdEnemySize.Height);
+            SourceRect[0] = new Rectangle(164, 59, 16, 16);
         }
 
         public void Update(GameTime gameTime)
@@ -50,7 +50,7 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             //Draw enemy at its position at twice its source size.
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width * 2, SourceRect[CurrentFrame].Height * 2);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, EnemyConstants.stdEnemySize.Width, EnemyConstants.stdEnemySize.Height);
             spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
         }
     }
