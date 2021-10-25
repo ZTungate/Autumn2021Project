@@ -70,10 +70,10 @@ namespace Sprint2.Player
                     link.ProjectileFactory.NewBlueArrow(link.position, direction.down);
                     break;
                 case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.NewBoomerang(link.position, RegBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBoomerang(link.position, RegBoomerangVelocity * directionVector);
                     break;
                 case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.NewBlueBoomerang(link.position, BlueBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBlueBoomerang(link.position, BlueBoomerangVelocity * directionVector);
                     break;
                 case ProjectileTypes.fire:
                     link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
