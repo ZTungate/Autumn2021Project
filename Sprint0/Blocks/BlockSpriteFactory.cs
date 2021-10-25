@@ -24,7 +24,7 @@ namespace Sprint2.Blocks
                 return instance;
             }
         }
-        
+
         private BlockSpriteFactory()
         {
         }
@@ -33,6 +33,7 @@ namespace Sprint2.Blocks
         {
             blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet"); //loads the texture atlas
             //loads all the block sprites into a list
+            
             blockList.Add(CreateFloorTile(new Vector2(200, 300)));
             blockList.Add(CreateBlackBox(new Vector2(200, 300)));
             blockList.Add(CreateEntryFloorTile(new Vector2(200, 300)));
@@ -75,7 +76,12 @@ namespace Sprint2.Blocks
             blockTracker = 0;
         }
 
-        //flowing methods return a sprite object for the block
+        //following methods return a sprite object for the block
+        public IBlock CreateMoveableFloorBlockSprite(Vector2 dest)
+        {
+            return new MoveableFloorBlockSprite(blockSpriteSheet, dest);
+        }
+
         public IBlock CreateBlackBox(Vector2 dest)
         {
             return new BlackBoxSprite(blockSpriteSheet, dest);
