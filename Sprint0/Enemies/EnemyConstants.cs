@@ -16,7 +16,9 @@ namespace Sprint2.Enemies
         public static int bladeAttackSpeed = 10;
 
         //Enemy sizes
-        public static Rectangle stdEnemySize = new Rectangle(0,0, 32, 32);
+        public static Rectangle stdEnemySize = new Rectangle(0,0, 32, 32);//Size of thrower, bladeTrap, skeleton, bat, and grabber.
+        public static Rectangle slimeSize = new Rectangle(0, 0, 16, 32);
+        public static Rectangle dragonSize = new Rectangle(0, 0, 48, 64);
     }
     public enum EnemyTypes { Dragon, Skeleton, Slime, Thrower, Bat , OldMan, SpikeTrap, Grabber };
 }
