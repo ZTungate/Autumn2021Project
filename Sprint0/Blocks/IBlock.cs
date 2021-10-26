@@ -6,8 +6,6 @@ namespace Sprint2.Blocks
 {
     public interface IBlock
     {
-        
-
         Rectangle sourceRect { get; set; }
 
         Rectangle destRect { get; set; }

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using Sprint2.Projectiles;
 using Sprint0.Collisions;
 using Sprint0.Levels;
+using Sprint0.Levels.Sprites;
 
 namespace Sprint2
 {
@@ -128,7 +129,7 @@ namespace Sprint2
                 enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
             }
 
-
+            DoorSpriteFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
         }

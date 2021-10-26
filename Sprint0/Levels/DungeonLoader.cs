@@ -37,6 +37,8 @@ namespace Sprint0.Levels
 
                     newDungeon.AddLevel(new Point(x,y),level);
                 }
+                newDungeon.UpdateLevelDoors(LevelLoader.instance.gameScaleX, LevelLoader.instance.gameScaleY);
+
                 newDungeon.SetCurrentLevel(new Point(0, 0));
                 newDungeon.UpdateLevelContentPositions();
 

@@ -9,6 +9,6 @@ namespace Sprint0.Player
         //Amount of time link is in an item use state (miliseconds)
         public static int itemUseTime = 300;
         public static int swordAttackTime = 300;
-
+        public static float scaleX, scaleY;
     }
 }

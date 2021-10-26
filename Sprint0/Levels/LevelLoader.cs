@@ -10,12 +10,14 @@ using Sprint2;
 using Microsoft.Xna.Framework.Content;
 using Sprint2.Items;
 using Sprint2.Enemies;
+using Sprint0.Player;
 
 namespace Sprint0.Levels
 {
     public class LevelLoader
     {
         public static LevelLoader instance = new LevelLoader();
+        public float gameScaleX, gameScaleY;
         private Texture2D blockSpriteSheet;
         private Dictionary<string, Level> levels = new Dictionary<string, Level>();
         public void LoadAllLevels(ContentManager content)
@@ -27,6 +29,9 @@ namespace Sprint0.Levels
             string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
             string[] fileNames = Directory.GetFiles(dir + "\\Levels");
             XmlReaderSettings settings = new XmlReaderSettings();
+
+            gameScaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+            gameScaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
 
             foreach (string fileName in fileNames)
             {
@@ -95,7 +100,7 @@ namespace Sprint0.Levels
                         objectParams[0] = new Rectangle((int)(x * scaleX), (int)(y * scaleY), (int)(16*scaleX), (int)(16*scaleY));
                         Type itemType = Type.GetType("Sprint2.Items." + itemName);
                         object instance = Activator.CreateInstance(itemType, objectParams);
-                        IItem item = (IItem)instance;
+                        AbstractItem item = (AbstractItem)instance;
                         item.CreateSprite(scaleX, scaleY);
 
                         newLevel.AddItem(item);
@@ -136,6 +141,9 @@ namespace Sprint0.Levels
                     {
                         float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
                         float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+
+                        LinkConstants.scaleX = scaleX;
+                        LinkConstants.scaleY = scaleY;
 
                         reader.ReadToDescendant("Start");
                         reader.MoveToContent();
