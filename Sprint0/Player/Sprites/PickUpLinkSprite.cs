@@ -60,7 +60,11 @@ namespace Sprint2.Player
 
             spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
             //draw item above link
-            Vector2 itemPos = player.position + myItem.
+            Vector2 itemPos = new Vector2(player.position.X + (player.position.X - myItem.GetSprite().SourceRect[CurrentFrame].X)/2, player.position.Y - myItem.GetSprite().SourceRect[CurrentFrame].Y);
+            myItem.SetRectangle(new Rectangle((int)(myItem.GetRectangle().X + itemPos.X), (int)(myItem.GetRectangle().Y + itemPos.Y), myItem.GetRectangle().Width, myItem.GetRectangle().Height));
+            //TODO: Draw item 
+            //myItem.Draw()
+
         }
 
     }

@@ -122,20 +122,36 @@ namespace Sprint0.Collisions
                 }
             }
 
+            //handle enemy projectile collision
+            List<IEnemy> eneToRemove = new List<IEnemy>();
+
+            foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
+                foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
+                    P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
+                    if (projEne.IsCollision && !(projEne.proj1 is FireballProjectile || projEne.proj1 is BoomerangProjectile)) {
+                        eneToRemove.Add(projEne.enemy2);
+                    }
+                }
+            }
+            //remove enemies from the room
+            foreach (IEnemy ene in eneToRemove) {
+                myDungeon.GetCurrentLevel().RemoveEnemy(ene);
+            }
+
             //handle link item collision
-            List<AbstractItem> toRemove = new List<AbstractItem>();
+            List<AbstractItem> itemToRemove = new List<AbstractItem>();
 
             foreach (AbstractItem item in myDungeon.GetCurrentLevel().GetItemList()) {
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
                 if (itemLink.IsCollision) {
-                    toRemove.Add(itemLink.Item2);
+                    itemToRemove.Add(itemLink.Item2);
                     if(itemLink.Item2 is TriforcePieceItem) {
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
                     }
                 }
             }
-
-            foreach (AbstractItem item in toRemove) {
+            //remove items from the room
+            foreach (AbstractItem item in itemToRemove) {
                 myDungeon.GetCurrentLevel().RemoveItem(item);
             }
 

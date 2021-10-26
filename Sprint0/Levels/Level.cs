@@ -168,6 +168,10 @@ namespace Sprint0.Levels
             items.Remove(item);
         }
 
+        public void RemoveEnemy(IEnemy enemy)
+        {
+            enemies.Remove(enemy);
+        }
         public IBlock GetBlock(Point p)
         {
             IBlock outBlock;
