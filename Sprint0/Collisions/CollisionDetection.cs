@@ -104,8 +104,18 @@ namespace Sprint0.Collisions
             ICollision collision = new L2BCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
             return collision;
         }
+        //Returns L2R collision
+        public ICollision detectCollision(ILink object1, Rectangle object2)
+        {
+            Vector2 holder1 = object1.position;
 
-            public ICollision detectCollision(IBlock object1, ILink object2) 
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * 2, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * 2);
+            Rectangle two = object2;
+            ICollision collision = new L2RCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
+            return collision;
+        }
+
+        public ICollision detectCollision(IBlock object1, ILink object2) 
             {
                 Vector2 holder1 = object2.position;
 

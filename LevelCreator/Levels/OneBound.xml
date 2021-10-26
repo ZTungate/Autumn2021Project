@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="OneBound">
+  <Blocks>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>112,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>112,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>144,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items />
+  <Enemies />
+  <Bounds>
+    <Bound>
+      <Start>32,32</Start>
+      <End>223,32</End>
+    </Bound>
+  </Bounds>
+</root>

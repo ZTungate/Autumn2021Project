@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="BoundingLevel">
+  <Blocks>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>96,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>80,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>80,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>80,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>80,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>96,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>112,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>144,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>160,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>144,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>160,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>160,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>160,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items>
+    <Item>
+      <Object>TriforcePiece</Object>
+      <Location>123,78</Location>
+      <Conditions> </Conditions>
+    </Item>
+  </Items>
+  <Enemies>
+    <Enemy>
+      <Object>Dragon</Object>
+      <Location>193,99</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>Dragon</Object>
+      <Location>36,102</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+  </Enemies>
+  <Bounds>
+    <Bound>
+      <Start>32,31</Start>
+      <End>104,31</End>
+    </Bound>
+    <Bound>
+      <Start>150,32</Start>
+      <End>223,32</End>
+    </Bound>
+    <Bound>
+      <Start>223,32</Start>
+      <End>223,65</End>
+    </Bound>
+    <Bound>
+      <Start>224,110</Start>
+      <End>224,143</End>
+    </Bound>
+    <Bound>
+      <Start>224,143</Start>
+      <End>31,143</End>
+    </Bound>
+    <Bound>
+      <Start>31,143</Start>
+      <End>31,33</End>
+    </Bound>
+  </Bounds>
+</root>
