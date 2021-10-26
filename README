@@ -12,12 +12,12 @@ Z and N to use sword
 4 to fire a blue arrow
 5 to place a bomb
 6 to cast a fireball
-
+Instead of using mouse controls to change rooms: numpad8 goes north, numpad2 goes south, numpad4 goes west, numpad6 goes east.
 Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
-Enemy position doesn't reset when swapping
 You can throw many projectiles all at once
-You can attack many times at once
+Sword beam comes out too fast
+
 
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
 
@@ -31,3 +31,5 @@ Depth of Inheritance: 2
 Class Coupling: 189
 Lines of Source code: 7,313
 Lines of Executable code: 1,835
+
+
