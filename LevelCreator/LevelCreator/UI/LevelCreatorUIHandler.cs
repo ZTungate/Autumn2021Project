@@ -30,6 +30,7 @@ namespace LevelCreator.UI
             placeObjectButton = new Button(new Rectangle(screenSize.X - 250, 0, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Place Object", Color.Black));
             addObjectButton = new Button(new Rectangle(screenSize.X - 125, 0, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Add Object", Color.Black));
 
+            newLevelButton = new Button(new Rectangle(screenSize.X - 125, screenSize.Y - 150, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "New Level", Color.Black));
             loadLevelButton = new Button(new Rectangle(screenSize.X - 125, screenSize.Y - 100, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Load Level", Color.Black));
             exportLevelButton = new Button(new Rectangle(screenSize.X - 125, screenSize.Y - 50, 125, 50), GeneralFactory.instance.GetButtonSprite(), new TextSprite(GeneralFactory.instance.GetFont(), "Export Level", Color.Black));
 
@@ -121,6 +122,10 @@ namespace LevelCreator.UI
                             LevelCreator.instace.currentLevel = returnLevel;
                         }
                     }
+                    if (newLevelButton.IsPointOver(mousePos))
+                    {
+                        LevelCreator.instace.currentLevel = new Level("Unnamed");
+                    }
                 }
                 else if (newObjectUI.IsVisible() && mousePos.X >= newObjectUI.GetPos().X && mousePos.Y >= newObjectUI.GetPos().Y)
                 {
@@ -203,6 +208,7 @@ namespace LevelCreator.UI
             placeObjectButton.Draw(batch);
             addObjectButton.Draw(batch);
 
+            newLevelButton.Draw(batch);
             loadLevelButton.Draw(batch);
             exportLevelButton.Draw(batch);
 

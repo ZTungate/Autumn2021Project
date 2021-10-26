@@ -33,7 +33,7 @@ namespace Sprint2.Player
         public Link()
         {
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            position = new Vector2(20, 20);  //Link's initial position
+            position = new Vector2(300, 300);  //Link's initial position
             colorIndex = 0;
 
             color = Color.White;

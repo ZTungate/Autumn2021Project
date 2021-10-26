@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root xmlns="Level1">
+<root xmlns="SlimeLevel">
   <Blocks>
     <Block>
       <Object>Floor</Object>
@@ -13,12 +13,12 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>176,32</Location>
+      <Location>160,32</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>160,32</Location>
+      <Location>144,32</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -43,11 +43,6 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>48,32</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
       <Location>32,32</Location>
       <Conditions> </Conditions>
     </Block>
@@ -58,12 +53,7 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>32,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>32,80</Location>
+      <Location>48,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -78,16 +68,6 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>48,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>32,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
       <Location>48,112</Location>
       <Conditions> </Conditions>
     </Block>
@@ -98,7 +78,32 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>48,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
       <Location>48,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>64,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>48,32</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -108,12 +113,7 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>48,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>64,48</Location>
+      <Location>32,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -148,6 +148,11 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>96,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
       <Location>80,112</Location>
       <Conditions> </Conditions>
     </Block>
@@ -163,12 +168,12 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>80,64</Location>
+      <Location>80,48</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>80,48</Location>
+      <Location>80,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -182,8 +187,13 @@
       <Conditions> </Conditions>
     </Block>
     <Block>
-      <Object>Floor</Object>
+      <Object>MarioBrick</Object>
       <Location>96,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -198,66 +208,6 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>96,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>96,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,48</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>144,48</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>144,32</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,48</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
       <Location>112,112</Location>
       <Conditions> </Conditions>
     </Block>
@@ -268,42 +218,37 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>128,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
       <Location>128,112</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
-      <Object>Floor</Object>
-      <Location>144,112</Location>
+      <Object>MarioBrick</Object>
+      <Location>112,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>144,128</Location>
+      <Location>128,48</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>144,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>144,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>144,64</Location>
+      <Location>144,48</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
       <Location>160,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>176,32</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -333,12 +278,27 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>176,64</Location>
+      <Location>160,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>160,64</Location>
+      <Location>144,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>112,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>128,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>176,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -348,32 +308,52 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>192,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>208,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>176,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>176,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
       <Location>160,96</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>160,112</Location>
+      <Location>144,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>128,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>128,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>144,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>112,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>128,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>144,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>144,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>176,112</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -388,17 +368,27 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>176,112</Location>
+      <Location>160,112</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>192,128</Location>
+      <Location>176,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>192,112</Location>
+      <Location>192,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>176,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>208,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -413,6 +403,16 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>192,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>192,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
       <Location>208,112</Location>
       <Conditions> </Conditions>
     </Block>
@@ -422,77 +422,61 @@
       <Conditions> </Conditions>
     </Block>
   </Blocks>
-  <Items>
-    <Item>
-      <Object>TriforcePiece</Object>
-      <Location>140,52</Location>
-      <Conditions> </Conditions>
-    </Item>
-    <Item>
-      <Object>TriforcePiece</Object>
-      <Location>79,90</Location>
-      <Conditions> </Conditions>
-    </Item>
-    <Item>
-      <Object>Fairy</Object>
-      <Location>153,70</Location>
-      <Conditions> </Conditions>
-    </Item>
-  </Items>
+  <Items />
   <Enemies>
     <Enemy>
-      <Object>Dragon</Object>
-      <Location>179,53</Location>
+      <Object>Slime</Object>
+      <Location>161,82</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
-      <Object>Dragon</Object>
-      <Location>61,39</Location>
+      <Object>Slime</Object>
+      <Location>77,53</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
-      <Object>Skeleton</Object>
-      <Location>158,101</Location>
+      <Object>Slime</Object>
+      <Location>78,100</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
-      <Object>Skeleton</Object>
-      <Location>118,98</Location>
+      <Object>Slime</Object>
+      <Location>153,59</Location>
       <Conditions> </Conditions>
     </Enemy>
   </Enemies>
   <Bounds>
     <Bound>
-      <Start>31,32</Start>
-      <End>108,32</End>
+      <Start>31,31</Start>
+      <End>108,31</End>
     </Bound>
     <Bound>
-      <Start>147,30</Start>
-      <End>223,30</End>
+      <Start>147,32</Start>
+      <End>223,32</End>
     </Bound>
     <Bound>
-      <Start>223,30</Start>
-      <End>223,66</End>
+      <Start>223,32</Start>
+      <End>223,67</End>
     </Bound>
     <Bound>
-      <Start>222,109</Start>
-      <End>222,143</End>
+      <Start>223,112</Start>
+      <End>223,143</End>
     </Bound>
     <Bound>
-      <Start>222,143</Start>
-      <End>149,143</End>
+      <Start>223,143</Start>
+      <End>151,143</End>
     </Bound>
     <Bound>
-      <Start>107,144</Start>
-      <End>32,144</End>
+      <Start>105,143</Start>
+      <End>32,143</End>
     </Bound>
     <Bound>
-      <Start>32,144</Start>
-      <End>32,109</End>
+      <Start>32,143</Start>
+      <End>32,108</End>
     </Bound>
     <Bound>
-      <Start>31,69</Start>
-      <End>31,32</End>
+      <Start>32,69</Start>
+      <End>32,33</End>
     </Bound>
   </Bounds>
 </root>
