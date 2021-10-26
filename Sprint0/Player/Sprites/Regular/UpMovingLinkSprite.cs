@@ -13,7 +13,7 @@ namespace Sprint2.Player
         public float Interval { get; set; } = 128f; 
         public int CurrentFrame { get; set; } = 0;
         public int FrameCount { get; set; } = 2;
-        public float SpriteSpeed { get; set; } = 1;
+        public float SpriteSpeed { get; set; } = LinkConstants.linkSpeed;
         public Texture2D Texture { get; set; }
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
