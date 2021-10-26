@@ -15,13 +15,22 @@ Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
 Sword beam comes out too fast
 Swords don't explode at the end.
+Can throw multiple of the same projectile.
 Bombs have no collision/spawn weird
 Projectiles don't get deleted on level change.
 Sometimes stuck in block with level swapping.
 No bounding box where doors should be if there's no door.
+Going into doors puts you too far into the room.
+Link is too big.
+Room transition collision goes out too far.
+Sword beam has incorrect scaling.
 
 
-
+Following is not implemented
+Camera transitions - not implemented yet
+No reset key - not implemented yet
+No knockback - not implemented yet
+Health stats - not implemented yet
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
 
 Sprint 2:
