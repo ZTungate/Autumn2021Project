@@ -19,7 +19,6 @@ namespace Sprint0.Collisions
         private Game1 myGame;
         private ILink myLink;
         private Dungeon myDungeon;
-        private Level myLevel;
         private CollisionDetection detector;
         public List<ICollision> collides;
 

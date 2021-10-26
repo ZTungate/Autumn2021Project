@@ -65,13 +65,8 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
 
 
-            //Enemy Swapping
-            this.controllerMappings.Add(Keys.O, new PreviousEnemyCommand(myGame));
-            this.controllerMappings.Add(Keys.P, new NextEnemyCommand(myGame));
 
-            //Block Swapping
-            this.controllerMappings.Add(Keys.T, new PreviousBlockCommand(myGame));
-            this.controllerMappings.Add(Keys.Y, new NextBlockCommand(myGame));
+
 
             this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
             this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
