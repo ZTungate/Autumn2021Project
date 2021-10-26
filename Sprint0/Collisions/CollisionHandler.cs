@@ -143,7 +143,6 @@ namespace Sprint0.Collisions
                     if (dir == new Point(0, 1)) 
                     { 
                         AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1)); 
-                        System.Diagnostics.Debug.WriteLine(oppositeDoor.Position); 
                         linkNewPos = new Vector2(oppositeDoor.Position.X, oppositeDoor.Position.Y - oppositeDoor.scaleY * oppositeDoor.SourceRect[0].Height - myLink.sprite.SourceRect[0].Height * oppositeDoor.scaleY - 5); 
                     } 
                     if (dir == new Point(1, 0)) 
