@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Sprint0.Player;
 
 namespace Sprint2.Player
 {
@@ -18,8 +19,6 @@ namespace Sprint2.Player
         public Vector2 Position { get; set; }
 
         ILink player;
-
-        public int scale = 2;
 
         public UpUseItemLinkSprite(Texture2D spriteSheet, ILink player)
         {
@@ -38,9 +37,9 @@ namespace Sprint2.Player
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width*scale, SourceRect[CurrentFrame].Height*scale);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width* (int)LinkConstants.scaleX, SourceRect[CurrentFrame].Height* (int)LinkConstants.scaleY);
 /*            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
-*/            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], player.color, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+*/            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], player.color, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
 
         }
 
