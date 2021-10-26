@@ -15,6 +15,7 @@ namespace Sprint2.Enemies
         public static int throwerMoveSpeed = 6;
         public static int bladeAttackSpeed = 10;
         public static int bladeReturnSpeed = bladeAttackSpeed / 2;
+        public static int grabberMoveSpeed = 6;
 
         //Enemy sizes
         public static float scaleX, scaleY;
