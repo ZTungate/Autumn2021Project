@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -48,13 +49,13 @@ namespace Sprint2
         public void Draw(SpriteBatch spriteBatch)
         {
             //Draw projectile at its position at twice its source size.
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[0].Width * 2, SourceRect[0].Height * 2);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[0].Width * (int)LinkConstants.scaleX, SourceRect[0].Height * (int)LinkConstants.scaleY);
             switch (counter % 2) {
                 case 0:
-                    spriteBatch.Draw(Texture, Position, SourceRect[0], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+                    spriteBatch.Draw(Texture, Position, SourceRect[0], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
                     break;
                 case 1:
-                    spriteBatch.Draw(Texture, Position, SourceRect[0], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1);
+                    spriteBatch.Draw(Texture, Position, SourceRect[0], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.FlipHorizontally, 1);
                     break;
 
             }
