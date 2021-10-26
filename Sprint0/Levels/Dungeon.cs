@@ -21,8 +21,8 @@ namespace Sprint0.Levels
             this.levelWidth = levelWidth;
             this.levelHeight = levelHeight;
         }
-        static Point[] directions = { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
-        static Dictionary<Point, DoorDirectionEnum> doorDir = new Dictionary<Point, DoorDirectionEnum>
+        public static Point[] directions = { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
+        public static Dictionary<Point, DoorDirectionEnum> doorDir = new Dictionary<Point, DoorDirectionEnum>
         {
             {directions[0],DoorDirectionEnum.Up},
             {directions[1],DoorDirectionEnum.Right},
