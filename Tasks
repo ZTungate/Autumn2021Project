@@ -4,9 +4,13 @@ EVERYONE:
   Sprites of classes they implement
   Want to set up sprites early so testing is easier
     
-WESLEY, MICHAEL:
-Implement player movement & controls (movement commands)
-Link State Transitions
+Michael:
+Link State Transitions - 4 hr
+
+WESLEY:
+Implement player movement & controls (movement commands) - 3 hr
+Link pick up Item - 2 hours
+Detection Handling - 5 hours
 
 JONAH:
 Implement Sprite factories (for enemy)
@@ -20,9 +24,11 @@ Create items -> Finished in 4.5 hours:
 	-Item Switching - 1.5 hours
 	-Individual Item Sprites - 1 hour
 	-Bug fixing/readability fixes(due to bad code quality etc.)- 1 hour
+Level creator - 10 hours
 
 ZACH:
 Create block classes - Finished with time of 6 hours
+Collision Detection - 6 hours
 
 UNASSIGNED:
 Projectiles
