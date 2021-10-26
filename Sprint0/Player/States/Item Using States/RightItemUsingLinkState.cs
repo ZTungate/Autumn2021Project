@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Player;
+using Sprint2.Items;
 using System;
 using static Sprint0.Projectiles.ProjectileConstants;
 
@@ -52,6 +53,11 @@ namespace Sprint2.Player
         public void Move(direction direction)
         {
             //Link can not move while throwing an item.
+        }
+
+        public void PickUp(AbstractItem item)
+        {
+            //No Implementation needed.
         }
 
         private void Attack(ProjectileTypes item)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Player;
+using Sprint2.Items;
 using System;
 using static Sprint0.Projectiles.ProjectileConstants;
 
@@ -81,6 +82,11 @@ namespace Sprint2.Player
                     link.ProjectileFactory.NewBomb(new Vector2(link.position.X, link.position.Y - link.sprite.SourceRect[link.sprite.CurrentFrame].Height * 2));
                     break;
             }
+        }
+
+        public void PickUp(AbstractItem item)
+        {
+            //No Implementation needed.
         }
 
     }

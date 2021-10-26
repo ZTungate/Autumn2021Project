@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint2.Items;
 using System;
 using static Sprint0.Projectiles.ProjectileConstants;
 
@@ -57,6 +58,11 @@ namespace Sprint2.Player
                     link.state = new UpIdleLinkState(link, mySprite);
                     break;
             }
+        }
+
+        public void PickUp(AbstractItem item)
+        {
+            //No Implementation needed.
         }
 
     }

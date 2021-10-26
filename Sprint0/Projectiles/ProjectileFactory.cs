@@ -67,8 +67,12 @@ namespace Sprint2.Projectiles
             {
                 projectiles.Remove(projectile);
 
+                //special after effects for some projectiles
                 if (projectile is SwordBeamProjectile) {
                     
+                }
+                else if (projectile is BlueArrowProjectile | projectile is RegArrowProjectile) {
+
                 }
 
             }

@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint2.Items;
 using System;
 using static Sprint0.Projectiles.ProjectileConstants;
 
@@ -13,6 +14,7 @@ namespace Sprint2.Player
 		void UseItem(ProjectileTypes item);
 		void SwordAttack();
 		void Move(direction direction);
+		void PickUp(AbstractItem item);
 
 		//Damage should be implemented as a decorator on the player, not the state (look at notes on cse3902 homepage)
 	}

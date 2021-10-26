@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Sprint2.Projectiles;
 using static Sprint0.Projectiles.ProjectileConstants;
+using Sprint2.Items;
 
 namespace Sprint2.Player
 {
@@ -122,6 +123,11 @@ namespace Sprint2.Player
         public void SwordAttack()
         {
             state.SwordAttack();
+        }
+
+        public void PickUp(AbstractItem item)
+        {
+            state.PickUp(item);
         }
     }
     

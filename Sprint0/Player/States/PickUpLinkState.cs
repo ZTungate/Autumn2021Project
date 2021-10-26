@@ -1,26 +1,24 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Sprint0.Player;
-using Sprint0.Projectiles;
 using Sprint2.Items;
 using System;
 using static Sprint0.Projectiles.ProjectileConstants;
 
 namespace Sprint2.Player
 {
-    public class DownItemUsingLinkState : ILinkState
+    public class PickUpLinkState : ILinkState
     {
         private ILink link;
         private ISprite mySprite;
 
         private int stateTime;
-        public DownItemUsingLinkState(ILink Link, ISprite sprite, ProjectileTypes item)
+        public PickUpLinkState(ILink Link, ISprite sprite, AbstractItem item)
         {
             link = Link;
-            mySprite = new DownUseItemLinkSprite(sprite.Texture, Link);
+            mySprite = new PickUpLinkSprite(sprite.Texture, Link, item);
             link.sprite = mySprite;
             stateTime = LinkConstants.itemUseTime;
-            Attack(item);
         }
 
         public void TakeDamage()
@@ -50,7 +48,7 @@ namespace Sprint2.Player
 
         public void SwordAttack()
         {
-            link.state = new DownSwordLinkState(link, mySprite);
+            link.state = new UpSwordLinkState(link, mySprite);
         }
 
         public void Move(direction direction)
@@ -58,17 +56,22 @@ namespace Sprint2.Player
             //Link can not move while throwing an item.
         }
 
+        public void PickUp(AbstractItem item)
+        {
+            //No Implementation needed.
+        }
+
         private void Attack(ProjectileTypes item)
         {
-            Vector2 directionVector = new Vector2(0, 1);
+            Vector2 directionVector = new Vector2(0, -1);
             switch (item)
             {
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.position, direction.down);
+                    link.ProjectileFactory.NewRegArrow(link.position, direction.up);
                     break;
                 case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.position, direction.down);
+                    link.ProjectileFactory.NewBlueArrow(link.position, direction.up);
                     break;
                 case ProjectileTypes.linkBoomerang:
                     link.ProjectileFactory.LinkBoomerang(link.position, RegBoomerangVelocity * directionVector);
@@ -80,14 +83,10 @@ namespace Sprint2.Player
                     link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
                     break;
                 case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(new Vector2(link.position.X, link.position.Y + link.sprite.SourceRect[link.sprite.CurrentFrame].Height * 2));
+                    link.ProjectileFactory.NewBomb(new Vector2(link.position.X, link.position.Y - link.sprite.SourceRect[link.sprite.CurrentFrame].Height * 2));
                     break;
             }
         }
 
-        public void PickUp(AbstractItem item)
-        {
-            //No Implementation needed.
-        }
     }
 }

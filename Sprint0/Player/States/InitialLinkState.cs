@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint2.Items;
 using System;
 using static Sprint0.Projectiles.ProjectileConstants;
 
@@ -42,6 +43,11 @@ namespace Sprint2.Player
         public void Move(direction direction)
         {
             //This state does not require movement code.
+        }
+
+        public void PickUp(AbstractItem item)
+        {
+            //No Implementation needed.
         }
     }
 }

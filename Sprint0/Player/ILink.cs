@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint2.Items;
 using Sprint2.Projectiles;
 using System;
 using System.Collections.Generic;
@@ -26,5 +27,6 @@ namespace Sprint2.Player
         void Move(Vector2 moveDirection);
         void UseItem(ProjectileTypes item);
         void SwordAttack();
+        void PickUp(AbstractItem item);
     }
 }

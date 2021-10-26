@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Player;
+using Sprint2.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,14 +18,12 @@ namespace Sprint2.Player
         public Texture2D Texture { get; set; }
         public Rectangle[] SourceRect { get; set; }
         public Vector2 Position { get; set; }
-
-        public int scale = 2;
-
-        Link player;
-        public PickUpLinkSprite(Texture2D spriteSheet, Link player)
+        private AbstractItem myItem;
+        ILink player;
+        public PickUpLinkSprite(Texture2D spriteSheet, ILink player, AbstractItem item)
         {
             this.player = player;
-
+            myItem = item;
             Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
             SourceRect = new Rectangle[2];
             
@@ -57,10 +57,10 @@ namespace Sprint2.Player
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame%FrameCount].Width*scale, SourceRect[CurrentFrame%FrameCount].Height*scale);
-            /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
 
+            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
+            //draw item above link
+            Vector2 itemPos = player.position + myItem.
         }
 
     }

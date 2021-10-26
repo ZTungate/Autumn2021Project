@@ -19,7 +19,6 @@ namespace Sprint0.Collisions
         private Game1 myGame;
         private ILink myLink;
         private Dungeon myDungeon;
-        private Level myLevel;
         private CollisionDetection detector;
         public List<ICollision> collides;
 
@@ -123,12 +122,20 @@ namespace Sprint0.Collisions
             }
 
             //handle link item collision
+            List<AbstractItem> toRemove = new List<AbstractItem>();
+
             foreach (AbstractItem item in myDungeon.GetCurrentLevel().GetItemList()) {
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
                 if (itemLink.IsCollision) {
-                    myDungeon.GetCurrentLevel().RemoveItem(itemLink.Item2);
-
+                    toRemove.Add(itemLink.Item2);
+                    if(itemLink.Item2 is TriforcePieceItem) {
+                        new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+                    }
                 }
+            }
+
+            foreach (AbstractItem item in toRemove) {
+                myDungeon.GetCurrentLevel().RemoveItem(item);
             }
 
             //TODO: handle link movable block collision
