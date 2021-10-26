@@ -31,6 +31,9 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
+
+        public Vector2 oldPosition { get; set; }
+
         public IEnemyState State 
         {
             //This should not be used.
@@ -40,6 +43,8 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = pos;
+
             mySprite.Position = pos;
             mySprite.Update(gameTime);
         }

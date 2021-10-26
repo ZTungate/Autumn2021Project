@@ -38,21 +38,23 @@ namespace Sprint0.Levels
                     if (levelDictionary.ContainsKey(entry.Key + dir))
                     {
                         Vector2 doorPos = Vector2.Zero;
-                        if(dir == new Point(0, 1))
+                        int scaledDoorWidth = (int)(DoorSpriteFactory.doorWidth * scaleX);
+                        int scaledDoorHeight = (int)(DoorSpriteFactory.doorHeight * scaleY);
+                        if (dir == new Point(0, 1))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth / 2f, 0);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth / 2f - scaledDoorWidth / 2, 0);
                         }
                         if (dir == new Point(1, 0))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorSpriteFactory.doorWidth * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorSpriteFactory.doorWidth * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f - scaledDoorHeight / 2);
                         }
                         if (dir == new Point(0, -1))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f, Game1.instance._graphics.PreferredBackBufferHeight - DoorSpriteFactory.doorHeight * scaleY);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f - scaledDoorWidth / 2, Game1.instance._graphics.PreferredBackBufferHeight - DoorSpriteFactory.doorHeight * scaleY);
                         }
                         if (dir == new Point(-1, 0))
                         {
-                            doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f);
+                            doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f - scaledDoorHeight/2);
                         }
                         entry.Value.AddDoor(DoorSpriteFactory.instance.GetNewOpenDoor(doorPos, scaleX, scaleY, doorDir[dir]), doorDir[dir]);
                     }

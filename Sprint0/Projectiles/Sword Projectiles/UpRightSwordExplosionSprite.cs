@@ -1,18 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Sprint2
 {
-    public class UpBlueArrowSprite : IAnimatedSprite
+    public class UpRightSwordExplosionSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
-        public float Interval { get; set; } = 800f;
+        public float Interval { get; set; } = 50f;
         public int CurrentFrame { get; set; } = 0;
-        public int FrameCount { get; set; } = 3;
+        public int FrameCount { get; set; } = 4;
         public float SpriteSpeed { get; set; } = 0;
         public Texture2D Texture { get; set; }
         public Rectangle[] SourceRect { get; set; }
@@ -24,14 +23,16 @@ namespace Sprint2
 
         public bool incFrame = true;
 
-        public UpBlueArrowSprite(Texture2D spriteSheet)
+        public UpRightSwordExplosionSprite(Texture2D spriteSheet)
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
-            SourceRect = new Rectangle[2];
+            SourceRect = new Rectangle[FrameCount];
 
-            SourceRect[0] = new Rectangle(27, 185, 8, 16);  //Set the frame for right idle link
-            SourceRect[1] = new Rectangle(53, 185, 8, 16);
+            SourceRect[0] = new Rectangle(27, 154, 8, 16);  //Set the frame for sword
+            SourceRect[1] = new Rectangle(62, 154, 8, 16);
+            SourceRect[2] = new Rectangle(97, 154, 8, 16);
+            SourceRect[3] = new Rectangle(132, 154, 8, 16);
 
         }
 
@@ -39,21 +40,23 @@ namespace Sprint2
         {
             // Implement animation changes here
 
-            //Animate the sprites (pulled from animatedStillSprite.cs)
-            if (Timer > Interval) {
+            if (Timer > Interval) { //animate the sprites
+                CurrentFrame++;
 
-                CurrentFrame = 1;
+                if (CurrentFrame > FrameCount - 1) {
+                    CurrentFrame = 0;
+                }
+                Timer = 0;
             }
             else {
-                //Increment timer by the elapsed time in game.
                 Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
             }
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame % FrameCount].Width * (int)LinkConstants.scaleX, SourceRect[CurrentFrame % FrameCount].Height * (int)LinkConstants.scaleY);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame % FrameCount].Width * scale, SourceRect[CurrentFrame % FrameCount].Height * scale);
             /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
-            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
+            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.FlipVertically, 1);
 
         }
     }

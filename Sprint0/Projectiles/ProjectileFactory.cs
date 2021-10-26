@@ -66,6 +66,11 @@ namespace Sprint2.Projectiles
             foreach(IProjectile projectile in toRemove)
             {
                 projectiles.Remove(projectile);
+
+                if (projectile is SwordBeamProjectile) {
+                    
+                }
+
             }
         }
 
@@ -122,6 +127,26 @@ namespace Sprint2.Projectiles
         public ISprite CreateDownBlueArrowSprite()
         {
             return new DownBlueArrowSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateRightSwordSprite()
+        {
+            return new RightSwordSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateLeftSwordSprite()
+        {
+            return new LeftSwordSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateUpSwordSprite()
+        {
+            return new UpSwordSprite(linkSpriteSheet);
+        }
+
+        public ISprite CreateDownSwordSprite()
+        {
+            return new DownSwordSprite(linkSpriteSheet);
         }
 
         public ISprite CreateFireSprite()
@@ -181,6 +206,35 @@ namespace Sprint2.Projectiles
                     regArrow = new BlueArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, 1));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateDownBlueArrowSprite();
+                    break;
+
+            }
+        }
+
+        public void NewSwordBeam(Vector2 position, Player.direction facing)
+        {
+            //Generate a sword beam with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile swordBeam;
+            switch (facing) {
+                case Player.direction.right:
+                    swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(1, 0));
+                    projectiles.Add(swordBeam);
+                    swordBeam.Sprite = CreateRightSwordSprite();
+                    break;
+                case Player.direction.left:
+                    swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(-1, 0));
+                    projectiles.Add(swordBeam);
+                    swordBeam.Sprite = CreateLeftSwordSprite();
+                    break;
+                case Player.direction.up:
+                    swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, -1));
+                    projectiles.Add(swordBeam);
+                    swordBeam.Sprite = CreateUpSwordSprite();
+                    break;
+                case Player.direction.down:
+                    swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, 1));
+                    projectiles.Add(swordBeam);
+                    swordBeam.Sprite = CreateDownSwordSprite();
                     break;
 
             }

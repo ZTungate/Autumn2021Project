@@ -31,6 +31,8 @@ namespace Sprint2.Enemies
         { get => currPos;
           set => currPos = value;
         }
+        public Vector2 oldPosition { get; set; }
+
         public IEnemyState State 
         { 
             get => currState;
@@ -60,6 +62,9 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+
+            oldPosition = currPos;
+
             //Change positions if the movement vector is not zero.
             if (!moveVector.Equals(new Vector2(0,0)))
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Sprint0.Player;
 using Sprint2;
 using Sprint2.Blocks;
 using Sprint2.Enemies;
@@ -89,7 +90,7 @@ namespace Sprint0.Collisions
             Vector2 holder2 = object2.position;
 
             Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * 2, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * 2);
+            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             ICollision collision = new L2ECollision(directionDetect(one, two), one.Intersects(two), object2, object1);
             return collision;
         }
@@ -99,7 +100,7 @@ namespace Sprint0.Collisions
             Vector2 holder1 = object1.position;
 
 
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * 2, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * 2);
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             Rectangle two = object2.destRect;
             ICollision collision = new L2BCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
             return collision;
@@ -109,7 +110,7 @@ namespace Sprint0.Collisions
         {
             Vector2 holder1 = object1.position;
 
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * 2, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * 2);
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             Rectangle two = object2;
             ICollision collision = new L2RCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
             return collision;
@@ -120,7 +121,7 @@ namespace Sprint0.Collisions
                 Vector2 holder1 = object2.position;
 
 
-                Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * 2, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * 2);
+                Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
                 Rectangle two = object1.destRect;
                 ICollision collision = new L2BCollision(directionDetect(one, two), one.Intersects(two), object2, object1);
                 return collision;
@@ -131,7 +132,7 @@ namespace Sprint0.Collisions
             Vector2 holder1 = object1.position;
             
             
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * 2, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * 2);
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             Rectangle two = object2.GetRectangle();
             ICollision collision = new L2ICollision(directionDetect(one, two), one.Intersects(two), object1, object2);
 
@@ -143,7 +144,7 @@ namespace Sprint0.Collisions
             Vector2 holder1 = object2.position;
 
 
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * 2, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * 2);
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             Rectangle two = object1.GetRectangle();
             ICollision collision = new L2ICollision(directionDetect(one, two), one.Intersects(two), object2, object1);
 
@@ -206,8 +207,8 @@ namespace Sprint0.Collisions
             Vector2 holder1 = object1.position;
             Vector2 holder2 = object2.Position;
 
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * 2, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * 2);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * 2, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * 2);
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
+            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             
             ICollision collision = new P2LCollision(directionDetect(one, two), one.Intersects(two), object2, object1);
 
@@ -219,8 +220,8 @@ namespace Sprint0.Collisions
             Vector2 holder1 = object1.Position;
             Vector2 holder2 = object2.position;
 
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * 2, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * 2);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * 2, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * 2);
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
+            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
 
             ICollision collision = new P2LCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
 
@@ -233,7 +234,7 @@ namespace Sprint0.Collisions
             Vector2 holder2 = object2.Position;
 
             Rectangle one = object1.destRect; 
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * 2, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * 2);
+            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleY, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             
             ICollision collision = new P2BCollision(directionDetect(one, two), one.Intersects(two), object2, object1);
 
@@ -246,7 +247,7 @@ namespace Sprint0.Collisions
             Vector2 holder2 = object1.Position;
 
             Rectangle one = object2.destRect;
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * 2, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * 2);
+            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
 
             ICollision collision = new P2BCollision(directionDetect(one, two), one.Intersects(two), object1, object2);
 
@@ -257,7 +258,7 @@ namespace Sprint0.Collisions
             Vector2 holder1 = object1.Position;
             Vector2 holder2 = object2.Position;
 
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * 2, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * 2);
+            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
             ICollision collision = new P2ECollision(directionDetect(one, two), one.Intersects(two), object1, object2);
 
@@ -270,7 +271,7 @@ namespace Sprint0.Collisions
             Vector2 holder2 = object1.Position;
 
             Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * 2, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * 2);
+            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             ICollision collision = new P2ECollision(directionDetect(one, two), one.Intersects(two), object2, object1);
 
             return collision;
