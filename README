@@ -13,12 +13,13 @@ Instead of using mouse controls to change rooms: numpad8 goes north, numpad2 goe
 
 Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
-You can throw many projectiles all at once
 Sword beam comes out too fast
 Swords don't explode at the end.
 Bombs have no collision/spawn weird
-Not all bounding boxes implemented.
-Item pickups in rooms sometimes breaks.
+Projectiles don't get deleted on level change.
+Sometimes stuck in block with level swapping.
+No bounding box where doors should be if there's no door.
+
 
 
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
