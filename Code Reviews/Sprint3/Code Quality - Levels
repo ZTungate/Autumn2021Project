@@ -1,0 +1,12 @@
+Autuhor: Wesley Nguyen
+Date: 10/25/21
+Sprint: 3
+Reviewing: Levels.cs
+Author of file: Mason
+Time taken: 20 Minutes
+
+Comments on code quality:
+There are 19 methods in this class.  A good chunk of them are simple get methods(9).  The variables in this class are straightforward and all used.  
+Another good chunk of the methods are simple add methods for the list of enemies items, and blocks.  There are also the corresponding remove methods.
+None of the code seems redundent.  For the AddNewBoundingBox method, there is an arbitrary magic number 5 so that the bounding box has an area.  There are plenty of foreach
+loops in the code, but none of them are nested.  
