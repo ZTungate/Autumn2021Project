@@ -46,7 +46,7 @@ namespace Sprint2.Projectiles
             myLife -= gameTime.ElapsedGameTime.Milliseconds;
 
             if (myLife < 1) {
-                
+                //spawn sword beam explosions?
             }
         }
 
