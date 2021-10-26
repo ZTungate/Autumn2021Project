@@ -43,5 +43,9 @@ namespace Sprint2.Items
         {
             return this.rect;
         }
+        public AbstractItemSprite GetSprite()
+        {
+            return this.sprite;
+        }
     }
 }
