@@ -35,7 +35,7 @@ namespace Sprint0.Levels
 
             foreach (string fileName in fileNames)
             {
-                Level newLevel = new Level(null, Point.Zero);
+                Level newLevel = new Level(Game1.instance.link, Point.Zero);
 
                 XmlReader reader = XmlReader.Create(File.OpenRead(fileName), settings);
                 reader.ReadToDescendant("root");

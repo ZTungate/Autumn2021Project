@@ -38,14 +38,8 @@ namespace Sprint2
         //Link
         public ILink link;
 
-        //Enemies
-        public List<IEnemy> enemies;
-        public int currentEnemy;
-
         //Projectiles
         public ProjectileFactory projectileFactory;
-        //Blocks
-        public IBlock currentBlock;
 
         public Game1()
         {
@@ -81,21 +75,7 @@ namespace Sprint2
             {
                 ProjectileFactory = projectileFactory
             };
-
-            //Initialize enemies 
-            enemies = new List<IEnemy>()
-            {
-                new Dragon(new Vector2(600,300)),
-                new Skeleton(new Vector2(600,300)),
-                new Bat(new Vector2(600,300)),
-                new Slime(new Vector2(600,300)),
-                new OldMan(new Vector2(600,300)),
-                new Thrower(new Vector2(600,300)),
-                new BladeTrap(link, new Vector2(600,300)),
-                new Grabber(new Vector2(600,300)),
-            };
-
-
+            handler = new CollisionHandler(this);
 
             base.Initialize();
         }
@@ -115,18 +95,12 @@ namespace Sprint2
 
             //Load all block textures
             blockSpriteFactory.LoadAllTextures(Content);
-            currentBlock = blockSpriteFactory.CurrentSprite();
 
             //Load all item textures and generate items (must be done after textures are loaded)
             itemSpriteFactory.LoadAllTextures(Content);
 
             //Create sprite for Link
             link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
-
-            //Create sprites for all enemies.
-            foreach(IEnemy enemy in enemies){
-                enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
-            }
 
             DoorSpriteFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
@@ -148,13 +122,8 @@ namespace Sprint2
 
             dungeon.UpdateCurrent(gameTime);
 
-            //Update the current enemy
-            enemies[currentEnemy].Update(gameTime);
-
             //Update the projectiles
             projectileFactory.UpdateProjectiles(gameTime);
-
-            currentBlock.Update(gameTime);
 
             //TODO: poop
             handler.Update();
@@ -172,11 +141,6 @@ namespace Sprint2
 
             dungeon.DrawCurrent(_spriteBatch);
 
-            currentBlock.Draw(_spriteBatch);
-
-            //Draw the current enemy
-            enemies[currentEnemy].Sprite.Draw(_spriteBatch);
-
             //Draw all projectiles
             projectileFactory.DrawProjectiles(_spriteBatch);
 
@@ -193,30 +157,10 @@ namespace Sprint2
             link = new Link();
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
             blockSpriteFactory.Reset();
-            currentBlock = blockSpriteFactory.CurrentSprite();
 
 
             //Set the enemy sprite factory to a new instance
             enemySpriteFactory = EnemySpriteFactory.Instance;
-
-            //Reset currentEnemy
-            currentEnemy = 0;
-
-            //Reset the enemy list to all new instances of enemies.
-            enemies = new List<IEnemy>()
-            {
-                new Dragon(new Vector2(600,300)),
-                new Skeleton(new Vector2(600,300)),
-                new Bat(new Vector2(600,300)),
-                new Slime(new Vector2(600,300)),
-                new OldMan(new Vector2(600,300)),
-                new Thrower(new Vector2(600,300)),
-            };
-            //Create sprites for all enemies.
-            foreach (IEnemy enemy in enemies)
-            {
-                enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
-            }
 
             //Re-Initialize the projectile factory.
             projectileFactory.Initalize();

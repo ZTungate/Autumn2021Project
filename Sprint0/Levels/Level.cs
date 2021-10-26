@@ -15,7 +15,7 @@ namespace Sprint0.Levels
 {
     public class Level
     {
-        List<ISprite> doorSprites;
+        List<AbstractDoorSprite> doorSprites;
         ISprite backgroundSprite;
         Point location;
         Dictionary<Point, IBlock> blocks;
@@ -27,12 +27,31 @@ namespace Sprint0.Levels
         {
             backgroundSprite = LevelLoader.instance.GetNewBackgroundSprite();
             this.location = location;
-            doorSprites = new List<ISprite>();
+            doorSprites = new List<AbstractDoorSprite>();
             blocks = new Dictionary<Point, IBlock>();
             enemies = new List<IEnemy>();
             items = new List<AbstractItem>();
             boundingBoxList = new List<Rectangle>();
             this.link = link;
+        }
+        public AbstractDoorSprite GetDoorFromDirection(Point direction)
+        {
+            foreach(AbstractDoorSprite door in doorSprites)
+            {
+                if(door.CurrentFrame == (int)Dungeon.doorDir[direction])
+                {
+                    return door;
+                }
+            }
+            return null;
+        }
+        public ILink GetLink()
+        {
+            return this.link;
+        }
+        public AbstractDoorSprite[] GetDoorListAsArray()
+        {
+            return this.doorSprites.ToArray();
         }
         public Rectangle[] GetBoundsAsArray()
         {
@@ -126,7 +145,7 @@ namespace Sprint0.Levels
             }
             this.boundingBoxList.Add(new Rectangle(p1.X, p1.Y, width, height));
         }
-        public void AddDoor(ISprite door, DoorDirectionEnum dir)
+        public void AddDoor(AbstractDoorSprite door, DoorDirectionEnum dir)
         {
             doorSprites.Add(door);
             door.CurrentFrame = (int)dir;

@@ -2,9 +2,6 @@ Boggus Poggus Group
 
 Program Controls: 
 Arrow keys and WASD to move 
-O and P to swap enemy
-U and I to change items
-T and Y to change blocks
 Z and N to use sword
 1 to throw regular boomerang
 2 to throw magic boomerang
@@ -13,10 +10,14 @@ Z and N to use sword
 5 to place a bomb
 6 to cast a fireball
 Instead of using mouse controls to change rooms: numpad8 goes north, numpad2 goes south, numpad4 goes west, numpad6 goes east.
+
 Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
 You can throw many projectiles all at once
 Sword beam comes out too fast
+Bombs have no collision/spawn weird
+Not all bounding boxes implemented.
+Item pickups in rooms sometimes breaks.
 
 
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
