@@ -4,6 +4,7 @@ Date: 10/25/2021
 File being Reviewed: CollisionDetection.cs
 Author of file: Zach
 Sprint number: 3
+Number of minutes taken to complete the review: 20
 
 Comments on code readability:
 It looks fine.  The class really only has 2 methods, directionDetect and detectCollision.  directionDetect is well commented.  detectCollision is very straightforward.  
