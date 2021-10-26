@@ -8,10 +8,12 @@ namespace Sprint2.Blocks
         public Rectangle sourceRect { get; set; } //no source rectangle
         public Rectangle destRect { get; set; }
 
+        public bool Walkable { get; }
+
 
         public BoundingBox(Rectangle Destination) //This is an "invisable" block to mark wall and forbidden areas
         {
-
+            Walkable = false;
             destRect = Destination;
         }
         public void Draw(SpriteBatch spriteBatch)
