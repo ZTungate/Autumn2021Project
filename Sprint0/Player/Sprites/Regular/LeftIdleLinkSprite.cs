@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Sprint0.Player;
 
 namespace Sprint2.Player
 {
@@ -21,13 +22,6 @@ namespace Sprint2.Player
 
         public Color[] colors;
         int numColors = 2;
-
-
-
-
-
-
-public int scale = 2;
 
         public LeftIdleLinkSprite(Texture2D spriteSheet, ILink player)
         {
@@ -67,10 +61,10 @@ public int scale = 2;
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width*scale, SourceRect[CurrentFrame].Height*scale);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width* (int)LinkConstants.scaleX, SourceRect[CurrentFrame].Height* (int)LinkConstants.scaleY);
             /*            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
             //Can use this format instead of the other one
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame%FrameCount], player.color, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally, 1);
+            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame%FrameCount], player.color, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.FlipHorizontally, 1);
         }
 
     }

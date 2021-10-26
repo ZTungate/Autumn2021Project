@@ -4,12 +4,14 @@ using Sprint2;
 using Sprint2.Blocks;
 using Sprint2.Commands;
 using Sprint2.Enemies;
+using Sprint2.Items;
 using Sprint2.Player;
 using Sprint2.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using Sprint0.Levels.Sprites;
 
 namespace Sprint0.Collisions
 {
@@ -18,7 +20,6 @@ namespace Sprint0.Collisions
         private Game1 myGame;
         private ILink myLink;
         private Dungeon myDungeon;
-        private Level myLevel;
         private CollisionDetection detector;
         public List<ICollision> collides;
 
@@ -28,8 +29,6 @@ namespace Sprint0.Collisions
             myGame = game;
 
             myDungeon = myGame.GetDungeon();
-
-            //myLevel = myDungeon.GetCurrentLevel();
 
             myLink = myGame.link;
 
@@ -42,10 +41,8 @@ namespace Sprint0.Collisions
         {
             collides.Clear();
 
-            collides.Add(detector.detectCollision(myLink, myGame.currentBlock));
-
             //handle link enemy collision
-            foreach (IEnemy ene in myGame.enemies) {
+            foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(myLink, ene);
                 if (eneLink.IsCollision) {
                     //if in sword state, slap enemy
@@ -86,6 +83,15 @@ namespace Sprint0.Collisions
                 }
             }
 
+            //handle link block collision
+            foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
+                L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, block);
+                if (linkBlock.IsCollision && !linkBlock.block2.Walkable) {
+                    myLink.position = myLink.oldPosition;
+                }
+            }
+
+            //room bounds
             Rectangle[] bounds = myGame.GetDungeon().GetCurrentLevel().GetBoundsAsArray();
             foreach(Rectangle rectangle in bounds)
             {
@@ -98,34 +104,68 @@ namespace Sprint0.Collisions
 
             //handle block projectile collision
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
-                //foreach (IBlock block in myLevel.blocks) {
-                //    P2BCollision projBlock = (P2BCollision)detector.detectCollision(block, proj);
-                //    if (projBlock.IsCollision) {
-                //        projLink.proj1.Life = 0;
-                //    }
-                //}
+                foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
+                    P2BCollision projBlock = (P2BCollision)detector.detectCollision(block, proj);
+                    if (projBlock.IsCollision && !projBlock.block2.Walkable) {
+                        projBlock.proj1.Life = 0;
+                    }
+                }
             }            
 
-            //handle link block collision
-            //foreach (KeyValuePair<Point, IBlock> block in myLevel.blocks) {
-            //    collides.Add(detector.detectCollision(myLink, block.Value));
-            //}
-
-            //handle link item collision
-            //foreach (IItem item in myLevel.items) {
-            //    collides.Add(detector.detectCollision(myLink, item));
-            //}
-
-            //TODO: handle link movable block collision
-
-
-            foreach (ICollision col in collides) {
-                if (col.IsCollision) {
-                    if (col is L2BCollision) {
-                        myLink.position = myLink.oldPosition;
+            //handle enemy block collision
+            foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
+                foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
+                    E2BCollision eneBlock = (E2BCollision)detector.detectCollision(ene, block);
+                    if (eneBlock.IsCollision && !eneBlock.block2.Walkable) {
+                        ene.Position = ene.oldPosition;
                     }
                 }
             }
+
+            //handle link item collision
+            foreach (AbstractItem item in myDungeon.GetCurrentLevel().GetItemList()) {
+                L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
+                if (itemLink.IsCollision) {
+                    myDungeon.GetCurrentLevel().RemoveItem(itemLink.Item2);
+
+                }
+            }
+
+            AbstractDoorSprite[] doors = myGame.GetDungeon().GetCurrentLevel().GetDoorListAsArray(); 
+            foreach (AbstractDoorSprite door in doors) 
+            { 
+                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect); 
+                if (boundLink.IsCollision) 
+                { 
+                    Point dir = Dungeon.directions[door.CurrentFrame]; 
+                    myGame.GetDungeon().SwitchLevel(dir); 
+                    Vector2 linkNewPos = Vector2.Zero; 
+                    if (dir == new Point(0, 1)) 
+                    { 
+                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1)); 
+                        linkNewPos = new Vector2(oppositeDoor.Position.X, oppositeDoor.Position.Y - oppositeDoor.scaleY * oppositeDoor.SourceRect[0].Height - myLink.sprite.SourceRect[0].Height * oppositeDoor.scaleY - 5); 
+                    } 
+                    if (dir == new Point(1, 0)) 
+                    { 
+                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0)); 
+                        linkNewPos = new Vector2(oppositeDoor.Position.X + oppositeDoor.scaleX * oppositeDoor.SourceRect[0].Width + myLink.sprite.SourceRect[0].Width * oppositeDoor.scaleX + 5, oppositeDoor.Position.Y); 
+                    } 
+                    if (dir == new Point(0, -1)) 
+                    { 
+                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1)); 
+                        linkNewPos = new Vector2(oppositeDoor.Position.X, oppositeDoor.Position.Y + oppositeDoor.scaleY * oppositeDoor.SourceRect[0].Height + myLink.sprite.SourceRect[0].Height * oppositeDoor.scaleY + 5); 
+                    } 
+                    if (dir == new Point(-1, 0)) 
+                    { 
+                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0)); 
+                        linkNewPos = new Vector2(oppositeDoor.Position.X - oppositeDoor.scaleX * oppositeDoor.SourceRect[0].Width - myLink.sprite.SourceRect[0].Width * oppositeDoor.scaleX - 5, oppositeDoor.Position.Y); 
+                    } 
+                    myGame.GetDungeon().GetCurrentLevel().GetLink().position = linkNewPos; 
+                } 
+            }
+
+            //TODO: handle link movable block collision
+
         }
 
 

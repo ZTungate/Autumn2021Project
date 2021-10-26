@@ -15,10 +15,10 @@ namespace Sprint0.Levels
 {
     public class Level
     {
-        List<ISprite> doorSprites;
+        List<AbstractDoorSprite> doorSprites;
         ISprite backgroundSprite;
         Point location;
-        public Dictionary<Point, IBlock> blocks;
+        Dictionary<Point, IBlock> blocks;
         List<IEnemy> enemies;
         List<AbstractItem> items;
         List<Rectangle> boundingBoxList;
@@ -27,12 +27,31 @@ namespace Sprint0.Levels
         {
             backgroundSprite = LevelLoader.instance.GetNewBackgroundSprite();
             this.location = location;
-            doorSprites = new List<ISprite>();
+            doorSprites = new List<AbstractDoorSprite>();
             blocks = new Dictionary<Point, IBlock>();
             enemies = new List<IEnemy>();
             items = new List<AbstractItem>();
             boundingBoxList = new List<Rectangle>();
             this.link = link;
+        }
+        public AbstractDoorSprite GetDoorFromDirection(Point direction)
+        {
+            foreach(AbstractDoorSprite door in doorSprites)
+            {
+                if(door.CurrentFrame == (int)Dungeon.doorDir[direction])
+                {
+                    return door;
+                }
+            }
+            return null;
+        }
+        public ILink GetLink()
+        {
+            return this.link;
+        }
+        public AbstractDoorSprite[] GetDoorListAsArray()
+        {
+            return this.doorSprites.ToArray();
         }
         public Rectangle[] GetBoundsAsArray()
         {
@@ -52,9 +71,9 @@ namespace Sprint0.Levels
             {
                 enemy.Position = new Vector2(enemy.Position.X + p.X, enemy.Position.Y + p.Y);
             }
-            foreach (IItem item in items)
+            foreach (AbstractItem item in items)
             {
-                item.rect = new Rectangle(item.rect.X + p.X, item.rect.Y + p.Y, item.rect.Width, item.rect.Height);
+                item.SetRectangle(new Rectangle(item.GetRectangle().X + p.X, item.GetRectangle().Y + p.Y, item.GetRectangle().Width, item.GetRectangle().Height));
             }
 
             foreach(ISprite sprite in doorSprites)
@@ -72,7 +91,7 @@ namespace Sprint0.Levels
             {
                 enemy.Update(gameTime);
             }
-            foreach (IItem item in items)
+            foreach (AbstractItem item in items)
             {
                 item.Update(gameTime);
             }
@@ -89,7 +108,7 @@ namespace Sprint0.Levels
             {
                 enemy.Sprite.Draw(batch);
             }
-            foreach(IItem item in items)
+            foreach(AbstractItem item in items)
             {
                 item.Draw(batch);
             }
@@ -126,7 +145,7 @@ namespace Sprint0.Levels
             }
             this.boundingBoxList.Add(new Rectangle(p1.X, p1.Y, width, height));
         }
-        public void AddDoor(ISprite door, DoorDirectionEnum dir)
+        public void AddDoor(AbstractDoorSprite door, DoorDirectionEnum dir)
         {
             doorSprites.Add(door);
             door.CurrentFrame = (int)dir;
@@ -143,6 +162,12 @@ namespace Sprint0.Levels
         {
             items.Add(item);
         }
+
+        public void RemoveItem(AbstractItem item)
+        {
+            items.Remove(item);
+        }
+
         public IBlock GetBlock(Point p)
         {
             IBlock outBlock;

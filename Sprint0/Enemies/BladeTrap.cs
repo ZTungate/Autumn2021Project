@@ -16,7 +16,6 @@ namespace Sprint2.Enemies
         Vector2 moveVector = new Vector2(0,0);
         int attackTimer = 0;
         int returnTimer = 0;
-        direction attackDirection;
         Rectangle xTargeting;
         Rectangle yTargeting;
 
@@ -31,6 +30,8 @@ namespace Sprint2.Enemies
         { get => currPos;
           set => currPos = value;
         }
+        public Vector2 oldPosition { get; set; }
+
         public IEnemyState State 
         { 
             get => currState;
@@ -60,6 +61,9 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+
+            oldPosition = currPos;
+
             //Change positions if the movement vector is not zero.
             if (!moveVector.Equals(new Vector2(0,0)))
             {
@@ -107,14 +111,12 @@ namespace Sprint2.Enemies
                     moveVector = new Vector2(-EnemyConstants.bladeAttackSpeed, 0);
                     attackTimer = EnemyConstants.horizBladeMoveTime;
                     returnTimer = EnemyConstants.horizBladeMoveTime * 2;
-                    attackDirection = direction.left;
                 }
                 else
                 {
                     moveVector = new Vector2(EnemyConstants.bladeAttackSpeed, 0);
                     attackTimer = EnemyConstants.horizBladeMoveTime;
                     returnTimer = EnemyConstants.horizBladeMoveTime * 2;
-                    attackDirection = direction.right;
                 }
 
             }
@@ -127,7 +129,6 @@ namespace Sprint2.Enemies
                     moveVector = new Vector2(0, -EnemyConstants.bladeAttackSpeed);
                     attackTimer = EnemyConstants.vertBladeMoveTime;
                     returnTimer = EnemyConstants.vertBladeMoveTime * 2;
-                    attackDirection = direction.up;
                 }
                 else
                 {
@@ -135,7 +136,6 @@ namespace Sprint2.Enemies
                     moveVector = new Vector2(0, EnemyConstants.bladeAttackSpeed);
                     attackTimer = EnemyConstants.vertBladeMoveTime;
                     returnTimer = EnemyConstants.vertBladeMoveTime * 2;
-                    attackDirection = direction.down;
                 }
             }
             return moveVector;
