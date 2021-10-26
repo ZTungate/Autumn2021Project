@@ -16,9 +16,9 @@ namespace Sprint0.Levels
     {
         ISprite backgroundSprite;
         Point location;
-        public Dictionary<Point, IBlock> blocks;
+        Dictionary<Point, IBlock> blocks;
         List<IEnemy> enemies;
-        List<IItem> items;
+        List<AbstractItem> items;
         List<Rectangle> boundingBoxList;
         ILink link;
         public Level(ILink link, Point location)
@@ -27,7 +27,7 @@ namespace Sprint0.Levels
             this.location = location;
             blocks = new Dictionary<Point, IBlock>();
             enemies = new List<IEnemy>();
-            items = new List<IItem>();
+            items = new List<AbstractItem>();
             boundingBoxList = new List<Rectangle>();
             this.link = link;
         }
@@ -49,9 +49,9 @@ namespace Sprint0.Levels
             {
                 enemy.Position = new Vector2(enemy.Position.X + p.X, enemy.Position.Y + p.Y);
             }
-            foreach (IItem item in items)
+            foreach (AbstractItem item in items)
             {
-                item.rect = new Rectangle(item.rect.X + p.X, item.rect.Y + p.Y, item.rect.Width, item.rect.Height);
+                item.SetRectangle(new Rectangle(item.GetRectangle().X + p.X, item.GetRectangle().Y + p.Y, item.GetRectangle().Width, item.GetRectangle().Height));
             }
         }
         public void Update(GameTime gameTime)
@@ -64,7 +64,7 @@ namespace Sprint0.Levels
             {
                 enemy.Update(gameTime);
             }
-            foreach (IItem item in items)
+            foreach (AbstractItem item in items)
             {
                 item.Update(gameTime);
             }
@@ -81,7 +81,7 @@ namespace Sprint0.Levels
             {
                 enemy.Sprite.Draw(batch);
             }
-            foreach(IItem item in items)
+            foreach(AbstractItem item in items)
             {
                 item.Draw(batch);
             }
@@ -122,10 +122,16 @@ namespace Sprint0.Levels
         {
             enemies.Add(enemy);
         }
-        public void AddItem(IItem item)
+        public void AddItem(AbstractItem item)
         {
             items.Add(item);
         }
+
+        public void RemoveItem(AbstractItem item)
+        {
+            items.Remove(item);
+        }
+
         public IBlock GetBlock(Point p)
         {
             IBlock outBlock;
@@ -142,7 +148,7 @@ namespace Sprint0.Levels
         {
             return this.enemies;
         }
-        public List<IItem> GetItemList()
+        public List<AbstractItem> GetItemList()
         {
             return this.items;
         }

@@ -95,7 +95,7 @@ namespace Sprint0.Levels
                         objectParams[0] = new Rectangle((int)(x * scaleX), (int)(y * scaleY), (int)(16*scaleX), (int)(16*scaleY));
                         Type itemType = Type.GetType("Sprint2.Items." + itemName);
                         object instance = Activator.CreateInstance(itemType, objectParams);
-                        IItem item = (IItem)instance;
+                        AbstractItem item = (AbstractItem)instance;
                         item.CreateSprite(scaleX, scaleY);
 
                         newLevel.AddItem(item);

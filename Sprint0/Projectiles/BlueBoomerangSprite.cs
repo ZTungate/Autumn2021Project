@@ -87,7 +87,7 @@ namespace Sprint2
                     break;
                 case 5:
                 case 6:
-                    spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.None, 1);
+                    spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), scale, SpriteEffects.FlipHorizontally | SpriteEffects.FlipVertically, 1);
 
                     break;
                 case 7:

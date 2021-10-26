@@ -94,7 +94,6 @@ namespace Sprint2
                 new Grabber(new Vector2(600,300)),
             };
 
-            handler = new CollisionHandler(this);
 
 
             base.Initialize();
@@ -128,9 +127,11 @@ namespace Sprint2
                 enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
             }
 
-
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
+
+            handler = new CollisionHandler(this);
+
         }
 
         protected override void Update(GameTime gameTime)

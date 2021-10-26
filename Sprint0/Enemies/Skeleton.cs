@@ -27,6 +27,9 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
+
+        public Vector2 oldPosition { get; set; }
+
         public ISprite Sprite
         {
             //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
@@ -41,6 +44,8 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = pos;
+
             //Get the number for the last frame
             int lastFrame = mySprite.CurrentFrame;
             //Update the sprite
