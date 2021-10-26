@@ -143,51 +143,13 @@ namespace Sprint2.Enemies
                     attackDirection = direction.down;
                 }
             }
-            
-
-            /*if(currPos.X < link.position.X && link.position.X < (currPos.X + EnemyConstants.stdEnemySize.Width))
-            {//If link is within the X dimensions of the blade trap, check if he's above or below.
-                if (link.position.Y < currPos.Y)
-                {
-                    //Link is above, move upwards and set timers
-                    moveVector = new Vector2(0, -EnemyConstants.bladeAttackSpeed);
-                    attackTimer = EnemyConstants.vertBladeMoveTime;
-                    returnTimer = EnemyConstants.vertBladeMoveTime * 2;
-                    attackDirection = direction.up;
-                }
-                else
-                {
-                    //Link is below, move downwards and set timers.
-                    moveVector = new Vector2(0, EnemyConstants.bladeAttackSpeed);
-                    attackTimer = EnemyConstants.vertBladeMoveTime;
-                    returnTimer = EnemyConstants.vertBladeMoveTime * 2;
-                    attackDirection = direction.down;
-                }
-            }
-            else if(currPos.Y < link.position.Y && link.position.Y < (currPos.Y + EnemyConstants.stdEnemySize.Width))
-            {//If link is within the Y dimensions of the blade trap, check if he's to the left or right.
-                if (link.position.X < currPos.X)
-                {
-                    moveVector = new Vector2(-EnemyConstants.bladeAttackSpeed, 0);
-                    attackTimer = EnemyConstants.horizBladeMoveTime;
-                    returnTimer = EnemyConstants.horizBladeMoveTime * 2;
-                    attackDirection = direction.left;
-                }
-                else
-                {
-                    moveVector = new Vector2(EnemyConstants.bladeAttackSpeed, 0);
-                    attackTimer = EnemyConstants.horizBladeMoveTime;
-                    returnTimer = EnemyConstants.horizBladeMoveTime * 2;
-                    attackDirection = direction.right;
-                }
-            }*/
             return moveVector;
         }
 
         private Vector2 ReturnHome()
         {
             Vector2 dist = homePos - currPos;
-            moveVector = dist / EnemyConstants.bladeAttackSpeed; //TODO:Figure out an appropriate return speed.
+            moveVector = dist / (returnTimer/10); //TODO:Figure out an appropriate return speed.
             return moveVector;
         }
     }
