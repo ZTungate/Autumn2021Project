@@ -15,6 +15,7 @@ Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
 You can throw many projectiles all at once
 Sword beam comes out too fast
+Swords don't explode at the end.
 Bombs have no collision/spawn weird
 Not all bounding boxes implemented.
 Item pickups in rooms sometimes breaks.
