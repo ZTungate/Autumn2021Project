@@ -1,0 +1,6 @@
+Group: Boggus Poggus
+
+Starting off this sprint we came in with a plan to start earlier in order to avoid the main issues from last sprint.
+With that idea in mind we still started later than we should have and will go into sprint4 with a work mentality to get tasks done even sooner in order to avoid the stress of last minute work.
+Accountability improved in what was expected of everyone as well as goal tracking by using the projects page on github's website.
+Goal tracking can still be improved by having more consistant activity on the page.
