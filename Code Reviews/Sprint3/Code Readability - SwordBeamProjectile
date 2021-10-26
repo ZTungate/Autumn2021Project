@@ -1,0 +1,11 @@
+Author of the code review: Jonah Silsdorf
+Date of the code review: 10/25/21
+Sprint number: 3
+Name of the .cs file being reviewed:  SwordBeamProjectile.cs
+Author of the .cs file being reviewed: Wesley
+Number of minutes taken to complete the review: 20
+
+Comments on code readability: 
+Field names and variable names look fine.
+Comments seem dated since they are mentioning times that don't match the code, as well as referring to the projectile as a fireball.
+Code in update has some weird spacing though that is not a huge crisis.
