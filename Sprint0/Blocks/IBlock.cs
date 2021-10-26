@@ -11,10 +11,14 @@ namespace Sprint2.Blocks
         Rectangle sourceRect { get; set; }
 
         Rectangle destRect { get; set; }
+        
+        bool Walkable { get; }
 
         void Update(GameTime gameTime);
 
         void Draw(SpriteBatch spriteBatch);
+
+        
 
         //Texture and sourceRect replace with Sprite?
     }

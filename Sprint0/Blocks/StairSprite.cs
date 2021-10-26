@@ -9,9 +9,10 @@ namespace Sprint2.Blocks
         public Rectangle sourceRect { get; set; }
         public Rectangle destRect { get; set; }
 
-
+        public bool Walkable { get; }
         public StairSprite(Texture2D spriteSheet, Vector2 Destination)
         {
+            Walkable = true;
             Texture = spriteSheet;
             sourceRect = new Rectangle(386, 81, 16, 16);
             destRect = new Rectangle((int)Destination.X, (int)Destination.Y, sourceRect.Width, sourceRect.Height); //height adjustment just for visability

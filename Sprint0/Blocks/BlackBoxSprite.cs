@@ -9,9 +9,10 @@ namespace Sprint2.Blocks
         public Rectangle sourceRect { get; set; }
         public Rectangle destRect { get; set; }
 
-
+        public bool Walkable { get;}
         public BlackBoxSprite(Texture2D spriteSheet, Vector2 Destination)
         {
+            Walkable = true;
             Texture = spriteSheet;
             sourceRect = new Rectangle(33, 387, 16, 16);
             destRect = new Rectangle((int)Destination.X, (int)Destination.Y, sourceRect.Width * 2, sourceRect.Height * 2); //height adjustment just for visability
