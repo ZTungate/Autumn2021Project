@@ -44,11 +44,19 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            //Get the number for the last frame
+            int lastFrame = mySprite.CurrentFrame;
             oldPosition = pos;
 
             //Update the sprite
-            mySprite.Position = pos;
             mySprite.Update(gameTime);
+
+            //Move the grabber if the animation frame changed
+            if (lastFrame != mySprite.CurrentFrame)
+            {
+                pos = RandomMove();
+                mySprite.Position = pos;
+            }
         }
         public Grabber(Vector2 pos)
         {
@@ -56,6 +64,32 @@ namespace Sprint2.Enemies
             this.pos = pos;
         }
 
-        
+        public Vector2 RandomMove()
+        {
+            Vector2 newPosition = this.pos;
+
+            //Get a random number from 0-3
+            Random rand = new Random();
+            int i = rand.Next(4);
+
+            if (i == 0)
+            {
+                newPosition.X += EnemyConstants.grabberMoveSpeed;
+            }
+            else if (i == 1)
+            {
+                newPosition.Y += EnemyConstants.grabberMoveSpeed;
+            }
+            else if (i == 2)
+            {
+                newPosition.X -= EnemyConstants.grabberMoveSpeed;
+            }
+            else
+            {
+                newPosition.Y -= EnemyConstants.grabberMoveSpeed;
+            }
+            return newPosition;
+        }
+
     }
 }
