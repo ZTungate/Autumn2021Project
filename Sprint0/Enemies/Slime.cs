@@ -31,6 +31,9 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
+
+        public Vector2 oldPosition { get; set; }
+
         public IEnemyState State
         {
             //This will not be used until damage states are added.
@@ -45,6 +48,8 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = pos;
+
             mySprite.Update(gameTime);
 
             //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
