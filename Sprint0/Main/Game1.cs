@@ -75,25 +75,7 @@ namespace Sprint2
             {
                 ProjectileFactory = projectileFactory
             };
-
-<<<<<<< Updated upstream
-            //Initialize enemies 
-            enemies = new List<IEnemy>()
-            {
-                new Dragon(new Vector2(600,300)),
-                new Skeleton(new Vector2(600,300)),
-                new Bat(new Vector2(600,300)),
-                new Slime(new Vector2(600,300)),
-                new OldMan(new Vector2(600,300)),
-                new Thrower(new Vector2(600,300)),
-                new BladeTrap(link, new Vector2(600,300)),
-                new Grabber(new Vector2(600,300)),
-            };
-
-=======
             handler = new CollisionHandler(this);
->>>>>>> Stashed changes
-
 
             base.Initialize();
         }
