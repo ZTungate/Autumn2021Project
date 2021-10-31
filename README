@@ -2,9 +2,6 @@ Boggus Poggus Group
 
 Program Controls: 
 Arrow keys and WASD to move 
-O and P to swap enemy
-U and I to change items
-T and Y to change blocks
 Z and N to use sword
 1 to throw regular boomerang
 2 to throw magic boomerang
@@ -12,15 +9,31 @@ Z and N to use sword
 4 to fire a blue arrow
 5 to place a bomb
 6 to cast a fireball
+Instead of using mouse controls to change rooms: numpad8 goes north, numpad2 goes south, numpad4 goes west, numpad6 goes east.
 
 Known Bugs:
 Multiple key presses with links movement doesn't behave properly.
-Enemy position doesn't reset when swapping
-You can throw many projectiles all at once
-You can attack many times at once
+Sword beam comes out too fast
+Swords don't explode at the end.
+Can throw multiple of the same projectile.
+Bombs have no collision/spawn weird
+Projectiles don't get deleted on level change.
+Sometimes stuck in block with level swapping.
+No bounding box where doors should be if there's no door.
+Going into doors puts you too far into the room.
+Link is too big.
+Room transition collision goes out too far.
+Sword beam has incorrect scaling.
 
+
+Following is not implemented
+Camera transitions - not implemented yet
+No reset key - not implemented yet
+No knockback - not implemented yet
+Health stats - not implemented yet
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
 
+Sprint 2:
 Project: Sprint0
 Configuration: Debug
 Scope: Assembly
@@ -31,3 +44,16 @@ Depth of Inheritance: 2
 Class Coupling: 189
 Lines of Source code: 7,313
 Lines of Executable code: 1,835
+
+Sprint 3:
+Project: Sprint0
+Configuration: Debug
+Scope: Assembly
+Assembly: C:\Users\Zach\source\repos\ZTungate\Au2021-3902\Sprint0\bin\Debug\netcoreapp3.1\Sprint0.dll
+Maintainability Index: 86
+Cyclomatic Complexity: 2,476
+Depth of Inheritance: 2
+Class Coupling: 239
+Lines of Source code: 10,079
+Lines of Executable code: 2,713
+

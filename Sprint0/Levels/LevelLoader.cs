@@ -5,50 +5,188 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Sprint2.Blocks;
 using Microsoft.Xna.Framework.Graphics;
+using System.Xml;
+using Sprint2;
+using Microsoft.Xna.Framework.Content;
+using Sprint2.Items;
+using Sprint2.Enemies;
+using Sprint0.Player;
 
 namespace Sprint0.Levels
 {
     public class LevelLoader
     {
         public static LevelLoader instance = new LevelLoader();
-        private Level tempLevel;
-        public void LoadAllLevels()
+        public float gameScaleX, gameScaleY;
+        private Texture2D blockSpriteSheet;
+        private Dictionary<string, Level> levels = new Dictionary<string, Level>();
+        public void LoadAllLevels(ContentManager content)
         {
+            blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet");
+
+            BackgroundSprite defaultBackground = new BackgroundSprite(blockSpriteSheet);
+
             string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
             string[] fileNames = Directory.GetFiles(dir + "\\Levels");
+            XmlReaderSettings settings = new XmlReaderSettings();
+
+            gameScaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+            gameScaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+
             foreach (string fileName in fileNames)
             {
-                tempLevel = new Level(null, new Point(0, 0));
-                StreamReader reader = File.OpenText(fileName);
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                Level newLevel = new Level(Game1.instance.link, Point.Zero);
+
+                XmlReader reader = XmlReader.Create(File.OpenRead(fileName), settings);
+                reader.ReadToDescendant("root");
+                string levelName = reader.GetAttribute("xmlns");
+
+                while (reader.Read())
                 {
-                    int equalPos = line.IndexOf("=");
-                    int commaPos = line.IndexOf(",");
-                    string blockName = line.Substring(0, equalPos);
-                    string xPos = line.Substring(equalPos + 1, commaPos - equalPos-1);
-                    string yPos = line.Substring(commaPos + 1);
-                    
-                    blockName += "Sprite";
-                    int x = int.Parse(xPos);
-                    int y = int.Parse(yPos);
+                    if (reader.IsStartElement() && reader.Name == "Block")
+                    {
+                        reader.ReadToDescendant("Object");
+                        string blockName = reader.ReadElementContentAsString();
+                        blockName += "Sprite";
 
-                    Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
+                        reader.ReadToDescendant("Location");
+                        reader.MoveToContent();
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int x = int.Parse(xString);
+                        int y = int.Parse(yString);
 
-                    Object[] objectParams = new Object[2];
-                    objectParams[0] = BlockSpriteFactory.Instance.GetBlockSpriteSheet();
-                    objectParams[1] = new Vector2(x, y);
+                        reader.ReadToDescendant("Conditions");
+                        reader.MoveToContent();
+                        string conditions = reader.ReadElementContentAsString();
 
-                    object instance = Activator.CreateInstance(objectType, objectParams);
+                        Object[] objectParams = new Object[2];
+                        objectParams[0] = BlockSpriteFactory.Instance.GetBlockSpriteSheet();
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+                        objectParams[1] = new Vector2(x * scaleX, y * scaleY);
 
-                    tempLevel.AddBlock(new Point(x, y), (IBlocks)instance);
+                        Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
+                        object instance = Activator.CreateInstance(objectType, objectParams);
+                        IBlock newBlock = (IBlock)instance;
+                        newBlock.destRect = new Rectangle(newBlock.destRect.X, newBlock.destRect.Y, (int)(newBlock.sourceRect.Width*scaleX), (int)(newBlock.sourceRect.Height*scaleY));
+
+                        newLevel.AddBlock(new Point(x,y), newBlock);
+                    }
+                    if (reader.IsStartElement() && reader.Name == "Item")
+                    {
+                        reader.ReadToDescendant("Object");
+                        string itemName = reader.ReadElementContentAsString();
+                        itemName += "Item";
+
+                        reader.ReadToDescendant("Location");
+                        reader.MoveToContent();
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int x = int.Parse(xString);
+                        int y = int.Parse(yString);
+
+                        reader.ReadToDescendant("Conditions");
+                        reader.MoveToContent();
+                        string conditions = reader.ReadElementContentAsString();
+
+                        Object[] objectParams = new Object[1];
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+                        objectParams[0] = new Rectangle((int)(x * scaleX), (int)(y * scaleY), (int)(16*scaleX), (int)(16*scaleY));
+                        Type itemType = Type.GetType("Sprint2.Items." + itemName);
+                        object instance = Activator.CreateInstance(itemType, objectParams);
+                        AbstractItem item = (AbstractItem)instance;
+                        item.CreateSprite(scaleX, scaleY);
+
+                        newLevel.AddItem(item);
+                    }
+                    if (reader.IsStartElement() && reader.Name == "Enemy")
+                    {
+                        reader.ReadToDescendant("Object");
+                        string enemyName = reader.ReadElementContentAsString();
+
+                        reader.ReadToDescendant("Location");
+                        reader.MoveToContent();
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int x = int.Parse(xString);
+                        int y = int.Parse(yString);
+
+                        reader.ReadToDescendant("Conditions");
+                        reader.MoveToContent();
+                        string conditions = reader.ReadElementContentAsString();
+
+                        Object[] objectParams = new Object[1];
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+                        objectParams[0] = new Vector2((int)(x * scaleX), (int)(y*scaleY));
+                        Type enemyType = Type.GetType("Sprint2.Enemies." + enemyName);
+                        object instance = Activator.CreateInstance(enemyType, objectParams);
+                        IEnemy enemy = (IEnemy)instance;
+                        enemy.Sprite = EnemySpriteFactory.Instance.MakeSprite(enemy);
+
+                        EnemyConstants.scaleX = scaleX;
+                        EnemyConstants.scaleY = scaleY;
+
+                        newLevel.AddEnemy(enemy);
+                    }
+                    if (reader.IsStartElement() && reader.Name == "Bound")
+                    {
+                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+
+                        LinkConstants.scaleX = scaleX;
+                        LinkConstants.scaleY = scaleY;
+
+                        reader.ReadToDescendant("Start");
+                        reader.MoveToContent();
+                        string location = reader.ReadElementContentAsString();
+                        int commaLoc = location.IndexOf(",");
+                        string xString = location.Substring(0, commaLoc);
+                        string yString = location.Substring(commaLoc + 1);
+                        int startX = (int)(int.Parse(xString) * scaleX);
+                        int startY = (int)(int.Parse(yString) * scaleY);
+
+                        reader.ReadToDescendant("End");
+                        reader.MoveToContent();
+                        location = reader.ReadElementContentAsString();
+                        commaLoc = location.IndexOf(",");
+                        xString = location.Substring(0, commaLoc);
+                        yString = location.Substring(commaLoc + 1);
+                        int endX = (int)(int.Parse(xString) * scaleX);
+                        int endY = (int)(int.Parse(yString) * scaleY);
+
+                        newLevel.AddNewBoundingBox(new Point(startX, startY), new Point(endX, endY));
+                    }
+                    reader.MoveToElement();
                 }
-                reader.Close();
+
+                levels.Add(levelName, newLevel);
             }
+        }
+        public Level GetLevel(string name)
+        {
+            Level outLevel;
+            levels.TryGetValue(name, out outLevel);
+            return outLevel;
         }
         public void DrawLevels(SpriteBatch batch)
         {
-            tempLevel.Draw(batch);
+            foreach(KeyValuePair<string, Level> entry in levels)
+            {
+                entry.Value.Draw(batch);
+            }
+        }
+        public ISprite GetNewBackgroundSprite()
+        {
+            return new BackgroundSprite(blockSpriteSheet);
         }
     }
 }

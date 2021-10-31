@@ -12,7 +12,7 @@ namespace Sprint2.Enemies
         //ISprite for the enemy
         ISprite mySprite;
         //Position of the bat.
-        Rectangle destRect;
+        Vector2 pos;
         //State of the bat (not used yet for this enemy type)
         IEnemyState state;
         public ISprite Sprite
@@ -21,11 +21,14 @@ namespace Sprint2.Enemies
             get => mySprite;
             set => mySprite = value;
         }
-        public Rectangle Rect
+        public Vector2 Position
         {
-            get => destRect;
-            set => destRect = value;
+            get => pos;
+            set => pos = value;
         }
+
+        public Vector2 oldPosition { get; set; }
+
         public IEnemyState State
         {
             //This will not be used until damage states are added.
@@ -40,29 +43,29 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = pos;
+
+
             int lastFrame = mySprite.CurrentFrame;
             mySprite.Update(gameTime);
 
             //Move the bat if the animation frame changed
             if (lastFrame != mySprite.CurrentFrame)
             {
-                Vector2 pos = BatRandomMove();
-                this.destRect.X = (int)pos.X;
-                this.destRect.Y = (int)pos.Y;
-                //mySprite.Position = pos;
+                pos = BatRandomMove();
+                mySprite.Position = pos;
             }
         }
-        public Bat()
+        public Bat(Vector2 pos)
         {
             //Assign an arbitrary starting positon for the bat.
-            //pos = new Vector2(500, 300);
-            this.destRect = new Rectangle(500, 300, 0, 0);
+            this.pos = pos;
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
         public Vector2 BatRandomMove()
         {
-            Vector2 newPosition = new Vector2(this.destRect.X, this.destRect.Y);
+            Vector2 newPosition = pos;
 
             //Get a random number from 0-3
             Random rand = new Random();
@@ -71,26 +74,26 @@ namespace Sprint2.Enemies
             if (i == 0)
             {
                 //Move right/Up if i = 0
-                newPosition.X += 3;
-                newPosition.Y += 3;
+                newPosition.X += EnemyConstants.batMoveSpeed;
+                newPosition.Y += EnemyConstants.batMoveSpeed;
             }
             else if (i == 1)
             {
                 //Move right/down if i = 1
-                newPosition.X += 3;
-                newPosition.Y -= 3;
+                newPosition.X += EnemyConstants.batMoveSpeed;
+                newPosition.Y -= EnemyConstants.batMoveSpeed;
             }
             else if (i == 2)
             {
                 //Move left/up if i = 2
-                newPosition.X -= 3;
-                newPosition.Y += 3;
+                newPosition.X -= EnemyConstants.batMoveSpeed;
+                newPosition.Y += EnemyConstants.batMoveSpeed;
             }
             else if (i == 3)
             {
                 //Move left/down if i = 3
-                newPosition.X -= 3;
-                newPosition.Y -= 3;
+                newPosition.X -= EnemyConstants.batMoveSpeed;
+                newPosition.Y -= EnemyConstants.batMoveSpeed;
             }
             //Return the modified position.
             return newPosition;

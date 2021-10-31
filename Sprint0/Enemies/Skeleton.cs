@@ -27,6 +27,9 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
+
+        public Vector2 oldPosition { get; set; }
+
         public ISprite Sprite
         {
             //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
@@ -41,6 +44,8 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = pos;
+
             //Get the number for the last frame
             int lastFrame = mySprite.CurrentFrame;
             //Update the sprite
@@ -53,10 +58,10 @@ namespace Sprint2.Enemies
                 mySprite.Position = pos;
             }
         }
-        public Skeleton()
+        public Skeleton(Vector2 pos)
         {
             //Assign an arbitrary starting positon for the skeleton.
-            pos = new Vector2(500, 300);
+            this.pos = pos;
         }
 
         public Vector2 RandomMove()
@@ -69,19 +74,19 @@ namespace Sprint2.Enemies
 
             if (i == 0)
             {
-                newPosition.X += 5;
+                newPosition.X += EnemyConstants.skeletonMoveSpeed;
             }
             else if (i == 1)
             {
-                newPosition.Y += 5;
+                newPosition.Y += EnemyConstants.skeletonMoveSpeed;
             }
             else if (i == 2)
             {
-                newPosition.X -= 5;
+                newPosition.X -= EnemyConstants.skeletonMoveSpeed;
             }
             else
             {
-                newPosition.Y -= 5;
+                newPosition.Y -= EnemyConstants.skeletonMoveSpeed;
             }
             return newPosition;
 

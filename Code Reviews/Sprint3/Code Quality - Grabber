@@ -1,0 +1,11 @@
+Author of the code review: Mason Pacenta
+Date of the code review: 10/25/21
+Sprint number: 3
+Name of the .cs file being reviewed:  Grabber
+Author of the .cs file being reviewed: Jonah
+Number of minutes taken to complete the review: 20
+
+Lots of duplicate code across all enemies, most likely would be better served moving this code into an AbstractEnemy class that way you
+dont need to make a new initilization for all the fields in the IEnemy interface. IEnemy may be better served not having properties and rather moving
+these as variables to the created AbstractEnemy. Duplicate position field in Sprite and Enemy class, this is a recurring problem throughout the project
+and position should only be in one or the other.

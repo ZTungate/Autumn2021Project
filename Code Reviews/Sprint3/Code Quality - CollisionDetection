@@ -1,0 +1,12 @@
+Author: Michael Fong
+Date: 10/25/2021
+File being Reviewed: CollisionDetection.cs
+Author of file: Zach
+Sprint number: 3
+
+Comments on code quality:
+Variable names are a bit questionable. For instance, rectangles named "One" and "Two" 
+Collision names are unclear at first glance. L2E, L2I, etc.
+Seems to be a lot of redundance. For instance, detectCollision has overloads for ILink to IEnemy and IEnemy to ILink, which seems to be the same thing. Should remove these if they aren't useful
+Overall the code is quite readable. Collision direction is intuitive and comprehensive.
+Zach (as the author) is aware that the rect setup logic depends on whether the implementation uses Vector or Rect

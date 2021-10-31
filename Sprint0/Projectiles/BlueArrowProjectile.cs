@@ -31,6 +31,7 @@ namespace Sprint2.Projectiles
         public int Life
         {
             get => myLife;
+            set => myLife = value;
         }
 
         public void Update(GameTime gameTime)

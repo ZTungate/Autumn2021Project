@@ -31,6 +31,9 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
+
+        public Vector2 oldPosition { get; set; }
+
         public IEnemyState State
         {
             //This will not be used until damage states are added.
@@ -45,6 +48,8 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = pos;
+
             mySprite.Update(gameTime);
 
             //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
@@ -59,10 +64,10 @@ namespace Sprint2.Enemies
                 mySprite.Position = pos;
             }
         }
-        public Slime()
+        public Slime(Vector2 pos)
         {
             //Assign an arbitrary starting positon for the slime.
-            pos = new Vector2(500, 300);
+            this.pos = pos;
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
@@ -78,22 +83,22 @@ namespace Sprint2.Enemies
             if (i == 0)
             {
                 //Move right if i = 0
-                newPosition.X += 5;
+                newPosition.X += EnemyConstants.slimeMoveSpeed;
             }
             else if (i == 1)
             {
                 //Move up if i = 1
-                newPosition.Y += 5;
+                newPosition.Y += EnemyConstants.slimeMoveSpeed;
             }
             else if (i == 2)
             {
                 //Move left if i = 2
-                newPosition.X -= 5;
+                newPosition.X -= EnemyConstants.slimeMoveSpeed;
             }
             else if (i == 3)
             {
                 //Move down if i = 3
-                newPosition.Y -= 5;
+                newPosition.Y -= EnemyConstants.slimeMoveSpeed;
             }
             //If i = 4, do nothing, the slime can stand still.
             return newPosition;

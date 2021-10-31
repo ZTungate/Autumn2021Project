@@ -1,4 +1,4 @@
-using Microsoft.Xna.Framework;
+/*using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -58,9 +58,9 @@ namespace Sprint2.Player
             game.link = decoratedLink;
         }
 
-        public void move(Vector2 moveDirection)
+        public void Move(Vector2 moveDirection)
         {
-            decoratedLink.move(moveDirection);
+            decoratedLink.Move(moveDirection);
         }
 
         public void SwordAttack()
@@ -97,7 +97,7 @@ namespace Sprint2.Player
             decoratedLink.FireAttack();
         }
 
-        /*        public void moveUp(float speed)
+        *//*        public void moveUp(float speed)
                 {
                     decoratedLink.moveUp(speed);
                 }
@@ -115,6 +115,6 @@ namespace Sprint2.Player
                 public void moveDown(float speed)
                 {
                     decoratedLink.moveDown(speed);
-                }*/
+                }*//*
     }
-}
+}*/

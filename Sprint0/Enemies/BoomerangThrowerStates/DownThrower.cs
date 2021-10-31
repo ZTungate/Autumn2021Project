@@ -30,9 +30,6 @@ namespace Sprint2.Enemies
         {
             Texture2D texture = thrower.Sprite.Texture;
             mySprite = new LeftThrowerSprite(texture);
-            //manually assign the sprite for leftThrower (leftthrower can't since it is the default.)
-            thrower.Sprite = mySprite;
-            thrower.Sprite.Position = thrower.Position;
             thrower.State = new LeftThrower(mySprite, thrower);
         }
 
@@ -54,7 +51,7 @@ namespace Sprint2.Enemies
             //Get the current position of the thrower
             Vector2 newPos = thrower.Position;
             //Move the thrower the relevant direction to the current state.
-            newPos.Y += 5;
+            newPos.Y += EnemyConstants.throwerMoveSpeed;
             //Set the thrower's position to the new pos.
             thrower.Position = newPos;
         }

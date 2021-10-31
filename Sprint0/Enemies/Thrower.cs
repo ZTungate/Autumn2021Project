@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Helpers;
 using Sprint2.Projectiles;
 using Sprint2;
 using System;
@@ -32,6 +31,9 @@ namespace Sprint2.Enemies
             get => pos;
             set => pos = value;
         }
+
+        public Vector2 oldPosition { get; set; }
+
         ISprite IEnemy.Sprite 
         {
             get => mySprite;
@@ -46,6 +48,8 @@ namespace Sprint2.Enemies
 
         void IEnemy.Update(GameTime gameTime)
         {
+            oldPosition = pos;
+
             //Only update the sprite and movement if we are not waiting for the boomerang to return.
             if (wait <= 0)
             {
@@ -81,14 +85,14 @@ namespace Sprint2.Enemies
             }
         }
         
-        public Thrower(ProjectileFactory projectileFactory)
+        public Thrower(Vector2 pos)
         {
             //Default a new thrower as a left thrower
-            currState = new LeftThrower(mySprite, this);
+            currState = new InitialThrower(mySprite, this);
             //Assign an arbitrary starting positon for the thrower
-            pos = new Vector2(500, 300);
+            this.pos = pos;
             //Pass the projectile handler in
-            projectiles = projectileFactory;
+            projectiles = ProjectileFactory.Instance;
         }
 
         private void RandomMove()

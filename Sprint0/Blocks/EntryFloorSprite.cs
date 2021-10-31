@@ -3,15 +3,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Blocks
 {
-    public class EntryFloorSprite : IBlocks
+    public class EntryFloorSprite : IBlock
     {
-        public Texture2D Texture { get; set; }
+        private Texture2D Texture { get; set; }
         public Rectangle sourceRect { get; set; }
         public Rectangle destRect { get; set; }
+        public bool Walkable { get; }
 
 
         public EntryFloorSprite(Texture2D spriteSheet, Vector2 Destination)
         {
+            Walkable = true;
             Texture = spriteSheet;
             sourceRect = new Rectangle(627, 982, 16, 16);
             destRect = new Rectangle((int)Destination.X, (int)Destination.Y, sourceRect.Width * 2, sourceRect.Height * 2); //height adjustment just for visability

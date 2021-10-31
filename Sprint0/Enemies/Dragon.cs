@@ -36,6 +36,8 @@ namespace Sprint2.Enemies
             get => myPosition;
             set => myPosition = value;
         }
+        public Vector2 oldPosition { get; set; }
+
         public IEnemyState State
         {
             //This will not be used until damage states are added.
@@ -50,6 +52,8 @@ namespace Sprint2.Enemies
 
         public void Update(GameTime gameTime)
         {
+            oldPosition = myPosition;
+
             //Update the sprite
             mySprite.Update(gameTime);
             //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
@@ -74,11 +78,11 @@ namespace Sprint2.Enemies
                 Attack();
             }
         }
-        public Dragon(ProjectileFactory projectileHandler)
-        { 
+        public Dragon(Vector2 pos)
+        {
             //Assign an arbitrary starting positon for the bat.
-            myPosition = new Vector2(500, 300);
-            projectiles = projectileHandler;
+            myPosition = pos;
+            projectiles = ProjectileFactory.Instance;
         }
 
         public Vector2 DragonMove()
@@ -91,11 +95,11 @@ namespace Sprint2.Enemies
             //1/3 chance to move forwards, 1/3 chance to move back, and 1/3 chance to do nothing.
             if (val == 0)
             {
-                newPosition.X += 5;
+                newPosition.X += EnemyConstants.dragonMoveSpeed;
             }
             else if (val == 1)
             {
-                newPosition.X -= 5;
+                newPosition.X -= EnemyConstants.dragonMoveSpeed;
             }
                 return newPosition;
         }

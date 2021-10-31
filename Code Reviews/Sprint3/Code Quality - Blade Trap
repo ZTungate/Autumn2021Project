@@ -1,0 +1,15 @@
+Author of the code review: Zach Tungate
+Date of the code review: 10/25/21
+Sprint number: 3
+Name of the .cs file being reviewed:  Blade Trap
+Author of the .cs file being reviewed: Jonah
+Number of minutes taken to complete the review: 20
+
+IEnemyState doesn't need to exist here since it's unused (more of an issue with not all enemies need a state)
+There might be another way to make the rectangles for Link detection by making the rectangle start on the home position x,y and having it extend upwards "infinitly"
+Adding a delay so that the trap can't immediately attack again would be useful as well as having it return back to its original position slower by having two different attack and return velocities.
+Replace the if statement in line 106 with just the Rect.Intersects method that returns a bool to check collision.
+Adding the hard coded values into fields above would be useful for maintainability and readability.
+
+Maintainability is a slight issue with a large amount of magic numebrs and it might be useful to have two vectors that control attack speed and return speed instead of using timers for this.
+Instead use a timer for attack delay between attacks.

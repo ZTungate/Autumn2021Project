@@ -8,7 +8,8 @@ namespace Sprint2.Items
 {
     public interface IItem
     {
-        void CreateSprite();
+        Rectangle rect { get; set; }
+        void CreateSprite(float scaleX, float scaleY);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch batch);
     }

@@ -8,18 +8,23 @@ using System.Collections.Generic;
 using Sprint2.Projectiles;
 using Sprint0.Collisions;
 using Sprint0.Levels;
+using Sprint0.Levels.Sprites;
 
 namespace Sprint2
 {
     public class Game1 : Game
     {
+        public static Game1 instance;
+        private Dungeon dungeon;
         public ISprite sprite;
 
         private SpriteFont font;
 
         public List<IController> controllerList;
 
+        public CollisionDetection detector = new CollisionDetection();
         public ICollision collision;
+        public CollisionHandler handler;
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
@@ -33,21 +38,13 @@ namespace Sprint2
         //Link
         public ILink link;
 
-        //Enemies
-        public List<IEnemy> enemies;
-        public int currentEnemy;
-
-        //Items
-        public List<IItem> items;
-        public int currentItem;
-
         //Projectiles
         public ProjectileFactory projectileFactory;
-        //Blocks
-        public IBlocks currentBlock;
 
         public Game1()
         {
+            instance = this;
+
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
@@ -55,6 +52,10 @@ namespace Sprint2
 
         protected override void Initialize()
         {
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 704;
+            _graphics.ApplyChanges();
+
             //Initialize the sprite factories
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
@@ -66,40 +67,15 @@ namespace Sprint2
             controllerList = new List<IController>()
             {
                 new KeyboardController(this),
-                new MouseController(this),
+                new MouseController(this)
             };
 
             //Initialize Player (Link)
-            link = new Link(projectileFactory);
-
-            //Temorary variable for item location
-            Point itemPos = new Point(300, 100);
-            items = new List<IItem>()
+            link = new Link
             {
-                new ArrowItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new BombItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new BoomerangItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new BowItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new ClockItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new CompassItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new FairyItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new HeartContainerItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new HeartItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new KeyItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new RupeeItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0)),
-                new TriforcePieceItem(new Rectangle(itemPos.X, itemPos.Y, 0, 0))
+                ProjectileFactory = projectileFactory
             };
-
-            //Initialize enemies 
-            enemies = new List<IEnemy>()
-            {
-                new Dragon(projectileFactory),
-                new Skeleton(),
-                new Bat(),
-                new Slime(),
-                new OldMan(),
-                new Thrower(projectileFactory),
-            };
+            handler = new CollisionHandler(this);
 
             base.Initialize();
         }
@@ -119,26 +95,19 @@ namespace Sprint2
 
             //Load all block textures
             blockSpriteFactory.LoadAllTextures(Content);
-            currentBlock = blockSpriteFactory.CurrentSprite();
 
             //Load all item textures and generate items (must be done after textures are loaded)
             itemSpriteFactory.LoadAllTextures(Content);
 
-            foreach(IItem item in items)
-            {
-                item.CreateSprite();
-            }
-
             //Create sprite for Link
             link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
-            //Create sprites for all enemies.
-            foreach(IEnemy enemy in enemies){
-                enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
-            }
+            DoorSpriteFactory.instance.LoadContent(Content);
+            LevelLoader.instance.LoadAllLevels(Content);
+            DungeonLoader.instance.LoadDungeons();
 
+            handler = new CollisionHandler(this);
 
-            LevelLoader.instance.LoadAllLevels();
         }
 
         protected override void Update(GameTime gameTime)
@@ -147,19 +116,17 @@ namespace Sprint2
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-
+            
             //Update Link
             link.Update(gameTime);
 
-            //Update the current enemy
-            enemies[currentEnemy].Update(gameTime);
+            dungeon.UpdateCurrent(gameTime);
 
             //Update the projectiles
             projectileFactory.UpdateProjectiles(gameTime);
 
-            items[currentItem].Update(gameTime);
-
-            currentBlock.Update(gameTime);
+            //TODO: poop
+            handler.Update();
 
             base.Update(gameTime);
         }
@@ -170,23 +137,15 @@ namespace Sprint2
 
             
             //Using front to back sorting, and point clamp to improve look of pixel art sprites
-            _spriteBatch.Begin(SpriteSortMode.FrontToBack, null, SamplerState.PointClamp);
-   
-            //Draw Link
-            link.Draw(_spriteBatch);
+            _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp);
 
-            //Draw the current enemy
-            enemies[currentEnemy].Sprite.Draw(_spriteBatch, enemies[currentEnemy].destRect);
+            dungeon.DrawCurrent(_spriteBatch);
 
             //Draw all projectiles
             projectileFactory.DrawProjectiles(_spriteBatch);
 
-            items[currentItem].Draw(_spriteBatch);
-
-            currentBlock.Draw(_spriteBatch);
-
-            //temporary
-            LevelLoader.instance.DrawLevels(_spriteBatch);
+            //Draw Link
+            link.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
@@ -195,38 +154,24 @@ namespace Sprint2
 
         public void Reset()
         {
-            link = new Link(projectileFactory);
+            link = new Link();
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
             blockSpriteFactory.Reset();
-            currentBlock = blockSpriteFactory.CurrentSprite();
 
-            //Reset item
-            currentItem = 0;
 
             //Set the enemy sprite factory to a new instance
             enemySpriteFactory = EnemySpriteFactory.Instance;
 
-            //Reset currentEnemy
-            currentEnemy = 0;
-
-            //Reset the enemy list to all new instances of enemies.
-            enemies = new List<IEnemy>()
-            {
-                new Dragon(projectileFactory),
-                new Skeleton(),
-                new Bat(),
-                new Slime(),
-                new OldMan(),
-                new Thrower(projectileFactory),
-            };
-            //Create sprites for all enemies.
-            foreach (IEnemy enemy in enemies)
-            {
-                enemy.Sprite = enemySpriteFactory.MakeSprite(enemy);
-            }
-
             //Re-Initialize the projectile factory.
             projectileFactory.Initalize();
+        }
+        public void SetDungeon(Dungeon dungeon)
+        {
+            this.dungeon = dungeon;
+        }
+        public Dungeon GetDungeon()
+        {
+            return this.dungeon;
         }
         public void Quit()
         {

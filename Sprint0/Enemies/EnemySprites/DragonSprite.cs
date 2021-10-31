@@ -3,13 +3,27 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Sprint2.Enemies;
 
 namespace Sprint2
 {
-    public class DragonSprite : AbstractSprite
+    public class DragonSprite : IAnimatedSprite
     {
-        public DragonSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[4])
+        public float Timer { get; set; } = 0f;
+        public float Interval { get; set; } = 80f;
+        public int CurrentFrame { get; set; } = 0;
+        public int FrameCount { get; set; } = 4;
+        public float SpriteSpeed { get; set; } = 0;
+        public Texture2D Texture { get; set; }
+        public Rectangle[] SourceRect { get; set; }
+        public Vector2 Position { get; set; }
+
+        public DragonSprite(Texture2D spriteSheet)
         {
+            //Set the texture2D to the provided spriteSheet (already initialized by factory)
+            Texture = spriteSheet;
+            SourceRect = new Rectangle[4];
+
             //Set the two frames for the slime animation
             SourceRect[0] = new Rectangle(1, 11, 24, 32);
             SourceRect[1] = new Rectangle(26, 11, 24, 32);
@@ -17,12 +31,33 @@ namespace Sprint2
             SourceRect[3] = new Rectangle(76, 11, 24, 32);
 
             //Dummy position, needs to be fixed by adding pos relevant to the enemy.
-            //Position = new Vector2(500, 100);
+            Position = new Vector2(500, 100);
         }
 
-        public override void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
-            this.FrameStep(gameTime);
+            //Animate the sprites (pulled from animatedStillSprite.cs)
+            if (Timer > Interval)
+            {
+                CurrentFrame++;
+
+                if (CurrentFrame > FrameCount - 1)
+                {
+                    CurrentFrame = 0;
+                }
+                Timer = 0;
+            }
+            else
+            {
+                //Increment timer based on the elapsed time from the last check.
+                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            }
         }
+        public void Draw(SpriteBatch spriteBatch)
+        {//Draw the sprite at its set position at twice it's source size.
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(SourceRect[CurrentFrame].Width * EnemyConstants.scaleX), (int)(SourceRect[CurrentFrame].Height * EnemyConstants.scaleY));
+            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
+        }
+
     }
 }

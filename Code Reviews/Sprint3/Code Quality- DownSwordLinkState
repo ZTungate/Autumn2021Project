@@ -1,0 +1,14 @@
+Author of the code review: Jonah
+Date of the code review: 10/25/21
+Sprint number: 3
+Name of the .cs file being reviewed:  DownSwordLinkState.cs
+Author of the .cs file being reviewed: Michael
+Number of minutes taken to complete the review: 20
+
+Comments on code quality:
+  This class has 3/5 methods with no implementations. These methods do not need implementations in this
+  particular class, so it may be worth looking into moving them elsewhere to improve cohesion of the class.
+  The field mySprite could be removed without any consequences since it is only used for assiging link.sprite.
+  Aside from these, this class looks fine. It is not very long and everything else seems to do things that need
+  to be done.
+
