@@ -6,18 +6,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class FairySprite : AbstractItemSprite
+    public class FairySprite : AbstractSprite
     {
-        public FairySprite(Texture2D spriteSheet)
+        public FairySprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[2])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[2];
-
-            Interval = 80f;
-            FrameCount = 2;
-
             SourceRect[0] = new Rectangle(40, 0, 8, 16);
             SourceRect[1] = new Rectangle(48, 0, 8, 16);
+            Interval = 80f;
+        }
+        public override void Update(GameTime gameTime)
+        {
+            this.FrameStep(gameTime);
         }
     }
 }

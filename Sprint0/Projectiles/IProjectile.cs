@@ -10,12 +10,15 @@ namespace Sprint2.Projectiles
     public interface IProjectile
     {
         public ISprite Sprite { get; set; }
-        
-        public Vector2 Position { get; set; }
 
-        public Vector2 Velocity { get; set; }
+        public Rectangle DestRect { get; set; }
+        public Point Velocity { get; set; }
 
         public int Life { get; set; }
         public void Update(GameTime gameTime);
+
+        public void Draw(SpriteBatch batch);
+        public Point GetPosition();
+        public void SetPosition(Point pos);
     }
 }

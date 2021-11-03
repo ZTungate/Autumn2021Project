@@ -6,13 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class StationaryBoomerangSprite : AbstractItemSprite
+    public class StationaryBoomerangSprite : AbstractSprite
     {
-        public StationaryBoomerangSprite(Texture2D spriteSheet)
+        public StationaryBoomerangSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[1];
-
             SourceRect[0] = new Rectangle(128, 2, 7, 10);
         }
     }

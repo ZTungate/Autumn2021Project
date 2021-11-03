@@ -6,18 +6,18 @@ namespace Sprint2.Blocks
 {
     public interface IBlock
     {
-        Rectangle sourceRect { get; set; }
-
-        Rectangle destRect { get; set; }
+        Rectangle DestRect { get; set; }
         
         bool Walkable { get; }
+        bool Moveable { get; }
+        ISprite Sprite { get; set; }
 
         void Update(GameTime gameTime);
 
         void Draw(SpriteBatch spriteBatch);
 
-        
+        Point GetPosition();
+        void SetPosition(Point point);
 
-        //Texture and sourceRect replace with Sprite?
     }
 }

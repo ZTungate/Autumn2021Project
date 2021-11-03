@@ -12,5 +12,8 @@ namespace Sprint2.Items
         void CreateSprite(float scaleX, float scaleY);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch batch);
+
+        Point GetPosition();
+        void SetPosition(Point pos);
     }
 }

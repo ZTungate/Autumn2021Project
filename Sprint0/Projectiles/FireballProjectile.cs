@@ -6,52 +6,19 @@ using System.Text;
 
 namespace Sprint2.Projectiles
 {
-    public class FireballProjectile : IProjectile
+    public class FireballProjectile : AbstractProjectile
     {
-        //Fields for storing the sprite, velocity, and position.
-        private ISprite mySprite;
-        private Vector2 myPosition;
-        private Vector2 myVelocity;
-        private int myLife;
-        public ISprite Sprite 
+        public FireballProjectile(Point position, Point velocity) : base(position, velocity, new Point(0,0))
         {
-            get => mySprite;
-            set => mySprite = value;
+            Life = 4000;
         }
-        public Vector2 Position 
-        { 
-            get => myPosition;
-            set => myPosition = value;
-        }
-        public Vector2 Velocity 
-        { 
-            get => myVelocity;
-            set => myVelocity = value;
-        }
-        public int Life
-        {
-            get => myLife;
-            set => myLife = value;
-
-        }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //Move the fireball according to its velocity.
-            myPosition += myVelocity;
-            mySprite.Position = Position;
-            mySprite.Update(gameTime);
+            DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
+            Sprite.Update(gameTime);
 
-            myLife -= gameTime.ElapsedGameTime.Milliseconds;
-        }
-
-        public FireballProjectile(Vector2 position, Vector2 velocity)
-        {
-            //Set the velocity and position to the passed values.
-            myPosition = position;
-            myVelocity = velocity;
-            //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            myLife = 4000;
+            Life -= gameTime.ElapsedGameTime.Milliseconds;
         }
     }
 }

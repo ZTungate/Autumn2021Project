@@ -7,65 +7,30 @@ using System.Text;
 
 namespace Sprint2.Enemies
 {
-    public class Bat : IEnemy
+    public class Bat : AbstractEnemy
     {
-        //ISprite for the enemy
-        ISprite mySprite;
-        //Position of the bat.
-        Vector2 pos;
-        //State of the bat (not used yet for this enemy type)
-        IEnemyState state;
-        public ISprite Sprite
+        public Bat(Point position) : base(position, Point.Zero)
         {
-            //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
-            get => mySprite;
-            set => mySprite = value;
-        }
-        public Vector2 Position
-        {
-            get => pos;
-            set => pos = value;
         }
 
-        public Vector2 oldPosition { get; set; }
-
-        public IEnemyState State
+        public override void Update(GameTime gameTime)
         {
-            //This will not be used until damage states are added.
-            get => state;
-            set => state = value;
-        }
-        public EnemyTypes Type
-        {
-            //Return Bat if type is ever asked for.
-            get => EnemyTypes.Bat;
-        }
+            oldPosition = this.DestRect.Location;
 
-        public void Update(GameTime gameTime)
-        {
-            oldPosition = pos;
-
-
-            int lastFrame = mySprite.CurrentFrame;
-            mySprite.Update(gameTime);
+            int lastFrame = Sprite.CurrentFrame;
+            Sprite.Update(gameTime);
 
             //Move the bat if the animation frame changed
-            if (lastFrame != mySprite.CurrentFrame)
+            if (lastFrame != Sprite.CurrentFrame)
             {
-                pos = BatRandomMove();
-                mySprite.Position = pos;
+                this.DestRect = new Rectangle(BatRandomMove(), DestRect.Size);
             }
-        }
-        public Bat(Vector2 pos)
-        {
-            //Assign an arbitrary starting positon for the bat.
-            this.pos = pos;
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
-        public Vector2 BatRandomMove()
+        public Point BatRandomMove()
         {
-            Vector2 newPosition = pos;
+            Point newPosition = DestRect.Location;
 
             //Get a random number from 0-3
             Random rand = new Random();

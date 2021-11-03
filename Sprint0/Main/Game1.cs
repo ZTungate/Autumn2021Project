@@ -102,7 +102,7 @@ namespace Sprint2
             //Create sprite for Link
             link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
-            DoorSpriteFactory.instance.LoadContent(Content);
+            DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
 
@@ -156,7 +156,6 @@ namespace Sprint2
         {
             link = new Link();
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
-            blockSpriteFactory.Reset();
 
 
             //Set the enemy sprite factory to a new instance

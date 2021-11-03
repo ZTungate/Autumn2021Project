@@ -10,6 +10,6 @@ namespace Sprint0.Player
         public static int itemUseTime = 300;
         public static int swordAttackTime = 300;
         public static float scaleX, scaleY;
-        public static float linkSpeed = 3;
+        public static int linkSpeed = 3;
     }
 }

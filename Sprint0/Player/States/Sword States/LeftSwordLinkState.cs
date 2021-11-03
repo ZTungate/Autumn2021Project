@@ -18,7 +18,7 @@ namespace Sprint2.Player
             link = Link;
             mySprite = new LeftSwordLinkSprite(sprite.Texture, Link);
             //TODO: make sword beam only come out if link full health
-            link.ProjectileFactory.NewSwordBeam(link.position, direction.left);
+            link.ProjectileFactory.NewSwordBeam(link.GetPosition(), direction.left);
             link.sprite = mySprite;
             stateTime = LinkConstants.swordAttackTime;
         }

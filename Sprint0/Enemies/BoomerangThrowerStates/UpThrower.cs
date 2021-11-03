@@ -15,7 +15,6 @@ namespace Sprint2.Enemies
         {
             //Get the sprite and enemy passed in, and the position of the enemy
             mySprite = sprite;
-            mySprite.Position = enemy.Position;
             thrower = enemy;
             //Set the enemy's sprite to this state's sprite.
             thrower.Sprite = mySprite;
@@ -50,16 +49,16 @@ namespace Sprint2.Enemies
         public void MoveForward()
         {
             //Get the current position of the thrower
-            Vector2 newPos = thrower.Position;
+            Point newPos = thrower.DestRect.Location;
             //Move the thrower the relevant direction to the current state.
             newPos.Y -= EnemyConstants.throwerMoveSpeed;
             //Set the thrower's position to the new pos.
-            thrower.Position = newPos;
+            thrower.DestRect = new Rectangle(newPos, thrower.DestRect.Size);
         }
-        public Vector2 AttackDirection()
+        public Point AttackDirection()
         {
             //Return a vector pointing up.
-            return new Vector2(0, -1);
+            return new Point(0, -1);
         }
         public void Update(GameTime gameTime, ISprite enemySprite)
         {

@@ -13,9 +13,10 @@ namespace Sprint2
         public float Interval { get; set; } = 80f;
         public int CurrentFrame { get; set; } = 0;
         public int FrameCount { get; set; } = 1;
-        public float SpriteSpeed { get; set; } = 0;
         public Texture2D Texture { get; set; }
         public Rectangle[] SourceRect { get; set; }
+
+        public SpriteEffects effects = SpriteEffects.None;
 
         public AbstractSprite(Texture2D spriteSheet, Rectangle[] sourceRect)
         {
@@ -45,9 +46,10 @@ namespace Sprint2
         {
             //no-op
         }
-        public void Draw(SpriteBatch spriteBatch, Rectangle rect)
+        public virtual void Draw(SpriteBatch spriteBatch, Rectangle rect)
         {
-            spriteBatch.Draw(Texture, rect, SourceRect[CurrentFrame], Color.White);
+            //LayerDepth set to 1, normally this would mean this object will always been drawn in front but because of Begin() call in Game1 objects are drawn in the order their Draw() method is called
+            spriteBatch.Draw(Texture, rect, SourceRect[CurrentFrame], Color.White, 0, Vector2.Zero, effects, 1);
         }
     }
 }

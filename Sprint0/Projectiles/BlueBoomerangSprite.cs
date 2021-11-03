@@ -9,14 +9,6 @@ namespace Sprint2
 {
     public class BlueBoomerangSprite : AbstractSprite
     {
-        public Vector2 Position { get; set; }
-
-        public int scale = 2;
-
-        public int TotalFrames = 0;
-
-        public bool incFrame = true;
-
         public BlueBoomerangSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[3])
         {
             //Set the 8 source rectangles for the boomerang animation

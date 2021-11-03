@@ -14,8 +14,8 @@ namespace Sprint2.Player
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
 
         public ILinkState state { get; set; }
-        public Vector2 position { get; set; }
-        public Vector2 oldPosition { get; set; }
+        public Rectangle DestRect { get; set; }
+        public Point oldPosition { get; set; }
         public ISprite sprite { get; set; }
         public Color color { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
@@ -33,7 +33,7 @@ namespace Sprint2.Player
         public Link()
         {
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            position = new Vector2(300, 300);  //Link's initial position
+            DestRect = new Rectangle(new Point(300, 300), Point.Zero);
             colorIndex = 0;
 
             color = Color.White;
@@ -41,7 +41,7 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
-            oldPosition = position;
+            oldPosition = DestRect.Location;
 
             if (isDamaged)
             {
@@ -81,7 +81,7 @@ namespace Sprint2.Player
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch);   //draw the player sprite
+            sprite.Draw(spriteBatch, DestRect);   //draw the player sprite
         }
 
         public void takeDamage()
@@ -100,18 +100,18 @@ namespace Sprint2.Player
             state.UseItem(item);
         }
 
-        public void Move(Vector2 moveDirection)
+        public void Move(Point moveDirection)
         {
             if (canMove) 
             {
-                position += moveDirection;
+                DestRect = new Rectangle(DestRect.Location + moveDirection, DestRect.Size);
             }   
         }
         public void Reset()
         {
             //This may not work, since the state does not determine the sprite
             state = new InitialLinkState(this, sprite); //start the player in the right idle state
-            position = new Vector2(20, 20);  //Link's initial position
+            DestRect = new Rectangle(new Point(20, 20), DestRect.Size);
 
             colorIndex = 0;
 
@@ -128,6 +128,15 @@ namespace Sprint2.Player
         public void PickUp(AbstractItem item)
         {
             state.PickUp(item);
+        }
+
+        public Point GetPosition()
+        {
+            return this.DestRect.Location;
+        }
+        public void SetPosition(Point pos)
+        {
+            this.DestRect = new Rectangle(pos, DestRect.Size);
         }
     }
     

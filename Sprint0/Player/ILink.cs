@@ -14,8 +14,8 @@ namespace Sprint2.Player
     public interface ILink
     {
         public ILinkState state { get; set; }
-        public Vector2 position { get; set; }
-        public Vector2 oldPosition { get; set; }
+        public Rectangle DestRect { get; set; }
+        public Point oldPosition { get; set; }
         public ISprite sprite { get; set; }
         public Color color {get;set;}
         public ProjectileFactory ProjectileFactory { get;  set; }
@@ -24,9 +24,11 @@ namespace Sprint2.Player
         void takeDamage();
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
-        void Move(Vector2 moveDirection);
+        void Move(Point moveDirection);
         void UseItem(ProjectileTypes item);
         void SwordAttack();
         void PickUp(AbstractItem item);
+        Point GetPosition();
+        void SetPosition(Point pos);
     }
 }

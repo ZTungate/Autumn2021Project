@@ -47,16 +47,16 @@ namespace Sprint2.Enemies
         public void MoveForward()
         {
             //Get the current position of the thrower
-            Vector2 newPos = thrower.Position;
+            Point newPos = thrower.DestRect.Location;
             //Move the thrower the relevant direction to the current state.
             newPos.X -= EnemyConstants.throwerMoveSpeed;
             //Set the thrower's position to the new pos.
-            thrower.Position = newPos;
+            thrower.DestRect = new Rectangle(newPos, thrower.DestRect.Size);
         }
-        public Vector2 AttackDirection()
+        public Point AttackDirection()
         {
             //Return a vector pointing left
-            return new Vector2(-1, 0);
+            return new Point(-1, 0);
         }
         public void Update(GameTime gameTime, ISprite enemySprite)
         {

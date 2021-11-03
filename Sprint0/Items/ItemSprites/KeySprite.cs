@@ -6,13 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class KeySprite : AbstractItemSprite
+    public class KeySprite : AbstractSprite
     {
-        public KeySprite(Texture2D spriteSheet)
+        public KeySprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[1];
-
             SourceRect[0] = new Rectangle(240, 0, 8, 16);
         }
     }

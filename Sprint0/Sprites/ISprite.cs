@@ -10,12 +10,9 @@ namespace Sprint2
 
         int FrameCount { get; }
 
-        float SpriteSpeed { get; set; }
-
         Texture2D Texture { get; set; }
 
         Rectangle[] SourceRect { get; set; }
-
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, Rectangle rect);
     }

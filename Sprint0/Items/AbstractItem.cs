@@ -9,7 +9,7 @@ namespace Sprint2.Items
 {
     public abstract class AbstractItem : IItem
     {
-        protected AbstractItemSprite sprite;
+        protected AbstractSprite sprite;
         protected ItemEnum itemType;
         protected Rectangle rect;
 
@@ -43,9 +43,17 @@ namespace Sprint2.Items
         {
             return this.rect;
         }
-        public AbstractItemSprite GetSprite()
+        public AbstractSprite GetSprite()
         {
             return this.sprite;
+        }
+        public Point GetPosition()
+        {
+            return this.rect.Location;
+        }
+        public void SetPosition(Point pos)
+        {
+            this.rect = new Rectangle(pos, rect.Size);
         }
     }
 }

@@ -67,22 +67,22 @@ namespace Sprint2.Player
             {
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.position, direction.right);
+                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), direction.right);
                     break;
                 case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.position, direction.right);
+                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), direction.right);
                     break;
                 case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.LinkBoomerang(link.position, RegBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBoomerang(link.GetPosition(), (RegBoomerangVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.LinkBlueBoomerang(link.position, BlueBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBlueBoomerang(link.GetPosition(), (BlueBoomerangVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.fire:
-                    link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
+                    link.ProjectileFactory.NewFire(link.GetPosition(), (FireVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(new Vector2(link.position.X + link.sprite.SourceRect[link.sprite.CurrentFrame].Width * 2, link.position.Y));
+                    link.ProjectileFactory.NewBomb(link.GetPosition() + directionVector.ToPoint());
                     break;
             }
         }

@@ -7,62 +7,28 @@ using System.Text;
 
 namespace Sprint2.Enemies
 {
-    public class Thrower : IEnemy
+    public class Thrower : AbstractEnemy
     {
-        //Sprite for the enemy
-        ISprite mySprite;
-        //Position vector
-        Vector2 pos;
-        //State
-        IEnemyState currState;
-        //Projectile controller
         ProjectileFactory projectiles;
-        //Timer for throwing projectiles and waiting to update while the boomerang is out.
         int wait = 0;
         int throwDelay = 4000;
-        IEnemyState IEnemy.State
-        {
-            get => currState;
-            set => currState = value;
-        }
 
-        Vector2 IEnemy.Position
+        public override void Update(GameTime gameTime)
         {
-            get => pos;
-            set => pos = value;
-        }
-
-        public Vector2 oldPosition { get; set; }
-
-        ISprite IEnemy.Sprite 
-        {
-            get => mySprite;
-            set => mySprite = value;
-        }
-
-        EnemyTypes IEnemy.Type
-        {
-            //Return boomerangThrower as type if requested
-            get => EnemyTypes.Thrower;
-        }
-
-        void IEnemy.Update(GameTime gameTime)
-        {
-            oldPosition = pos;
+            oldPosition = DestRect.Location;
 
             //Only update the sprite and movement if we are not waiting for the boomerang to return.
             if (wait <= 0)
             {
                 //Get the current frame of animation, set the sprite position to the enemy position, and update the sprite.
-                int lastFrame = mySprite.CurrentFrame;
-                mySprite.Position = pos;
-                mySprite.Update(gameTime);
+                int lastFrame = Sprite.CurrentFrame;
+                Sprite.Update(gameTime);
 
                 //Update the state
-                currState.Update(gameTime, mySprite);
+                State.Update(gameTime, Sprite);
 
                 //Perform a random move if the animation frame changed.
-                if (mySprite.CurrentFrame != lastFrame)
+                if (Sprite.CurrentFrame != lastFrame)
                 {
                     RandomMove();
                 }
@@ -85,12 +51,11 @@ namespace Sprint2.Enemies
             }
         }
         
-        public Thrower(Vector2 pos)
+        public Thrower(Point pos) : base(pos, new Point(0,0))
         {
             //Default a new thrower as a left thrower
-            currState = new InitialThrower(mySprite, this);
+            State = new InitialThrower(Sprite, this);
             //Assign an arbitrary starting positon for the thrower
-            this.pos = pos;
             //Pass the projectile handler in
             projectiles = ProjectileFactory.Instance;
         }
@@ -104,30 +69,30 @@ namespace Sprint2.Enemies
             //Change directions or move based on the random number
             if(value == 0)
             {
-                currState.TurnUp();
+                State.TurnUp();
             }
             else if(value == 1)
             {
-                currState.TurnDown();
+                State.TurnDown();
             }
             else if(value == 2)
             {
-                currState.TurnRight();
+                State.TurnRight();
             }
             else if(value == 3)
             {
-                currState.TurnLeft();
+                State.TurnLeft();
             }
             else 
             {
-                currState.MoveForward();
+                State.MoveForward();
             }
 
         }
         private void Attack()
         {
             //Create a new boomerang moving the direction given at 3 pixels per tick.
-            projectiles.NewBoomerang(pos, 3 * currState.AttackDirection());
+            projectiles.NewBoomerang(DestRect.Location, (3 * State.AttackDirection().ToVector2()).ToPoint());
         }
 
 

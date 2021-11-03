@@ -6,13 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class ClockSprite : AbstractItemSprite
+    public class ClockSprite : AbstractSprite
     {
-        public ClockSprite(Texture2D spriteSheet)
+        public ClockSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[1];
-
             SourceRect[0] = new Rectangle(57, 0, 13, 17);
         }
     }

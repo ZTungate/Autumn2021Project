@@ -8,54 +8,26 @@ using System.Text;
 
 namespace Sprint2.Player
 {
-    public class PickUpLinkSprite : IAnimatedSprite
+    public class PickUpLinkSprite : AbstractSprite
     {
-        public float Timer { get; set; } = 0f;
-        public float Interval { get; set; } = 128f; 
-        public int CurrentFrame { get; set; } = 0;
-        public int FrameCount { get; set; } = 2;
-        public float SpriteSpeed { get; set; } = 0;
-        public Texture2D Texture { get; set; }
-        public Rectangle[] SourceRect { get; set; }
-        public Vector2 Position { get; set; }
         private AbstractItem myItem;
         ILink player;
-        public PickUpLinkSprite(Texture2D spriteSheet, ILink player, AbstractItem item)
+        public PickUpLinkSprite(Texture2D spriteSheet, ILink player, AbstractItem item) : base(spriteSheet, new Rectangle[2])
         {
             this.player = player;
             myItem = item;
-            Texture = spriteSheet;  //Set the texture2D to the provided spriteSheet (already initialized by factory)
-            SourceRect = new Rectangle[2];
-            
+
             SourceRect[0] = new Rectangle(213 , 11, 16, 16);  //Set the frame for right idle link
             SourceRect[1] = new Rectangle(230, 11, 16, 16);
-            /*Position = pos;*/     //Sets the position to Link's position
+            this.Interval = 128f;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            // Implement animation changes here
-
-            //Animate the sprites (pulled from animatedStillSprite.cs)
-            if (Timer > Interval)
-            {
-                CurrentFrame++;
-
-
-                if (CurrentFrame > FrameCount - 1) { //hold the pick up item frame until update
-                    CurrentFrame = 1;
-                }
-
-                Timer = 0;
-            }
-            else
-            {
-                //Increment timer by the elapsed time in game.
-                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            }
+            this.FrameStep(gameTime);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        /*public void Draw(SpriteBatch spriteBatch)
         {
 
             spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
@@ -65,7 +37,7 @@ namespace Sprint2.Player
             //TODO: Draw item 
             //myItem.Draw()
 
-        }
+        }*/
 
     }
 }

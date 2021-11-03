@@ -71,7 +71,7 @@ namespace Sprint0.Levels
                         Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
                         object instance = Activator.CreateInstance(objectType, objectParams);
                         IBlock newBlock = (IBlock)instance;
-                        newBlock.destRect = new Rectangle(newBlock.destRect.X, newBlock.destRect.Y, (int)(newBlock.sourceRect.Width*scaleX), (int)(newBlock.sourceRect.Height*scaleY));
+                        //create sprite
 
                         newLevel.AddBlock(new Point(x,y), newBlock);
                     }

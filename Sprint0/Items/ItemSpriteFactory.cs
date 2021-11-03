@@ -13,7 +13,7 @@ namespace Sprint2.Items
 
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
-        private Dictionary<ItemEnum, AbstractItemSprite> itemSpriteDictionary;
+        private Dictionary<ItemEnum, AbstractSprite> itemSpriteDictionary;
 
         public static ItemSpriteFactory Instance
         {
@@ -25,7 +25,7 @@ namespace Sprint2.Items
 
         private ItemSpriteFactory()
         {
-            itemSpriteDictionary = new Dictionary<ItemEnum, AbstractItemSprite>();
+            itemSpriteDictionary = new Dictionary<ItemEnum, AbstractSprite>();
         }
 
         public void LoadAllTextures(ContentManager content)
@@ -45,7 +45,7 @@ namespace Sprint2.Items
             itemSpriteDictionary.Add(ItemEnum.Rupee, new RupeeSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.TriforcePiece, new TriforcePieceSprite(itemSpriteSheet));
         }
-        public AbstractItemSprite GetItemSprite(ItemEnum item)
+        public AbstractSprite GetItemSprite(ItemEnum item)
         {
             //Get corresponding item sprite of given item enum
             return itemSpriteDictionary[item];

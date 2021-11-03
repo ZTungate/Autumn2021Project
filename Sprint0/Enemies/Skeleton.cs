@@ -8,65 +8,30 @@ using System.Text;
 
 namespace Sprint2.Enemies
 {
-    public class Skeleton : IEnemy
+    public class Skeleton : AbstractEnemy
     {
-        //ISprite for the enemy
-        ISprite mySprite;
-        //Position vector
-        Vector2 pos;
-        //State for this enemy (unused for now for this type)
-        IEnemyState currState;
-        IEnemyState IEnemy.State
+        public Skeleton(Point pos) : base(pos, Point.Zero)
         {
-            //For this enemy type, this should not be used yet.
-            get => currState;
-            set => currState = value;
+            
         }
-        Vector2 IEnemy.Position
+        public override void Update(GameTime gameTime)
         {
-            get => pos;
-            set => pos = value;
-        }
-
-        public Vector2 oldPosition { get; set; }
-
-        public ISprite Sprite
-        {
-            //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
-            get => mySprite;
-            set => mySprite = value;
-        }
-        public EnemyTypes Type
-        {
-            //Return Dragon if type is ever asked for.
-            get => EnemyTypes.Skeleton;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            oldPosition = pos;
+            oldPosition = DestRect.Location;
 
             //Get the number for the last frame
-            int lastFrame = mySprite.CurrentFrame;
+            int lastFrame = Sprite.CurrentFrame;
             //Update the sprite
-            mySprite.Update(gameTime);
+            Sprite.Update(gameTime);
 
             //Move the skeleton if the animation frame changed
-            if (lastFrame != mySprite.CurrentFrame)
+            if (lastFrame != Sprite.CurrentFrame)
             {
-                pos = RandomMove();
-                mySprite.Position = pos;
+                DestRect = new Rectangle(RandomMove(), DestRect.Size);
             }
         }
-        public Skeleton(Vector2 pos)
+        public Point RandomMove()
         {
-            //Assign an arbitrary starting positon for the skeleton.
-            this.pos = pos;
-        }
-
-        public Vector2 RandomMove()
-        {
-            Vector2 newPosition = this.pos;
+            Point newPosition = DestRect.Location;
 
             //Get a random number from 0-3
             Random rand = new Random();

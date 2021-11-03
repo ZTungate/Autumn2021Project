@@ -6,13 +6,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class BowSprite : AbstractItemSprite
+    public class BowSprite : AbstractSprite
     {
-        public BowSprite(Texture2D spriteSheet)
+        public BowSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[1];
-
             SourceRect[0] = new Rectangle(144, 0, 8, 16);
         }
 

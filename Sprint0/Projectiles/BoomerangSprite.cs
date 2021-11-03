@@ -9,8 +9,6 @@ namespace Sprint2
 {
     public class BoomerangSprite : AbstractSprite
     {
-        public Vector2 Position { get; set; }
-
         public BoomerangSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[8])
         {
             //Set the 8 source rectangles for the boomerang animation
@@ -27,15 +25,8 @@ namespace Sprint2
 
         public override void Update(GameTime gameTime)
         {
-            //Animate the sprites (pulled from animatedStillSprite.cs)
             this.FrameStep(gameTime);
         }
-        /*public void Draw(SpriteBatch spriteBatch)
-        {
-            //Draw projectile at its position at twice its source size.
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width * (int)LinkConstants.scaleX, SourceRect[CurrentFrame].Height * (int)LinkConstants.scaleY);
-            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
-        }*/
 
     }
 }

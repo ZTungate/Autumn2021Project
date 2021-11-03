@@ -6,14 +6,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Sprint2.Items.ItemSprites
 {
-    public class BombItemSprite : AbstractItemSprite
+    public class BombItemSprite : AbstractSprite
     {
 
-        public BombItemSprite(Texture2D spriteSheet)
+        public BombItemSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[1];
-
             SourceRect[0] = new Rectangle(136, 0, 8, 14);
         }
     }
