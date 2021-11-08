@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
     public abstract class AbstractEnemy : IEnemy
     {

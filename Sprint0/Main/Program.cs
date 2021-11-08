@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sprint2
+namespace Poggus
 {
     public static class Program
     {

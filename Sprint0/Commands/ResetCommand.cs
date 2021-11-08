@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
-namespace Sprint2.Commands
+using Poggus.Helpers;
+namespace Poggus.Commands
 {
     public class ResetCommand : ICommand
     {

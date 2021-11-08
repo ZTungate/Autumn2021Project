@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2;
+using Poggus;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
-namespace Sprint0.Levels.Sprites
+namespace Poggus.Levels.Sprites
 {
     class HoleDoorSprite : AbstractSprite
     {

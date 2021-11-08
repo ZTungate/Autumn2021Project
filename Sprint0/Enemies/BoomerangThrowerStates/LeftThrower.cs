@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
     public class LeftThrower : IEnemyState
     {

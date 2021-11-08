@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint0.Player;
+using Poggus.Player;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class LeftMovingLinkSprite : AbstractSprite
     {

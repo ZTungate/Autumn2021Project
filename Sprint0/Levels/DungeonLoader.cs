@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     class DungeonLoader
     {

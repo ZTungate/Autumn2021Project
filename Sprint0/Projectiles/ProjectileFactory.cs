@@ -1,14 +1,14 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Projectiles;
-using Sprint2;
-using Sprint2.Player;
+using Poggus.Projectiles;
+using Poggus;
+using Poggus.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Projectiles
+namespace Poggus.Projectiles
 {
     public class ProjectileFactory
     {

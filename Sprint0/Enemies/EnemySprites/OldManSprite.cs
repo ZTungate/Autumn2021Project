@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Enemies;
+using Poggus.Enemies;
 
-namespace Sprint2
+namespace Poggus
 {
     public class OldManSprite : AbstractSprite
     {

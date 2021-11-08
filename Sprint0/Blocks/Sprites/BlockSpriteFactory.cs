@@ -4,10 +4,10 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
-using Sprint2.Blocks.Sprites;
+using Poggus.Helpers;
+using Poggus.Blocks.Sprites;
 
-namespace Sprint2.Blocks
+namespace Poggus.Blocks
 {
     public class BlockSpriteFactory
     {
@@ -15,7 +15,7 @@ namespace Sprint2.Blocks
 
         private Texture2D blockSpriteSheet;
 
-        private Dictionary<BlockType, ISprite> blockSpriteDictionary;
+        private Dictionary<BlockType, ISprite> blockSpriteDictionary = new Dictionary<BlockType, ISprite>();
 
         public static BlockSpriteFactory Instance
         {
@@ -32,7 +32,7 @@ namespace Sprint2.Blocks
         public void LoadAllTextures(ContentManager content)
         {
             blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet"); //loads the texture atlas
-
+            
             blockSpriteDictionary.Add(BlockType.BlackBox, new BlackBoxSprite(blockSpriteSheet));
             blockSpriteDictionary.Add(BlockType.EntryFloor, new EntryFloorSprite(blockSpriteSheet));
             blockSpriteDictionary.Add(BlockType.FloorBlock, new FloorBlockSprite(blockSpriteSheet));

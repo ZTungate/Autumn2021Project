@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2
+namespace Poggus
 {
     class TextSprite : ISprite
     {

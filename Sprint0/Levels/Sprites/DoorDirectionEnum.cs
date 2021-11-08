@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Levels.Sprites
+namespace Poggus.Levels.Sprites
 {
     public enum DoorDirectionEnum
     {

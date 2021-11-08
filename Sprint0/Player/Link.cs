@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Sprint2.Projectiles;
-using static Sprint0.Projectiles.ProjectileConstants;
-using Sprint2.Items;
+using Poggus.Projectiles;
+using static Poggus.Projectiles.ProjectileConstants;
+using Poggus.Items;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
 
     public class Link : ILink {

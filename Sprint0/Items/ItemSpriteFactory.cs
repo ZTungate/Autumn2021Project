@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Items.ItemSprites;
+using Poggus.Items.ItemSprites;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class ItemSpriteFactory
     {

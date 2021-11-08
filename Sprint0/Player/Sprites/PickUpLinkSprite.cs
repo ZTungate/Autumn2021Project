@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
-using Sprint2.Items;
+using Poggus.Player;
+using Poggus.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class PickUpLinkSprite : AbstractSprite
     {

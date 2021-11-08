@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
-using Sprint2.Player;
+using Poggus.Helpers;
+using Poggus.Player;
 
-namespace Sprint2.Commands
+namespace Poggus.Commands
 {
     public class PlayerDownIdleCommand : ICommand
     {

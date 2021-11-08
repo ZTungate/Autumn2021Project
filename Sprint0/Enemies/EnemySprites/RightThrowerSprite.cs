@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Enemies;
+using Poggus.Enemies;
 
-namespace Sprint2
+namespace Poggus
 {
     public class RightThrowerSprite : AbstractSprite
     {

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Content;
-using Sprint0.Levels.Sprites;
+using Poggus.Levels.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     public class DoorFactory
     {

@@ -1,19 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint0.Levels;
-using Sprint2;
-using Sprint2.Blocks;
-using Sprint2.Commands;
-using Sprint2.Enemies;
-using Sprint2.Items;
-using Sprint2.Player;
-using Sprint2.Projectiles;
+using Poggus.Levels;
+using Poggus;
+using Poggus.Blocks;
+using Poggus.Commands;
+using Poggus.Enemies;
+using Poggus.Items;
+using Poggus.Player;
+using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using Sprint0.Levels.Sprites;
+using Poggus.Levels.Sprites;
 
-namespace Sprint0.Collisions
+namespace Poggus.Collisions
 {
     public class CollisionHandler
     {

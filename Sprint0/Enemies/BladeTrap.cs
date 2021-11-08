@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Player;
+using Poggus.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
     public class BladeTrap : AbstractEnemy
     {

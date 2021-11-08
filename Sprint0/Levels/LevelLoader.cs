@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
-using Sprint2.Blocks;
+using Poggus.Blocks;
 using Microsoft.Xna.Framework.Graphics;
 using System.Xml;
-using Sprint2;
+using Poggus;
 using Microsoft.Xna.Framework.Content;
-using Sprint2.Items;
-using Sprint2.Enemies;
-using Sprint0.Player;
+using Poggus.Items;
+using Poggus.Enemies;
+using Poggus.Player;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     public class LevelLoader
     {
@@ -68,7 +68,7 @@ namespace Sprint0.Levels
                         float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
                         objectParams[1] = new Vector2(x * scaleX, y * scaleY);
 
-                        Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
+                        Type objectType = Type.GetType("Poggus.Blocks." + blockName);
                         object instance = Activator.CreateInstance(objectType, objectParams);
                         IBlock newBlock = (IBlock)instance;
                         //create sprite
@@ -98,7 +98,7 @@ namespace Sprint0.Levels
                         float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
                         float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
                         objectParams[0] = new Rectangle((int)(x * scaleX), (int)(y * scaleY), (int)(16*scaleX), (int)(16*scaleY));
-                        Type itemType = Type.GetType("Sprint2.Items." + itemName);
+                        Type itemType = Type.GetType("Poggus.Items." + itemName);
                         object instance = Activator.CreateInstance(itemType, objectParams);
                         AbstractItem item = (AbstractItem)instance;
                         item.CreateSprite(scaleX, scaleY);
@@ -127,7 +127,7 @@ namespace Sprint0.Levels
                         float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
                         float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
                         objectParams[0] = new Vector2((int)(x * scaleX), (int)(y*scaleY));
-                        Type enemyType = Type.GetType("Sprint2.Enemies." + enemyName);
+                        Type enemyType = Type.GetType("Poggus.Enemies." + enemyName);
                         object instance = Activator.CreateInstance(enemyType, objectParams);
                         IEnemy enemy = (IEnemy)instance;
                         enemy.Sprite = EnemySpriteFactory.Instance.MakeSprite(enemy);

@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2.Enemies;
-using Sprint2.Helpers;
+using Poggus.Enemies;
+using Poggus.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
     public class EnemySpriteFactory
     {

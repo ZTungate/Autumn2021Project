@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Sprint2.Blocks;
-using Sprint2;
-using Sprint2.Blocks.Sprites;
+using Poggus.Blocks;
+using Poggus;
+using Poggus.Blocks.Sprites;
 
-namespace Sprint2.Blocks
+namespace Poggus.Blocks
 {
     abstract class ConcreteBlock : IBlock
     {

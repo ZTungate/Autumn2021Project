@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Helpers;
-using Sprint2;
+using Poggus.Helpers;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
     public class Bat : AbstractEnemy
     {

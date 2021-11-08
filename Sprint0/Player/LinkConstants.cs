@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Player
+namespace Poggus.Player
 {
     public static class LinkConstants
     {

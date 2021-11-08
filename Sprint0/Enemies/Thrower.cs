@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Projectiles;
-using Sprint2;
+using Poggus.Projectiles;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
     public class Thrower : AbstractEnemy
     {

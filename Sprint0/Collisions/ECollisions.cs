@@ -1,11 +1,11 @@
-﻿using Sprint2.Blocks;
-using Sprint2.Enemies;
-using Sprint2.Items;
+﻿using Poggus.Blocks;
+using Poggus.Enemies;
+using Poggus.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Collisions
+namespace Poggus.Collisions
 {
     class E2BCollision : ICollision
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class TriforcePieceItem : AbstractItem
     {

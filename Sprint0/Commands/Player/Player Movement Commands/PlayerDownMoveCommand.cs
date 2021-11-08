@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
+using Poggus.Helpers;
 
-namespace Sprint2.Commands
+namespace Poggus.Commands
 {
     public class PlayerDownMoveCommand : ICommand
     {

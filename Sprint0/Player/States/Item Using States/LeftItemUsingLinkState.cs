@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
-using Sprint2.Items;
+using Poggus.Player;
+using Poggus.Items;
 using System;
-using static Sprint0.Projectiles.ProjectileConstants;
+using static Poggus.Projectiles.ProjectileConstants;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class LeftItemUsingLinkState : ILinkState
     {

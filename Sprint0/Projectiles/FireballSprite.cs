@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
+using Poggus.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2
+namespace Poggus
 {
     public class FireballSprite : AbstractSprite
     {

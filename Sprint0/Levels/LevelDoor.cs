@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2;
-using Sprint0.Levels.Sprites;
+using Poggus;
+using Poggus.Levels.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     public class LevelDoor
     {

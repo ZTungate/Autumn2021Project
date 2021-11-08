@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Projectiles
+namespace Poggus.Projectiles
 {
     public class SwordBeamProjectile : AbstractProjectile
     {

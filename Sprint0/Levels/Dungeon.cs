@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Levels.Sprites;
-using Sprint2;
+using Poggus.Levels.Sprites;
+using Poggus;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     public class Dungeon
     {

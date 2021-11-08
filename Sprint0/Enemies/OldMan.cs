@@ -1,12 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Helpers;
-using Sprint2;
-using Sprint2.Enemies;
+using Poggus.Helpers;
+using Poggus;
+using Poggus.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
     public class OldMan : AbstractEnemy
     {

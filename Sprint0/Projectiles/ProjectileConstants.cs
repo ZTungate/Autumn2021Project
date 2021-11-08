@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Projectiles
+namespace Poggus.Projectiles
 {
     public static class ProjectileConstants
     {
