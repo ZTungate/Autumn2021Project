@@ -23,6 +23,8 @@ namespace Poggus.Levels
         List<AbstractItem> items;
         List<Rectangle> boundingBoxList;
         ILink link;
+
+        Rectangle backgroundRectangle;
         public Level(ILink link, Point location)
         {
             backgroundSprite = LevelLoader.instance.GetNewBackgroundSprite();
@@ -33,6 +35,7 @@ namespace Poggus.Levels
             items = new List<AbstractItem>();
             boundingBoxList = new List<Rectangle>();
             this.link = link;
+            backgroundRectangle = new Rectangle(0,0,Game1.instance._graphics.PreferredBackBufferWidth, Game1.instance._graphics.PreferredBackBufferHeight);
         }
         public LevelDoor GetDoorFromDirection(Point direction)
         {
@@ -61,7 +64,7 @@ namespace Poggus.Levels
         {
             this.location = p;
 
-            //this.backgroundSprite.Position = this.backgroundSprite.Position + new Vector2(p.X, p.Y);
+            this.backgroundRectangle.Location = this.backgroundRectangle.Location + p;
 
             foreach (KeyValuePair<Point, IBlock> entry in blocks)
             {
@@ -98,7 +101,7 @@ namespace Poggus.Levels
         }
         public void Draw(SpriteBatch batch)
         {
-            this.backgroundSprite.Draw(batch, new Rectangle(this.location, new Point(0,0)));
+            this.backgroundSprite.Draw(batch, this.backgroundRectangle);
 
             foreach(KeyValuePair<Point,IBlock> entry in blocks)
             {

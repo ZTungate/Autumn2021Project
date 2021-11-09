@@ -9,7 +9,7 @@ using Poggus.Blocks.Sprites;
 
 namespace Poggus.Blocks
 {
-    abstract class ConcreteBlock : IBlock
+    class ConcreteBlock : IBlock
     {
         public ISprite Sprite { get; set; }
         public Rectangle DestRect { get; set; }

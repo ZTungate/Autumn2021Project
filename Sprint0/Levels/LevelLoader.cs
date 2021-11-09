@@ -47,7 +47,6 @@ namespace Poggus.Levels
                     {
                         reader.ReadToDescendant("Object");
                         string blockName = reader.ReadElementContentAsString();
-                        blockName += "Sprite";
 
                         reader.ReadToDescendant("Location");
                         reader.MoveToContent();
@@ -62,18 +61,21 @@ namespace Poggus.Levels
                         reader.MoveToContent();
                         string conditions = reader.ReadElementContentAsString();
 
-                        Object[] objectParams = new Object[2];
-                        objectParams[0] = BlockSpriteFactory.Instance.GetBlockSpriteSheet();
+                        Object[] objectParams = new Object[3];
+                        objectParams[0] = (Poggus.Blocks.Sprites.BlockType)Enum.Parse(typeof(Poggus.Blocks.Sprites.BlockType),blockName);
                         float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
                         float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[1] = new Vector2(x * scaleX, y * scaleY);
+                        objectParams[1] = new Point((int)(x * scaleX), (int)(y * scaleY));
+                        objectParams[2] = new Point((int)scaleX*16, (int)scaleY*16);
 
-                        Type objectType = Type.GetType("Poggus.Blocks." + blockName);
+                        Type objectType = Type.GetType("Poggus.Blocks.ConcreteBlock");
                         object instance = Activator.CreateInstance(objectType, objectParams);
-                        IBlock newBlock = (IBlock)instance;
+                        ConcreteBlock newBlock = (ConcreteBlock)instance;
+                        newBlock.CreateSprite();
+                        
                         //create sprite
 
-                        newLevel.AddBlock(new Point(x,y), newBlock);
+                        newLevel.AddBlock(new Point(x,y), (IBlock)newBlock);
                     }
                     if (reader.IsStartElement() && reader.Name == "Item")
                     {
@@ -126,7 +128,7 @@ namespace Poggus.Levels
                         Object[] objectParams = new Object[1];
                         float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
                         float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[0] = new Vector2((int)(x * scaleX), (int)(y*scaleY));
+                        objectParams[0] = new Point((int)(x * scaleX), (int)(y*scaleY));
                         Type enemyType = Type.GetType("Poggus.Enemies." + enemyName);
                         object instance = Activator.CreateInstance(enemyType, objectParams);
                         IEnemy enemy = (IEnemy)instance;

@@ -51,7 +51,7 @@ namespace Poggus.Enemies
             }
         }
         
-        public Thrower(Point pos) : base(pos, new Point(0,0))
+        public Thrower(Point pos) : base(pos, new Point(32, 32))
         {
             //Default a new thrower as a left thrower
             State = new InitialThrower(Sprite, this);

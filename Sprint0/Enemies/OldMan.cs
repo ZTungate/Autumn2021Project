@@ -16,7 +16,7 @@ namespace Poggus.Enemies
             Sprite.Update(gameTime);
         }
 
-        public OldMan(Point pos) : base(pos, Point.Zero)
+        public OldMan(Point pos) : base(pos, new Point(32, 32))
         {
 
         }

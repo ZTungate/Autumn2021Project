@@ -33,7 +33,8 @@ namespace Poggus.Player
         public Link()
         {
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            DestRect = new Rectangle(new Point(300, 300), Point.Zero);
+            DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
+            System.Diagnostics.Debug.WriteLine(DestRect);
             colorIndex = 0;
 
             color = Color.White;

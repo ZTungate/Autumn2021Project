@@ -46,7 +46,7 @@ namespace Poggus.Enemies
                 Attack();
             }
         }
-        public Dragon(Point pos) : base(pos, Point.Zero)
+        public Dragon(Point pos) : base(pos, new Point(32, 32))
         {
             projectiles = ProjectileFactory.Instance;
         }

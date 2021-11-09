@@ -17,6 +17,7 @@ namespace Poggus.Player
             SourceRect[0] = new Rectangle(52, 11, 16, 16);  //Set the frame for right idle link
             SourceRect[1] = new Rectangle(35, 11, 16, 16);
             this.Interval = 128f;
+            this.effects = SpriteEffects.FlipHorizontally;
             /*Position = pos;*/     //Sets the position to Link's position
         }
 

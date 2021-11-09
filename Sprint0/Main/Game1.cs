@@ -126,7 +126,7 @@ namespace Poggus
             projectileFactory.UpdateProjectiles(gameTime);
 
             //TODO: poop
-            handler.Update();
+            //handler.Update();
 
             base.Update(gameTime);
         }

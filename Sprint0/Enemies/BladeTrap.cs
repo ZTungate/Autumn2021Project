@@ -17,7 +17,7 @@ namespace Poggus.Enemies
         Rectangle xTargeting;
         Rectangle yTargeting;
 
-        public BladeTrap(ILink gameLink, Point position, Point size) : base(position, size)
+        public BladeTrap(ILink gameLink, Point position) : base(position, new Point(32, 32))
         {
             link = gameLink;
             homePos = position;
