@@ -10,6 +10,7 @@ using Poggus;
 using Microsoft.Xna.Framework.Content;
 using Poggus.Items;
 using Poggus.Enemies;
+using Poggus.Enemies.Sprites;
 using Poggus.Player;
 
 namespace Poggus.Levels
@@ -128,8 +129,8 @@ namespace Poggus.Levels
                         objectParams[0] = new Point((int)(x * scaleX), (int)(y*scaleY));
                         Type enemyType = Type.GetType("Poggus.Enemies." + enemyName);
                         object instance = Activator.CreateInstance(enemyType, objectParams);
-                        IEnemy enemy = (IEnemy)instance;
-                        enemy.Sprite = EnemySpriteFactory.Instance.MakeSprite(enemy);
+                        AbstractEnemy enemy = (AbstractEnemy)instance;
+                        enemy.CreateSprite();
 
                         EnemyConstants.scaleX = scaleX;
                         EnemyConstants.scaleY = scaleY;

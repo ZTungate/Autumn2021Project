@@ -13,7 +13,7 @@ namespace Poggus
         {
             SourceRect[0] = new Rectangle(1, 11, 8, 16);
             SourceRect[1] = new Rectangle(10, 11, 8, 16);
-            this.Interval = 40;
+            this.Interval = 120;
         }
 
         public override void Update(GameTime gameTime)

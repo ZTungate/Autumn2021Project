@@ -9,7 +9,7 @@ namespace Poggus.Items
 {
     public abstract class AbstractItem : IItem
     {
-        protected AbstractSprite sprite;
+        protected ISprite sprite;
         protected ItemEnum itemType;
         protected Rectangle rect;
 
@@ -28,7 +28,6 @@ namespace Poggus.Items
         }
         public virtual void Update(GameTime gameTime)
         {
-            
             this.sprite.Update(gameTime);
         }
         public virtual void Draw(SpriteBatch batch)
@@ -42,10 +41,6 @@ namespace Poggus.Items
         public virtual Rectangle GetRectangle()
         {
             return this.rect;
-        }
-        public AbstractSprite GetSprite()
-        {
-            return this.sprite;
         }
         public Point GetPosition()
         {

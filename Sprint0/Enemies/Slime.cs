@@ -30,7 +30,7 @@ namespace Poggus.Enemies
                 SetPosition(SlimeRandomMove());
             }
         }
-        public Slime(Point pos) : base(pos, new Point(32, 32))
+        public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
         {
         }
 

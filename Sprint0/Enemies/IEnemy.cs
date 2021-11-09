@@ -15,7 +15,7 @@ namespace Poggus.Enemies
         public void Draw(SpriteBatch batch);
 
         public ISprite Sprite { get; set; }
-        public EnemyTypes Type { get; }
+        public EnemyType EnemyType { get; }
 
         public Rectangle DestRect{ get; set; }
 

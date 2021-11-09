@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Poggus.Enemies.Sprites;
 
 namespace Poggus.Enemies
 {
@@ -12,15 +13,20 @@ namespace Poggus.Enemies
         public IEnemyState State { get; set; }
         public Rectangle DestRect { get; set; }
         public Point oldPosition { get; set; }
-        public EnemyTypes Type { get; }
+        public EnemyType EnemyType { get; }
 
-        public AbstractEnemy(Point position, Point size)
+        public AbstractEnemy(EnemyType type, Point position, Point size)
         {
+            this.EnemyType = type;
             this.DestRect = new Rectangle(position, size);
+        }
+        public virtual void CreateSprite()
+        {
+            this.Sprite = EnemySpriteFactory.Instance.GetEnemySprite(this.EnemyType);
         }
         public virtual void Update(GameTime gameTime)
         {
-            //no-op
+            Sprite.Update(gameTime);
         }
         public virtual void Draw(SpriteBatch batch)
         {

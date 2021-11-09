@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Poggus.Enemies;
+using Poggus.Enemies.Sprites;
 using Poggus.Player;
-using Poggus.Items;
+using Poggus.Items.ItemSprites;
 using Poggus.Blocks.Sprites;
 using System.Collections.Generic;
 using Poggus.Projectiles;

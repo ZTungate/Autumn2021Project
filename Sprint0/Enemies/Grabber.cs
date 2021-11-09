@@ -25,7 +25,7 @@ namespace Poggus.Enemies
                 DestRect = new Rectangle(RandomMove(), DestRect.Size);
             }
         }
-        public Grabber(Point pos) : base(pos, new Point(32, 32))
+        public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
         {
 
         }

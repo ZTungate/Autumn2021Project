@@ -35,7 +35,6 @@ namespace Poggus.Enemies
 
                 if (throwDelay <= 0)
                 {
-                    Attack();
                     wait = 3000; //Set the thrower to wait 3 seconds (the life of a boomerang)
                     throwDelay = 4000;//Reset the delay
                 }
@@ -51,7 +50,7 @@ namespace Poggus.Enemies
             }
         }
         
-        public Thrower(Point pos) : base(pos, new Point(32, 32))
+        public Thrower(Point pos) : base(EnemyType.Thrower, pos, new Point(32, 32))
         {
             //Default a new thrower as a left thrower
             State = new InitialThrower(Sprite, this);

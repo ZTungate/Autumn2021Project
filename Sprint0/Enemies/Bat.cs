@@ -9,7 +9,7 @@ namespace Poggus.Enemies
 {
     public class Bat : AbstractEnemy
     {
-        public Bat(Point position) : base(position, new Point(32,32))
+        public Bat(Point position) : base(EnemyType.Bat, position, new Point(32,32))
         {
         }
 

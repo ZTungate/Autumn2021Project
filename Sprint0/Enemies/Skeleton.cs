@@ -10,7 +10,7 @@ namespace Poggus.Enemies
 {
     public class Skeleton : AbstractEnemy
     {
-        public Skeleton(Point pos) : base(pos, new Point(32, 32))
+        public Skeleton(Point pos) : base(EnemyType.Skeleton, pos, new Point(32, 32))
         {
             
         }

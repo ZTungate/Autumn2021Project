@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Poggus.Items.ItemSprites;
 
-namespace Poggus.Items
+namespace Poggus.Items.ItemSprites
 {
     public class ItemSpriteFactory
     {
@@ -13,7 +13,7 @@ namespace Poggus.Items
 
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
-        private Dictionary<ItemEnum, AbstractSprite> itemSpriteDictionary;
+        private Dictionary<ItemEnum, ISprite> itemSpriteDictionary;
 
         public static ItemSpriteFactory Instance
         {
@@ -25,7 +25,7 @@ namespace Poggus.Items
 
         private ItemSpriteFactory()
         {
-            itemSpriteDictionary = new Dictionary<ItemEnum, AbstractSprite>();
+            itemSpriteDictionary = new Dictionary<ItemEnum, ISprite>();
         }
 
         public void LoadAllTextures(ContentManager content)
@@ -45,10 +45,16 @@ namespace Poggus.Items
             itemSpriteDictionary.Add(ItemEnum.Rupee, new RupeeSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.TriforcePiece, new TriforcePieceSprite(itemSpriteSheet));
         }
-        public AbstractSprite GetItemSprite(ItemEnum item)
+        public ISprite GetItemSprite(ItemEnum item)
         {
-            //Get corresponding item sprite of given item enum
-            return itemSpriteDictionary[item];
+            ISprite outSprite;
+            itemSpriteDictionary.TryGetValue(item, out outSprite);
+            if (outSprite != null)
+            {
+                Object[] objectParams = { outSprite.Texture };
+                return (ISprite)Activator.CreateInstance(outSprite.GetType(), objectParams);
+            }
+            return null;
         }
     }
 }

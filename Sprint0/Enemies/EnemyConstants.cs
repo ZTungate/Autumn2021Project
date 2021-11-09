@@ -27,5 +27,4 @@ namespace Poggus.Enemies
         public static int horizBladeMoveTime = 1000;
         public static int vertBladeMoveTime = 500;
     }
-    public enum EnemyTypes { Dragon, Skeleton, Slime, Thrower, Bat , OldMan, BladeTrap, Grabber };
 }

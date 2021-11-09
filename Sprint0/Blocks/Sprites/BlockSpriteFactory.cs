@@ -49,11 +49,12 @@ namespace Poggus.Blocks.Sprites
         {
             ISprite outSprite;
             blockSpriteDictionary.TryGetValue(type, out outSprite);
-            return outSprite;
-        }
-        public Texture2D GetBlockSpriteSheet()
-        {
-            return this.blockSpriteSheet;
+            if (outSprite != null)
+            {
+                Object[] objectParams = { outSprite.Texture };
+                return (ISprite)Activator.CreateInstance(outSprite.GetType(), objectParams);
+            }
+            return null;
         }
     }
 }
