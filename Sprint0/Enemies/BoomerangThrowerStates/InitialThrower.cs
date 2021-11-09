@@ -9,40 +9,39 @@ namespace Poggus.Enemies
 {
     public class InitialThrower : IEnemyState
     {
-        private ISprite mySprite;
         private IEnemy thrower;
         public InitialThrower(ISprite sprite, IEnemy enemy)
         {
             thrower = enemy;
-            mySprite = sprite;
+            thrower.Sprite = sprite;
         }
 
         public void TurnDown()
         {
             Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new DownThrowerSprite(texture);
-            thrower.State = new DownThrower(mySprite, thrower);
+            thrower.Sprite = new DownThrowerSprite(texture);
+            thrower.State = new DownThrower(thrower.Sprite, thrower);
         }
 
         public void TurnLeft()
         {
             Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new LeftThrowerSprite(texture);
-            thrower.State = new LeftThrower(mySprite, thrower);
+            thrower.Sprite = new LeftThrowerSprite(texture);
+            thrower.State = new LeftThrower(thrower.Sprite, thrower);
         }
 
         public void TurnRight()
         {
             Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new RightThrowerSprite(texture);
-            thrower.State = new RightThrower(mySprite, thrower);
+            thrower.Sprite = new RightThrowerSprite(texture);
+            thrower.State = new RightThrower(thrower.Sprite, thrower);
         }
 
         public void TurnUp()
         {
             Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new UpThrowerSprite(texture);
-            thrower.State = new UpThrower(mySprite, thrower);
+            thrower.Sprite = new UpThrowerSprite(texture);
+            thrower.State = new UpThrower(thrower.Sprite, thrower);
         }
         public void MoveForward()
         {
@@ -57,10 +56,6 @@ namespace Poggus.Enemies
         {
             //Return a vector pointing left
             return new Point(-1, 0);
-        }
-        public void Update(GameTime gameTime, ISprite enemySprite)
-        {
-            //mySprite = enemySprite;
         }
     }
 }

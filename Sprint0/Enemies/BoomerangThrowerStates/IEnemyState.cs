@@ -14,6 +14,5 @@ namespace Poggus.Enemies
         public void TurnRight();
         public void MoveForward();
         public Point AttackDirection();
-        public void Update(GameTime gameTime, ISprite sprite);
     }
 }

@@ -15,6 +15,10 @@ namespace Poggus
             SourceRect[0] = new Rectangle(222, 11, 16, 16);
             SourceRect[1] = new Rectangle(222, 28, 16, 16);
         }
+        public override void Update(GameTime gameTime)
+        {
+            this.FrameStep(gameTime);
+        }
 
     }
 }

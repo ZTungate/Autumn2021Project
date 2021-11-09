@@ -9,15 +9,11 @@ namespace Poggus.Enemies
 {
     public class DownThrower : IEnemyState
     {
-        private ISprite mySprite;
         private IEnemy thrower;
         public DownThrower(ISprite sprite, IEnemy enemy)
         {
-            //Get the sprite and enemy passed in, and the position of the enemy
-            mySprite = sprite;
             thrower = enemy;
-            //Set the enemy's sprite to this state's sprite.
-            thrower.Sprite = mySprite;
+            thrower.Sprite = sprite;
         }
 
         public void TurnDown()
@@ -28,22 +24,22 @@ namespace Poggus.Enemies
         public void TurnLeft()
         {
             Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new LeftThrowerSprite(texture);
-            thrower.State = new LeftThrower(mySprite, thrower);
+            thrower.Sprite = new LeftThrowerSprite(texture);
+            thrower.State = new LeftThrower(thrower.Sprite, thrower);
         }
 
         public void TurnRight()
         {
             Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new RightThrowerSprite(texture);
-            thrower.State = new RightThrower(mySprite, thrower);
+            thrower.Sprite = new RightThrowerSprite(texture);
+            thrower.State = new RightThrower(thrower.Sprite, thrower);
         }
 
         public void TurnUp()
         {
             Texture2D texture = thrower.Sprite.Texture;
-            mySprite = new UpThrowerSprite(texture);
-            thrower.State = new UpThrower(mySprite, thrower);
+            thrower.Sprite = new UpThrowerSprite(texture);
+            thrower.State = new UpThrower(thrower.Sprite, thrower);
         }
         public void MoveForward()
         {
@@ -58,10 +54,6 @@ namespace Poggus.Enemies
         {
             //Return a vector pointing downwards
             return new Point(0, 1);
-        }
-        public void Update(GameTime gameTime, ISprite enemySprite)
-        {
-            //mySprite = enemySprite;
         }
     }
 }

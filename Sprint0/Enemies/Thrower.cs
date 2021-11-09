@@ -15,38 +15,29 @@ namespace Poggus.Enemies
 
         public override void Update(GameTime gameTime)
         {
+            int lastFrame = Sprite.CurrentFrame;
+
             oldPosition = DestRect.Location;
+            Sprite.Update(gameTime);
 
             //Only update the sprite and movement if we are not waiting for the boomerang to return.
             if (wait <= 0)
             {
-                //Get the current frame of animation, set the sprite position to the enemy position, and update the sprite.
-                int lastFrame = Sprite.CurrentFrame;
-                Sprite.Update(gameTime);
-
-                //Update the state
-                State.Update(gameTime, Sprite);
-
-                //Perform a random move if the animation frame changed.
-                if (Sprite.CurrentFrame != lastFrame)
+                if (lastFrame != Sprite.CurrentFrame)
                 {
                     RandomMove();
                 }
-
-                if (throwDelay <= 0)
-                {
-                    wait = 3000; //Set the thrower to wait 3 seconds (the life of a boomerang)
-                    throwDelay = 4000;//Reset the delay
-                }
-                else
-                {
-                    throwDelay -= gameTime.ElapsedGameTime.Milliseconds;
-                }
+            }
+            wait -= gameTime.ElapsedGameTime.Milliseconds;
+            if (throwDelay <= 0)
+            {
+                Attack();
+                wait = 3000; //Set the thrower to wait 3 seconds (the life of a boomerang)
+                throwDelay = 4000;//Reset the delay
             }
             else
             {
-                //If we are still waiting for a projectile to return, reduce the timer by the elapsed time.
-                wait -= gameTime.ElapsedGameTime.Milliseconds;
+                throwDelay -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
         
