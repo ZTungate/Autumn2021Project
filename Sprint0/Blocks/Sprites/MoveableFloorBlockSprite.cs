@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Poggus.Blocks
+namespace Poggus.Blocks.Sprites
 {
     class MoveableFloorBlockSprite : AbstractSprite
     {

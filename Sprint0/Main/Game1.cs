@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Poggus.Enemies;
 using Poggus.Player;
 using Poggus.Items;
-using Poggus.Blocks;
+using Poggus.Blocks.Sprites;
 using System.Collections.Generic;
 using Poggus.Projectiles;
 using Poggus.Collisions;
@@ -126,7 +126,7 @@ namespace Poggus
             projectileFactory.UpdateProjectiles(gameTime);
 
             //TODO: poop
-            //handler.Update();
+            handler.Update();
 
             base.Update(gameTime);
         }

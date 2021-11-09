@@ -3,24 +3,28 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
-using Poggus.Blocks;
-using Poggus;
 using Poggus.Blocks.Sprites;
+using Poggus;
 
 namespace Poggus.Blocks
 {
-    class ConcreteBlock : IBlock
+    public abstract class AbstractBlock : IBlock
     {
         public ISprite Sprite { get; set; }
         public Rectangle DestRect { get; set; }
-        public bool Walkable { get; }
-        public bool Moveable { get; }
+        public bool Walkable { set;  get; }
+        public bool Moveable { set;  get; }
 
         private BlockType blockType;
-        public ConcreteBlock(BlockType type, Point pos, Point size)
+        public AbstractBlock(BlockType type, Point pos, Point size)
         {
             this.blockType = type;
             this.DestRect = new Rectangle(pos, size);
+        }
+        public AbstractBlock(BlockType type, Point pos)
+        {
+            this.blockType = type;
+            this.DestRect = new Rectangle(pos, new Point(64,64));
         }
         public void CreateSprite()
         {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Poggus.Blocks
+namespace Poggus.Blocks.Sprites
 {
     public class LeftStatueSprite : AbstractSprite
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Poggus.Blocks.Sprites
+namespace Poggus.Blocks
 {
     public enum BlockType
     {

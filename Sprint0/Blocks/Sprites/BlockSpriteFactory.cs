@@ -5,9 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Poggus.Helpers;
-using Poggus.Blocks.Sprites;
 
-namespace Poggus.Blocks
+namespace Poggus.Blocks.Sprites
 {
     public class BlockSpriteFactory
     {
