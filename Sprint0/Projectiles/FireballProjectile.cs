@@ -8,7 +8,7 @@ namespace Poggus.Projectiles
 {
     public class FireballProjectile : AbstractProjectile
     {
-        public FireballProjectile(Point position, Point velocity) : base(position, velocity, new Point(0,0))
+        public FireballProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.fireballSize)
         {
             Life = 4000;
         }

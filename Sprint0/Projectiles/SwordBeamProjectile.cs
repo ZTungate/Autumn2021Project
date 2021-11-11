@@ -8,7 +8,7 @@ namespace Poggus.Projectiles
 {
     public class SwordBeamProjectile : AbstractProjectile
     {
-        public SwordBeamProjectile(Point position, Point velocity) : base(position, velocity, new Point(0,0))
+        public SwordBeamProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
         {
             //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
             Life = 1000;

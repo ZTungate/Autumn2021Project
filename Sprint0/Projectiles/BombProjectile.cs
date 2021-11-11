@@ -8,7 +8,7 @@ namespace Poggus.Projectiles
 {
     public class BombProjectile : AbstractProjectile
     {
-        public BombProjectile(Point position, Point size) : base(position, Point.Zero, size)
+        public BombProjectile(Point position) : base(position, Point.Zero, ProjectileConstants.BombSize)
         {
             Life = 1000;
         }

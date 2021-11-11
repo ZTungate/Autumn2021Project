@@ -9,7 +9,7 @@ namespace Poggus.Projectiles
     public class BoomerangProjectile : AbstractProjectile
     {
         Point acceleration;
-        public BoomerangProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
+        public BoomerangProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.boomerangSize)
         {
             //Boomerangs have a life of 3 seconds. (could be changed).
             Life = 3000;

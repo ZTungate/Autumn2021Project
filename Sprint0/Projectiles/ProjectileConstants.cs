@@ -22,5 +22,15 @@ namespace Poggus.Projectiles
         public static Vector2 RegBoomerangVelocity = new Vector2(3, 3);
         public static Vector2 BlueBoomerangVelocity = new Vector2(6, 6);
         public static Vector2 FireVelocity = new Vector2(6, 6);
+
+        public static Point VertArrowSize = new Point(16, 32);
+        public static Point HorizArrowSize = new Point(32, 16);
+        public static Point vertSwordBeamSize = new Point(16, 32);
+        public static Point horizSwordBeamSize = new Point(32, 16);
+        public static Point BombSize = new Point(32, 32);
+        public static Point fireballSize = new Point(32, 32);
+        public static Point boomerangSize = new Point(32, 32);
+        public static Point fireSize = new Point(32, 32);
+
     }
 }

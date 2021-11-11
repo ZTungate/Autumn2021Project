@@ -163,51 +163,51 @@ namespace Poggus.Projectiles
             //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile regArrow;
             switch (facing) {
-                case Player.direction.right:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint());
+                case direction.right:
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateRightRegArrowSprite();
                     break;
-                case Player.direction.left:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint());
+                case direction.left:
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateLeftRegArrowSprite();
                     break;
-                case Player.direction.up:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint());
+                case direction.up:
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint(), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateUpRegArrowSprite();
                     break;
-                case Player.direction.down:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint());
+                case direction.down:
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint(), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateDownRegArrowSprite();
                     break;
             }
         }
 
-        public void NewBlueArrow(Point position, Player.direction facing)
+        public void NewBlueArrow(Point position, direction facing)
         {
             //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile regArrow;
             switch (facing) {
-                case Player.direction.right:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint(), new Point(32, 32));
+                case direction.right:
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateRightBlueArrowSprite();
                     break;
-                case Player.direction.left:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint(), new Point(32, 32));
+                case direction.left:
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateLeftBlueArrowSprite();
                     break;
-                case Player.direction.up:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint(), new Point(32, 32));
+                case direction.up:
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint(), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateUpBlueArrowSprite();
                     break;
-                case Player.direction.down:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint(), new Point(32,32));
+                case direction.down:
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint(), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateDownBlueArrowSprite();
                     break;
@@ -215,28 +215,28 @@ namespace Poggus.Projectiles
             }
         }
 
-        public void NewSwordBeam(Point position, Player.direction facing)
+        public void NewSwordBeam(Point position, direction facing)
         {
             //Generate a sword beam with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile swordBeam;
             switch (facing) {
-                case Player.direction.right:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint());
+                case direction.right:
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint(), ProjectileConstants.horizSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateRightSwordSprite();
                     break;
-                case Player.direction.left:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint());
+                case direction.left:
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint(), ProjectileConstants.horizSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateLeftSwordSprite();
                     break;
-                case Player.direction.up:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint());
+                case direction.up:
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint(), ProjectileConstants.vertSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateUpSwordSprite();
                     break;
-                case Player.direction.down:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint());
+                case direction.down:
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint(), ProjectileConstants.vertSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateDownSwordSprite();
                     break;
@@ -255,7 +255,7 @@ namespace Poggus.Projectiles
         public void NewBomb(Point position)
         {
             //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
-            IProjectile bomb = new BombProjectile(position, new Point(32,32));
+            IProjectile bomb = new BombProjectile(position);
             projectiles.Add(bomb);
             bomb.Sprite = CreateBombSprite();
         }
@@ -273,7 +273,7 @@ namespace Poggus.Projectiles
         public void NewBoomerang(Point position, Point velocity)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
-            IProjectile boomerang = new BoomerangProjectile(position, velocity, new Point(32, 32));
+            IProjectile boomerang = new BoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
         }
@@ -289,7 +289,7 @@ namespace Poggus.Projectiles
         public void NewBlueBoomerang(Point position, Point velocity)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
-            IProjectile boomerang = new BoomerangProjectile(position, velocity, new Point(32, 32));
+            IProjectile boomerang = new BoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBlueBoomerangSprite();
         }
