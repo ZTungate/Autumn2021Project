@@ -11,10 +11,10 @@ namespace Poggus
     {
         public LeftBlueArrowSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[2])
         {
-            SourceRect[0] = new Rectangle(36, 185, 16, 16);  //Set the frame for right idle link
-            SourceRect[1] = new Rectangle(53, 185, 8, 16);
+            SourceRect[0] = new Rectangle(36, 189, 16, 8);//Horizontal Blue Arrow
+            SourceRect[1] = new Rectangle(53, 189, 8, 8);//Poof
             this.effects = SpriteEffects.FlipHorizontally;
-
+            this.Interval = 800;
         }
 
         public override void Update(GameTime gameTime)
