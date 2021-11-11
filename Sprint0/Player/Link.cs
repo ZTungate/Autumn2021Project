@@ -85,7 +85,7 @@ namespace Poggus.Player
             sprite.Draw(spriteBatch, DestRect);   //draw the player sprite
         }
 
-        public void takeDamage()
+        public void TakeDamage()
         {
             if (!isDamaged) {
                 isDamaged = true;

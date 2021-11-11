@@ -21,7 +21,7 @@ namespace Poggus.Player
         public ProjectileFactory ProjectileFactory { get;  set; }
 
         enum Direction { };
-        void takeDamage();
+        void TakeDamage();
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
         void Move(Point moveDirection);

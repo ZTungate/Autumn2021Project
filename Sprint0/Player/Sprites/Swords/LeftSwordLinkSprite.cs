@@ -20,6 +20,7 @@ namespace Poggus.Player
             SourceRect[3] = new Rectangle(70, 77, 19, 16);
             SourceRect[4] = new Rectangle(35, 11, 16, 16);  //Set the frame for right idle link
             this.Interval = 64f;
+            this.effects = SpriteEffects.FlipHorizontally;
         }
 
         public override void Update(GameTime gameTime)

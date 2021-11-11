@@ -15,6 +15,7 @@ namespace Poggus.Player
         {
             this.player = player;
             SourceRect[0] = new Rectangle(124, 11, 16, 16);
+            this.effects = SpriteEffects.FlipHorizontally;
 
         }
 

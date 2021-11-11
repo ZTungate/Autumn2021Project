@@ -11,5 +11,7 @@ namespace Poggus.Player
         public static int swordAttackTime = 300;
         public static float scaleX, scaleY;
         public static int linkSpeed = 3;
+
+        public static int swordDamage = 1;
     }
 }

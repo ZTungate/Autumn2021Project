@@ -14,6 +14,7 @@ namespace Poggus.Enemies
         public Rectangle DestRect { get; set; }
         public Point oldPosition { get; set; }
         public EnemyType EnemyType { get; }
+        public int Health { get; set; }
 
         public AbstractEnemy(EnemyType type, Point position, Point size)
         {
@@ -39,6 +40,11 @@ namespace Poggus.Enemies
         public void SetPosition(Point pos)
         {
             this.DestRect = new Rectangle(pos, DestRect.Size);
+        }
+
+        public void TakeDamage(int damageAmount)
+        {
+            this.Health -= damageAmount;
         }
     }
 }

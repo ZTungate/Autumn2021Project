@@ -28,7 +28,7 @@ namespace Poggus.Player
 
         public override void Update(GameTime gameTime)
         {
-            player.Move(new Point(0, LinkConstants.linkSpeed));
+           // player.Move(new Point(0, LinkConstants.linkSpeed));
 
             this.FrameStep(gameTime);
         }

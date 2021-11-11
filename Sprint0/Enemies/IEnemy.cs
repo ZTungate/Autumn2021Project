@@ -25,5 +25,7 @@ namespace Poggus.Enemies
 
         public Point GetPosition();
         public void SetPosition(Point pos);
+
+        public void TakeDamage(int damageAmount);
     }
 }

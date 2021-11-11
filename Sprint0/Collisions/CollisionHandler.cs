@@ -46,8 +46,9 @@ namespace Poggus.Collisions
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(myLink, ene);
                 if (eneLink.IsCollision) {
                     //if in sword state, slap enemy
-                    if (eneLink.Link1.state is DownSwordLinkState || eneLink.Link1.state is RightSwordLinkState || eneLink.Link1.state is UpSwordLinkState || eneLink.Link1.state is LeftSwordLinkState) { 
+                    if (eneLink.Link1.state is DownSwordLinkState || eneLink.Link1.state is RightSwordLinkState || eneLink.Link1.state is UpSwordLinkState || eneLink.Link1.state is LeftSwordLinkState) {
                         //TODO: enemy take damage
+                        ene.TakeDamage(LinkConstants.swordDamage);
                         //eneLink.enemy2.takeDamage
                         //or
                         //myLevel.enemies.Remove(eneLink.enemy2)
@@ -77,7 +78,8 @@ namespace Poggus.Collisions
 
                     }
                     else {//hurt link
-                        new PlayerTakeDamageCommand(myGame).Execute();
+                        //new PlayerTakeDamageCommand(myGame).Execute();
+                        projLink.link2.TakeDamage();
                     }
 
                 }

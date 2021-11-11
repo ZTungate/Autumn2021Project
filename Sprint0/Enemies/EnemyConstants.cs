@@ -26,5 +26,12 @@ namespace Poggus.Enemies
         //Blade trap move times
         public static int horizBladeMoveTime = 1000;
         public static int vertBladeMoveTime = 500;
+
+        //Enemy Healths
+        public static int skeletonHealth = 3;
+        public static int batHealth = 2;
+        public static int slimeHealth = 1;
+        public static int dragonHealth = 20;
+
     }
 }

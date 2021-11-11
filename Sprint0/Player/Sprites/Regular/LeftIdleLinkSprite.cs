@@ -25,7 +25,8 @@ namespace Poggus.Player
             colors[0] = Color.White;
             colors[1] = Color.Red;
 
-            SourceRect[0] = new Rectangle(35, 11, 16, 16);  //Set the frame for right idle link
+            SourceRect[0] = new Rectangle(35, 11, 16, 16);  //Set the frame for left idle link
+            this.effects = SpriteEffects.FlipHorizontally;
             /*Position = pos;*/     //Sets the position to Link's position
             this.Interval = 40;
         }

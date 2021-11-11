@@ -25,7 +25,7 @@ namespace Poggus.Player
         {
             // Implement animation changes here
 
-            player.Move(new Point(-LinkConstants.linkSpeed, 0));
+            //player.Move(new Point(-LinkConstants.linkSpeed, 0));
             this.FrameStep(gameTime);
         }
 

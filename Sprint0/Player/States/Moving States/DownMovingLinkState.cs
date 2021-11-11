@@ -20,12 +20,13 @@ namespace Poggus.Player
         public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.takeDamage();
+            link.TakeDamage();
         }
 
         public void Update(GameTime gameTime)
         {
-            //Nothing needs updated in an idle state?
+            //Move link down
+            link.Move(new Point(0, LinkConstants.linkSpeed));
         }
 
         public void UseItem(ProjectileTypes item)
