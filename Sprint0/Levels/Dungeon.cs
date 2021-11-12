@@ -58,7 +58,7 @@ namespace Poggus.Levels
                         {
                             doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f - scaledDoorHeight/2);
                         }
-                        entry.Value.AddDoor(DoorFactory.instance.GetNewOpenDoor(doorPos.ToPoint(), doorDir[dir]), doorDir[dir]);
+                        entry.Value.AddDoor(DoorFactory.instance.GetNewOpenDoor(doorPos.ToPoint(), new Point(scaledDoorWidth, scaledDoorHeight), doorDir[dir]), doorDir[dir]);
                     }
                 }
             }

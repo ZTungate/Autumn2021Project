@@ -14,27 +14,21 @@ namespace Poggus.Levels
         public static DoorFactory instance = new DoorFactory();
         Texture2D doorSpriteSheet;
 
-        ISprite closedDoorSprite, openDoorSprite, holeDoorSprite, keyDoorSprite;
-        public Point doorSize;
+        public Point doorSize, doorSizeScaled;
 
         public void LoadContent(ContentManager content)
         {
             doorSpriteSheet = content.Load<Texture2D>("DoorSpriteSheet");
             doorSize = new Point(32, 32);
-
-            closedDoorSprite = new DoorClosedSprite(doorSpriteSheet);
-            openDoorSprite = new DoorOpenSprite(doorSpriteSheet);
-            holeDoorSprite = new HoleDoorSprite(doorSpriteSheet);
-            keyDoorSprite = new KeyDoorSprite(doorSpriteSheet);
         }
-        public LevelDoor GetNewClosedDoor(Point pos, DoorDirectionEnum dir)
+        public LevelDoor GetNewClosedDoor(Point pos, Point size, DoorDirectionEnum dir)
         {
-            LevelDoor door = new LevelDoor(closedDoorSprite, dir, new Rectangle(pos,doorSize));
+            LevelDoor door = new LevelDoor(new DoorClosedSprite(doorSpriteSheet), dir, new Rectangle(pos,size));
             return door;
         }
-        public LevelDoor GetNewOpenDoor(Point pos, DoorDirectionEnum dir)
+        public LevelDoor GetNewOpenDoor(Point pos, Point size, DoorDirectionEnum dir)
         {
-            LevelDoor door = new LevelDoor(openDoorSprite, dir, new Rectangle(pos, doorSize));
+            LevelDoor door = new LevelDoor(new DoorOpenSprite(doorSpriteSheet), dir, new Rectangle(pos, size));
             return door;
         }
     }

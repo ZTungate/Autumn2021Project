@@ -23,6 +23,7 @@ namespace Poggus.Levels
         }
         public void SetDirection(DoorDirectionEnum direction)
         {
+            this.doorDirection = direction;
             this.sprite.CurrentFrame = (int)direction;
         }
         public void Draw(SpriteBatch batch)
