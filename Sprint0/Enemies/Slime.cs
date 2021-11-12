@@ -13,6 +13,10 @@ namespace Poggus.Enemies
         private int interval = 40;
         private int timer = 0;
 
+        public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
+        {
+            Health = EnemyConstants.slimeHealth;
+        }
         public override void Update(GameTime gameTime)
         {
             oldPosition = GetPosition();
@@ -29,9 +33,6 @@ namespace Poggus.Enemies
                 timer = 0;
                 SetPosition(SlimeRandomMove());
             }
-        }
-        public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
-        {
         }
 
         //Placeholder movement method, will require reworking when actual level exists.

@@ -11,6 +11,7 @@ namespace Poggus.Enemies
     {
         public Bat(Point position) : base(EnemyType.Bat, position, new Point(32,32))
         {
+            Health = EnemyConstants.batHealth;
         }
 
         public override void Update(GameTime gameTime)

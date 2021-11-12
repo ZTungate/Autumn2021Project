@@ -28,10 +28,20 @@ namespace Poggus.Enemies
         public static int vertBladeMoveTime = 500;
 
         //Enemy Healths
-        public static int skeletonHealth = 3;
-        public static int batHealth = 2;
+        public static int batHealth = 1;
+        public static int skeletonHealth = 2;
         public static int slimeHealth = 1;
-        public static int dragonHealth = 20;
+        public static int throwerHealth = 3;
+        public static int grabberHealth = 2;
+        public static int dragonHealth = 6;
 
+        //Enemy Attack Damage
+        public static int batDamage = 1;
+        public static int skeletonDamage = 1;
+        public static int slimeDamage = 1;
+        public static int bladeTrapDamage = 1;
+        public static int throwerDamage = 1;
+        public static int grabberDamage = 1;
+        public static int dragonDamage = 1;
     }
 }

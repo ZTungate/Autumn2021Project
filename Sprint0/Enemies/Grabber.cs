@@ -10,6 +10,10 @@ namespace Poggus.Enemies
 {
     public class Grabber : AbstractEnemy
     {
+        public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
+        {
+            Health = EnemyConstants.grabberHealth;
+        }
         public override void Update(GameTime gameTime)
         {
             //Get the number for the last frame
@@ -24,10 +28,6 @@ namespace Poggus.Enemies
             {
                 DestRect = new Rectangle(RandomMove(), DestRect.Size);
             }
-        }
-        public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
-        {
-
         }
 
         public Point RandomMove()

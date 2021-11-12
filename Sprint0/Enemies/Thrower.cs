@@ -13,6 +13,15 @@ namespace Poggus.Enemies
         ProjectileFactory projectiles;
         int wait = 0;
         int throwDelay = 4000;
+        public Thrower(Point pos) : base(EnemyType.Thrower, pos, new Point(32, 32))
+        {
+            //Default a new thrower as a left thrower
+            State = new ThrowerState(new Point(0, 1), Sprite, this);
+            //Assign an arbitrary starting positon for the thrower
+            //Pass the projectile handler in
+            projectiles = ProjectileFactory.Instance;
+            Health = EnemyConstants.throwerHealth;
+        }
 
         public override void Update(GameTime gameTime)
         {
@@ -40,15 +49,6 @@ namespace Poggus.Enemies
             {
                 throwDelay -= gameTime.ElapsedGameTime.Milliseconds;
             }
-        }
-        
-        public Thrower(Point pos) : base(EnemyType.Thrower, pos, new Point(32, 32))
-        {
-            //Default a new thrower as a left thrower
-            State = new ThrowerState(new Point(0,1), Sprite, this);
-            //Assign an arbitrary starting positon for the thrower
-            //Pass the projectile handler in
-            projectiles = ProjectileFactory.Instance;
         }
 
         private void RandomMove()

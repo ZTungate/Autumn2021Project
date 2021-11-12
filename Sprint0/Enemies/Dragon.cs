@@ -18,6 +18,11 @@ namespace Poggus.Enemies
         private int timer = 0;
         private int attackTimer = 0;
         private int attackInterval = 4000;
+        public Dragon(Point pos) : base(EnemyType.Dragon, pos, new Point(32, 32))
+        {
+            projectiles = ProjectileFactory.Instance;
+            Health = EnemyConstants.dragonHealth;
+        }
 
         public override void Update(GameTime gameTime)
         {
@@ -45,10 +50,6 @@ namespace Poggus.Enemies
                 attackTimer = 0;
                 Attack();
             }
-        }
-        public Dragon(Point pos) : base(EnemyType.Dragon, pos, new Point(32, 32))
-        {
-            projectiles = ProjectileFactory.Instance;
         }
 
         public Point DragonMove()

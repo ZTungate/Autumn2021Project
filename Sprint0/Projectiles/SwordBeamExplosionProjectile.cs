@@ -9,7 +9,7 @@ namespace Poggus.Projectiles
     public class SwordBeamExplosionProjectile : AbstractProjectile
     {
 
-        public SwordBeamExplosionProjectile(Point position, Point velocity) : base(position, velocity, new Point(0,0))
+        public SwordBeamExplosionProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.swordBeamExplosionSize)
         {
             Life = 400;
         }
