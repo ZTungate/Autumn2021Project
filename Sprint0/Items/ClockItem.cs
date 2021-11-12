@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class ClockItem : AbstractItem
     {
-        public ClockItem(Rectangle rect) : base(ItemEnum.Clock, rect)
+        public ClockItem(Point pos) : base(ItemEnum.Clock, pos, Point.Zero)
         {
             
         }

@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class BowItem : AbstractItem
     {
-        public BowItem(Rectangle rect) : base(ItemEnum.Bow, rect)
+        public BowItem(Point pos) : base(ItemEnum.Bow, pos, Point.Zero)
         {
 
         }

@@ -14,6 +14,7 @@ namespace Poggus
 {
     public class Game1 : Game
     {
+        public static float gameScaleX, gameScaleY;
         public static Game1 instance;
         private Dungeon dungeon;
         public ISprite sprite;

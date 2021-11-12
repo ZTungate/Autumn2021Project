@@ -18,7 +18,6 @@ namespace Poggus.Levels
     public class LevelLoader
     {
         public static LevelLoader instance = new LevelLoader();
-        public float gameScaleX, gameScaleY;
         private Texture2D blockSpriteSheet;
         private Dictionary<string, Level> levels = new Dictionary<string, Level>();
         public void LoadAllLevels(ContentManager content)
@@ -31,8 +30,8 @@ namespace Poggus.Levels
             string[] fileNames = Directory.GetFiles(dir + "\\Levels");
             XmlReaderSettings settings = new XmlReaderSettings();
 
-            gameScaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-            gameScaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+            Game1.gameScaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+            Game1.gameScaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
 
             foreach (string fileName in fileNames)
             {
@@ -63,9 +62,7 @@ namespace Poggus.Levels
                         string conditions = reader.ReadElementContentAsString();
 
                         Object[] objectParams = new Object[1];
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[0] = new Point((int)(x * scaleX), (int)(y * scaleY));
+                        objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y * Game1.gameScaleY));
                         Type objectType = Type.GetType("Poggus.Blocks." + blockName);
                         object instance = Activator.CreateInstance(objectType, objectParams);
                         AbstractBlock newBlock = (AbstractBlock)instance;
@@ -95,13 +92,11 @@ namespace Poggus.Levels
                         string conditions = reader.ReadElementContentAsString();
 
                         Object[] objectParams = new Object[1];
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[0] = new Rectangle((int)(x * scaleX), (int)(y * scaleY), (int)(16*scaleX), (int)(16*scaleY));
+                        objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y * Game1.gameScaleY));
                         Type itemType = Type.GetType("Poggus.Items." + itemName);
                         object instance = Activator.CreateInstance(itemType, objectParams);
                         AbstractItem item = (AbstractItem)instance;
-                        item.CreateSprite(scaleX, scaleY);
+                        item.CreateSprite();
 
                         newLevel.AddItem(item);
                     }
@@ -124,26 +119,16 @@ namespace Poggus.Levels
                         string conditions = reader.ReadElementContentAsString();
 
                         Object[] objectParams = new Object[1];
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[0] = new Point((int)(x * scaleX), (int)(y*scaleY));
+                        objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y* Game1.gameScaleY));
                         Type enemyType = Type.GetType("Poggus.Enemies." + enemyName);
                         object instance = Activator.CreateInstance(enemyType, objectParams);
                         AbstractEnemy enemy = (AbstractEnemy)instance;
                         enemy.CreateSprite();
 
-                        EnemyConstants.scaleX = scaleX;
-                        EnemyConstants.scaleY = scaleY;
-
                         newLevel.AddEnemy(enemy);
                     }
                     if (reader.IsStartElement() && reader.Name == "Bound")
                     {
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-
-                        LinkConstants.scaleX = scaleX;
-                        LinkConstants.scaleY = scaleY;
 
                         reader.ReadToDescendant("Start");
                         reader.MoveToContent();
@@ -151,8 +136,8 @@ namespace Poggus.Levels
                         int commaLoc = location.IndexOf(",");
                         string xString = location.Substring(0, commaLoc);
                         string yString = location.Substring(commaLoc + 1);
-                        int startX = (int)(int.Parse(xString) * scaleX);
-                        int startY = (int)(int.Parse(yString) * scaleY);
+                        int startX = (int)(int.Parse(xString) * Game1.gameScaleX);
+                        int startY = (int)(int.Parse(yString) * Game1.gameScaleY);
 
                         reader.ReadToDescendant("End");
                         reader.MoveToContent();
@@ -160,8 +145,8 @@ namespace Poggus.Levels
                         commaLoc = location.IndexOf(",");
                         xString = location.Substring(0, commaLoc);
                         yString = location.Substring(commaLoc + 1);
-                        int endX = (int)(int.Parse(xString) * scaleX);
-                        int endY = (int)(int.Parse(yString) * scaleY);
+                        int endX = (int)(int.Parse(xString) * Game1.gameScaleX);
+                        int endY = (int)(int.Parse(yString) * Game1.gameScaleY);
 
                         newLevel.AddNewBoundingBox(new Point(startX, startY), new Point(endX, endY));
                     }

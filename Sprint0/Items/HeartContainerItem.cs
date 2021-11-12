@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class HeartContainerItem : AbstractItem
     {
-        public HeartContainerItem(Rectangle rect) : base(ItemEnum.HeartContainer, rect)
+        public HeartContainerItem(Point pos) : base(ItemEnum.HeartContainer, pos, Point.Zero)
         {
 
         }

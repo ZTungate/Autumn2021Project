@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class BoomerangItem : AbstractItem
     {
-        public BoomerangItem(Rectangle rect) : base(ItemEnum.Boomerang, rect)
+        public BoomerangItem(Point pos) : base(ItemEnum.Boomerang, pos, Point.Zero)
         {
 
         }

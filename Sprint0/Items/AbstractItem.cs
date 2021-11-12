@@ -15,16 +15,16 @@ namespace Poggus.Items
 
         Rectangle IItem.rect { get => this.rect; set => this.rect = value; }
 
-        public AbstractItem(ItemEnum itemType, Rectangle rect)
+        public AbstractItem(ItemEnum itemType, Point pos, Point size)
         {
             this.itemType = itemType;
-            this.rect = rect;
+            this.rect = new Rectangle(pos, size);
         }
-        public virtual void CreateSprite(float scaleX, float scaleY)
+        public virtual void CreateSprite()
         {
             this.sprite = ItemSpriteFactory.Instance.GetItemSprite(itemType);
-            this.rect.Width = (int)(sprite.SourceRect[0].Width * scaleX);
-            this.rect.Height = (int)(sprite.SourceRect[0].Height * scaleY);
+            this.rect.Width = (int)(sprite.SourceRect[0].Width * Game1.gameScaleX);
+            this.rect.Height = (int)(sprite.SourceRect[0].Height * Game1.gameScaleY);
         }
         public virtual void Update(GameTime gameTime)
         {

@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class RupeeItem : AbstractItem
     {
-        public RupeeItem(Rectangle rect) : base(ItemEnum.Rupee, rect)
+        public RupeeItem(Point pos) : base(ItemEnum.Rupee, pos, Point.Zero)
         {
 
         }

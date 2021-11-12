@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class FairyItem : AbstractItem
     {
-        public FairyItem(Rectangle rect) : base(ItemEnum.Fairy, rect)
+        public FairyItem(Point pos) : base(ItemEnum.Fairy, pos, Point.Zero)
         {
 
         }

@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class CompassItem : AbstractItem
     {
-        public CompassItem(Rectangle rect) : base(ItemEnum.Compass, rect)
+        public CompassItem(Point pos) : base(ItemEnum.Compass, pos, Point.Zero)
         {
 
         }

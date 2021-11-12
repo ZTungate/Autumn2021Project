@@ -37,7 +37,7 @@ namespace Poggus.Levels
 
                     newDungeon.AddLevel(new Point(x,y),level);
                 }
-                newDungeon.UpdateLevelDoors(LevelLoader.instance.gameScaleX, LevelLoader.instance.gameScaleY);
+                newDungeon.UpdateLevelDoors(Game1.gameScaleX, Game1.gameScaleY);
 
                 newDungeon.SetCurrentLevel(new Point(0, 0));
                 newDungeon.UpdateLevelContentPositions();

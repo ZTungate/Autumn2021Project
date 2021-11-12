@@ -7,7 +7,7 @@ namespace Poggus.Items
 {
     public class TriforcePieceItem : AbstractItem
     {
-        public TriforcePieceItem(Rectangle rect) : base(ItemEnum.TriforcePiece, rect)
+        public TriforcePieceItem(Point pos) : base(ItemEnum.TriforcePiece, pos, Point.Zero)
         {
 
         }
