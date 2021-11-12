@@ -115,13 +115,13 @@ namespace Sprint2
 
         protected override void Update(GameTime gameTime)
         {
+            foreach (IController controller in controllerList)
+            {
+                controller.Update();
+            }
+
             if (!isPaused)
             {
-                foreach (IController controller in controllerList)
-                {
-                    controller.Update();
-                }
-
                 //Update Link
                 link.Update(gameTime);
 
@@ -186,7 +186,11 @@ namespace Sprint2
             {*/
                 isPaused = !isPaused;
             /*}*/
-            Console.WriteLine("apdfjas");
+            //Console.WriteLine("apdfjas");
+        }
+        public bool Paused()
+        {
+            return isPaused;
         }
 
         public void toggleOpenInventory()
