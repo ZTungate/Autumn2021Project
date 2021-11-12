@@ -18,6 +18,8 @@ namespace Poggus
 
         public SpriteEffects effects = SpriteEffects.None;
 
+        public Color Color { get; set; } = Color.White;
+
         public AbstractSprite(Texture2D spriteSheet, Rectangle[] sourceRect)
         {
             this.Texture = spriteSheet;
@@ -49,7 +51,7 @@ namespace Poggus
         public virtual void Draw(SpriteBatch spriteBatch, Rectangle rect)
         {
             //LayerDepth set to 1, normally this would mean this object will always been drawn in front but because of Begin() call in Game1 objects are drawn in the order their Draw() method is called
-            spriteBatch.Draw(Texture, rect, SourceRect[CurrentFrame], Color.White, 0, Vector2.Zero, effects, 1);
+            spriteBatch.Draw(Texture, rect, SourceRect[CurrentFrame], Color, 0, Vector2.Zero, effects, 1);
         }
     }
 }

@@ -13,6 +13,8 @@ namespace Poggus
         Texture2D Texture { get; set; }
 
         Rectangle[] SourceRect { get; set; }
+
+        Color Color { get; set; }
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, Rectangle rect);
     }

@@ -17,7 +17,6 @@ namespace Poggus.Player
         public Rectangle DestRect { get; set; }
         public Point oldPosition { get; set; }
         public ISprite sprite { get; set; }
-        public Color color { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
 
         float damageTimer;
@@ -36,8 +35,6 @@ namespace Poggus.Player
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             colorIndex = 0;
-
-            color = Color.White;
         }
 
         public void Update(GameTime gameTime)
@@ -51,7 +48,7 @@ namespace Poggus.Player
                 if(invincibilityFramesDuration - damageTimer % damageFlashRate == 0)
                 {
                     colorIndex++;
-                    color = damageColors[colorIndex % damageColors.Length];
+                    sprite.Color = damageColors[colorIndex % damageColors.Length];
                 }
 
 
@@ -62,7 +59,7 @@ namespace Poggus.Player
                 if (damageTimer <= 50f)
                 { //damage invincibility time
                     isDamaged = false;
-                    color = Color.White;
+                    sprite.Color = Color.White;
                 }
                 else if (damageTimer < (invincibilityFramesDuration-hitStunDuration)) //hit stun duration
                 {
@@ -90,7 +87,7 @@ namespace Poggus.Player
             if (!isDamaged) {
                 isDamaged = true;
                 canMove = false;
-                color = Color.Red;
+                sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
             }
             /*state.takeDamage();*/
@@ -116,7 +113,7 @@ namespace Poggus.Player
 
             colorIndex = 0;
 
-            color = Color.White;
+            sprite.Color = Color.White;
         }
 
         //Attacks

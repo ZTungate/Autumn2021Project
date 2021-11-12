@@ -17,7 +17,6 @@ namespace Poggus.Player
         public Rectangle DestRect { get; set; }
         public Point oldPosition { get; set; }
         public ISprite sprite { get; set; }
-        public Color color {get;set;}
         public ProjectileFactory ProjectileFactory { get;  set; }
 
         enum Direction { };
