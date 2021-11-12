@@ -4,6 +4,7 @@ using System;
 using Sprint2.Projectiles;
 using static Sprint0.Projectiles.ProjectileConstants;
 using Sprint2.Items;
+using Sprint0.Inventory;
 
 namespace Sprint2.Player
 {
@@ -18,6 +19,8 @@ namespace Sprint2.Player
         public Vector2 oldPosition { get; set; }
         public ISprite sprite { get; set; }
         public Color color { get; set; }
+        public Inventory inventory { get; set; }
+        
         public ProjectileFactory ProjectileFactory { get; set; }
 
         float damageTimer;
@@ -29,13 +32,14 @@ namespace Sprint2.Player
         int colorIndex = 0;
         float invincibilityFramesDuration = 2000f;
         float hitStunDuration = 500f;
+        
 
         public Link()
         {
             state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             position = new Vector2(300, 300);  //Link's initial position
             colorIndex = 0;
-
+            inventory = new Inventory();
             color = Color.White;
         }
 

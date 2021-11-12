@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Inventory;
 using Sprint2.Items;
 using Sprint2.Projectiles;
 using System;
@@ -19,6 +20,8 @@ namespace Sprint2.Player
         public ISprite sprite { get; set; }
         public Color color {get;set;}
         public ProjectileFactory ProjectileFactory { get;  set; }
+
+        public Inventory inventory { get; set; }
 
         enum Direction { };
         void takeDamage();
