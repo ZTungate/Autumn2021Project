@@ -41,6 +41,9 @@ namespace Sprint2
         //Projectiles
         public ProjectileFactory projectileFactory;
 
+        private bool isPaused = false;
+        private bool inventoryOpen = false;
+
         public Game1()
         {
             instance = this;
@@ -112,23 +115,26 @@ namespace Sprint2
 
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-            foreach (IController controller in controllerList) {
-                controller.Update();
+            if (!isPaused)
+            {
+                foreach (IController controller in controllerList)
+                {
+                    controller.Update();
+                }
+
+                //Update Link
+                link.Update(gameTime);
+
+                dungeon.UpdateCurrent(gameTime);
+
+                //Update the projectiles
+                projectileFactory.UpdateProjectiles(gameTime);
+
+                //TODO: poop
+                handler.Update();
+
+                base.Update(gameTime);
             }
-            
-            //Update Link
-            link.Update(gameTime);
-
-            dungeon.UpdateCurrent(gameTime);
-
-            //Update the projectiles
-            projectileFactory.UpdateProjectiles(gameTime);
-
-            //TODO: poop
-            handler.Update();
-
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -173,6 +179,22 @@ namespace Sprint2
         {
             return this.dungeon;
         }
+
+        public void togglePause()
+        {
+            /*if (!inventoryOpen)
+            {*/
+                isPaused = !isPaused;
+            /*}*/
+            Console.WriteLine("apdfjas");
+        }
+
+        public void toggleOpenInventory()
+        {
+            inventoryOpen = !inventoryOpen;
+            isPaused = inventoryOpen;
+        }
+
         public void Quit()
         {
             Exit();
