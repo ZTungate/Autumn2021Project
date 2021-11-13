@@ -14,14 +14,8 @@ namespace Poggus.Player
 		{
             link = Link;
             mySprite = new RightIdleLinkSprite(sprite.Texture, link);
-            link.sprite = mySprite;
+            link.Sprite = mySprite;
         }
-
-       /* public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.TakeDamage();
-        }*/
 
         public void Update(GameTime gameTime)
         {
@@ -30,38 +24,47 @@ namespace Poggus.Player
 
         public void UseItem(ProjectileTypes item)
         {
-            link.state = new RightItemUsingLinkState(link, mySprite, item);
+            link.State = new RightItemUsingLinkState(link, mySprite, item);
         }
 
         public void SwordAttack()
         {
-            link.state = new RightSwordLinkState(link, mySprite);
+            link.State = new RightSwordLinkState(link, mySprite);
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //If told to move in the direction this state is facing, switch to a moving state. Otherwise, switch to an idle state in that direction.
             switch (direction)
             {
-                case direction.down:
+                case Direction.down:
                     //Change to down idle stae if told to move down.
-                    link.state = new DownIdleLinkState(link, mySprite);
+                    link.State = new DownIdleLinkState(link, mySprite);
                     break;
-                case direction.right:
+                case Direction.right:
                     //Change to a right moving state if told to move right.
-                    link.state = new RightMovingLinkState(link, mySprite);
+                    link.State = new RightMovingLinkState(link, mySprite);
                     break;
-                case direction.left:
+                case Direction.left:
                     //Change to a left idle state if told to move left.
-                    link.state = new LeftIdleLinkState(link, mySprite);
+                    link.State = new LeftIdleLinkState(link, mySprite);
                     break;
-                case direction.up:
+                case Direction.up:
                     //Change to an up idle state if told to move up.
-                    link.state = new UpIdleLinkState(link, mySprite);
+                    link.State = new UpIdleLinkState(link, mySprite);
                     break;
             }
         }
+        public void Idle()
+        {
+            //Already idle, no implementation needed
+        }
 
+        public void Die()
+        {
+            //Chane link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
         public void PickUp(AbstractItem item)
         {
             //No Implementation needed.

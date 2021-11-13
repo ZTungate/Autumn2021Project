@@ -15,7 +15,7 @@ namespace Poggus.Commands
         public void Execute()
         {
             //Call on link's state to move up.
-            game.link.state.Move(Player.direction.up);
+            game.link.State.Move(Player.Direction.up);
         }
     }
 }

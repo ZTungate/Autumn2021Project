@@ -15,7 +15,7 @@ namespace Poggus.Commands
         public void Execute()
         {
             //Have link's current state move right.
-            game.link.state.Move(Player.direction.right);
+            game.link.State.Move(Player.Direction.right);
         }
     }
 }

@@ -104,7 +104,7 @@ namespace Poggus
             itemSpriteFactory.LoadAllTextures(Content);
 
             //Create sprite for Link
-            link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
+            link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
             DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);

@@ -9,19 +9,17 @@ using static Poggus.Projectiles.ProjectileConstants;
 
 namespace Poggus.Player
 {
-    public enum direction { up, down, left, right };
+    public enum Direction { up, down, left, right };
 
     public interface ILink
     {
-        public ILinkState state { get; set; }
+        public ILinkState State { get; set; }
         public Rectangle DestRect { get; set; }
-        public Point oldPosition { get; set; }
-        public ISprite sprite { get; set; }
+        public Point OldPosition { get; set; }
+        public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get;  set; }
+        public int Health { get; set; }
 
-        public int health { get; set; }
-
-        enum Direction { };
         void TakeDamage(int damageAmount);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
@@ -31,6 +29,7 @@ namespace Poggus.Player
         void PickUp(AbstractItem item);
         Point GetPosition();
         void SetPosition(Point pos);
+        bool FullHealth();
 
     }
 }

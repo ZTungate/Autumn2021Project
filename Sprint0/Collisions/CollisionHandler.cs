@@ -40,21 +40,41 @@ namespace Poggus.Collisions
         public void Update()
         {
             collides.Clear();
-
+            
             //handle link enemy collision
             foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(myLink, ene);
                 if (eneLink.IsCollision) {
-                    //if in sword state, slap enemy
-                    if (eneLink.Link1.state is DownSwordLinkState || eneLink.Link1.state is RightSwordLinkState || eneLink.Link1.state is UpSwordLinkState || eneLink.Link1.state is LeftSwordLinkState) {
-                        //TODO: enemy take damage
+                    //If link is attacking, damage the enemy he contacts.
+                    if (eneLink.Link1.State is DownSwordLinkState || eneLink.Link1.State is RightSwordLinkState || eneLink.Link1.State is UpSwordLinkState || eneLink.Link1.State is LeftSwordLinkState) {
                         ene.TakeDamage(LinkConstants.swordDamage);
-                        //eneLink.enemy2.takeDamage
-                        //or
-                        //myLevel.enemies.Remove(eneLink.enemy2)
                     }
                     else {
-                        new PlayerTakeDamageCommand(myGame).Execute();
+                        //Link gets hurt, damage him based on the enemy contacted.
+                        switch (eneLink.enemy2.EnemyType)
+                        {
+                            case EnemyType.Bat:
+                                eneLink.Link1.TakeDamage(EnemyConstants.batDamage);
+                                break;
+                            case EnemyType.BladeTrap:
+                                eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage);
+                                break;
+                            case EnemyType.Dragon:
+                                eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage);
+                                break;
+                            case EnemyType.Grabber:
+                                eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage);
+                                break;
+                            case EnemyType.Skeleton:
+                                eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage);
+                                break;
+                            case EnemyType.Slime:
+                                eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage);
+                                break;
+                            case EnemyType.Thrower:
+                                eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage);
+                                break;
+                        }
                     }
                 }
             }
@@ -65,20 +85,19 @@ namespace Poggus.Collisions
                 if (projLink.IsCollision && (projLink.proj1 is FireballProjectile || projLink.proj1 is BoomerangProjectile)) {
                     projLink.proj1.Life = 0;
                     //check if shield face projectile
-                    if (projLink.link2.state is DownIdleLinkState && projLink.direction is ColDirections.South) {
+                    if (projLink.link2.State is DownIdleLinkState && projLink.direction is ColDirections.South) {
                         //TODO: Proj bounce off shield
                     }
-                    else if (projLink.link2.state is RightIdleLinkState && projLink.direction is ColDirections.East) {
+                    else if (projLink.link2.State is RightIdleLinkState && projLink.direction is ColDirections.East) {
 
                     }
-                    else if (projLink.link2.state is LeftIdleLinkState && projLink.direction is ColDirections.West) {
+                    else if (projLink.link2.State is LeftIdleLinkState && projLink.direction is ColDirections.West) {
 
                     }
-                    else if (projLink.link2.state is UpIdleLinkState && projLink.direction is ColDirections.North) {
+                    else if (projLink.link2.State is UpIdleLinkState && projLink.direction is ColDirections.North) {
 
                     }
-                    else {//hurt link
-                        //new PlayerTakeDamageCommand(myGame).Execute();
+                    else {//hurt link by the damage of the projectile that hit him.
                         if(projLink.proj1 is BoomerangProjectile)
                         {
                             projLink.link2.TakeDamage(ProjectileConstants.throwerBoomerangDamage);
@@ -97,7 +116,7 @@ namespace Poggus.Collisions
             foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                 L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, block);
                 if (linkBlock.IsCollision && !linkBlock.block2.Walkable) {
-                    myLink.SetPosition(myLink.oldPosition);
+                    myLink.SetPosition(myLink.OldPosition);
                 }
             }
 
@@ -108,7 +127,7 @@ namespace Poggus.Collisions
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, rectangle);
                 if (boundLink.IsCollision)
                 {
-                    myLink.SetPosition(myLink.oldPosition);
+                    myLink.SetPosition(myLink.OldPosition);
                 }
             }
 
@@ -138,9 +157,6 @@ namespace Poggus.Collisions
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                     P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
-                    /*if (projEne.IsCollision && !(projEne.proj1 is FireballProjectile || projEne.proj1 is BoomerangProjectile)) {
-                        eneToRemove.Add(projEne.enemy2);
-                    }*/
                     if(projEne.IsCollision && (projEne.proj1 is LinkBoomerangProjectile) && (projEne.enemy2 is Slime || projEne.enemy2 is Bat))
                     {
                         //If the projectile was a boomerang and the enemy was a bat or slime, kill it.

@@ -17,15 +17,9 @@ namespace Poggus.Player
         {
             link = Link;
             mySprite = new PickUpLinkSprite(sprite.Texture, Link, item);
-            link.sprite = mySprite;
+            link.Sprite = mySprite;
             stateTime = LinkConstants.itemUseTime;
         }
-
-       /* public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.TakeDamage();
-        }*/
 
         public void Update(GameTime gameTime)
         {
@@ -37,7 +31,7 @@ namespace Poggus.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
-                link.state = new DownIdleLinkState(link, mySprite);
+                link.State = new DownIdleLinkState(link, mySprite);
             }
         }
 
@@ -48,10 +42,10 @@ namespace Poggus.Player
 
         public void SwordAttack()
         {
-            link.state = new UpSwordLinkState(link, mySprite);
+            link.State = new UpSwordLinkState(link, mySprite);
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //Link can not move while throwing an item.
         }
@@ -68,10 +62,10 @@ namespace Poggus.Player
             {
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), direction.up);
+                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), Direction.up);
                     break;
                 case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), direction.up);
+                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), Direction.up);
                     break;
                 case ProjectileTypes.linkBoomerang:
                     link.ProjectileFactory.LinkBoomerang(link.GetPosition(), (RegBoomerangVelocity * directionVector).ToPoint());
@@ -88,5 +82,14 @@ namespace Poggus.Player
             }
         }
 
+        public void Idle()
+        {
+            //Link is busy, can't change to idle.
+        }
+        public void Die()
+        {
+            //Change link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
     }
 }
