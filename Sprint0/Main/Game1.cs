@@ -123,8 +123,6 @@ namespace Poggus
             {
                 //Update Link
                 link.Update(gameTime);
-                isPaused = !isPaused;
-                /*}*/
                 System.Diagnostics.Debug.WriteLine("apdfjas");
             }
 
