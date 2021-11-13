@@ -13,5 +13,7 @@ namespace Poggus.Player
         public static int linkSpeed = 3;
 
         public static int swordDamage = 1;
+
+        public static int linkHealth = 3;
     }
 }

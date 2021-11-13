@@ -12,7 +12,7 @@ namespace Poggus.Enemies
     {
         public Skeleton(Point pos) : base(EnemyType.Skeleton, pos, new Point(32, 32))
         {
-            Health = EnemyConstants.skeletonHealth;
+            health = EnemyConstants.skeletonHealth;
         }
         public override void Update(GameTime gameTime)
         {

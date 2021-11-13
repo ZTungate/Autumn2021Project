@@ -19,8 +19,10 @@ namespace Poggus.Player
         public ISprite sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get;  set; }
 
+        public int health { get; set; }
+
         enum Direction { };
-        void TakeDamage();
+        void TakeDamage(int damageAmount);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
         void Move(Point moveDirection);
@@ -29,5 +31,6 @@ namespace Poggus.Player
         void PickUp(AbstractItem item);
         Point GetPosition();
         void SetPosition(Point pos);
+
     }
 }

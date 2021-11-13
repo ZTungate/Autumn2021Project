@@ -12,7 +12,7 @@ namespace Poggus.Enemies
     {
         public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
         {
-            Health = EnemyConstants.grabberHealth;
+            health = EnemyConstants.grabberHealth;
         }
         public override void Update(GameTime gameTime)
         {

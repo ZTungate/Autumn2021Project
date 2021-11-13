@@ -21,7 +21,7 @@ namespace Poggus.Enemies
         public Dragon(Point pos) : base(EnemyType.Dragon, pos, new Point(32, 32))
         {
             projectiles = ProjectileFactory.Instance;
-            Health = EnemyConstants.dragonHealth;
+            health = EnemyConstants.dragonHealth;
         }
 
         public override void Update(GameTime gameTime)

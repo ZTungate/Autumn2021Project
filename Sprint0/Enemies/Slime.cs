@@ -15,7 +15,7 @@ namespace Poggus.Enemies
 
         public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
         {
-            Health = EnemyConstants.slimeHealth;
+            health = EnemyConstants.slimeHealth;
         }
         public override void Update(GameTime gameTime)
         {
