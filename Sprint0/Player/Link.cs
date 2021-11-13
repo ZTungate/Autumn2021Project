@@ -105,7 +105,6 @@ namespace Poggus.Player
             {
                 State = new DeadLinkState(this, Sprite);
             }
-            /*state.takeDamage();*/
         }
 
         public void UseItem(ProjectileTypes item)

@@ -188,6 +188,10 @@ namespace Poggus.Collisions
                         {
                             projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
                             projEne.proj1.Life = 0;
+                        }else if (projectile is FireProjectile)
+                        {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
+                            projEne.proj1.Life = 0;
                         }
                     }
 

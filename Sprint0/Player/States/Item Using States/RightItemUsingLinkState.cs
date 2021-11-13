@@ -4,6 +4,8 @@ using Poggus.Player;
 using Poggus.Items;
 using System;
 using static Poggus.Projectiles.ProjectileConstants;
+using Poggus.Helpers;
+using Poggus.Projectiles;
 
 namespace Poggus.Player
 {
@@ -61,22 +63,22 @@ namespace Poggus.Player
             {
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), Direction.right);
+                    link.ProjectileFactory.NewRegArrow(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.HorizArrowSize), Direction.right);
                     break;
                 case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), Direction.right);
+                    link.ProjectileFactory.NewBlueArrow(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.HorizArrowSize), Direction.right);
                     break;
                 case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.LinkBoomerang(link.GetPosition(), (RegBoomerangVelocity * directionVector).ToPoint());
+                    link.ProjectileFactory.LinkBoomerang(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.boomerangSize), (RegBoomerangVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.LinkBlueBoomerang(link.GetPosition(), (BlueBoomerangVelocity * directionVector).ToPoint());
+                    link.ProjectileFactory.LinkBlueBoomerang(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.boomerangSize), (BlueBoomerangVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.fire:
-                    link.ProjectileFactory.NewFire(link.GetPosition(), (FireVelocity * directionVector).ToPoint());
+                    link.ProjectileFactory.NewFire(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.fireSize), (FireVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(link.GetPosition() + directionVector.ToPoint());
+                    link.ProjectileFactory.NewBomb(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.BombSize) + directionVector.ToPoint());
                     break;
             }
         }
