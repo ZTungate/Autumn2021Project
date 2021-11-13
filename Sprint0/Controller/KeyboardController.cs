@@ -75,9 +75,9 @@ namespace Poggus
         public void Update()
         {
 
-                KeyboardState lastState = state;
-                state = Keyboard.GetState();
-                Keys[] pressedKeys = state.GetPressedKeys();
+            KeyboardState lastState = state;
+            state = Keyboard.GetState();
+            Keys[] pressedKeys = state.GetPressedKeys();
             if (!myGame.Paused())
             {
                 checkPlayerIdle(lastState, state);

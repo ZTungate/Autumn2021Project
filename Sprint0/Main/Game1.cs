@@ -40,7 +40,9 @@ namespace Poggus
         public ILink link;
 
         //Projectiles
-        public ProjectileFactory projectileFactory;
+        public ProjectileFactory projectileFactory; 
+        private bool isPaused = false;
+        private bool inventoryOpen = false;
 
         public Game1()
         {
@@ -117,9 +119,14 @@ namespace Poggus
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-            
-            //Update Link
-            link.Update(gameTime);
+            if (!isPaused)
+            {
+                //Update Link
+                link.Update(gameTime);
+                isPaused = !isPaused;
+                /*}*/
+                System.Diagnostics.Debug.WriteLine("apdfjas");
+            }
 
             dungeon.UpdateCurrent(gameTime);
 
@@ -172,6 +179,23 @@ namespace Poggus
         public Dungeon GetDungeon()
         {
             return this.dungeon;
+        }
+        public bool Paused()
+        {
+            return isPaused;
+        }
+        public void togglePause()
+        {
+            /*if (!inventoryOpen)
+            {*/
+            isPaused = !isPaused;
+            /*}*/
+            System.Diagnostics.Debug.WriteLine("apdfjas");
+        }
+        public void toggleOpenInventory()
+        {
+            inventoryOpen = !inventoryOpen;
+            isPaused = inventoryOpen;
         }
         public void Quit()
         {
