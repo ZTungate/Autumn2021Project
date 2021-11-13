@@ -156,7 +156,7 @@ namespace Sprint2
         {
             link = new Link();
             link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
-            blockSpriteFactory.Reset();
+            
 
 
             //Set the enemy sprite factory to a new instance
