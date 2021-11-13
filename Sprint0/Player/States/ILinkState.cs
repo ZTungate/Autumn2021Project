@@ -14,6 +14,8 @@ namespace Poggus.Player
 		void UseItem(ProjectileTypes item);
 		void SwordAttack();
 		void Move(Direction direction);
+		void Idle();
+		void Die();
 		void PickUp(AbstractItem item);
 
 		//Damage should be implemented as a decorator on the player, not the state (look at notes on cse3902 homepage)

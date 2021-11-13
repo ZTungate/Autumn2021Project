@@ -55,6 +55,16 @@ namespace Poggus.Player
         {
             //No moving during attack
         }
+        public void Idle()
+        {
+            //Link can not force an idle transition in a sword state
+        }
+
+        public void Die()
+        {
+            //Change link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
         public void PickUp(AbstractItem item)
         {
             link.State = new PickUpLinkState(link, mySprite, item);

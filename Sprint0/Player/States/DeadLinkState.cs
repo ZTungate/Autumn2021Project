@@ -40,6 +40,16 @@ namespace Poggus.Player
             //Link is dead, no implementation needed.
         }
 
+        public void Idle()
+        {
+            //Link is dead, no implementation needed.
+        }
+
+        public void Die()
+        {
+            //Link is already dead, no implementation needed.
+        }
+
         public void PickUp(AbstractItem item)
         {
             //Link is dead, no implementation needed.

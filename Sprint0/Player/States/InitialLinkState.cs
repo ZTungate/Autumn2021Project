@@ -44,6 +44,15 @@ namespace Poggus.Player
         {
             //This state does not require movement code.
         }
+        public void Idle()
+        {
+            //No implementation needed
+        }
+
+        public void Die()
+        {
+            //No implementation needed
+        }
 
         public void PickUp(AbstractItem item)
         {

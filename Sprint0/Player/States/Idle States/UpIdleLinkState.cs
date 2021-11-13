@@ -16,28 +16,18 @@ namespace Poggus.Player
             mySprite = new UpIdleLinkSprite(sprite.Texture, link);
             link.Sprite = mySprite;
         }
-
-        /*public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.TakeDamage();
-        }*/
-
         public void Update(GameTime gameTime)
         {
             //Nothing needs updated in an idle state?
         }
-
         public void UseItem(ProjectileTypes item)
         {
             link.State = new UpItemUsingLinkState(link, mySprite, item);
         }
-
         public void SwordAttack()
         {
             link.State = new UpSwordLinkState(link, mySprite);
         }
-
         public void Move(Direction direction)
         {
             //If told to move in the direction this state is facing, switch to a moving state. Otherwise, switch to an idle state in that direction.
@@ -61,7 +51,16 @@ namespace Poggus.Player
                     break;
             }
         }
+        public void Idle()
+        {
+            //Already idle, no implementation needed
+        }
 
+        public void Die()
+        {
+            //Chane link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
         public void PickUp(AbstractItem item)
         {
             //No Implementation needed.

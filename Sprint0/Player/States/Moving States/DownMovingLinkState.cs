@@ -17,12 +17,6 @@ namespace Poggus.Player
             link.Sprite = mySprite;
         }
 
-/*        public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.TakeDamage();
-        }*/
-
         public void Update(GameTime gameTime)
         {
             //Move link down
@@ -61,6 +55,17 @@ namespace Poggus.Player
                     link.State = new UpIdleLinkState(link, mySprite);
                     break;
             }
+        }
+        public void Idle()
+        {
+            //Change link to an idle state in the current direction.
+            link.State = new DownIdleLinkState(link, mySprite);
+        }
+
+        public void Die()
+        {
+            //Change link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
         }
         public void PickUp(AbstractItem item)
         {

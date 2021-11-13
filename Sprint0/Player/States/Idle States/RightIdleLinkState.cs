@@ -17,12 +17,6 @@ namespace Poggus.Player
             link.Sprite = mySprite;
         }
 
-       /* public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.TakeDamage();
-        }*/
-
         public void Update(GameTime gameTime)
         {
             //Nothing needs updated in an idle state?
@@ -61,7 +55,16 @@ namespace Poggus.Player
                     break;
             }
         }
+        public void Idle()
+        {
+            //Already idle, no implementation needed
+        }
 
+        public void Die()
+        {
+            //Chane link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
         public void PickUp(AbstractItem item)
         {
             //No Implementation needed.
