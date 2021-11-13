@@ -95,6 +95,12 @@ namespace Poggus.Player
 
                 health -= dmgAmount;
             }
+
+            //Kill link if his health hits zero
+            if(health <= 0)
+            {
+                state = new DeadLinkState(this, sprite);
+            }
             /*state.takeDamage();*/
         }
 
