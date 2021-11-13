@@ -17,6 +17,7 @@ namespace Poggus
         public static float gameScaleX, gameScaleY;
         public static Game1 instance;
         private Dungeon dungeon;
+        
         public ISprite sprite;
 
         private SpriteFont font;
@@ -159,19 +160,20 @@ namespace Poggus
 
         public void Reset()
         {
-            link = new Link();
-            link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
-
-
+            //link = new Link();
+            //link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
+            this.dungeon.SetCurrentLevel(new Point(0, 0));
+            
             //Set the enemy sprite factory to a new instance
-            enemySpriteFactory = EnemySpriteFactory.Instance;
+            //enemySpriteFactory = EnemySpriteFactory.Instance;
 
             //Re-Initialize the projectile factory.
-            projectileFactory.Initalize();
+            //projectileFactory.Initalize();
         }
         public void SetDungeon(Dungeon dungeon)
         {
             this.dungeon = dungeon;
+            
         }
         public Dungeon GetDungeon()
         {
