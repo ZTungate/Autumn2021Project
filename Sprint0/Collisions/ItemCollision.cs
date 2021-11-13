@@ -1,9 +1,9 @@
-﻿using Sprint2.Items;
+﻿using Poggus.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Collisions
+namespace Poggus.Collisions
 {
     class I2ICollision : ICollision
     {

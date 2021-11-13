@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     class DungeonLoader
     {
@@ -37,7 +37,7 @@ namespace Sprint0.Levels
 
                     newDungeon.AddLevel(new Point(x,y),level);
                 }
-                newDungeon.UpdateLevelDoors(LevelLoader.instance.gameScaleX, LevelLoader.instance.gameScaleY);
+                newDungeon.UpdateLevelDoors(Game1.gameScaleX, Game1.gameScaleY);
 
                 newDungeon.SetCurrentLevel(new Point(0, 0));
                 newDungeon.UpdateLevelContentPositions();

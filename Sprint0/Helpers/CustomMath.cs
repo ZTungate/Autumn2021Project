@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Helpers
+namespace Poggus.Helpers
 {
     public static class CustomMath
     {

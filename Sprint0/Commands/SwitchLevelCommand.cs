@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2;
+using Poggus;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2
+namespace Poggus
 {
     public class SwitchLevelCommand : ICommand
     {

@@ -4,16 +4,14 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint2.Items.ItemSprites
+namespace Poggus.Items.ItemSprites
 {
-    public class ArrowSprite : AbstractItemSprite
+    public class ArrowSprite : AbstractSprite
     {
-        public ArrowSprite(Texture2D spriteSheet)
+        public ArrowSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[1];
-
             SourceRect[0] = new Rectangle(153, 0, 7, 16);
         }
+        
     }
 }

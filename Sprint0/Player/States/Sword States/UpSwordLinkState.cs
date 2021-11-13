@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
-using Sprint2.Items;
+using Poggus.Player;
+using Poggus.Items;
 using System;
-using static Sprint0.Projectiles.ProjectileConstants;
+using static Poggus.Projectiles.ProjectileConstants;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class UpSwordLinkState : ILinkState
     {
@@ -18,7 +18,7 @@ namespace Sprint2.Player
             link = Link;
             mySprite = new UpSwordLinkSprite(sprite.Texture, Link);
             //TODO: make sword beam only come out if link full health
-            link.ProjectileFactory.NewSwordBeam(link.position, direction.up);
+            link.ProjectileFactory.NewSwordBeam(link.GetPosition(), direction.up);
             link.sprite = mySprite;
             stateTime = LinkConstants.swordAttackTime;
         }
@@ -26,7 +26,7 @@ namespace Sprint2.Player
         public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.takeDamage();
+            link.TakeDamage();
         }
 
         public void Update(GameTime gameTime)

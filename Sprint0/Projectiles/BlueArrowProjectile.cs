@@ -1,59 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Projectiles
+namespace Poggus.Projectiles
 {
-    public class BlueArrowProjectile : IProjectile
+    public class BlueArrowProjectile : AbstractProjectile
     {
-        //Fields for storing the sprite, velocity, and position.
-        private ISprite mySprite;
-        private Vector2 myPosition;
-        private Vector2 myVelocity;
-        private int myLife;
-        public ISprite Sprite 
+        public BlueArrowProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
         {
-            get => mySprite;
-            set => mySprite = value;
+            Life = 1000;
         }
-        public Vector2 Position 
-        { 
-            get => myPosition;
-            set => myPosition = value;
-        }
-        public Vector2 Velocity 
-        { 
-            get => myVelocity;
-            set => myVelocity = value;
-        }
-        public int Life
-        {
-            get => myLife;
-            set => myLife = value;
-        }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //Move the arrow according to its velocity.
-            if (myLife > 200) {
-                myPosition += myVelocity;
-                mySprite.Position = Position;
+            if (Life > 200)
+            {
+                DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
 
             }
-            mySprite.Update(gameTime);
+            Sprite.Update(gameTime);
 
-            myLife -= gameTime.ElapsedGameTime.Milliseconds;
-        }
-
-        public BlueArrowProjectile(Vector2 position, Vector2 velocity)
-        {
-            //Set the velocity and position to the passed values.
-            myPosition = position;
-            myVelocity = velocity;
-            //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            myLife = 1000;
+            Life -= gameTime.ElapsedGameTime.Milliseconds;
         }
     }
 }

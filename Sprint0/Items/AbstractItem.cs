@@ -3,32 +3,31 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2.Items.ItemSprites;
+using Poggus.Items.ItemSprites;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public abstract class AbstractItem : IItem
     {
-        protected AbstractItemSprite sprite;
+        protected ISprite sprite;
         protected ItemEnum itemType;
         protected Rectangle rect;
 
         Rectangle IItem.rect { get => this.rect; set => this.rect = value; }
 
-        public AbstractItem(ItemEnum itemType, Rectangle rect)
+        public AbstractItem(ItemEnum itemType, Point pos, Point size)
         {
             this.itemType = itemType;
-            this.rect = rect;
+            this.rect = new Rectangle(pos, size);
         }
-        public virtual void CreateSprite(float scaleX, float scaleY)
+        public virtual void CreateSprite()
         {
             this.sprite = ItemSpriteFactory.Instance.GetItemSprite(itemType);
-            this.rect.Width = (int)(sprite.SourceRect[0].Width * scaleX);
-            this.rect.Height = (int)(sprite.SourceRect[0].Height * scaleY);
+            this.rect.Width = (int)(sprite.SourceRect[0].Width * Game1.gameScaleX);
+            this.rect.Height = (int)(sprite.SourceRect[0].Height * Game1.gameScaleY);
         }
         public virtual void Update(GameTime gameTime)
         {
-            
             this.sprite.Update(gameTime);
         }
         public virtual void Draw(SpriteBatch batch)
@@ -43,9 +42,13 @@ namespace Sprint2.Items
         {
             return this.rect;
         }
-        public AbstractItemSprite GetSprite()
+        public Point GetPosition()
         {
-            return this.sprite;
+            return this.rect.Location;
+        }
+        public void SetPosition(Point pos)
+        {
+            this.rect = new Rectangle(pos, rect.Size);
         }
     }
 }

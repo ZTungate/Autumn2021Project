@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class CompassItem : AbstractItem
     {
-        public CompassItem(Rectangle rect) : base(ItemEnum.Compass, rect)
+        public CompassItem(Point pos) : base(ItemEnum.Compass, pos, Point.Zero)
         {
 
         }

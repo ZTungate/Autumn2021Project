@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
-using Sprint2.Items;
+using Poggus.Player;
+using Poggus.Items;
 using System;
-using static Sprint0.Projectiles.ProjectileConstants;
+using static Poggus.Projectiles.ProjectileConstants;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class LeftItemUsingLinkState : ILinkState
     {
@@ -25,7 +25,7 @@ namespace Sprint2.Player
         public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.takeDamage();
+            link.TakeDamage();
         }
 
         public void Update(GameTime gameTime)
@@ -64,22 +64,22 @@ namespace Sprint2.Player
             {
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.position, direction.left);
+                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), direction.left);
                     break;
                 case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.position, direction.left);
+                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), direction.left);
                     break;
                 case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.LinkBoomerang(link.position, RegBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBoomerang(link.GetPosition(), (RegBoomerangVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.LinkBlueBoomerang(link.position, BlueBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBlueBoomerang(link.GetPosition(), (BlueBoomerangVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.fire:
-                    link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
+                    link.ProjectileFactory.NewFire(link.GetPosition(), (FireVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(new Vector2(link.position.X - mySprite.SourceRect[mySprite.CurrentFrame].Width, link.position.Y));
+                    link.ProjectileFactory.NewBomb(link.GetPosition() + directionVector.ToPoint());
                     break;
             }
         }

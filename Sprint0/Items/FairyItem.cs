@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class FairyItem : AbstractItem
     {
-        public FairyItem(Rectangle rect) : base(ItemEnum.Fairy, rect)
+        public FairyItem(Point pos) : base(ItemEnum.Fairy, pos, Point.Zero)
         {
 
         }

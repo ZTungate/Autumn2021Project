@@ -1,13 +1,13 @@
-﻿using Sprint2.Blocks;
-using Sprint2.Enemies;
-using Sprint2.Items;
-using Sprint2.Player;
+﻿using Poggus.Blocks;
+using Poggus.Enemies;
+using Poggus.Items;
+using Poggus.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Sprint0.Collisions
+namespace Poggus.Collisions
 {
     class L2ECollision : ICollision
     {

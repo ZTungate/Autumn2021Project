@@ -3,21 +3,21 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using Microsoft.Xna.Framework;
-using Sprint2.Blocks;
+using Poggus.Blocks;
 using Microsoft.Xna.Framework.Graphics;
 using System.Xml;
-using Sprint2;
+using Poggus;
 using Microsoft.Xna.Framework.Content;
-using Sprint2.Items;
-using Sprint2.Enemies;
-using Sprint0.Player;
+using Poggus.Items;
+using Poggus.Enemies;
+using Poggus.Enemies.Sprites;
+using Poggus.Player;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     public class LevelLoader
     {
         public static LevelLoader instance = new LevelLoader();
-        public float gameScaleX, gameScaleY;
         private Texture2D blockSpriteSheet;
         private Dictionary<string, Level> levels = new Dictionary<string, Level>();
         public void LoadAllLevels(ContentManager content)
@@ -30,8 +30,8 @@ namespace Sprint0.Levels
             string[] fileNames = Directory.GetFiles(dir + "\\Levels");
             XmlReaderSettings settings = new XmlReaderSettings();
 
-            gameScaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-            gameScaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+            Game1.gameScaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
+            Game1.gameScaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
 
             foreach (string fileName in fileNames)
             {
@@ -47,7 +47,6 @@ namespace Sprint0.Levels
                     {
                         reader.ReadToDescendant("Object");
                         string blockName = reader.ReadElementContentAsString();
-                        blockName += "Sprite";
 
                         reader.ReadToDescendant("Location");
                         reader.MoveToContent();
@@ -62,16 +61,14 @@ namespace Sprint0.Levels
                         reader.MoveToContent();
                         string conditions = reader.ReadElementContentAsString();
 
-                        Object[] objectParams = new Object[2];
-                        objectParams[0] = BlockSpriteFactory.Instance.GetBlockSpriteSheet();
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[1] = new Vector2(x * scaleX, y * scaleY);
-
-                        Type objectType = Type.GetType("Sprint2.Blocks." + blockName);
+                        Object[] objectParams = new Object[1];
+                        objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y * Game1.gameScaleY));
+                        Type objectType = Type.GetType("Poggus.Blocks." + blockName);
                         object instance = Activator.CreateInstance(objectType, objectParams);
-                        IBlock newBlock = (IBlock)instance;
-                        newBlock.destRect = new Rectangle(newBlock.destRect.X, newBlock.destRect.Y, (int)(newBlock.sourceRect.Width*scaleX), (int)(newBlock.sourceRect.Height*scaleY));
+                        AbstractBlock newBlock = (AbstractBlock)instance;
+                        newBlock.CreateSprite();
+                        
+                        //create sprite
 
                         newLevel.AddBlock(new Point(x,y), newBlock);
                     }
@@ -95,13 +92,11 @@ namespace Sprint0.Levels
                         string conditions = reader.ReadElementContentAsString();
 
                         Object[] objectParams = new Object[1];
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[0] = new Rectangle((int)(x * scaleX), (int)(y * scaleY), (int)(16*scaleX), (int)(16*scaleY));
-                        Type itemType = Type.GetType("Sprint2.Items." + itemName);
+                        objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y * Game1.gameScaleY));
+                        Type itemType = Type.GetType("Poggus.Items." + itemName);
                         object instance = Activator.CreateInstance(itemType, objectParams);
                         AbstractItem item = (AbstractItem)instance;
-                        item.CreateSprite(scaleX, scaleY);
+                        item.CreateSprite();
 
                         newLevel.AddItem(item);
                     }
@@ -124,26 +119,16 @@ namespace Sprint0.Levels
                         string conditions = reader.ReadElementContentAsString();
 
                         Object[] objectParams = new Object[1];
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-                        objectParams[0] = new Vector2((int)(x * scaleX), (int)(y*scaleY));
-                        Type enemyType = Type.GetType("Sprint2.Enemies." + enemyName);
+                        objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y* Game1.gameScaleY));
+                        Type enemyType = Type.GetType("Poggus.Enemies." + enemyName);
                         object instance = Activator.CreateInstance(enemyType, objectParams);
-                        IEnemy enemy = (IEnemy)instance;
-                        enemy.Sprite = EnemySpriteFactory.Instance.MakeSprite(enemy);
-
-                        EnemyConstants.scaleX = scaleX;
-                        EnemyConstants.scaleY = scaleY;
+                        AbstractEnemy enemy = (AbstractEnemy)instance;
+                        enemy.CreateSprite();
 
                         newLevel.AddEnemy(enemy);
                     }
                     if (reader.IsStartElement() && reader.Name == "Bound")
                     {
-                        float scaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-                        float scaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
-
-                        LinkConstants.scaleX = scaleX;
-                        LinkConstants.scaleY = scaleY;
 
                         reader.ReadToDescendant("Start");
                         reader.MoveToContent();
@@ -151,8 +136,8 @@ namespace Sprint0.Levels
                         int commaLoc = location.IndexOf(",");
                         string xString = location.Substring(0, commaLoc);
                         string yString = location.Substring(commaLoc + 1);
-                        int startX = (int)(int.Parse(xString) * scaleX);
-                        int startY = (int)(int.Parse(yString) * scaleY);
+                        int startX = (int)(int.Parse(xString) * Game1.gameScaleX);
+                        int startY = (int)(int.Parse(yString) * Game1.gameScaleY);
 
                         reader.ReadToDescendant("End");
                         reader.MoveToContent();
@@ -160,8 +145,8 @@ namespace Sprint0.Levels
                         commaLoc = location.IndexOf(",");
                         xString = location.Substring(0, commaLoc);
                         yString = location.Substring(commaLoc + 1);
-                        int endX = (int)(int.Parse(xString) * scaleX);
-                        int endY = (int)(int.Parse(yString) * scaleY);
+                        int endX = (int)(int.Parse(xString) * Game1.gameScaleX);
+                        int endY = (int)(int.Parse(yString) * Game1.gameScaleY);
 
                         newLevel.AddNewBoundingBox(new Point(startX, startY), new Point(endX, endY));
                     }

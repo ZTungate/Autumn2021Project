@@ -3,57 +3,21 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Enemies;
+using Poggus.Enemies;
 
-namespace Sprint2
+namespace Poggus
 {
-    public class DownThrowerSprite : IAnimatedSprite
+    public class DownThrowerSprite : AbstractSprite
     {
-        public float Timer { get; set; } = 0f;
-        public float Interval { get; set; } = 80f;
-        public int CurrentFrame { get; set; } = 0;
-        public int FrameCount { get; set; } = 2;
-        public float SpriteSpeed { get; set; } = 0;
-        public Texture2D Texture { get; set; }
-        public Rectangle[] SourceRect { get; set; }
-        public Vector2 Position { get; set; }
-
-        public DownThrowerSprite(Texture2D spriteSheet)
+        public DownThrowerSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[2])
         {
-            //Set the texture2D to the provided spriteSheet (already initialized by factory)
-            Texture = spriteSheet;
-            //Create a new array to hold the two frames of animation
-            SourceRect = new Rectangle[2];
-
             //Set the two frames for the animation
             SourceRect[0] = new Rectangle(222, 11, 16, 16);
             SourceRect[1] = new Rectangle(222, 28, 16, 16);
         }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            //Animate the sprites (pulled from animatedStillSprite.cs)
-            if (Timer > Interval)
-            {
-                CurrentFrame++;
-
-                if (CurrentFrame > FrameCount - 1)
-                {
-                    CurrentFrame = 0;
-                }
-                Timer = 0;
-            }
-            else
-            {
-                //Increment timer based on the elapsed time from the last check.
-                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            }
-        }
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            //Draw enemy at its position at twice its source size.
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, (int)(SourceRect[CurrentFrame].Width * EnemyConstants.scaleX), (int)(SourceRect[CurrentFrame].Height * EnemyConstants.scaleY));
-            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);
+            this.FrameStep(gameTime);
         }
 
     }

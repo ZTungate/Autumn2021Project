@@ -1,61 +1,28 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Projectiles
+namespace Poggus.Projectiles
 {
-    public class RegArrowProjectile : IProjectile
+    public class RegArrowProjectile : AbstractProjectile
     {
-        //Fields for storing the sprite, velocity, and position.
-        private ISprite mySprite;
-        private Vector2 myPosition;
-        private Vector2 myVelocity;
-        private int myLife;
-        public ISprite Sprite 
+        public RegArrowProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
         {
-            get => mySprite;
-            set => mySprite = value;
+            //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
+            Life = 700;
         }
-        public Vector2 Position 
-        { 
-            get => myPosition;
-            set => myPosition = value;
-        }
-        public Vector2 Velocity 
-        { 
-            get => myVelocity;
-            set => myVelocity = value;
-        }
-        public int Life
-        {
-            get => myLife;
-            set => myLife = value;
-
-        }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //Move the arrow according to its velocity.
-            if (myLife > 200) {
-                myPosition += myVelocity;
-                mySprite.Position = Position;
+            if (Life > 200)
+            {
+                DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
 
             }
-            mySprite.Update(gameTime);
-
-            myLife -= gameTime.ElapsedGameTime.Milliseconds;
-
-        }
-
-        public RegArrowProjectile(Vector2 position, Vector2 velocity)
-        {
-            //Set the velocity and position to the passed values.
-            myPosition = position;
-            myVelocity = velocity;
-            //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            myLife = 700;
+            Sprite.Update(gameTime);
+            Life -= gameTime.ElapsedGameTime.Milliseconds;
         }
     }
 }

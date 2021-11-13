@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public enum ItemEnum
     {

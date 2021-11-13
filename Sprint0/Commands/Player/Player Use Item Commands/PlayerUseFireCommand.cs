@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
-using Sprint2.Player;
-using static Sprint0.Projectiles.ProjectileConstants;
+using Poggus.Helpers;
+using Poggus.Player;
+using static Poggus.Projectiles.ProjectileConstants;
 
-namespace Sprint2.Commands
+namespace Poggus.Commands
 {
     public class PlayerUseFireCommand : ICommand
     {

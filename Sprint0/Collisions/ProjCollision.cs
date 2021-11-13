@@ -1,12 +1,12 @@
-﻿using Sprint2.Blocks;
-using Sprint2.Enemies;
-using Sprint2.Player;
-using Sprint2.Projectiles;
+﻿using Poggus.Blocks;
+using Poggus.Enemies;
+using Poggus.Player;
+using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Collisions
+namespace Poggus.Collisions
 {
     class P2PCollision : ICollision
     {

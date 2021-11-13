@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class ArrowItem : AbstractItem
     {
-        public ArrowItem(Rectangle rect) : base(ItemEnum.Arrow, rect)
+        public ArrowItem(Point pos) : base(ItemEnum.Arrow, pos, Point.Zero)
         {
 
         }

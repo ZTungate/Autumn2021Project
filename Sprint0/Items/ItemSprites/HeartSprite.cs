@@ -4,15 +4,12 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint2.Items.ItemSprites
+namespace Poggus.Items.ItemSprites
 {
-    public class HeartSprite : AbstractItemSprite
+    public class HeartSprite : AbstractSprite
     {
-        public HeartSprite(Texture2D spriteSheet)
+        public HeartSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[2])
         {
-            Texture = spriteSheet;
-            SourceRect = new Rectangle[2];
-
             SourceRect[0] = new Rectangle(0, 0, 7, 8);
             SourceRect[1] = new Rectangle(0, 8, 7, 8);
         }

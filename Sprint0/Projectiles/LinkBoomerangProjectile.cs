@@ -1,65 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Projectiles
+namespace Poggus.Projectiles
 {
-    public class LinkBoomerangProjectile : IProjectile
+    public class LinkBoomerangProjectile : AbstractProjectile
     {
-        //Fields for storing the sprite, velocity, and position.
-        private ISprite mySprite;
-        private Vector2 myPosition;
-        private Vector2 myVelocity;
-        private int myLife;
-        //Boomerang will require acceleration to turn around and come back
-        private Vector2 accelleration;
-        public ISprite Sprite
+        Point acceleration;
+        public LinkBoomerangProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.boomerangSize)
         {
-            get => mySprite;
-            set => mySprite = value;
+            Life = 3000;
+            //Set the acceleration to be enough to completley reverse velocity over myLife.
+            acceleration = new Point(2 * velocity.X / Life, 2 * (velocity.Y / Life));
         }
-        public Vector2 Position
-        {
-            get => myPosition;
-            set => myPosition = value;
-        }
-        public Vector2 Velocity
-        {
-            get => myVelocity;
-            set => myVelocity = value;
-        }
-        public int Life
-        {
-            get => myLife;
-            set => myLife = value;
-
-        }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //Move the boomerang according to its velocity.
-            myPosition += myVelocity;
-            mySprite.Position = Position;
-            mySprite.Update(gameTime);
+            DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
+            Sprite.Update(gameTime);
 
             //Cut the projectile's life by the elapsed time
             int timePassed = gameTime.ElapsedGameTime.Milliseconds;
-            myLife -= timePassed;
+            Life -= timePassed;
             //Reduce the velocity by the acceleration * elapsed time
-            Velocity -= (accelleration * (int)timePassed);
-        }
-
-        public LinkBoomerangProjectile(Vector2 position, Vector2 velocity)
-        {
-            //Set the velocity and position to the passed values.
-            myPosition = position;
-            myVelocity = velocity;
-            //Boomerangs have a life of 3 seconds. (could be changed).
-            myLife = 3000;
-            //Set the acceleration to be enough to completley reverse velocity over myLife.
-            accelleration = 2 * (velocity / myLife);
+            Velocity -= new Point(acceleration.X * (int)timePassed, acceleration.Y * (int)timePassed);
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint0.Levels;
-using Sprint2;
-using Sprint2.Blocks;
-using Sprint2.Commands;
-using Sprint2.Enemies;
-using Sprint2.Items;
-using Sprint2.Player;
-using Sprint2.Projectiles;
+using Poggus.Levels;
+using Poggus;
+using Poggus.Blocks;
+using Poggus.Commands;
+using Poggus.Enemies;
+using Poggus.Items;
+using Poggus.Player;
+using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
-using Sprint0.Levels.Sprites;
+using Poggus.Levels.Sprites;
 
-namespace Sprint0.Collisions
+namespace Poggus.Collisions
 {
     public class CollisionHandler
     {
@@ -46,8 +46,9 @@ namespace Sprint0.Collisions
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(myLink, ene);
                 if (eneLink.IsCollision) {
                     //if in sword state, slap enemy
-                    if (eneLink.Link1.state is DownSwordLinkState || eneLink.Link1.state is RightSwordLinkState || eneLink.Link1.state is UpSwordLinkState || eneLink.Link1.state is LeftSwordLinkState) { 
+                    if (eneLink.Link1.state is DownSwordLinkState || eneLink.Link1.state is RightSwordLinkState || eneLink.Link1.state is UpSwordLinkState || eneLink.Link1.state is LeftSwordLinkState) {
                         //TODO: enemy take damage
+                        ene.TakeDamage(LinkConstants.swordDamage);
                         //eneLink.enemy2.takeDamage
                         //or
                         //myLevel.enemies.Remove(eneLink.enemy2)
@@ -77,7 +78,8 @@ namespace Sprint0.Collisions
 
                     }
                     else {//hurt link
-                        new PlayerTakeDamageCommand(myGame).Execute();
+                        //new PlayerTakeDamageCommand(myGame).Execute();
+                        projLink.link2.TakeDamage();
                     }
 
                 }
@@ -87,7 +89,7 @@ namespace Sprint0.Collisions
             foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                 L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, block);
                 if (linkBlock.IsCollision && !linkBlock.block2.Walkable) {
-                    myLink.position = myLink.oldPosition;
+                    myLink.SetPosition(myLink.oldPosition);
                 }
             }
 
@@ -98,7 +100,7 @@ namespace Sprint0.Collisions
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, rectangle);
                 if (boundLink.IsCollision)
                 {
-                    myLink.position = myLink.oldPosition;
+                    myLink.SetPosition(myLink.oldPosition);
                 }
             }
 
@@ -117,7 +119,7 @@ namespace Sprint0.Collisions
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                     E2BCollision eneBlock = (E2BCollision)detector.detectCollision(ene, block);
                     if (eneBlock.IsCollision && !eneBlock.block2.Walkable && !(eneBlock.enemy1 is Bat)) {
-                        ene.Position = ene.oldPosition;
+                        ene.SetPosition(ene.oldPosition);
                     }
                 }
             }
@@ -155,36 +157,38 @@ namespace Sprint0.Collisions
                 myDungeon.GetCurrentLevel().RemoveItem(item);
             }
 
-            AbstractDoorSprite[] doors = myGame.GetDungeon().GetCurrentLevel().GetDoorListAsArray(); 
-            foreach (AbstractDoorSprite door in doors) 
+            LevelDoor[] doors = myGame.GetDungeon().GetCurrentLevel().GetDoorListAsArray(); 
+            foreach (LevelDoor door in doors) 
             { 
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect); 
                 if (boundLink.IsCollision) 
                 { 
-                    Point dir = Dungeon.directions[door.CurrentFrame]; 
-                    myGame.GetDungeon().SwitchLevel(dir); 
-                    Vector2 linkNewPos = Vector2.Zero; 
-                    if (dir == new Point(0, 1)) 
+                    Point dir = Dungeon.directions[(int)door.GetDirection()]; 
+                    myGame.GetDungeon().SwitchLevel(dir);
+                    Rectangle linkRect = myLink.DestRect;
+
+                    Point linkNewPos = Point.Zero; 
+                    if (dir == new Point(0, 1))
                     { 
-                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1)); 
-                        linkNewPos = new Vector2(oppositeDoor.Position.X, oppositeDoor.Position.Y - oppositeDoor.scaleY * oppositeDoor.SourceRect[0].Height - myLink.sprite.SourceRect[0].Height * oppositeDoor.scaleY - 5); 
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1)); 
+                        linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width/2 - linkRect.Width/2, oppositeDoor.destRect.Y - (linkRect.Height + 3)); 
                     } 
                     if (dir == new Point(1, 0)) 
                     { 
-                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0)); 
-                        linkNewPos = new Vector2(oppositeDoor.Position.X + oppositeDoor.scaleX * oppositeDoor.SourceRect[0].Width + myLink.sprite.SourceRect[0].Width * oppositeDoor.scaleX + 5, oppositeDoor.Position.Y); 
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0)); 
+                        linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width + 3, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height/2); 
                     } 
                     if (dir == new Point(0, -1)) 
                     { 
-                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1)); 
-                        linkNewPos = new Vector2(oppositeDoor.Position.X, oppositeDoor.Position.Y + oppositeDoor.scaleY * oppositeDoor.SourceRect[0].Height + myLink.sprite.SourceRect[0].Height * oppositeDoor.scaleY + 5); 
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1)); 
+                        linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width/2 - linkRect.Width/2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height + 3); 
                     } 
                     if (dir == new Point(-1, 0)) 
                     { 
-                        AbstractDoorSprite oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0)); 
-                        linkNewPos = new Vector2(oppositeDoor.Position.X - oppositeDoor.scaleX * oppositeDoor.SourceRect[0].Width - myLink.sprite.SourceRect[0].Width * oppositeDoor.scaleX - 5, oppositeDoor.Position.Y); 
-                    } 
-                    myGame.GetDungeon().GetCurrentLevel().GetLink().position = linkNewPos; 
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0)); 
+                        linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width + 3), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height/2 - linkRect.Height/2); 
+                    }
+                    myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos); 
                 } 
             }
 

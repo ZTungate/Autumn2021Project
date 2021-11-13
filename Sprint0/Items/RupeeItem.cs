@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class RupeeItem : AbstractItem
     {
-        public RupeeItem(Rectangle rect) : base(ItemEnum.Rupee, rect)
+        public RupeeItem(Point pos) : base(ItemEnum.Rupee, pos, Point.Zero)
         {
 
         }
