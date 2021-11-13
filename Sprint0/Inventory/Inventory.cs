@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Poggus.Items;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,13 +11,13 @@ namespace Sprint0.Inventory
 
         private int arrows = 0;
         private int bombs = 0;
-        private int rubies = 0;
+        private int rupee = 0;
         protected bool hasMap = false;
         protected bool hasCompass = false;
-
+        protected List<AbstractItem> itemList = new List<AbstractItem>();
         protected int Arrows { get => arrows; set => arrows = value; }
         protected int Bombs { get => bombs; set => bombs = value; }
-        protected int Rubies { get => rubies; set => rubies = value; }
+        protected int Rupees { get => rupee; set => rupee = value; }
 
         public Inventory()
         {
@@ -54,19 +55,19 @@ namespace Sprint0.Inventory
             return Bombs;
         }
 
-        public void incrementRubies(int Amount)
+        public void incrementRupees(int Amount)
         {
-            Rubies += Amount;
+            Rupees += Amount;
         }
 
-        public void decrementRubies(int Amount)
+        public void decrementRupees(int Amount)
         {
-            Rubies -= Amount;
+            Rupees -= Amount;
         }
 
-        public int getRubyCount()
+        public int getRupeeCount()
         {
-            return Rubies;
+            return Rupees;
         }
 
         public bool getMapState()
@@ -87,6 +88,20 @@ namespace Sprint0.Inventory
         {
             hasCompass = true;
         }
+        public void addItem(AbstractItem toAdd)
+        {
+            itemList.Add(toAdd);
 
+        }
+        public void removeItem(AbstractItem toRemove)
+        {
+            itemList.Remove(toRemove);
+
+        }
+        public bool checkItem(AbstractItem check)
+        {
+            return itemList.Contains(check);
+
+        }
     }
 }
