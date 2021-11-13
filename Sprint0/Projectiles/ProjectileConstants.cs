@@ -33,7 +33,14 @@ namespace Poggus.Projectiles
         public static Point fireSize = new Point(32, 32);
         public static Point swordBeamExplosionSize = new Point(8, 8);
 
-
+        public static int regArrowLife = 3000;
+        public static int blueArrowLife = 4000;
+        public static int boomerangLife = 3000;
+        public static int bombLife = 1000;
+        public static int fireballLife = 2000;
+        public static int fireLife = 2000;
+        public static int swordBeamLife = 3000;
+        public static int swordBeamBurstLife = 1000;
 
         public static int redArrowDamage = 2;
         public static int blueArrowDamage = 4;

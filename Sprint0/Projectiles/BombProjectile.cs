@@ -10,7 +10,7 @@ namespace Poggus.Projectiles
     {
         public BombProjectile(Point position) : base(position, Point.Zero, ProjectileConstants.BombSize)
         {
-            Life = 1000;
+            Life = ProjectileConstants.bombLife;
         }
         public override void Update(GameTime gameTime)
         {

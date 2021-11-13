@@ -11,7 +11,7 @@ namespace Poggus.Projectiles
         Point acceleration;
         public LinkBoomerangProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.boomerangSize)
         {
-            Life = 3000;
+            Life = ProjectileConstants.boomerangLife;
             //Set the acceleration to be enough to completley reverse velocity over myLife.
             acceleration = new Point(2 * velocity.X / Life, 2 * (velocity.Y / Life));
         }

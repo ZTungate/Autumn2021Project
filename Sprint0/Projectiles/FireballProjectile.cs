@@ -10,7 +10,7 @@ namespace Poggus.Projectiles
     {
         public FireballProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.fireballSize)
         {
-            Life = 4000;
+            Life = ProjectileConstants.fireballLife;
         }
         public override void Update(GameTime gameTime)
         {

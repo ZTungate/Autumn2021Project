@@ -10,7 +10,7 @@ namespace Poggus.Projectiles
     {
         public BlueArrowProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
         {
-            Life = 1000;
+            Life = ProjectileConstants.blueArrowLife;
         }
         public override void Update(GameTime gameTime)
         {

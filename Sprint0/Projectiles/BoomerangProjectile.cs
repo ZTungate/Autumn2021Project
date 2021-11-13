@@ -11,8 +11,7 @@ namespace Poggus.Projectiles
         Point acceleration;
         public BoomerangProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.boomerangSize)
         {
-            //Boomerangs have a life of 3 seconds. (could be changed).
-            Life = 3000;
+            Life = ProjectileConstants.boomerangLife;
             //Set the acceleration to be enough to completley reverse velocity over myLife.
             acceleration = new Point(2 * velocity.X / Life, 2 * (velocity.Y / Life));
         }

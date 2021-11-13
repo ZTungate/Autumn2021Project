@@ -11,8 +11,7 @@ namespace Poggus.Projectiles
         Point acceleration;
         public FireProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.fireSize)
         {
-            //Boomerangs have a life of 3 seconds. (could be changed).
-            Life = 1000;
+            Life = ProjectileConstants.fireLife;
             //Set the acceleration to be enough to completley reverse velocity over myLife.
             acceleration = new Point(velocity.X / Life, velocity.Y / Life);
         }

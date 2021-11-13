@@ -8,10 +8,9 @@ namespace Poggus.Projectiles
 {
     public class SwordBeamExplosionProjectile : AbstractProjectile
     {
-
         public SwordBeamExplosionProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.swordBeamExplosionSize)
         {
-            Life = 400;
+            Life = ProjectileConstants.swordBeamBurstLife;
         }
         public override void Update(GameTime gameTime)
         {

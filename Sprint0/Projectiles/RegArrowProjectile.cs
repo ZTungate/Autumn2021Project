@@ -10,8 +10,7 @@ namespace Poggus.Projectiles
     {
         public RegArrowProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
         {
-            //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            Life = 700;
+            Life = ProjectileConstants.regArrowLife;
         }
         public override void Update(GameTime gameTime)
         {
