@@ -19,6 +19,8 @@ namespace Poggus.Player
         public ISprite sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
 
+        public int health { get; set; }
+
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
         public float Timer = 0f;
@@ -35,6 +37,7 @@ namespace Poggus.Player
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             colorIndex = 0;
+            health = LinkConstants.linkHealth;
         }
 
         public void Update(GameTime gameTime)
@@ -82,13 +85,21 @@ namespace Poggus.Player
             sprite.Draw(spriteBatch, DestRect);   //draw the player sprite
         }
 
-        public void TakeDamage()
+        public void TakeDamage(int dmgAmount)
         {
             if (!isDamaged) {
                 isDamaged = true;
                 canMove = false;
                 sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
+
+                health -= dmgAmount;
+            }
+
+            //Kill link if his health hits zero
+            if(health <= 0)
+            {
+                state = new DeadLinkState(this, sprite);
             }
             /*state.takeDamage();*/
         }

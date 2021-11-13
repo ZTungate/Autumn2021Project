@@ -20,7 +20,7 @@ namespace Poggus.Enemies
             //Assign an arbitrary starting positon for the thrower
             //Pass the projectile handler in
             projectiles = ProjectileFactory.Instance;
-            Health = EnemyConstants.throwerHealth;
+            health = EnemyConstants.throwerHealth;
         }
 
         public override void Update(GameTime gameTime)

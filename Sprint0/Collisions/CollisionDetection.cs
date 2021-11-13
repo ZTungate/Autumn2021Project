@@ -7,7 +7,6 @@ using Poggus;
 using Poggus.Blocks;
 using Poggus.Enemies;
 using Poggus.Items;
-using Poggus.Player;
 using Poggus.Projectiles;
 
 namespace Poggus.Collisions

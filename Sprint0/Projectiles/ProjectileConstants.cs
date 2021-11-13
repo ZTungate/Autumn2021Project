@@ -40,6 +40,8 @@ namespace Poggus.Projectiles
         public static int bombDamage = 4;
         public static int fireDamage = 1;
         public static int swordBeamDamage = 1;
+        public static int throwerBoomerangDamage = 1;
+        public static int fireballDamage = 1;
 
     }
 }

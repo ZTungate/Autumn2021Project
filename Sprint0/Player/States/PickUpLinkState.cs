@@ -21,11 +21,11 @@ namespace Poggus.Player
             stateTime = LinkConstants.itemUseTime;
         }
 
-        public void TakeDamage()
+       /* public void TakeDamage()
         {
             //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
             link.TakeDamage();
-        }
+        }*/
 
         public void Update(GameTime gameTime)
         {

@@ -10,7 +10,7 @@ namespace Poggus.Player
 						   //http://web.cse.ohio-state.edu/~boggus.2/3902/slides/GoombaStateExample.cs
 	{
 		void Update(GameTime gameTime);
-		void TakeDamage();
+		//void TakeDamage();
 		void UseItem(ProjectileTypes item);
 		void SwordAttack();
 		void Move(direction direction);

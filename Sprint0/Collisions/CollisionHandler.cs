@@ -79,7 +79,15 @@ namespace Poggus.Collisions
                     }
                     else {//hurt link
                         //new PlayerTakeDamageCommand(myGame).Execute();
-                        projLink.link2.TakeDamage();
+                        if(projLink.proj1 is BoomerangProjectile)
+                        {
+                            projLink.link2.TakeDamage(ProjectileConstants.throwerBoomerangDamage);
+                        }
+                        else
+                        {
+                            projLink.link2.TakeDamage(ProjectileConstants.fireballDamage);
+                        }
+                        
                     }
 
                 }
@@ -130,7 +138,46 @@ namespace Poggus.Collisions
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                     P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
-                    if (projEne.IsCollision && !(projEne.proj1 is FireballProjectile || projEne.proj1 is BoomerangProjectile)) {
+                    /*if (projEne.IsCollision && !(projEne.proj1 is FireballProjectile || projEne.proj1 is BoomerangProjectile)) {
+                        eneToRemove.Add(projEne.enemy2);
+                    }*/
+                    if(projEne.IsCollision && (projEne.proj1 is LinkBoomerangProjectile) && (projEne.enemy2 is Slime || projEne.enemy2 is Bat))
+                    {
+                        //If the projectile was a boomerang and the enemy was a bat or slime, kill it.
+                        eneToRemove.Add(projEne.enemy2);
+                    }
+                    else if(projEne.IsCollision)
+                    {
+                        //For any non-enemy projectile, have the enemy take damage and kill the projectile.
+                        IProjectile projectile = projEne.proj1;
+                        if(projectile is LinkBoomerangProjectile)
+                        {
+                            //Stun the enemy
+                        }
+                        else if(projectile is RegArrowProjectile)
+                        {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
+                            projEne.proj1.Life = 0;
+                        }
+                        else if (projectile is BlueArrowProjectile)
+                        {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
+                            projEne.proj1.Life = 0;
+                        }
+                        else if (projectile is BombProjectile)
+                        {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
+                            projEne.proj1.Life = 0;
+                        }else if (projectile is SwordBeamExplosionProjectile || projectile is SwordBeamProjectile)
+                        {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            projEne.proj1.Life = 0;
+                        }
+                    }
+
+                    //Kill any enemies with health <= 0;
+                    if (projEne.enemy2.health <= 0)
+                    {
                         eneToRemove.Add(projEne.enemy2);
                     }
                 }
