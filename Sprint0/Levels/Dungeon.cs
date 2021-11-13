@@ -73,7 +73,6 @@ namespace Poggus.Levels
             if (levelDictionary.ContainsKey(nextLevelPoint))
             {
                 SetCurrentLevel(nextLevelPoint);
-                UpdateLevelContentPositions(new Point(-direction.X * levelWidth, -direction.Y * levelHeight));
             }
         }
         public void UpdateLevelContentPositions(Point direction)
@@ -92,8 +91,10 @@ namespace Poggus.Levels
         }
         public void SetCurrentLevel(Point levelPoint)
         {
+            Point dir = levelPoint - currentLevelPoint;
             currentLevelPoint = levelPoint;
             this.currentLevel = levelDictionary[levelPoint];
+            UpdateLevelContentPositions(new Point(-dir.X * levelWidth, -dir.Y * levelHeight));
         }
         public Level GetCurrentLevel()
         {

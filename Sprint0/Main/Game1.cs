@@ -123,8 +123,6 @@ namespace Poggus
             {
                 //Update Link
                 link.Update(gameTime);
-                System.Diagnostics.Debug.WriteLine("apdfjas");
-
 
                 dungeon.UpdateCurrent(gameTime);
 
@@ -185,11 +183,7 @@ namespace Poggus
         }
         public void togglePause()
         {
-            /*if (!inventoryOpen)
-            {*/
             isPaused = !isPaused;
-            /*}*/
-            System.Diagnostics.Debug.WriteLine("apdfjas");
         }
         public void toggleOpenInventory()
         {

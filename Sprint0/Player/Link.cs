@@ -82,7 +82,9 @@ namespace Poggus.Player
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch, DestRect);   //draw the player sprite
+            Rectangle tempRect = new Rectangle(DestRect.Location, new Point((int)(sprite.SourceRect[sprite.CurrentFrame].Width * Game1.gameScaleX), (int)(sprite.SourceRect[sprite.CurrentFrame].Height * Game1.gameScaleY)));
+            
+            sprite.Draw(spriteBatch, tempRect);   //draw the player sprite
         }
 
         public void TakeDamage(int dmgAmount)
