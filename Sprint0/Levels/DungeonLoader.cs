@@ -46,5 +46,9 @@ namespace Poggus.Levels
                 Game1.instance.SetDungeon(newDungeon);
             }
         }
+        public void ResetDungeon()
+        {
+            dungeonDictionary.Clear();
+        }
     }
 }

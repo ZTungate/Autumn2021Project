@@ -156,6 +156,11 @@ namespace Poggus.Levels
                 levels.Add(levelName, newLevel);
             }
         }
+
+        public void ResetLevels()
+        {
+            levels.Clear();
+        }
         public Level GetLevel(string name)
         {
             Level outLevel;

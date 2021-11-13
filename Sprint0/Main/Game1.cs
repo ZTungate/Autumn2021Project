@@ -160,15 +160,21 @@ namespace Poggus
 
         public void Reset()
         {
-            //link = new Link();
-            //link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
-            this.dungeon.SetCurrentLevel(new Point(0, 0));
             
-            //Set the enemy sprite factory to a new instance
-            //enemySpriteFactory = EnemySpriteFactory.Instance;
+            link = new Link
+            {
+                ProjectileFactory = projectileFactory
+            };
+            link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
+            DoorFactory.instance.LoadContent(Content);
+            LevelLoader.instance.ResetLevels();
+            DungeonLoader.instance.ResetDungeon();
+            LevelLoader.instance.LoadAllLevels(Content);
+            DungeonLoader.instance.LoadDungeons();
 
-            //Re-Initialize the projectile factory.
-            //projectileFactory.Initalize();
+
+            handler = new CollisionHandler(this);
+            
         }
         public void SetDungeon(Dungeon dungeon)
         {
