@@ -124,17 +124,18 @@ namespace Poggus
                 //Update Link
                 link.Update(gameTime);
                 System.Diagnostics.Debug.WriteLine("apdfjas");
+
+
+                dungeon.UpdateCurrent(gameTime);
+
+                //Update the projectiles
+                projectileFactory.UpdateProjectiles(gameTime);
+
+                //TODO: poop
+                handler.Update();
+
+                base.Update(gameTime);
             }
-
-            dungeon.UpdateCurrent(gameTime);
-
-            //Update the projectiles
-            projectileFactory.UpdateProjectiles(gameTime);
-
-            //TODO: poop
-            handler.Update();
-
-            base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
