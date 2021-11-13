@@ -63,6 +63,7 @@ namespace Sprint2
             this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
             this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
             this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
+            this.controllerMappings.Add(Keys.P, new PauseCommand(myGame));
 
             this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
             this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
@@ -73,25 +74,35 @@ namespace Sprint2
         KeyboardState state;
         public void Update()
         {
-            KeyboardState lastState = state;
-            state = Keyboard.GetState();
-            Keys[] pressedKeys = state.GetPressedKeys();
 
-            checkPlayerIdle(lastState, state);
+                KeyboardState lastState = state;
+                state = Keyboard.GetState();
+                Keys[] pressedKeys = state.GetPressedKeys();
+            if (!myGame.Paused())
+            {
+                checkPlayerIdle(lastState, state);
 
-            foreach (Keys key in pressedKeys) {
-                if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
+                foreach (Keys key in pressedKeys)
                 {
-                    //If this key is bound to a command, and was not down last tick, execute the relevant command.
-                    controllerMappings[key].Execute();
-                }
-                else if (controllerMappings.ContainsKey(key) && movementKeys.Contains(key))
-                {
-                    //If this key is pressed, was pressed last tick, and is a movement key, execute the command.
-                    controllerMappings[key].Execute();
+                    if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
+                    {
+                        //If this key is bound to a command, and was not down last tick, execute the relevant command.
+                        controllerMappings[key].Execute();
+                    }
+                    else if (controllerMappings.ContainsKey(key) && movementKeys.Contains(key))
+                    {
+                        //If this key is pressed, was pressed last tick, and is a movement key, execute the command.
+                        controllerMappings[key].Execute();
+                    }
                 }
             }
-
+            else
+            {
+                if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P))
+                {
+                    controllerMappings[Keys.P].Execute();
+                }
+            }
             //Checks if movement controls are released to play the idle animation & stop movement
         }
 
