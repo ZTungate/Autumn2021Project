@@ -17,7 +17,7 @@ namespace Poggus.Player
         {
             link = Link;
             mySprite = new LeftUseItemLinkSprite(sprite.Texture, Link);
-            link.sprite = mySprite;
+            link.Sprite = mySprite;
             stateTime = LinkConstants.itemUseTime;
             Attack(item);
         }
@@ -38,7 +38,7 @@ namespace Poggus.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
-                link.state = new LeftIdleLinkState(link, mySprite);
+                link.State = new LeftIdleLinkState(link, mySprite);
             }
         }
 
@@ -49,10 +49,10 @@ namespace Poggus.Player
 
         public void SwordAttack()
         {
-            link.state = new LeftSwordLinkState(link, mySprite);
+            link.State = new LeftSwordLinkState(link, mySprite);
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //Link can not move while throwing an item.
         }
@@ -64,10 +64,10 @@ namespace Poggus.Player
             {
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), direction.left);
+                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), Direction.left);
                     break;
                 case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), direction.left);
+                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), Direction.left);
                     break;
                 case ProjectileTypes.linkBoomerang:
                     link.ProjectileFactory.LinkBoomerang(link.GetPosition(), (RegBoomerangVelocity * directionVector).ToPoint());

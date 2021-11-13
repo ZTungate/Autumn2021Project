@@ -14,7 +14,7 @@ namespace Poggus.Player
         {
             link = Link;
             mySprite = new LeftIdleLinkSprite(sprite.Texture, link);
-            link.sprite = mySprite;
+            link.Sprite = mySprite;
         }
 
         /*public void TakeDamage()
@@ -30,34 +30,34 @@ namespace Poggus.Player
 
         public void UseItem(ProjectileTypes item)
         {
-            link.state = new LeftItemUsingLinkState(link, mySprite, item);
+            link.State = new LeftItemUsingLinkState(link, mySprite, item);
         }
 
         public void SwordAttack()
         {
-            link.state = new LeftSwordLinkState(link, mySprite);
+            link.State = new LeftSwordLinkState(link, mySprite);
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //If told to move in the direction this state is facing, switch to a moving state. Otherwise, switch to an idle state in that direction.
             switch (direction)
             {
-                case direction.down:
+                case Direction.down:
                     //Change to down idle if told to move down.
-                    link.state = new DownIdleLinkState(link, mySprite);
+                    link.State = new DownIdleLinkState(link, mySprite);
                     break;
-                case direction.right:
+                case Direction.right:
                     //Change to a right idle state if told to move right
-                    link.state = new RightIdleLinkState(link, mySprite);
+                    link.State = new RightIdleLinkState(link, mySprite);
                     break;
-                case direction.left:
+                case Direction.left:
                     //Change to a left moving state if told to move left
-                    link.state = new LeftMovingLinkState(link, mySprite);
+                    link.State = new LeftMovingLinkState(link, mySprite);
                     break;
-                case direction.up:
+                case Direction.up:
                     //Change to an up idle state if told to move up
-                    link.state = new UpIdleLinkState(link, mySprite);
+                    link.State = new UpIdleLinkState(link, mySprite);
                     break;
             }
         }

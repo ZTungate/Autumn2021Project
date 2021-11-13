@@ -17,18 +17,16 @@ namespace Poggus.Player
 		{
             link = Link;
             mySprite = new RightSwordLinkSprite(sprite.Texture, Link);
-            //TODO: make sword beam only come out if link full health
-            link.ProjectileFactory.NewSwordBeam(link.GetPosition(), direction.right);
 
-            link.sprite = mySprite; 
+            link.Sprite = mySprite; 
             stateTime = LinkConstants.swordAttackTime;
-        }
 
-        /*public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.TakeDamage();
-        }*/
+            //Fire a sword beam if link is at full health
+            if (link.FullHealth())
+            {
+                link.ProjectileFactory.NewSwordBeam(link.GetPosition(), Direction.right);
+            }
+        }
 
         public void Update(GameTime gameTime)
         {
@@ -40,7 +38,7 @@ namespace Poggus.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction
-                link.state = new RightIdleLinkState(link,mySprite);
+                link.State = new RightIdleLinkState(link,mySprite);
             }
         }
 
@@ -53,13 +51,13 @@ namespace Poggus.Player
         {
             //Link can not stab while already stabbing.
         }
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //No moving during sword attack
         }
         public void PickUp(AbstractItem item)
         {
-            link.state = new PickUpLinkState(link, mySprite, item);
+            link.State = new PickUpLinkState(link, mySprite, item);
         }
     }
 }

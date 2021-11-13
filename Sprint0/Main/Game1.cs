@@ -103,7 +103,7 @@ namespace Poggus
             itemSpriteFactory.LoadAllTextures(Content);
 
             //Create sprite for Link
-            link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
+            link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
             DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
@@ -160,7 +160,7 @@ namespace Poggus
         public void Reset()
         {
             link = new Link();
-            link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
+            link.Sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
 
 
             //Set the enemy sprite factory to a new instance

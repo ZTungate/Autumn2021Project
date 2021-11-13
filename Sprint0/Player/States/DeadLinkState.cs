@@ -13,7 +13,7 @@ namespace Poggus.Player
         {
             link = Link;
             ISprite newSprite = new DeadLinkSprite(sprite.Texture, link);
-            link.sprite = newSprite;
+            link.Sprite = newSprite;
         }
 
         public void TakeDamage()
@@ -35,7 +35,7 @@ namespace Poggus.Player
             //Link is dead, no implementation needed.
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //Link is dead, no implementation needed.
         }

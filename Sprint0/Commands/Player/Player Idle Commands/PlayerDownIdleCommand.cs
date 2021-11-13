@@ -15,7 +15,7 @@ namespace Poggus.Commands
         }
         public void Execute()
         {
-            game.link.state = new DownIdleLinkState(game.link, game.link.sprite);
+            game.link.State = new DownIdleLinkState(game.link, game.link.Sprite);
         }
     }
 }

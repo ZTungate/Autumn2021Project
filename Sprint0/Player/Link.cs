@@ -13,13 +13,12 @@ namespace Poggus.Player
         //Game class contains a sprite factory, which creates each sprite with a source rectangle. this is saved in spriteBatch
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
 
-        public ILinkState state { get; set; }
+        public ILinkState State { get; set; }
         public Rectangle DestRect { get; set; }
-        public Point oldPosition { get; set; }
-        public ISprite sprite { get; set; }
+        public Point OldPosition { get; set; }
+        public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
-
-        public int health { get; set; }
+        public int Health { get; set; }
 
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
@@ -30,19 +29,22 @@ namespace Poggus.Player
         int colorIndex = 0;
         float invincibilityFramesDuration = 2000f;
         float hitStunDuration = 500f;
+        private int maxHealth;
 
         public Link()
         {
-            state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
+            State = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             colorIndex = 0;
-            health = LinkConstants.linkHealth;
+            //Set link's health and maxHealth
+            Health = LinkConstants.linkHealth;
+            maxHealth = Health;
         }
 
         public void Update(GameTime gameTime)
         {
-            oldPosition = DestRect.Location;
+            OldPosition = DestRect.Location;
 
             if (isDamaged)
             {
@@ -51,7 +53,7 @@ namespace Poggus.Player
                 if(invincibilityFramesDuration - damageTimer % damageFlashRate == 0)
                 {
                     colorIndex++;
-                    sprite.Color = damageColors[colorIndex % damageColors.Length];
+                    Sprite.Color = damageColors[colorIndex % damageColors.Length];
                 }
 
 
@@ -62,7 +64,7 @@ namespace Poggus.Player
                 if (damageTimer <= 50f)
                 { //damage invincibility time
                     isDamaged = false;
-                    sprite.Color = Color.White;
+                    Sprite.Color = Color.White;
                 }
                 else if (damageTimer < (invincibilityFramesDuration-hitStunDuration)) //hit stun duration
                 {
@@ -76,15 +78,15 @@ namespace Poggus.Player
                 canMove = true;
                 colorIndex = 0;
             }
-            state.Update(gameTime);
-            sprite.Update(gameTime);
+            State.Update(gameTime);
+            Sprite.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle tempRect = new Rectangle(DestRect.Location, new Point((int)(sprite.SourceRect[sprite.CurrentFrame].Width * Game1.gameScaleX), (int)(sprite.SourceRect[sprite.CurrentFrame].Height * Game1.gameScaleY)));
+            Rectangle tempRect = new Rectangle(DestRect.Location, new Point((int)(Sprite.SourceRect[Sprite.CurrentFrame].Width * Game1.gameScaleX), (int)(Sprite.SourceRect[Sprite.CurrentFrame].Height * Game1.gameScaleY)));
             
-            sprite.Draw(spriteBatch, tempRect);   //draw the player sprite
+            Sprite.Draw(spriteBatch, tempRect);   //draw the player sprite
         }
 
         public void TakeDamage(int dmgAmount)
@@ -92,23 +94,23 @@ namespace Poggus.Player
             if (!isDamaged) {
                 isDamaged = true;
                 canMove = false;
-                sprite.Color = Color.Red;
+                Sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
 
-                health -= dmgAmount;
+                Health -= dmgAmount;
             }
 
             //Kill link if his health hits zero
-            if(health <= 0)
+            if(Health <= 0)
             {
-                state = new DeadLinkState(this, sprite);
+                State = new DeadLinkState(this, Sprite);
             }
             /*state.takeDamage();*/
         }
 
         public void UseItem(ProjectileTypes item)
         {
-            state.UseItem(item);
+            State.UseItem(item);
         }
 
         public void Move(Point moveDirection)
@@ -121,24 +123,24 @@ namespace Poggus.Player
         public void Reset()
         {
             //This may not work, since the state does not determine the sprite
-            state = new InitialLinkState(this, sprite); //start the player in the right idle state
+            State = new InitialLinkState(this, Sprite); //start the player in the right idle state
             DestRect = new Rectangle(new Point(20, 20), DestRect.Size);
 
             colorIndex = 0;
 
-            sprite.Color = Color.White;
+            Sprite.Color = Color.White;
         }
 
         //Attacks
 
         public void SwordAttack()
         {
-            state.SwordAttack();
+            State.SwordAttack();
         }
 
         public void PickUp(AbstractItem item)
         {
-            state.PickUp(item);
+            State.PickUp(item);
         }
 
         public Point GetPosition()
@@ -148,6 +150,16 @@ namespace Poggus.Player
         public void SetPosition(Point pos)
         {
             this.DestRect = new Rectangle(pos, DestRect.Size);
+        }
+
+        public bool FullHealth()
+        {
+            //Return true if health is full, false otherwise
+            if (Health == maxHealth)
+            {
+                return true;
+            }
+            return false;
         }
     }
     
