@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Poggus.Items.ItemSprites;
+using Poggus.Player;
 
 namespace Poggus.Items
 {
@@ -50,5 +51,6 @@ namespace Poggus.Items
         {
             this.rect = new Rectangle(pos, rect.Size);
         }
+        abstract public void useItem(ILink link);
     }
 }
