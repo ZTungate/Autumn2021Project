@@ -82,7 +82,7 @@ namespace Sprint2.Player
                     link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
                     break;
                 case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(new Vector2(link.position.X + link.sprite.SourceRect[link.sprite.CurrentFrame].Width * 2, link.position.Y));
+                    link.ProjectileFactory.NewBomb(link.position, direction.right);
                     break;
             }
         }

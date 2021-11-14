@@ -39,30 +39,11 @@ namespace Sprint2.Player
 
         public void Update(GameTime gameTime)
         {
-            // Implement animation changes here
-/*                        if (player.isDamaged)
-            {
-                if(Timer > colorFlashInterval)
-                {
-                    colorIndex++;
-                    Timer = 0;
-                }
-                else
-                {
-                    Timer += (float) gameTime.ElapsedGameTime.TotalMilliseconds;
-}
-            }
-            else
-{
-    colorIndex = 0;
-}*/
             
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width* (int)LinkConstants.scaleX, SourceRect[CurrentFrame].Height* (int)LinkConstants.scaleY);
-            /*            spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
             //Can use this format instead of the other one
             spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame%FrameCount], player.color, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.FlipHorizontally, 1);
         }

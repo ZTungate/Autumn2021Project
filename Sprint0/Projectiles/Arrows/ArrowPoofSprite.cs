@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Sprint2
 {
-    public class DownRegArrowSprite : IAnimatedSprite
+    public class ArrowPoofSprite : IAnimatedSprite
     {
         public float Timer { get; set; } = 0f;
         public float Interval { get; set; } = 500f;
@@ -24,13 +24,13 @@ namespace Sprint2
 
         public bool incFrame = true;
 
-        public DownRegArrowSprite(Texture2D spriteSheet)
+        public ArrowPoofSprite(Texture2D spriteSheet)
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
             SourceRect = new Rectangle[1];
 
-            SourceRect[0] = new Rectangle(1, 185, 8, 16); 
+            SourceRect[0] = new Rectangle(53, 185, 8, 16);
 
         }
 
@@ -40,7 +40,10 @@ namespace Sprint2
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.FlipVertically, 1);
+            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame % FrameCount].Width * (int)LinkConstants.scaleX, SourceRect[CurrentFrame % FrameCount].Height * (int)LinkConstants.scaleY);
+            /*spriteBatch.Draw(Texture, destRect, SourceRect[CurrentFrame], Color.White);*/
+            spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
+
         }
     }
 

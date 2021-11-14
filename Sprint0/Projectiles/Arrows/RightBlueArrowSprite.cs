@@ -28,27 +28,14 @@ namespace Sprint2
         {
             //Set the texture2D to the provided spriteSheet (already initialized by factory)
             Texture = spriteSheet;
-            SourceRect = new Rectangle[2];
+            SourceRect = new Rectangle[1];
 
-            SourceRect[0] = new Rectangle(36, 185, 16, 16);  //Set the frame for right idle link
-            SourceRect[1] = new Rectangle(53, 185, 8, 16);
-
-
+            SourceRect[0] = new Rectangle(36, 185, 16, 16);  
         }
 
         public void Update(GameTime gameTime)
         {
             // Implement animation changes here
-
-            //Animate the sprites (pulled from animatedStillSprite.cs)
-            if (Timer > Interval) {
-
-                CurrentFrame = 1;
-            }
-            else {
-                //Increment timer by the elapsed time in game.
-                Timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-            }
         }
         public void Draw(SpriteBatch spriteBatch)
         {

@@ -37,11 +37,9 @@ namespace Sprint2.Projectiles
         public void Update(GameTime gameTime)
         {
             //Move the arrow according to its velocity.
-            if (myLife > 200) {
-                myPosition += myVelocity;
-                mySprite.Position = Position;
+            myPosition += myVelocity;
+            mySprite.Position = Position;
 
-            }
             mySprite.Update(gameTime);
 
             myLife -= gameTime.ElapsedGameTime.Milliseconds;
@@ -53,7 +51,7 @@ namespace Sprint2.Projectiles
             myPosition = position;
             myVelocity = velocity;
             //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            myLife = 1000;
+            myLife = 800;
         }
     }
 }

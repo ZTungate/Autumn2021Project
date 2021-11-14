@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Sprint0.Player;
 using Sprint0.Projectiles;
 using Sprint2;
 using Sprint2.Player;
@@ -59,7 +60,7 @@ namespace Sprint2.Projectiles
                 else
                 {
                     //If life < 0, add it to the list for removal.
-                    toRemove.Add(projectile);
+                    toRemove.Add(projectile); 
                 }
             }
             //Remove all projectiles that had life < 0 from the active list.
@@ -69,7 +70,7 @@ namespace Sprint2.Projectiles
 
                 //special after effects for some projectiles
                 if (projectile is SwordBeamProjectile) {
-                    
+                    // TODO: sword and arrow poofs
                 }
                 else if (projectile is BlueArrowProjectile | projectile is RegArrowProjectile) {
 
@@ -133,6 +134,11 @@ namespace Sprint2.Projectiles
             return new DownBlueArrowSprite(linkSpriteSheet);
         }
 
+        public ISprite CreateArrowPoofSprite()
+        {
+            return new ArrowPoofSprite(linkSpriteSheet);
+        }
+
         public ISprite CreateRightSwordSprite()
         {
             return new RightSwordSprite(linkSpriteSheet);
@@ -160,25 +166,25 @@ namespace Sprint2.Projectiles
 
         public void NewRegArrow(Vector2 position,direction facing)
         {
-            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            //Generate an arrow with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile regArrow;
             switch (facing) {
-                case Player.direction.right:
+                case direction.right:
                     regArrow = new RegArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(1, 0));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateRightRegArrowSprite();
                     break;
-                case Player.direction.left:
+                case direction.left:
                     regArrow = new RegArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(-1, 0));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateLeftRegArrowSprite();
                     break;
-                case Player.direction.up:
+                case direction.up:
                     regArrow = new RegArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, -1));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateUpRegArrowSprite();
                     break;
-                case Player.direction.down:
+                case direction.down:
                     regArrow = new RegArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, 1));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateDownRegArrowSprite();
@@ -186,27 +192,27 @@ namespace Sprint2.Projectiles
             }
         }
 
-        public void NewBlueArrow(Vector2 position, Player.direction facing)
+        public void NewBlueArrow(Vector2 position, direction facing)
         {
-            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            //Generate an arrow with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile regArrow;
             switch (facing) {
-                case Player.direction.right:
+                case direction.right:
                     regArrow = new BlueArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(1, 0));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateRightBlueArrowSprite();
                     break;
-                case Player.direction.left:
+                case direction.left:
                     regArrow = new BlueArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(-1, 0));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateLeftBlueArrowSprite();
                     break;
-                case Player.direction.up:
+                case direction.up:
                     regArrow = new BlueArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, -1));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateUpBlueArrowSprite();
                     break;
-                case Player.direction.down:
+                case direction.down:
                     regArrow = new BlueArrowProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, 1));
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateDownBlueArrowSprite();
@@ -215,27 +221,27 @@ namespace Sprint2.Projectiles
             }
         }
 
-        public void NewSwordBeam(Vector2 position, Player.direction facing)
+        public void NewSwordBeam(Vector2 position, direction facing)
         {
             //Generate a sword beam with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile swordBeam;
             switch (facing) {
-                case Player.direction.right:
+                case direction.right:
                     swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(1, 0));
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateRightSwordSprite();
                     break;
-                case Player.direction.left:
+                case direction.left:
                     swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(-1, 0));
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateLeftSwordSprite();
                     break;
-                case Player.direction.up:
+                case direction.up:
                     swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, -1));
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateUpSwordSprite();
                     break;
-                case Player.direction.down:
+                case direction.down:
                     swordBeam = new SwordBeamProjectile(position, ProjectileConstants.ArrowVelocity * new Vector2(0, 1));
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateDownSwordSprite();
@@ -252,12 +258,27 @@ namespace Sprint2.Projectiles
             fireball.Sprite = CreateFireballSprite();
         }
 
-        public void NewBomb(Vector2 position)
+        public void NewBomb(Vector2 position, direction facing)
         {
-            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
-            IProjectile bomb = new BombProjectile(position);
+            ISprite mySprite = CreateBombSprite();
+            Vector2 bombPos = new Vector2();
+            switch (facing) {
+                case direction.down: //center and place the bomb below link
+                    bombPos = new Vector2(position.X + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Width)/2 * LinkConstants.scaleX, position.Y + LinkConstants.linkSize * LinkConstants.scaleY);
+                    break;
+                case direction.up:
+                    bombPos = new Vector2(position.X + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Width) / 2 * LinkConstants.scaleX, position.Y - mySprite.SourceRect[mySprite.CurrentFrame].Height * LinkConstants.scaleY);
+                    break;
+                case direction.right:
+                    bombPos = new Vector2(position.X + LinkConstants.linkSize * LinkConstants.scaleX, position.Y + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Height) / 2 * LinkConstants.scaleY);
+                    break;
+                case direction.left:
+                    bombPos = new Vector2(position.X - mySprite.SourceRect[mySprite.CurrentFrame].Width * LinkConstants.scaleX, position.Y + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Height) / 2 * LinkConstants.scaleY);
+                    break;
+            }
+            IProjectile bomb = new BombProjectile(bombPos);
             projectiles.Add(bomb);
-            bomb.Sprite = CreateBombSprite();
+            bomb.Sprite = mySprite;
         }
 
         public ISprite CreateBoomerangSprite()

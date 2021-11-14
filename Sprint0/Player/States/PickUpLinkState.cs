@@ -63,29 +63,7 @@ namespace Sprint2.Player
 
         private void Attack(ProjectileTypes item)
         {
-            Vector2 directionVector = new Vector2(0, -1);
-            switch (item)
-            {
-                //Spawn the relevant projectile moving downwards.
-                case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.position, direction.up);
-                    break;
-                case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.position, direction.up);
-                    break;
-                case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.LinkBoomerang(link.position, RegBoomerangVelocity * directionVector);
-                    break;
-                case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.LinkBlueBoomerang(link.position, BlueBoomerangVelocity * directionVector);
-                    break;
-                case ProjectileTypes.fire:
-                    link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
-                    break;
-                case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(new Vector2(link.position.X, link.position.Y - link.sprite.SourceRect[link.sprite.CurrentFrame].Height * 2));
-                    break;
-            }
+            //No Implementation needed.
         }
 
     }

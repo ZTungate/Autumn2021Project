@@ -11,5 +11,6 @@ namespace Sprint0.Player
         public static int swordAttackTime = 300;
         public static float scaleX, scaleY;
         public static float linkSpeed = 3;
+        public static int linkSize = 16; //he is 16x16
     }
 }

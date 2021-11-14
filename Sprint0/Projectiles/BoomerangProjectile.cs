@@ -58,7 +58,7 @@ namespace Sprint2.Projectiles
             myVelocity = velocity;
             //Boomerangs have a life of 3 seconds. (could be changed).
             myLife = 3000;
-            //Set the acceleration to be enough to completley reverse velocity over myLife.
+            //Set the acceleration to be enough to completely reverse velocity over myLife.
             accelleration = 2 * (velocity / myLife);
         }
     }

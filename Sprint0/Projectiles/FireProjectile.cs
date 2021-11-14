@@ -40,7 +40,7 @@ namespace Sprint2.Projectiles
         {
             //Move the boomerang according to its velocity.
             myPosition += myVelocity;
-            mySprite.Position = Position;
+            mySprite.Position = myPosition;
             mySprite.Update(gameTime);
 
             //Cut the projectile's life by the elapsed time
@@ -53,7 +53,7 @@ namespace Sprint2.Projectiles
         public FireProjectile(Vector2 position, Vector2 velocity)
         {
             //Set the velocity and position to the passed values.
-            myPosition = position;
+            Position = position;
             myVelocity = velocity;
             //Boomerangs have a life of 3 seconds. (could be changed).
             myLife = 1000;
