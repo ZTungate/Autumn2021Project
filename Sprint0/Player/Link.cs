@@ -4,6 +4,7 @@ using System;
 using Poggus.Projectiles;
 using static Poggus.Projectiles.ProjectileConstants;
 using Poggus.Items;
+using Sprint0.Inventory;
 
 namespace Poggus.Player
 {
@@ -22,6 +23,7 @@ namespace Poggus.Player
 
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
+        public Inventory inventory = new Inventory();
         public float Timer = 0f;
         float damageFlashRate = 50f;
         public bool canMove = true;

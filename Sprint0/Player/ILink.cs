@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Poggus.Items;
 using Poggus.Projectiles;
+using Sprint0.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +20,7 @@ namespace Poggus.Player
         public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get;  set; }
         public int Health { get; set; }
-
+        public Inventory inventory { get; set; }
         void TakeDamage(int damageAmount);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
