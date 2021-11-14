@@ -69,10 +69,13 @@ namespace Poggus.Projectiles
 
                 //special after effects for some projectiles
                 if (projectile is SwordBeamProjectile) {
-                    
+                        NewSwordBeamExplosions(projectile.GetPosition());
                 }
                 else if (projectile is BlueArrowProjectile | projectile is RegArrowProjectile) {
-
+                        
+                }else if(projectile is BombProjectile)
+                {
+                    //Spawn a large explosion.
                 }
 
             }
@@ -158,6 +161,23 @@ namespace Poggus.Projectiles
             return new FireSprite(linkSpriteSheet);
         }
 
+        private ISprite CreateUpLeftSwordExplosionSprite()
+        {
+            return new UpLeftSwordExplosionSprite(linkSpriteSheet);
+        }
+        private ISprite CreateUpRightSwordExplosionSprite()
+        {
+            return new UpRightSwordExplosionSprite(linkSpriteSheet);
+        }
+        private ISprite CreateDownRightSwordExplosionSprite()
+        {
+            return new DownRightSwordExplosionSprite(linkSpriteSheet);
+        }
+        private ISprite CreateDownLeftSwordExplosionSprite()
+        {
+            return new DownLeftSwordExplosionSprite(linkSpriteSheet);
+        }
+
         public void NewRegArrow(Point position, Direction facing)
         {
             //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
@@ -221,27 +241,48 @@ namespace Poggus.Projectiles
             IProjectile swordBeam;
             switch (facing) {
                 case Direction.right:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(1, 0)), ProjectileConstants.horizSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(1, 0)), ProjectileConstants.horizSwordBeamSize, this);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateRightSwordSprite();
                     break;
                 case Direction.left:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(-1, 0)), ProjectileConstants.horizSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(-1, 0)), ProjectileConstants.horizSwordBeamSize, this);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateLeftSwordSprite();
                     break;
                 case Direction.up:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, -1)), ProjectileConstants.vertSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, -1)), ProjectileConstants.vertSwordBeamSize, this);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateUpSwordSprite();
                     break;
                 case Direction.down:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, 1)), ProjectileConstants.vertSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, 1)), ProjectileConstants.vertSwordBeamSize, this);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateDownSwordSprite();
                     break;
-
             }
+        }
+
+        public void NewSwordBeamExplosions(Point pos)
+        {
+            //Create four new sword beam explosion projectiles at the given position with standard velocities
+            IProjectile upLeft = new SwordBeamExplosionProjectile(pos, ProjectileConstants.upLeftSBExplosionVelocity);
+            IProjectile upRight = new SwordBeamExplosionProjectile(pos, ProjectileConstants.upRightSBExplosionVelocity);
+            IProjectile downRight = new SwordBeamExplosionProjectile(pos, ProjectileConstants.downRightSBExplosionVelocity);
+            IProjectile downLeft = new SwordBeamExplosionProjectile(pos, ProjectileConstants.downLeftSBExplosionVelocity);
+
+            //Assign sprites to the four projectiles
+            upLeft.Sprite = CreateUpLeftSwordExplosionSprite();
+            upRight.Sprite = CreateUpRightSwordExplosionSprite();
+            downRight.Sprite = CreateDownRightSwordExplosionSprite();
+            downLeft.Sprite = CreateDownLeftSwordExplosionSprite();
+
+            //Add the projectiles to the list
+            projectiles.Add(upLeft);
+            projectiles.Add(upRight);
+            projectiles.Add(downRight);
+            projectiles.Add(downLeft);
+
         }
 
         public void NewFireBall(Point position, Point velocity)
@@ -309,6 +350,8 @@ namespace Poggus.Projectiles
             projectiles.Add(fire);
             fire.Sprite = CreateFireSprite();
         }
+
+
 
         public List<IProjectile> getProjs()
         {

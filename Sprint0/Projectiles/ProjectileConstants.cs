@@ -25,6 +25,13 @@ namespace Poggus.Projectiles
         public static Point FireVelocity = new Point(6, 6);
         public static Point linkBoomerangVelocity = new Point(7,7);
 
+        //Sword beam explosion velocities (change velocity by changing the base).
+        private static Point baseSBExplosionVelocity = new Point(4, 4);
+        public static Point upLeftSBExplosionVelocity = new Point(-1, -1) * baseSBExplosionVelocity;
+        public static Point upRightSBExplosionVelocity = new Point(1, -1) * baseSBExplosionVelocity;
+        public static Point downLeftSBExplosionVelocity = new Point(-1, 1) * baseSBExplosionVelocity;
+        public static Point downRightSBExplosionVelocity = new Point(1, 1) * baseSBExplosionVelocity;
+
         public static Point fireAcceleration = new Point(-1, -1);
 
         public static Point VertArrowSize = new Point(16, 32);
@@ -44,7 +51,7 @@ namespace Poggus.Projectiles
         public static int fireballLife = 2000;
         public static int fireLife = 2000;
         public static int swordBeamLife = 3000;
-        public static int swordBeamBurstLife = 1000;
+        public static int swordBeamBurstLife = 500;
 
         public static int redArrowDamage = 2;
         public static int blueArrowDamage = 4;
