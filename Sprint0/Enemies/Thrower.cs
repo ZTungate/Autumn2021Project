@@ -12,7 +12,7 @@ namespace Poggus.Enemies
     {
         ProjectileFactory projectiles;
         int wait = 0;
-        int throwDelay = 4000;
+        int throwDelay = EnemyConstants.throwerAttackDelay;
         public Thrower(Point pos) : base(EnemyType.Thrower, pos, new Point(32, 32))
         {
             //Default a new thrower as a left thrower
@@ -42,8 +42,8 @@ namespace Poggus.Enemies
             if (throwDelay <= 0)
             {
                 Attack();
-                wait = 3000; //Set the thrower to wait 3 seconds (the life of a boomerang)
-                throwDelay = 4000;//Reset the delay
+                wait = ProjectileConstants.boomerangLife; //Set the thrower to wait the life of the boomerang
+                throwDelay = EnemyConstants.throwerAttackDelay;//Reset the delay
             }
             else
             {
@@ -53,9 +53,9 @@ namespace Poggus.Enemies
 
         private void RandomMove()
         {
-            //Get a random number from 0 to 9
+            //Get a random number from 0 to 19
             Random rand = new Random();
-            int value = rand.Next(10);
+            int value = rand.Next(20);
 
             //Change directions or move based on the random number
             if(value == 0)
@@ -83,7 +83,7 @@ namespace Poggus.Enemies
         private void Attack()
         {
             //Create a new boomerang moving the direction given at 3 pixels per tick.
-            projectiles.NewBoomerang(DestRect.Location, (3 * State.AttackDirection().ToVector2()).ToPoint());
+            projectiles.NewBoomerang(DestRect.Location, State.AttackDirection() * ProjectileConstants.RegBoomerangVelocity.ToPoint());
         }
 
 
