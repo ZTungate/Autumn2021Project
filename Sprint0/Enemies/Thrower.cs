@@ -57,7 +57,7 @@ namespace Poggus.Enemies
 
         private void TryRandomMove(int lastFrame)
         {
-            //Move only if not waiting and the sprite frame changed
+            //Move only if not waiting and the sprite frame changed.
             if (wait <= 0 && lastFrame != Sprite.CurrentFrame)
             {
                 //Get a random number from 0 to 19
@@ -90,7 +90,7 @@ namespace Poggus.Enemies
         private void Attack()
         {
             //Create a new boomerang moving the direction given at standard boomerang speed.
-            projectiles.NewBoomerang(DestRect.Location, State.AttackDirection() * ProjectileConstants.RegBoomerangVelocity.ToPoint());
+            projectiles.NewBoomerang(DestRect.Location, State.AttackDirection() * ProjectileConstants.RegBoomerangVelocity);
         }
 
 

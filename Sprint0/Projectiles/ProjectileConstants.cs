@@ -19,10 +19,10 @@ namespace Poggus.Projectiles
             blueBoomerang
         }
 
-        public static Vector2 ArrowVelocity = new Vector2(6, 6);
-        public static Vector2 RegBoomerangVelocity = new Vector2(7, 7);
-        public static Vector2 BlueBoomerangVelocity = new Vector2(8, 8);
-        public static Vector2 FireVelocity = new Vector2(6, 6);
+        public static Point ArrowVelocity = new Point(6, 6);
+        public static Point RegBoomerangVelocity = new Point(7, 7);
+        public static Point BlueBoomerangVelocity = new Point(8, 8);
+        public static Point FireVelocity = new Point(6, 6);
         public static Point linkBoomerangVelocity = new Point(7,7);
 
         public static Point fireAcceleration = new Point(-1, -1);

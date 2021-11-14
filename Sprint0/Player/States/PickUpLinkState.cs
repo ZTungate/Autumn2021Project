@@ -17,6 +17,7 @@ namespace Poggus.Player
         {
             link = Link;
             mySprite = new PickUpLinkSprite(sprite.Texture, Link, item);
+            mySprite.Color = sprite.Color;
             link.Sprite = mySprite;
             stateTime = LinkConstants.itemUseTime;
         }

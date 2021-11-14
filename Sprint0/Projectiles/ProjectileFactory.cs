@@ -164,22 +164,22 @@ namespace Poggus.Projectiles
             IProjectile regArrow;
             switch (facing) {
                 case Direction.right:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(1, 0)), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateRightRegArrowSprite();
                     break;
                 case Direction.left:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(-1, 0)), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateLeftRegArrowSprite();
                     break;
                 case Direction.up:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint(), ProjectileConstants.VertArrowSize);
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, -1)), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateUpRegArrowSprite();
                     break;
                 case Direction.down:
-                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint(), ProjectileConstants.VertArrowSize);
+                    regArrow = new RegArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, 1)), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateDownRegArrowSprite();
                     break;
@@ -192,22 +192,22 @@ namespace Poggus.Projectiles
             IProjectile regArrow;
             switch (facing) {
                 case Direction.right:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(1, 0)), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateRightBlueArrowSprite();
                     break;
                 case Direction.left:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint(), ProjectileConstants.HorizArrowSize);
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(-1, 0)), ProjectileConstants.HorizArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateLeftBlueArrowSprite();
                     break;
                 case Direction.up:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint(), ProjectileConstants.VertArrowSize);
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, -1)), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateUpBlueArrowSprite();
                     break;
                 case Direction.down:
-                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint(), ProjectileConstants.VertArrowSize);
+                    regArrow = new BlueArrowProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, 1)), ProjectileConstants.VertArrowSize);
                     projectiles.Add(regArrow);
                     regArrow.Sprite = CreateDownBlueArrowSprite();
                     break;
@@ -221,22 +221,22 @@ namespace Poggus.Projectiles
             IProjectile swordBeam;
             switch (facing) {
                 case Direction.right:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(1, 0)).ToPoint(), ProjectileConstants.horizSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(1, 0)), ProjectileConstants.horizSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateRightSwordSprite();
                     break;
                 case Direction.left:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(-1, 0)).ToPoint(), ProjectileConstants.horizSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(-1, 0)), ProjectileConstants.horizSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateLeftSwordSprite();
                     break;
                 case Direction.up:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, -1)).ToPoint(), ProjectileConstants.vertSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, -1)), ProjectileConstants.vertSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateUpSwordSprite();
                     break;
                 case Direction.down:
-                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Vector2(0, 1)).ToPoint(), ProjectileConstants.vertSwordBeamSize);
+                    swordBeam = new SwordBeamProjectile(position, (ProjectileConstants.ArrowVelocity * new Point(0, 1)), ProjectileConstants.vertSwordBeamSize);
                     projectiles.Add(swordBeam);
                     swordBeam.Sprite = CreateDownSwordSprite();
                     break;
