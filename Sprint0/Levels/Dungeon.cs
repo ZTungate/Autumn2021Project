@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Levels.Sprites;
-using Sprint2;
+using Poggus.Levels.Sprites;
+using Poggus;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     public class Dungeon
     {
+        public static float screnScaleX, screenScaleY;
+
         string dungeonName;
         Dictionary<Point, Level> levelDictionary = new Dictionary<Point, Level>();
         Point currentLevelPoint;
@@ -38,25 +40,25 @@ namespace Sprint0.Levels
                     if (levelDictionary.ContainsKey(entry.Key + dir))
                     {
                         Vector2 doorPos = Vector2.Zero;
-                        int scaledDoorWidth = (int)(DoorSpriteFactory.doorWidth * scaleX);
-                        int scaledDoorHeight = (int)(DoorSpriteFactory.doorHeight * scaleY);
+                        int scaledDoorWidth = (int)(DoorFactory.instance.doorSize.X * scaleX);
+                        int scaledDoorHeight = (int)(DoorFactory.instance.doorSize.Y * scaleY);
                         if (dir == new Point(0, 1))
                         {
                             doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth / 2f - scaledDoorWidth / 2, 0);
                         }
                         if (dir == new Point(1, 0))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorSpriteFactory.doorWidth * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f - scaledDoorHeight / 2);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorFactory.instance.doorSize.X * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f - scaledDoorHeight / 2);
                         }
                         if (dir == new Point(0, -1))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f - scaledDoorWidth / 2, Game1.instance._graphics.PreferredBackBufferHeight - DoorSpriteFactory.doorHeight * scaleY);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f - scaledDoorWidth / 2, Game1.instance._graphics.PreferredBackBufferHeight - DoorFactory.instance.doorSize.Y * scaleY);
                         }
                         if (dir == new Point(-1, 0))
                         {
                             doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f - scaledDoorHeight/2);
                         }
-                        entry.Value.AddDoor(DoorSpriteFactory.instance.GetNewOpenDoor(doorPos, scaleX, scaleY, doorDir[dir]), doorDir[dir]);
+                        entry.Value.AddDoor(DoorFactory.instance.GetNewOpenDoor(doorPos.ToPoint(), new Point(scaledDoorWidth, scaledDoorHeight), doorDir[dir]), doorDir[dir]);
                     }
                 }
             }
@@ -71,7 +73,6 @@ namespace Sprint0.Levels
             if (levelDictionary.ContainsKey(nextLevelPoint))
             {
                 SetCurrentLevel(nextLevelPoint);
-                UpdateLevelContentPositions(new Point(-direction.X * levelWidth, -direction.Y * levelHeight));
             }
         }
         public void UpdateLevelContentPositions(Point direction)
@@ -90,8 +91,10 @@ namespace Sprint0.Levels
         }
         public void SetCurrentLevel(Point levelPoint)
         {
+            Point dir = levelPoint - currentLevelPoint;
             currentLevelPoint = levelPoint;
             this.currentLevel = levelDictionary[levelPoint];
+            UpdateLevelContentPositions(new Point(-dir.X * levelWidth, -dir.Y * levelHeight));
         }
         public Level GetCurrentLevel()
         {

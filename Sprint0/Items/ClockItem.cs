@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class ClockItem : AbstractItem
     {
-        public ClockItem(Rectangle rect) : base(ItemEnum.Clock, rect)
+        public ClockItem(Point pos) : base(ItemEnum.Clock, pos, Point.Zero)
         {
             
         }

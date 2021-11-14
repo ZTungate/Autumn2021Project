@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
-using Sprint2.Items;
+using Poggus.Player;
+using Poggus.Items;
 using System;
-using static Sprint0.Projectiles.ProjectileConstants;
+using static Poggus.Projectiles.ProjectileConstants;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class DownSwordLinkState : ILinkState
     {
@@ -17,16 +17,14 @@ namespace Sprint2.Player
         {
             link = Link;
             mySprite = new DownSwordLinkSprite(sprite.Texture, Link);
-            //TODO: make sword beam only come out if link full health
-            link.ProjectileFactory.NewSwordBeam(link.position, direction.down);
-            link.sprite = mySprite;
+            link.Sprite = mySprite;
             stateTime = LinkConstants.swordAttackTime;
-        }
 
-        public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.takeDamage();
+            //Fire a sword beam if link is at full health
+            if (link.FullHealth())
+            {
+                link.ProjectileFactory.NewSwordBeam(link.GetPosition(), Direction.down);
+            }
         }
 
         public void Update(GameTime gameTime)
@@ -39,7 +37,7 @@ namespace Sprint2.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
-                link.state = new DownIdleLinkState(link, mySprite);
+                link.State = new DownIdleLinkState(link, mySprite);
             }
         }
 
@@ -53,13 +51,23 @@ namespace Sprint2.Player
             //Link can not stab while already stabbing.
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //No moving during attack
         }
+        public void Idle()
+        {
+            //Link can not force an idle transition in a sword state
+        }
+
+        public void Die()
+        {
+            //Change link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
         public void PickUp(AbstractItem item)
         {
-            link.state = new PickUpLinkState(link, mySprite, item);
+            link.State = new PickUpLinkState(link, mySprite, item);
         }
     }
 }

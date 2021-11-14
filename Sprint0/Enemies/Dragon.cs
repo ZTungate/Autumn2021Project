@@ -1,61 +1,35 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Helpers;
-using Sprint2.Projectiles;
-using Sprint2;
-using Sprint2.Enemies;
+using Poggus.Helpers;
+using Poggus.Projectiles;
+using Poggus;
+using Poggus.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
-    public class Dragon : IEnemy
+    public class Dragon : AbstractEnemy
     {
-        //ISprite for the enemy
-        ISprite mySprite;
-        //Position of the dragon.
-        Vector2 myPosition;
-        //State of the dragon (not used yet for this enemy type)
-        IEnemyState state;
         //ProjectileHandler for spawning fireballs during an attack
         ProjectileFactory projectiles;
 
-        //Timers for updating sprite without moving
         private int interval = 120;
         private int timer = 0;
         private int attackTimer = 0;
         private int attackInterval = 4000;
-        public ISprite Sprite
+        public Dragon(Point pos) : base(EnemyType.Dragon, pos, new Point(32, 32))
         {
-            //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
-            get => mySprite;
-            set => mySprite = value;
-        }
-        public Vector2 Position
-        {
-            get => myPosition;
-            set => myPosition = value;
-        }
-        public Vector2 oldPosition { get; set; }
-
-        public IEnemyState State
-        {
-            //This will not be used until damage states are added.
-            get => state;
-            set => state = value;
-        }
-        public EnemyTypes Type
-        {
-            //Return Dragon if type is ever asked for.
-            get => EnemyTypes.Dragon;
+            projectiles = ProjectileFactory.Instance;
+            health = EnemyConstants.dragonHealth;
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
-            oldPosition = myPosition;
+            oldPosition = DestRect.Location;
 
             //Update the sprite
-            mySprite.Update(gameTime);
+            Sprite.Update(gameTime);
             //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
             if (timer < interval)
             {
@@ -64,8 +38,7 @@ namespace Sprint2.Enemies
             else
             {
                 timer = 0;
-                myPosition = DragonMove();
-                mySprite.Position = myPosition;
+                DestRect = new Rectangle(DragonMove(), DestRect.Size);
             }
 
             if(attackTimer < attackInterval)
@@ -78,18 +51,12 @@ namespace Sprint2.Enemies
                 Attack();
             }
         }
-        public Dragon(Vector2 pos)
-        {
-            //Assign an arbitrary starting positon for the bat.
-            myPosition = pos;
-            projectiles = ProjectileFactory.Instance;
-        }
 
-        public Vector2 DragonMove()
+        public Point DragonMove()
         {
             //Initialize an RNG to randomly move the dragon.
             Random rand = new Random();
-            Vector2 newPosition = myPosition;
+            Point newPosition = DestRect.Location;
             int val = rand.Next(3);
 
             //1/3 chance to move forwards, 1/3 chance to move back, and 1/3 chance to do nothing.
@@ -107,9 +74,9 @@ namespace Sprint2.Enemies
         public void Attack()
         {
             //Generate three fireballs starting at the dragon's location.
-            projectiles.NewFireBall(myPosition, new Vector2(-3, -2)); //This one moves up and left.
-            projectiles.NewFireBall(myPosition, new Vector2(-3, 0)); //This one moves straight left.
-            projectiles.NewFireBall(myPosition, new Vector2(-3, 2)); //This one moves down and left.
+            projectiles.NewFireBall(DestRect.Location, new Point(-3, -2)); //This one moves up and left.
+            projectiles.NewFireBall(DestRect.Location, new Point(-3, 0)); //This one moves straight left.
+            projectiles.NewFireBall(DestRect.Location, new Point(-3, 2)); //This one moves down and left.
         }
     }
 }

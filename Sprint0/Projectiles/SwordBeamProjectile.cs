@@ -1,62 +1,31 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Projectiles
+namespace Poggus.Projectiles
 {
-    public class SwordBeamProjectile : IProjectile
+    public class SwordBeamProjectile : AbstractProjectile
     {
-        //Fields for storing the sprite, velocity, and position.
-        private ISprite mySprite;
-        private Vector2 myPosition;
-        private Vector2 myVelocity;
-        private int myLife;
-        public ISprite Sprite 
+        public SwordBeamProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
         {
-            get => mySprite;
-            set => mySprite = value;
+            Life = ProjectileConstants.swordBeamLife;
         }
-        public Vector2 Position 
-        { 
-            get => myPosition;
-            set => myPosition = value;
-        }
-        public Vector2 Velocity 
-        { 
-            get => myVelocity;
-            set => myVelocity = value;
-        }
-        public int Life
-        {
-            get => myLife;
-            set => myLife = value;
-        }
-
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             //Move the sword beam according to its velocity.
 
-            myPosition += myVelocity;
-            mySprite.Position = Position;
+            DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
 
-            mySprite.Update(gameTime);
+            Sprite.Update(gameTime);
 
-            myLife -= gameTime.ElapsedGameTime.Milliseconds;
+            Life -= gameTime.ElapsedGameTime.Milliseconds;
 
-            if (myLife < 1) {
+            if (Life < 1)
+            {
                 //spawn sword beam explosions?
             }
-        }
-
-        public SwordBeamProjectile(Vector2 position, Vector2 velocity)
-        {
-            //Set the velocity and position to the passed values.
-            myPosition = position;
-            myVelocity = velocity;
-            //Fireballs have a life of 4 seconds (measured in milliseconds, could be changed).
-            myLife = 1000;
         }
     }
 }

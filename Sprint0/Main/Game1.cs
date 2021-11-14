@@ -1,21 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2.Enemies;
-using Sprint2.Player;
-using Sprint2.Items;
-using Sprint2.Blocks;
+using Poggus.Enemies.Sprites;
+using Poggus.Player;
+using Poggus.Items.ItemSprites;
+using Poggus.Blocks.Sprites;
 using System.Collections.Generic;
-using Sprint2.Projectiles;
-using Sprint0.Collisions;
-using Sprint0.Levels;
-using Sprint0.Levels.Sprites;
+using Poggus.Projectiles;
+using Poggus.Collisions;
+using Poggus.Levels;
+using Poggus.Levels.Sprites;
 
-namespace Sprint2
+namespace Poggus
 {
     public class Game1 : Game
     {
+        public static float gameScaleX, gameScaleY;
         public static Game1 instance;
         private Dungeon dungeon;
+        
         public ISprite sprite;
 
         private SpriteFont font;
@@ -39,7 +41,9 @@ namespace Sprint2
         public ILink link;
 
         //Projectiles
-        public ProjectileFactory projectileFactory;
+        public ProjectileFactory projectileFactory; 
+        private bool isPaused = false;
+        private bool inventoryOpen = false;
 
         public Game1()
         {
@@ -100,9 +104,9 @@ namespace Sprint2
             itemSpriteFactory.LoadAllTextures(Content);
 
             //Create sprite for Link
-            link.sprite = linkSpriteFactory.RightIdleLinkSprite(link);
+            link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
-            DoorSpriteFactory.instance.LoadContent(Content);
+            DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
 
@@ -116,19 +120,21 @@ namespace Sprint2
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-            
-            //Update Link
-            link.Update(gameTime);
+            if (!isPaused)
+            {
+                //Update Link
+                link.Update(gameTime);
 
-            dungeon.UpdateCurrent(gameTime);
+                dungeon.UpdateCurrent(gameTime);
 
-            //Update the projectiles
-            projectileFactory.UpdateProjectiles(gameTime);
+                //Update the projectiles
+                projectileFactory.UpdateProjectiles(gameTime);
 
-            //TODO: poop
-            handler.Update();
+                //TODO: poop
+                handler.Update();
 
-            base.Update(gameTime);
+                base.Update(gameTime);
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -154,24 +160,43 @@ namespace Sprint2
 
         public void Reset()
         {
-            link = new Link();
-            link.sprite = LinkSpriteFactory.Instance.RightIdleLinkSprite(link);
-            blockSpriteFactory.Reset();
+            
+            link = new Link
+            {
+                ProjectileFactory = projectileFactory
+            };
+            link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
+            DoorFactory.instance.LoadContent(Content);
+            LevelLoader.instance.ResetLevels();
+            DungeonLoader.instance.ResetDungeon();
+            LevelLoader.instance.LoadAllLevels(Content);
+            DungeonLoader.instance.LoadDungeons();
 
 
-            //Set the enemy sprite factory to a new instance
-            enemySpriteFactory = EnemySpriteFactory.Instance;
-
-            //Re-Initialize the projectile factory.
-            projectileFactory.Initalize();
+            handler = new CollisionHandler(this);
+            
         }
         public void SetDungeon(Dungeon dungeon)
         {
             this.dungeon = dungeon;
+            
         }
         public Dungeon GetDungeon()
         {
             return this.dungeon;
+        }
+        public bool Paused()
+        {
+            return isPaused;
+        }
+        public void togglePause()
+        {
+            isPaused = !isPaused;
+        }
+        public void toggleOpenInventory()
+        {
+            inventoryOpen = !inventoryOpen;
+            isPaused = inventoryOpen;
         }
         public void Quit()
         {

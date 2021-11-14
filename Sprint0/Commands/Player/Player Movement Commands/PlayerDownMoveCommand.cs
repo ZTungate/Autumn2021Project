@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Sprint2.Helpers;
+using Poggus.Helpers;
 
-namespace Sprint2.Commands
+namespace Poggus.Commands
 {
     public class PlayerDownMoveCommand : ICommand
     {
@@ -15,7 +15,7 @@ namespace Sprint2.Commands
         public void Execute()
         {
             //Have link's current state move down.
-            game.link.state.Move(Player.direction.down);
+            game.link.State.Move(Player.Direction.down);
         }
     }
 }

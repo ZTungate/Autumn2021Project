@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Sprint2.Items
+namespace Poggus.Items
 {
     public class HeartItem : AbstractItem
     {
-        public HeartItem(Rectangle rect) : base(ItemEnum.Heart, rect)
+        public HeartItem(Point pos) : base(ItemEnum.Heart, pos, Point.Zero)
         {
 
         }

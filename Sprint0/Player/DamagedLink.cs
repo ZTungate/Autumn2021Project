@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
 
     public class DamagedLink: ILink{

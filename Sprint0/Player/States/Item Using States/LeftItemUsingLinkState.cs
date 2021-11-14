@@ -1,11 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
-using Sprint2.Items;
+using Poggus.Player;
+using Poggus.Items;
 using System;
-using static Sprint0.Projectiles.ProjectileConstants;
+using static Poggus.Projectiles.ProjectileConstants;
+using Poggus.Helpers;
+using Poggus.Projectiles;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class LeftItemUsingLinkState : ILinkState
     {
@@ -17,15 +19,9 @@ namespace Sprint2.Player
         {
             link = Link;
             mySprite = new LeftUseItemLinkSprite(sprite.Texture, Link);
-            link.sprite = mySprite;
+            link.Sprite = mySprite;
             stateTime = LinkConstants.itemUseTime;
             Attack(item);
-        }
-
-        public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.takeDamage();
         }
 
         public void Update(GameTime gameTime)
@@ -38,7 +34,7 @@ namespace Sprint2.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
-                link.state = new LeftIdleLinkState(link, mySprite);
+                link.State = new LeftIdleLinkState(link, mySprite);
             }
         }
 
@@ -49,10 +45,10 @@ namespace Sprint2.Player
 
         public void SwordAttack()
         {
-            link.state = new LeftSwordLinkState(link, mySprite);
+            link.State = new LeftSwordLinkState(link, mySprite);
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //Link can not move while throwing an item.
         }
@@ -64,26 +60,35 @@ namespace Sprint2.Player
             {
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.position, direction.left);
+                    link.ProjectileFactory.NewRegArrow(LocationHelpers.GetLocationCenteredSpawnLeft(link.DestRect, ProjectileConstants.HorizArrowSize), Direction.left);
                     break;
                 case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.position, direction.left);
+                    link.ProjectileFactory.NewBlueArrow(LocationHelpers.GetLocationCenteredSpawnLeft(link.DestRect, ProjectileConstants.HorizArrowSize), Direction.left);
                     break;
                 case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.LinkBoomerang(link.position, RegBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBoomerang(LocationHelpers.GetLocationCenteredSpawnLeft(link.DestRect, ProjectileConstants.boomerangSize), (RegBoomerangVelocity * directionVector).ToPoint(), link);
                     break;
                 case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.LinkBlueBoomerang(link.position, BlueBoomerangVelocity * directionVector);
+                    link.ProjectileFactory.LinkBlueBoomerang(LocationHelpers.GetLocationCenteredSpawnLeft(link.DestRect, ProjectileConstants.boomerangSize), (BlueBoomerangVelocity * directionVector).ToPoint(), link);
                     break;
                 case ProjectileTypes.fire:
-                    link.ProjectileFactory.NewFire(link.position, FireVelocity * directionVector);
+                    link.ProjectileFactory.NewFire(LocationHelpers.GetLocationCenteredSpawnLeft(link.DestRect, ProjectileConstants.fireSize), (FireVelocity * directionVector).ToPoint());
                     break;
                 case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(link.position, direction.left);
+                    link.ProjectileFactory.NewBomb(LocationHelpers.GetLocationCenteredSpawnLeft(link.DestRect,ProjectileConstants.BombSize) + directionVector.ToPoint());
                     break;
             }
         }
+        public void Idle()
+        {
+            //Link is busy, can not force change to idle.
+        }
 
+        public void Die()
+        {
+            //Change link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
         public void PickUp(AbstractItem item)
         {
             //No Implementation needed.

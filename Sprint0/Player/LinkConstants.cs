@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Player
+namespace Poggus.Player
 {
     public static class LinkConstants
     {
@@ -10,7 +10,10 @@ namespace Sprint0.Player
         public static int itemUseTime = 300;
         public static int swordAttackTime = 300;
         public static float scaleX, scaleY;
-        public static float linkSpeed = 3;
-        public static int linkSize = 16; //he is 16x16
+        public static int linkSpeed = 3;
+
+        public static int swordDamage = 1;
+
+        public static int linkHealth = 3;
     }
 }

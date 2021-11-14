@@ -1,11 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint0.Player;
-using Sprint2.Items;
+using Poggus.Player;
+using Poggus.Items;
 using System;
-using static Sprint0.Projectiles.ProjectileConstants;
+using static Poggus.Projectiles.ProjectileConstants;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class PickUpLinkState : ILinkState
     {
@@ -17,14 +17,8 @@ namespace Sprint2.Player
         {
             link = Link;
             mySprite = new PickUpLinkSprite(sprite.Texture, Link, item);
-            link.sprite = mySprite;
+            link.Sprite = mySprite;
             stateTime = LinkConstants.itemUseTime;
-        }
-
-        public void TakeDamage()
-        {
-            //Call on link to take damage. Does this need to be here? Might not be necesary in the state itself.
-            link.takeDamage();
         }
 
         public void Update(GameTime gameTime)
@@ -37,7 +31,7 @@ namespace Sprint2.Player
             else
             {
                 //If the timer is up for this state, revert to an idle state for this direction.
-                link.state = new DownIdleLinkState(link, mySprite);
+                link.State = new DownIdleLinkState(link, mySprite);
             }
         }
 
@@ -48,10 +42,10 @@ namespace Sprint2.Player
 
         public void SwordAttack()
         {
-            link.state = new UpSwordLinkState(link, mySprite);
+            link.State = new UpSwordLinkState(link, mySprite);
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //Link can not move while throwing an item.
         }
@@ -61,10 +55,14 @@ namespace Sprint2.Player
             //No Implementation needed.
         }
 
-        private void Attack(ProjectileTypes item)
+        public void Idle()
         {
-            //No Implementation needed.
+            //Link is busy, can't change to idle.
         }
-
+        public void Die()
+        {
+            //Change link to a dead state
+            link.State = new DeadLinkState(link, mySprite);
+        }
     }
 }

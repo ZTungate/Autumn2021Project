@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
-using Sprint2.Blocks;
-using Sprint2.Enemies;
-using Sprint2.Items;
-using Sprint2.Player;
-using Sprint2.Projectiles;
-using Sprint2;
-using Sprint0.Levels.Sprites;
+using Poggus.Blocks;
+using Poggus.Enemies;
+using Poggus.Items;
+using Poggus.Player;
+using Poggus.Projectiles;
+using Poggus;
+using Poggus.Levels.Sprites;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Sprint0.Levels
+namespace Poggus.Levels
 {
     public class Level
     {
-        List<AbstractDoorSprite> doorSprites;
+        List<LevelDoor> doors;
         ISprite backgroundSprite;
         Point location;
         Dictionary<Point, IBlock> blocks;
@@ -23,22 +23,25 @@ namespace Sprint0.Levels
         List<AbstractItem> items;
         List<Rectangle> boundingBoxList;
         ILink link;
+
+        Rectangle backgroundRectangle;
         public Level(ILink link, Point location)
         {
             backgroundSprite = LevelLoader.instance.GetNewBackgroundSprite();
             this.location = location;
-            doorSprites = new List<AbstractDoorSprite>();
+            doors = new List<LevelDoor>();
             blocks = new Dictionary<Point, IBlock>();
             enemies = new List<IEnemy>();
             items = new List<AbstractItem>();
             boundingBoxList = new List<Rectangle>();
             this.link = link;
+            backgroundRectangle = new Rectangle(0,0,Game1.instance._graphics.PreferredBackBufferWidth, Game1.instance._graphics.PreferredBackBufferHeight);
         }
-        public AbstractDoorSprite GetDoorFromDirection(Point direction)
+        public LevelDoor GetDoorFromDirection(Point direction)
         {
-            foreach(AbstractDoorSprite door in doorSprites)
+            foreach(LevelDoor door in doors)
             {
-                if(door.CurrentFrame == (int)Dungeon.doorDir[direction])
+                if(door.GetDirection() == Dungeon.doorDir[direction])
                 {
                     return door;
                 }
@@ -49,9 +52,9 @@ namespace Sprint0.Levels
         {
             return this.link;
         }
-        public AbstractDoorSprite[] GetDoorListAsArray()
+        public LevelDoor[] GetDoorListAsArray()
         {
-            return this.doorSprites.ToArray();
+            return this.doors.ToArray();
         }
         public Rectangle[] GetBoundsAsArray()
         {
@@ -61,24 +64,24 @@ namespace Sprint0.Levels
         {
             this.location = p;
 
-            this.backgroundSprite.Position = this.backgroundSprite.Position + new Vector2(p.X, p.Y);
+            this.backgroundRectangle.Location = this.backgroundRectangle.Location + p;
 
             foreach (KeyValuePair<Point, IBlock> entry in blocks)
             {
-                entry.Value.destRect = new Rectangle(entry.Value.destRect.X + p.X, entry.Value.destRect.Y + p.Y, entry.Value.destRect.Width, entry.Value.destRect.Height);
+                entry.Value.DestRect = new Rectangle(entry.Value.DestRect.X + p.X, entry.Value.DestRect.Y + p.Y, entry.Value.DestRect.Width, entry.Value.DestRect.Height);
             }
             foreach (IEnemy enemy in enemies)
             {
-                enemy.Position = new Vector2(enemy.Position.X + p.X, enemy.Position.Y + p.Y);
+                enemy.DestRect = new Rectangle(enemy.DestRect.Location + p, enemy.DestRect.Size);
             }
             foreach (AbstractItem item in items)
             {
                 item.SetRectangle(new Rectangle(item.GetRectangle().X + p.X, item.GetRectangle().Y + p.Y, item.GetRectangle().Width, item.GetRectangle().Height));
             }
 
-            foreach(ISprite sprite in doorSprites)
+            foreach(LevelDoor door in doors)
             {
-                sprite.Position = new Vector2(sprite.Position.X + p.X, sprite.Position.Y + p.Y);
+                door.destRect = new Rectangle(door.destRect.Location + p, door.destRect.Size);
             }
         }
         public void Update(GameTime gameTime)
@@ -98,7 +101,7 @@ namespace Sprint0.Levels
         }
         public void Draw(SpriteBatch batch)
         {
-            this.backgroundSprite.Draw(batch);
+            this.backgroundSprite.Draw(batch, this.backgroundRectangle);
 
             foreach(KeyValuePair<Point,IBlock> entry in blocks)
             {
@@ -106,15 +109,15 @@ namespace Sprint0.Levels
             }
             foreach(IEnemy enemy in enemies)
             {
-                enemy.Sprite.Draw(batch);
+                enemy.Draw(batch);
             }
             foreach(AbstractItem item in items)
             {
                 item.Draw(batch);
             }
-            foreach (ISprite sprite in doorSprites)
+            foreach (LevelDoor door in doors)
             {
-                sprite.Draw(batch);
+                door.Draw(batch);
             }
         }
         public Point GetPosition()
@@ -145,10 +148,10 @@ namespace Sprint0.Levels
             }
             this.boundingBoxList.Add(new Rectangle(p1.X, p1.Y, width, height));
         }
-        public void AddDoor(AbstractDoorSprite door, DoorDirectionEnum dir)
+        public void AddDoor(LevelDoor door, DoorDirectionEnum dir)
         {
-            doorSprites.Add(door);
-            door.CurrentFrame = (int)dir;
+            doors.Add(door);
+            door.SetDirection(dir);
         }
         public bool AddBlock(Point p, IBlock block)
         {

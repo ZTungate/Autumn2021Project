@@ -1,10 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Sprint2.Items;
+using Poggus.Items;
 using System;
-using static Sprint0.Projectiles.ProjectileConstants;
+using static Poggus.Projectiles.ProjectileConstants;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
     public class InitialLinkState : ILinkState
     {
@@ -27,7 +27,7 @@ namespace Sprint2.Player
         public void Update(GameTime gameTime)
         {
             //Replace this state with a right idle state. By now, a sprite has been passed to link during LoadContent().
-            link.state = new RightIdleLinkState(link, link.sprite);
+            link.State = new RightIdleLinkState(link, link.Sprite);
         }
 
         public void UseItem(ProjectileTypes item)
@@ -40,9 +40,18 @@ namespace Sprint2.Player
             //No Implementation needed.
         }
 
-        public void Move(direction direction)
+        public void Move(Direction direction)
         {
             //This state does not require movement code.
+        }
+        public void Idle()
+        {
+            //No implementation needed
+        }
+
+        public void Die()
+        {
+            //No implementation needed
         }
 
         public void PickUp(AbstractItem item)

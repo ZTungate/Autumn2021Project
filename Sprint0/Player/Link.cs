@@ -1,11 +1,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using Sprint2.Projectiles;
-using static Sprint0.Projectiles.ProjectileConstants;
-using Sprint2.Items;
+using Poggus.Projectiles;
+using static Poggus.Projectiles.ProjectileConstants;
+using Poggus.Items;
 
-namespace Sprint2.Player
+namespace Poggus.Player
 {
 
     public class Link : ILink {
@@ -13,12 +13,12 @@ namespace Sprint2.Player
         //Game class contains a sprite factory, which creates each sprite with a source rectangle. this is saved in spriteBatch
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
 
-        public ILinkState state { get; set; }
-        public Vector2 position { get; set; }
-        public Vector2 oldPosition { get; set; }
-        public ISprite sprite { get; set; }
-        public Color color { get; set; }
+        public ILinkState State { get; set; }
+        public Rectangle DestRect { get; set; }
+        public Point OldPosition { get; set; }
+        public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
+        public int Health { get; set; }
 
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
@@ -29,19 +29,22 @@ namespace Sprint2.Player
         int colorIndex = 0;
         float invincibilityFramesDuration = 2000f;
         float hitStunDuration = 500f;
+        private int maxHealth;
 
         public Link()
         {
-            state = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            position = new Vector2(300, 300);  //Link's initial position
+            State = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
+            DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
+            System.Diagnostics.Debug.WriteLine(DestRect);
             colorIndex = 0;
-
-            color = Color.White;
+            //Set link's health and maxHealth
+            Health = LinkConstants.linkHealth;
+            maxHealth = Health;
         }
 
         public void Update(GameTime gameTime)
         {
-            oldPosition = position;
+            OldPosition = DestRect.Location;
 
             if (isDamaged)
             {
@@ -50,7 +53,7 @@ namespace Sprint2.Player
                 if(invincibilityFramesDuration - damageTimer % damageFlashRate == 0)
                 {
                     colorIndex++;
-                    color = damageColors[colorIndex % damageColors.Length];
+                    Sprite.Color = damageColors[colorIndex % damageColors.Length];
                 }
 
 
@@ -61,7 +64,7 @@ namespace Sprint2.Player
                 if (damageTimer <= 50f)
                 { //damage invincibility time
                     isDamaged = false;
-                    color = Color.White;
+                    Sprite.Color = Color.White;
                 }
                 else if (damageTimer < (invincibilityFramesDuration-hitStunDuration)) //hit stun duration
                 {
@@ -75,59 +78,87 @@ namespace Sprint2.Player
                 canMove = true;
                 colorIndex = 0;
             }
-            state.Update(gameTime);
-            sprite.Update(gameTime);
+            State.Update(gameTime);
+            Sprite.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            sprite.Draw(spriteBatch);   //draw the player sprite
+            Rectangle tempRect = new Rectangle(DestRect.Location, new Point((int)(Sprite.SourceRect[Sprite.CurrentFrame].Width * Game1.gameScaleX), (int)(Sprite.SourceRect[Sprite.CurrentFrame].Height * Game1.gameScaleY)));
+            
+            Sprite.Draw(spriteBatch, tempRect);   //draw the player sprite
         }
 
-        public void takeDamage()
+        public void TakeDamage(int dmgAmount)
         {
             if (!isDamaged) {
                 isDamaged = true;
                 canMove = false;
-                color = Color.Red;
+                Sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
+
+                Health -= dmgAmount;
             }
-            /*state.takeDamage();*/
+
+            //Kill link if his health hits zero
+            if(Health <= 0)
+            {
+                State = new DeadLinkState(this, Sprite);
+            }
         }
 
         public void UseItem(ProjectileTypes item)
         {
-            state.UseItem(item);
+            State.UseItem(item);
         }
 
-        public void Move(Vector2 moveDirection)
+        public void Move(Point moveDirection)
         {
             if (canMove) 
             {
-                position += moveDirection;
+                DestRect = new Rectangle(DestRect.Location + moveDirection, DestRect.Size);
             }   
         }
         public void Reset()
         {
             //This may not work, since the state does not determine the sprite
-            state = new InitialLinkState(this, sprite); //start the player in the right idle state
-            position = new Vector2(20, 20);  //Link's initial position
+            State = new InitialLinkState(this, Sprite); //start the player in the right idle state
+            DestRect = new Rectangle(new Point(20, 20), DestRect.Size);
 
             colorIndex = 0;
 
-            color = Color.White;
+            Sprite.Color = Color.White;
         }
 
         //Attacks
 
         public void SwordAttack()
         {
-            state.SwordAttack();
+            State.SwordAttack();
         }
 
         public void PickUp(AbstractItem item)
         {
-            state.PickUp(item);
+            State.PickUp(item);
+        }
+
+        public Point GetPosition()
+        {
+            return this.DestRect.Location;
+        }
+        public void SetPosition(Point pos)
+        {
+            this.DestRect = new Rectangle(pos, DestRect.Size);
+        }
+
+        public bool FullHealth()
+        {
+            //Return true if health is full, false otherwise
+            if (Health == maxHealth)
+            {
+                return true;
+            }
+            return false;
         }
     }
     

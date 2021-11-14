@@ -1,56 +1,27 @@
 ﻿using Microsoft.Xna.Framework;
-using Sprint2.Helpers;
-using Sprint2;
+using Poggus.Helpers;
+using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint2.Enemies
+namespace Poggus.Enemies
 {
-    public class Slime : IEnemy
+    public class Slime : AbstractEnemy
     {
         //Timers for updating sprite without moving
         private int interval = 40;
         private int timer = 0;
 
-        //Position of the bat.
-        Vector2 pos;
-        //State of the bat (not used yet for this enemy type)
-        IEnemyState state;
-        
-        //ISprite for the enemy
-        ISprite mySprite;
-        public ISprite Sprite
+        public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
         {
-            //Allow sprite to be set by the spriteFactory, and return mySprite when requested.
-            get => mySprite;
-            set => mySprite = value;
+            health = EnemyConstants.slimeHealth;
         }
-        public Vector2 Position
+        public override void Update(GameTime gameTime)
         {
-            get => pos;
-            set => pos = value;
-        }
+            oldPosition = GetPosition();
 
-        public Vector2 oldPosition { get; set; }
-
-        public IEnemyState State
-        {
-            //This will not be used until damage states are added.
-            get => state;
-            set => state = value;
-        }
-        public EnemyTypes Type
-        {
-            //Return Slime if type is ever asked for.
-            get => EnemyTypes.Slime;
-        }
-
-        public void Update(GameTime gameTime)
-        {
-            oldPosition = pos;
-
-            mySprite.Update(gameTime);
+            Sprite.Update(gameTime);
 
             //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
             if (timer < interval)
@@ -60,21 +31,15 @@ namespace Sprint2.Enemies
             else
             {
                 timer = 0;
-                pos = SlimeRandomMove();
-                mySprite.Position = pos;
+                SetPosition(SlimeRandomMove());
             }
-        }
-        public Slime(Vector2 pos)
-        {
-            //Assign an arbitrary starting positon for the slime.
-            this.pos = pos;
         }
 
         //Placeholder movement method, will require reworking when actual level exists.
-        public Vector2 SlimeRandomMove()
+        public Point SlimeRandomMove()
         {
             //Get the current position of the slime
-            Vector2 newPosition = pos;
+            Point newPosition = GetPosition();
 
             //Get a random number from 0-3
             Random rand = new Random();

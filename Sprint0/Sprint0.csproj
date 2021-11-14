@@ -8,10 +8,14 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <RootNamespace>Poggus</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Player\Sprites\Use Item\Items\**" />
     <Compile Remove="Player\States\Moving\**" />
+    <EmbeddedResource Remove="Player\Sprites\Use Item\Items\**" />
     <EmbeddedResource Remove="Player\States\Moving\**" />
+    <None Remove="Player\Sprites\Use Item\Items\**" />
     <None Remove="Player\States\Moving\**" />
   </ItemGroup>
   <ItemGroup>
@@ -31,8 +35,5 @@
   <ItemGroup>
     <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.0.1641" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Player\Sprites\Use Item\Items\" />
   </ItemGroup>
 </Project>
