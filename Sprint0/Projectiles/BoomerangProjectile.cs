@@ -8,24 +8,34 @@ namespace Poggus.Projectiles
 {
     public class BoomerangProjectile : AbstractProjectile
     {
-        Point acceleration;
+        bool returning = false;
+
         public BoomerangProjectile(Point position, Point velocity) : base(position, velocity, ProjectileConstants.boomerangSize)
         {
             Life = ProjectileConstants.boomerangLife;
-            //Set the acceleration to be enough to completley reverse velocity over myLife.
-            acceleration = new Point(2 * velocity.X / Life, 2 * (velocity.Y / Life));
+            Velocity = velocity;
         }
         public override void Update(GameTime gameTime)
         {
+            if(Life <= ProjectileConstants.boomerangLife / 2 && !returning)
+            {
+                //Return the boomerang if half of its life is over.
+                ReturnBoomerang();
+            }
+
             //Move the boomerang according to its velocity.
             DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
+            //DestRect = new Rectangle((int)(DestRect.X + myVelocity.X), (int)(DestRect.Y + myVelocity.Y), DestRect.Width, DestRect.Height);
             Sprite.Update(gameTime);
 
             //Cut the projectile's life by the elapsed time
             int timePassed = gameTime.ElapsedGameTime.Milliseconds;
             Life -= timePassed;
-            //Reduce the velocity by the acceleration * elapsed time
-            Velocity -= new Point(acceleration.X * (int)timePassed, acceleration.Y * (int)timePassed);
+        }
+
+        private void ReturnBoomerang(){
+            Velocity = new Point(-Velocity.X,-Velocity.Y);
+            returning = true;
         }
     }
 }

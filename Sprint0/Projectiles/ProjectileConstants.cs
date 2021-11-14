@@ -20,8 +20,8 @@ namespace Poggus.Projectiles
         }
 
         public static Vector2 ArrowVelocity = new Vector2(6, 6);
-        public static Vector2 RegBoomerangVelocity = new Vector2(3, 3);
-        public static Vector2 BlueBoomerangVelocity = new Vector2(6, 6);
+        public static Vector2 RegBoomerangVelocity = new Vector2(7, 7);
+        public static Vector2 BlueBoomerangVelocity = new Vector2(8, 8);
         public static Vector2 FireVelocity = new Vector2(6, 6);
         public static Point linkBoomerangMaxVelocity = new Point(1,1);
 
@@ -37,7 +37,7 @@ namespace Poggus.Projectiles
 
         public static int regArrowLife = 3000;
         public static int blueArrowLife = 4000;
-        public static int boomerangLife = 3000;
+        public static int boomerangLife = 2000;
         public static int bombLife = 1000;
         public static int fireballLife = 2000;
         public static int fireLife = 2000;

@@ -83,19 +83,19 @@ namespace Poggus.Collisions
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                 P2LCollision projLink = (P2LCollision)detector.detectCollision(proj, myLink);
                 if (projLink.IsCollision && (projLink.proj1 is FireballProjectile || projLink.proj1 is BoomerangProjectile)) {
-                    projLink.proj1.Life = 0;
                     //check if shield face projectile
-                    if (projLink.link2.State is DownIdleLinkState && projLink.direction is ColDirections.South) {
-                        //TODO: Proj bounce off shield
+                    if (projLink.link2.State is DownIdleLinkState && projLink.direction is ColDirections.South && projLink.proj1 is BoomerangProjectile) {
+                        //Set the boomerang to continue to live only as long as it has already (this will perfectly return it to the thrower)
+                        projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
                     }
-                    else if (projLink.link2.State is RightIdleLinkState && projLink.direction is ColDirections.East) {
-
+                    else if (projLink.link2.State is RightIdleLinkState && projLink.direction is ColDirections.East && projLink.proj1 is BoomerangProjectile) {
+                        projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
                     }
-                    else if (projLink.link2.State is LeftIdleLinkState && projLink.direction is ColDirections.West) {
-
+                    else if (projLink.link2.State is LeftIdleLinkState && projLink.direction is ColDirections.West && projLink.proj1 is BoomerangProjectile) {
+                        projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
                     }
-                    else if (projLink.link2.State is UpIdleLinkState && projLink.direction is ColDirections.North) {
-
+                    else if (projLink.link2.State is UpIdleLinkState && projLink.direction is ColDirections.North && projLink.proj1 is BoomerangProjectile) {
+                        projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
                     }
                     else {//hurt link by the damage of the projectile that hit him.
                         if(projLink.proj1 is BoomerangProjectile)
@@ -104,6 +104,8 @@ namespace Poggus.Collisions
                         }
                         else
                         {
+                            //Kill the fireball and hurt link
+                            projLink.proj1.Life = 0;
                             projLink.link2.TakeDamage(ProjectileConstants.fireballDamage);
                         }
                         
