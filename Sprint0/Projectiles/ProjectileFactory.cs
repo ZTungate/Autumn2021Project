@@ -278,10 +278,10 @@ namespace Poggus.Projectiles
             boomerang.Sprite = CreateBoomerangSprite();
         }
 
-        public void LinkBoomerang(Point position, Point velocity)
+        public void LinkBoomerang(Point position, Point velocity, ILink link)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
-            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity);
+            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity, link);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
         }
@@ -294,10 +294,10 @@ namespace Poggus.Projectiles
             boomerang.Sprite = CreateBlueBoomerangSprite();
         }
 
-        public void LinkBlueBoomerang(Point position, Point velocity)
+        public void LinkBlueBoomerang(Point position, Point velocity, ILink link)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
-            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity);
+            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity, link);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBlueBoomerangSprite();
         }

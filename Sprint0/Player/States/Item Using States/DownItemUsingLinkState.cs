@@ -66,10 +66,10 @@ namespace Poggus.Player
                     link.ProjectileFactory.NewBlueArrow(LocationHelpers.GetLocationCenteredSpawnDown(link.DestRect, ProjectileConstants.HorizArrowSize), Direction.down);
                     break;
                 case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.LinkBoomerang(LocationHelpers.GetLocationCenteredSpawnDown(link.DestRect, ProjectileConstants.boomerangSize), (RegBoomerangVelocity * directionVector).ToPoint());
+                    link.ProjectileFactory.LinkBoomerang(LocationHelpers.GetLocationCenteredSpawnDown(link.DestRect, ProjectileConstants.boomerangSize), (RegBoomerangVelocity * directionVector).ToPoint(), link);
                     break;
                 case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.LinkBlueBoomerang(LocationHelpers.GetLocationCenteredSpawnDown(link.DestRect, ProjectileConstants.boomerangSize), (BlueBoomerangVelocity * directionVector).ToPoint());
+                    link.ProjectileFactory.LinkBlueBoomerang(LocationHelpers.GetLocationCenteredSpawnDown(link.DestRect, ProjectileConstants.boomerangSize), (BlueBoomerangVelocity * directionVector).ToPoint(), link);
                     break;
                 case ProjectileTypes.fire:
                     link.ProjectileFactory.NewFire(LocationHelpers.GetLocationCenteredSpawnDown(link.DestRect, ProjectileConstants.fireSize), (FireVelocity * directionVector).ToPoint());

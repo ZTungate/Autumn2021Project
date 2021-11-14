@@ -55,33 +55,6 @@ namespace Poggus.Player
             //No Implementation needed.
         }
 
-        private void Attack(ProjectileTypes item)
-        {
-            Vector2 directionVector = new Vector2(0, -1);
-            switch (item)
-            {
-                //Spawn the relevant projectile moving downwards.
-                case ProjectileTypes.redArrow:
-                    link.ProjectileFactory.NewRegArrow(link.GetPosition(), Direction.up);
-                    break;
-                case ProjectileTypes.blueArrow:
-                    link.ProjectileFactory.NewBlueArrow(link.GetPosition(), Direction.up);
-                    break;
-                case ProjectileTypes.linkBoomerang:
-                    link.ProjectileFactory.LinkBoomerang(link.GetPosition(), (RegBoomerangVelocity * directionVector).ToPoint());
-                    break;
-                case ProjectileTypes.blueBoomerang:
-                    link.ProjectileFactory.LinkBlueBoomerang(link.GetPosition(), (BlueBoomerangVelocity * directionVector).ToPoint());
-                    break;
-                case ProjectileTypes.fire:
-                    link.ProjectileFactory.NewFire(link.GetPosition(), (FireVelocity * directionVector).ToPoint());
-                    break;
-                case ProjectileTypes.bomb:
-                    link.ProjectileFactory.NewBomb(link.GetPosition() + directionVector.ToPoint());
-                    break;
-            }
-        }
-
         public void Idle()
         {
             //Link is busy, can't change to idle.

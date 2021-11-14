@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Poggus.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Poggus.Projectiles
         public static Vector2 RegBoomerangVelocity = new Vector2(3, 3);
         public static Vector2 BlueBoomerangVelocity = new Vector2(6, 6);
         public static Vector2 FireVelocity = new Vector2(6, 6);
+        public static Point linkBoomerangMaxVelocity = new Point(1,1);
 
         public static Point VertArrowSize = new Point(16, 32);
         public static Point HorizArrowSize = new Point(32, 16);
