@@ -174,7 +174,9 @@ namespace Poggus.Collisions
                         IProjectile projectile = projEne.proj1;
                         if(projectile is LinkBoomerangProjectile)
                         {
-                            //Stun the enemy
+                            //Stun the enemy and set link's boomerang to return.
+                            projEne.enemy2.StunTimer = ProjectileConstants.boomerangStunTime;
+                            projEne.proj1.Life = ProjectileConstants.boomerangLife / 2;
                         }
                         else if(projectile is RegArrowProjectile)
                         {
@@ -202,7 +204,7 @@ namespace Poggus.Collisions
                     }
 
                     //Kill any enemies with health <= 0;
-                    if (projEne.enemy2.health <= 0)
+                    if (projEne.enemy2.Health <= 0)
                     {
                         eneToRemove.Add(projEne.enemy2);
                     }

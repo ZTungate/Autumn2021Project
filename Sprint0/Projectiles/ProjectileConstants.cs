@@ -25,6 +25,8 @@ namespace Poggus.Projectiles
         public static Vector2 FireVelocity = new Vector2(6, 6);
         public static Point linkBoomerangVelocity = new Point(7,7);
 
+        public static Point fireAcceleration = new Point(-1, -1);
+
         public static Point VertArrowSize = new Point(16, 32);
         public static Point HorizArrowSize = new Point(32, 16);
         public static Point vertSwordBeamSize = new Point(16, 32);
@@ -51,6 +53,8 @@ namespace Poggus.Projectiles
         public static int swordBeamDamage = 1;
         public static int throwerBoomerangDamage = 1;
         public static int fireballDamage = 1;
+
+        public static int boomerangStunTime = 500;
 
     }
 }

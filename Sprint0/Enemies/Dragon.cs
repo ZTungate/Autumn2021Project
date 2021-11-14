@@ -17,38 +17,42 @@ namespace Poggus.Enemies
         private int interval = 120;
         private int timer = 0;
         private int attackTimer = 0;
-        private int attackInterval = 4000;
+        private int attackInterval = EnemyConstants.dragonAttackInterval;
         public Dragon(Point pos) : base(EnemyType.Dragon, pos, new Point(32, 32))
         {
             projectiles = ProjectileFactory.Instance;
-            health = EnemyConstants.dragonHealth;
+            Health = EnemyConstants.dragonHealth;
         }
 
         public override void Update(GameTime gameTime)
         {
-            oldPosition = DestRect.Location;
 
-            //Update the sprite
-            Sprite.Update(gameTime);
-            //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
-            if (timer < interval)
+            if (StunTimer <= 0)
             {
-                timer += gameTime.ElapsedGameTime.Milliseconds;
+                oldPosition = DestRect.Location;
+                //Update the sprite
+                int lastFrame = Sprite.CurrentFrame;
+                Sprite.Update(gameTime);
+
+                if (lastFrame != Sprite.CurrentFrame)
+                {
+                    DestRect = new Rectangle(DragonMove(), DestRect.Size);
+                }
+
+                //Attack if enough time has passed since last attack.
+                if (attackTimer < attackInterval)
+                {
+                    attackTimer += gameTime.ElapsedGameTime.Milliseconds;
+                }
+                else
+                {
+                    attackTimer = 0;
+                    Attack();
+                }
             }
             else
             {
-                timer = 0;
-                DestRect = new Rectangle(DragonMove(), DestRect.Size);
-            }
-
-            if(attackTimer < attackInterval)
-            {
-                attackTimer += gameTime.ElapsedGameTime.Milliseconds;
-            }
-            else
-            {
-                attackTimer = 0;
-                Attack();
+                StunTimer -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 

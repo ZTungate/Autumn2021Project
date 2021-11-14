@@ -20,69 +20,76 @@ namespace Poggus.Enemies
             //Assign an arbitrary starting positon for the thrower
             //Pass the projectile handler in
             projectiles = ProjectileFactory.Instance;
-            health = EnemyConstants.throwerHealth;
+            Health = EnemyConstants.throwerHealth;
         }
 
         public override void Update(GameTime gameTime)
         {
-            int lastFrame = Sprite.CurrentFrame;
-
-            oldPosition = DestRect.Location;
-            Sprite.Update(gameTime);
-
-            //Only update the sprite and movement if we are not waiting for the boomerang to return.
-            if (wait <= 0)
+            if (StunTimer <= 0)
             {
-                if (lastFrame != Sprite.CurrentFrame)
+                int lastFrame = Sprite.CurrentFrame;
+
+                oldPosition = DestRect.Location;
+                Sprite.Update(gameTime);
+
+                //Try to move the thrower
+                TryRandomMove(lastFrame);
+
+                wait -= gameTime.ElapsedGameTime.Milliseconds;
+                if (throwDelay <= 0)
                 {
-                    RandomMove();
+                    //Attack and reset the delays
+                    Attack();
+                    wait = ProjectileConstants.boomerangLife; 
+                    throwDelay = EnemyConstants.throwerAttackDelay;
                 }
-            }
-            wait -= gameTime.ElapsedGameTime.Milliseconds;
-            if (throwDelay <= 0)
-            {
-                Attack();
-                wait = ProjectileConstants.boomerangLife; //Set the thrower to wait the life of the boomerang
-                throwDelay = EnemyConstants.throwerAttackDelay;//Reset the delay
+                else
+                {
+                    throwDelay -= gameTime.ElapsedGameTime.Milliseconds;
+                }
             }
             else
             {
-                throwDelay -= gameTime.ElapsedGameTime.Milliseconds;
+                //If stunned, decrement stun timer
+                StunTimer -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 
-        private void RandomMove()
+        private void TryRandomMove(int lastFrame)
         {
-            //Get a random number from 0 to 19
-            Random rand = new Random();
-            int value = rand.Next(20);
+            //Move only if not waiting and the sprite frame changed
+            if (wait <= 0 && lastFrame != Sprite.CurrentFrame)
+            {
+                //Get a random number from 0 to 19
+                Random rand = new Random();
+                int value = rand.Next(20);
 
-            //Change directions or move based on the random number
-            if(value == 0)
-            {
-                State.TurnUp();
+                //Change directions or move based on the random number
+                if (value == 0)
+                {
+                    State.TurnUp();
+                }
+                else if (value == 1)
+                {
+                    State.TurnDown();
+                }
+                else if (value == 2)
+                {
+                    State.TurnRight();
+                }
+                else if (value == 3)
+                {
+                    State.TurnLeft();
+                }
+                else
+                {
+                    State.MoveForward();
+                }
             }
-            else if(value == 1)
-            {
-                State.TurnDown();
-            }
-            else if(value == 2)
-            {
-                State.TurnRight();
-            }
-            else if(value == 3)
-            {
-                State.TurnLeft();
-            }
-            else 
-            {
-                State.MoveForward();
-            }
-
         }
         private void Attack()
         {
-            //Create a new boomerang moving the direction given at 3 pixels per tick.
+            //Create a new boomerang moving the direction given at standard boomerang speed.
             projectiles.NewBoomerang(DestRect.Location, State.AttackDirection() * ProjectileConstants.RegBoomerangVelocity.ToPoint());
         }
 

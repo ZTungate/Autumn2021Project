@@ -12,21 +12,28 @@ namespace Poggus.Enemies
     {
         public Skeleton(Point pos) : base(EnemyType.Skeleton, pos, new Point(32, 32))
         {
-            health = EnemyConstants.skeletonHealth;
+            Health = EnemyConstants.skeletonHealth;
         }
         public override void Update(GameTime gameTime)
         {
-            oldPosition = DestRect.Location;
-
-            //Get the number for the last frame
-            int lastFrame = Sprite.CurrentFrame;
-            //Update the sprite
-            Sprite.Update(gameTime);
-
-            //Move the skeleton if the animation frame changed
-            if (lastFrame != Sprite.CurrentFrame)
+            if (StunTimer <= 0)
             {
-                DestRect = new Rectangle(RandomMove(), DestRect.Size);
+                oldPosition = DestRect.Location;
+
+                //Get the number for the last frame
+                int lastFrame = Sprite.CurrentFrame;
+                //Update the sprite
+                Sprite.Update(gameTime);
+
+                //Move the skeleton if the animation frame changed
+                if (lastFrame != Sprite.CurrentFrame)
+                {
+                    DestRect = new Rectangle(RandomMove(), DestRect.Size);
+                }
+            }
+            else
+            {
+                StunTimer -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
         public Point RandomMove()

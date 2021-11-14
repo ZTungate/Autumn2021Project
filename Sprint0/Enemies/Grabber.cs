@@ -12,21 +12,28 @@ namespace Poggus.Enemies
     {
         public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
         {
-            health = EnemyConstants.grabberHealth;
+            Health = EnemyConstants.grabberHealth;
         }
         public override void Update(GameTime gameTime)
         {
-            //Get the number for the last frame
-            int lastFrame = Sprite.CurrentFrame;
-            oldPosition = DestRect.Location;
-
-            //Update the sprite
-            Sprite.Update(gameTime);
-
-            //Move the grabber if the animation frame changed
-            if (lastFrame != Sprite.CurrentFrame)
+            if (StunTimer <= 0)
             {
-                DestRect = new Rectangle(RandomMove(), DestRect.Size);
+                //Get the number for the last frame
+                int lastFrame = Sprite.CurrentFrame;
+                oldPosition = DestRect.Location;
+
+                //Update the sprite
+                Sprite.Update(gameTime);
+
+                //Move the grabber if the animation frame changed
+                if (lastFrame != Sprite.CurrentFrame)
+                {
+                    DestRect = new Rectangle(RandomMove(), DestRect.Size);
+                }
+            }
+            else
+            {
+                StunTimer -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 
