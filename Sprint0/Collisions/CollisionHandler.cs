@@ -111,6 +111,10 @@ namespace Poggus.Collisions
                         
                     }
 
+                }else if(projLink.IsCollision && projLink.proj1 is LinkBoomerangProjectile && projLink.proj1.Life <= ProjectileConstants.boomerangLife / 2)
+                {
+                    //Kill a link boomerang if it collides with him while returning.
+                    projLink.proj1.Life = 0;
                 }
             }
 
