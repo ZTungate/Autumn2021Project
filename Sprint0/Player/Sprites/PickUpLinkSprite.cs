@@ -5,6 +5,7 @@ using Poggus.Items;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Poggus.Helpers;
 
 namespace Poggus.Player
 {
@@ -12,14 +13,18 @@ namespace Poggus.Player
     {
         private AbstractItem myItem;
         ILink player;
-        public PickUpLinkSprite(Texture2D spriteSheet, ILink player, AbstractItem item) : base(spriteSheet, new Rectangle[2])
+        public PickUpLinkSprite(Texture2D spriteSheet, ILink player, AbstractItem item) : base(spriteSheet, new Rectangle[1])
         {
             this.player = player;
             myItem = item;
 
-            SourceRect[0] = new Rectangle(213 , 11, 16, 16);  //Set the frame for right idle link
-            SourceRect[1] = new Rectangle(230, 11, 16, 16);
-            this.Interval = 128f;
+            if (item is TriforcePieceItem) {
+                SourceRect[0] = new Rectangle(230, 11, 16, 16);
+            }
+            else {
+                SourceRect[0] = new Rectangle(213, 11, 16, 16);  //Set the frame for right idle link
+            }
+            this.Interval = 1000f;
         }
 
         public override void Update(GameTime gameTime)
@@ -27,17 +32,17 @@ namespace Poggus.Player
             this.FrameStep(gameTime);
         }
 
-        /*public void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch, Rectangle rect)
         {
+            //LayerDepth set to 1, normally this would mean this object will always been drawn in front but because of Begin() call in Game1 objects are drawn in the order their Draw() method is called
+            spriteBatch.Draw(Texture, rect, SourceRect[CurrentFrame], Color, 0, Vector2.Zero, effects, 1);
 
-            spriteBatch.Draw(Texture, player.position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
-            //draw item above link
-            Vector2 itemPos = new Vector2(player.position.X + (player.position.X - myItem.GetSprite().SourceRect[CurrentFrame].X)/2, player.position.Y - myItem.GetSprite().SourceRect[CurrentFrame].Y);
-            myItem.SetRectangle(new Rectangle((int)(myItem.GetRectangle().X + itemPos.X), (int)(myItem.GetRectangle().Y + itemPos.Y), myItem.GetRectangle().Width, myItem.GetRectangle().Height));
-            //TODO: Draw item 
-            //myItem.Draw()
+            myItem.SetPosition(LocationHelpers.GetLocationCenteredSpawnUp(player.DestRect, myItem.GetRectangle().Size));
 
-        }*/
+
+
+            myItem.Draw(spriteBatch);
+        }
 
     }
 }

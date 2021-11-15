@@ -20,6 +20,7 @@ namespace Poggus.Player
             mySprite.Color = sprite.Color;
             link.Sprite = mySprite;
             stateTime = LinkConstants.itemUseTime;
+            link.SoundManager.sound.playFanfare();
         }
 
         public void Update(GameTime gameTime)

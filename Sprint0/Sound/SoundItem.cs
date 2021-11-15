@@ -80,36 +80,49 @@ namespace Poggus.Sound
         public void playSwordSlash()
         {
             instance = swordSlash.CreateInstance();
-            playSound(instance);
+            playSound();
         }
 
         public void playSwordBeam()
         {
             instance = swordBeam.CreateInstance();
-            playSound(instance);
+            playSound();
         }
 
         public void playSwordCombined()
         {
             instance = swordCombined.CreateInstance();
-            playSound(instance);
+            playSound();
         }
 
         public void playArrow()
         {
             instance = arrowBoomerang.CreateInstance();
-            playSound(instance);
+            playSound();
         }
 
-        public void playBoomerange()
+        public SoundEffectInstance playBoomerang()
         {
             instance = arrowBoomerang.CreateInstance();
             instance.Volume = myVolume;
             instance.IsLooped = true;
             instance.Play();
+            return instance;
         }
 
-        public void playSound(SoundEffectInstance instance)
+        public void stopBoomerang(SoundEffectInstance instance)
+        {
+            instance.Stop();
+        }
+
+        public void playFanfare()
+        {
+            instance = fanfare.CreateInstance();
+            playSound();
+        }
+
+
+        public void playSound()
         {
             instance.Volume = myVolume;
             instance.Play();
