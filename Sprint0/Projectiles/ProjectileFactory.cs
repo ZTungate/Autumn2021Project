@@ -77,7 +77,9 @@ namespace Poggus.Projectiles
                 {
                     //Spawn a large explosion.
                 }
-
+                else if (projectile is LinkBoomerangProjectile){
+                    //stop boomerang sound
+                }
             }
         }
 
