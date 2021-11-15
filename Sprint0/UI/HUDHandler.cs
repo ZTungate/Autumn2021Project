@@ -45,7 +45,7 @@ namespace Poggus.UI
         }
         public void Update(GameTime gameTime)
         {
-            if(link.Health != heartImages.Count)
+            if(link.Health >= 0 && link.Health != heartImages.Count)
             {
                 for(int i = heartImages.Count - 1; i >= link.Health; i--)
                 {
