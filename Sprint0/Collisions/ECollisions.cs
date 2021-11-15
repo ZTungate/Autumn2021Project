@@ -1,4 +1,5 @@
-﻿using Poggus.Blocks;
+﻿using Microsoft.Xna.Framework;
+using Poggus.Blocks;
 using Poggus.Enemies;
 using Poggus.Items;
 using System;
@@ -58,6 +59,22 @@ namespace Poggus.Collisions
             this.IsCollision = IsCollision;
             this.enemy1 = enemy1;
             this.item2 = item2;
+        }
+    }
+
+    class E2RCollision : ICollision
+    {
+        public bool IsCollision { get; set; }
+        public ColDirections direction { get; set; }
+        public IEnemy enemy1 { get; set; }
+        public Rectangle rectangle2 { get; set; }
+
+        public E2RCollision(ColDirections direction, bool IsCollision, IEnemy enemy1, Rectangle rectangle2)
+        {
+            this.direction = direction;
+            this.IsCollision = IsCollision;
+            this.enemy1 = enemy1;
+            this.rectangle2 = rectangle2;
         }
     }
 }

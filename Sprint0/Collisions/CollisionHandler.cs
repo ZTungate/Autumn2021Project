@@ -135,6 +135,23 @@ namespace Poggus.Collisions
                 {
                     myLink.SetPosition(myLink.OldPosition);
                 }
+                
+                foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList())
+                {
+                    E2RCollision boundEnemy = (E2RCollision)detector.detectCollision(ene, rectangle);
+                    if (boundEnemy.IsCollision)
+                    {
+                        ene.SetPosition(ene.oldPosition);
+                    }
+                }
+                foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
+                    P2RCollision boundProj = (P2RCollision)detector.detectCollision(proj, rectangle);
+                    if (boundProj.IsCollision)
+                    {
+                        proj.Life = 0;
+                    }
+                }
+
             }
 
             //handle block projectile collision
