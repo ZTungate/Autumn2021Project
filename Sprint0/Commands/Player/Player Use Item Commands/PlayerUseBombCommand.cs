@@ -17,7 +17,11 @@ namespace Poggus.Commands
         public void Execute()
         {
             //Call useItem on link's current state.
-            game.link.UseItem(ProjectileTypes.bomb);
+            if (game.link.LinkInventory.GetBombCount() > 0)
+            {
+                game.link.UseItem(ProjectileTypes.bomb);
+                game.link.LinkInventory.DecrementBombs();
+            }
         }
     }
 }

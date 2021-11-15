@@ -13,9 +13,6 @@ namespace Poggus.Items
 
         }
 
-        public override void useItem(ILink link) //won't be used here to win game
-        {
-            
-        }
+        
     }
 }
