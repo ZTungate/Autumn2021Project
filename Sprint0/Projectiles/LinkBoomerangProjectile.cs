@@ -10,41 +10,71 @@ namespace Poggus.Projectiles
 {
     public class LinkBoomerangProjectile : AbstractProjectile
     {
-        Point acceleration;
+        Point direction;
         ILink myLink;
+        bool returning;
         public LinkBoomerangProjectile(Point position, Point velocity, ILink link) : base(position, velocity, ProjectileConstants.boomerangSize)
         {
             myLink = link;
-            calcAcceleration();
-            Life = 1;
+            Life = ProjectileConstants.boomerangLife;
         }
         public override void Update(GameTime gameTime)
         {
             //Move the boomerang according to its velocity.
             DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
             Sprite.Update(gameTime);
-            calcAcceleration();
 
-            //Cut the projectile's life by the elapsed time
-            int timePassed = gameTime.ElapsedGameTime.Milliseconds;
 
-            //Reduce the velocity by the acceleration * elapsed time
-            Velocity -= acceleration;
+            if (returning)
+            {
+                //Move the direction to be returning to link.
+                getDirection();
+                Velocity = ProjectileConstants.linkBoomerangVelocity * direction;
+            }
+            else
+            {
+                //Cut the projectile's life by the elapsed time
+                int timePassed = gameTime.ElapsedGameTime.Milliseconds;
+                Life -= timePassed;
+
+                //If the boomerang's life is half over, send it back to link
+                if (Life <= ProjectileConstants.boomerangLife / 2)
+                {
+                    returning = true;
+                }
+            }
         }
 
-        private void calcAcceleration()
+        private void getDirection()
         {
             Point linkCenter = LocationHelpers.GetCenter(myLink.DestRect);
             Point myCenter = LocationHelpers.GetCenter(DestRect);
             Point distance = myCenter - linkCenter;
-            acceleration = distance / ProjectileConstants.linkBoomerangMaxVelocity;
-            if (acceleration.X > ProjectileConstants.linkBoomerangMaxVelocity.X)
+            //Get a direction vector to best travel towards link
+            if(distance.X < 0)
             {
-                acceleration.X = ProjectileConstants.linkBoomerangMaxVelocity.X;
+                direction.X = 1;
             }
-            if(acceleration.Y > ProjectileConstants.linkBoomerangMaxVelocity.Y)
+            else if(distance.X > 0)
             {
-                acceleration.Y = ProjectileConstants.linkBoomerangMaxVelocity.Y;
+                direction.X = -1;
+            }
+            else
+            {
+                direction.X = 0;
+            }
+
+            if(distance.Y < 0)
+            {
+                direction.Y = 1;
+            }
+            else if(distance.Y > 0)
+            {
+                direction.Y = -1;
+            }
+            else
+            {
+                direction.Y = 0;
             }
 
         }

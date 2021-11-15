@@ -7,7 +7,7 @@ namespace Sprint0.Inventory
 {
     public class Inventory
     {
-        private const int ITEMS = 20; //const that is very temporary
+        
 
         private int arrows = 0;
         private int bombs = 0;
@@ -25,80 +25,80 @@ namespace Sprint0.Inventory
         }
 
 
-        public void incrementArrows(int Amount)
+        public void IncrementArrows()
         {
-            Arrows += Amount;
+            Arrows++;
         }
 
-        public void decrementArrows(int Amount)
+        public void DecrementArrows()
         {
-            Arrows -= Amount;
+            Arrows--;
         }
 
-        public int getArrowCount()
+        public int GetArrowCount()
         {
             return Arrows;
         }
 
-        public void incrementBombs(int Amount)
+        public void IncrementBombs()
         {
-            Bombs += Amount;
+            Bombs ++;
         }
 
-        public void decrementBombs(int Amount)
+        public void DecrementBombs()
         {
-            Bombs -= Amount;
+            Bombs--;
         }
 
-        public int getBombCount()
+        public int GetBombCount()
         {
             return Bombs;
         }
 
-        public void incrementRupees(int Amount)
+        public void IncrementRupees()
         {
-            Rupees += Amount;
+            Rupees++;
         }
 
-        public void decrementRupees(int Amount)
+        public void DecrementRupees()
         {
-            Rupees -= Amount;
+            Rupees--;
         }
 
-        public int getRupeeCount()
+        public int GetRupeeCount()
         {
             return Rupees;
         }
 
-        public bool getMapState()
+        public bool GetMapState()
         {
             return hasMap;
         }
 
-        public void addMap()
+        public void AddMap()
         {
             hasMap = true;
         }
-        public bool getCompassState()
+        public bool GetCompassState()
         {
             return hasCompass;
         }
 
-        public void addCompass()
+        public void AddCompass()
         {
             hasCompass = true;
         }
-        public void addItem(AbstractItem toAdd)
+        public void AddItem(AbstractItem toAdd)
         {
             itemList.Add(toAdd);
 
         }
-        public void removeItem(AbstractItem toRemove)
+        public void RemoveItem(AbstractItem toRemove)
         {
             itemList.Remove(toRemove);
 
         }
-        public bool checkItem(AbstractItem check)
+        public bool CheckItem(AbstractItem check)
         {
             return itemList.Contains(check);
 

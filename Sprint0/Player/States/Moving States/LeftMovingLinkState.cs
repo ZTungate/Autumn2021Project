@@ -14,6 +14,7 @@ namespace Poggus.Player
         {
             link = Link;
             mySprite = new LeftMovingLinkSprite(sprite.Texture, link);
+            mySprite.Color = sprite.Color;
             link.Sprite = mySprite;
         }
         public void Update(GameTime gameTime)

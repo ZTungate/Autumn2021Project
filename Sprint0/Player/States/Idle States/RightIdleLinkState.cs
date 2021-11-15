@@ -14,6 +14,7 @@ namespace Poggus.Player
 		{
             link = Link;
             mySprite = new RightIdleLinkSprite(sprite.Texture, link);
+            mySprite.Color = sprite.Color;
             link.Sprite = mySprite;
         }
 

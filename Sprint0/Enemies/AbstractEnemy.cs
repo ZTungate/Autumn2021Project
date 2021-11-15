@@ -14,12 +14,14 @@ namespace Poggus.Enemies
         public Rectangle DestRect { get; set; }
         public Point oldPosition { get; set; }
         public EnemyType EnemyType { get; }
-        public int health { get; set; }
+        public int Health { get; set; }
+        public int StunTimer { get; set; }
 
         public AbstractEnemy(EnemyType type, Point position, Point size)
         {
             this.EnemyType = type;
             this.DestRect = new Rectangle(position, size);
+            this.StunTimer = 0;
         }
         public virtual void CreateSprite()
         {
@@ -45,7 +47,7 @@ namespace Poggus.Enemies
 
         public void TakeDamage(int damageAmount)
         {
-            this.health -= damageAmount;
+            this.Health -= damageAmount;
         }
     }
 }

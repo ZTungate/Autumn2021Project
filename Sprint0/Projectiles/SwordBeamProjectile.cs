@@ -8,9 +8,11 @@ namespace Poggus.Projectiles
 {
     public class SwordBeamProjectile : AbstractProjectile
     {
-        public SwordBeamProjectile(Point position, Point velocity, Point size) : base(position, velocity, size)
+        ProjectileFactory pFactory;
+        public SwordBeamProjectile(Point position, Point velocity, Point size, ProjectileFactory projectileFactory) : base(position, velocity, size)
         {
             Life = ProjectileConstants.swordBeamLife;
+            pFactory = projectileFactory;
         }
         public override void Update(GameTime gameTime)
         {
@@ -21,11 +23,6 @@ namespace Poggus.Projectiles
             Sprite.Update(gameTime);
 
             Life -= gameTime.ElapsedGameTime.Milliseconds;
-
-            if (Life < 1)
-            {
-                //spawn sword beam explosions?
-            }
         }
     }
 }

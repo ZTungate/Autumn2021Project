@@ -18,6 +18,7 @@ namespace Poggus.Player
             //Create a new sprite and set link's sprite to that
             link = Link;
             mySprite = new UpSwordLinkSprite(sprite.Texture, Link);
+            mySprite.Color = sprite.Color;
             link.Sprite = mySprite;
             stateTime = LinkConstants.swordAttackTime;
 
