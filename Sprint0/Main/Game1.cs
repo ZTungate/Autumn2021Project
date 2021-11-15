@@ -18,9 +18,10 @@ namespace Poggus
         public static Game1 instance;
         private Dungeon dungeon;
         
-        public ISprite sprite;
-
+        private Texture2D fadeImage;
+        private bool fade = false;
         private SpriteFont font;
+        private Rectangle screenDims;
 
         public List<IController> controllerList;
 
@@ -59,7 +60,7 @@ namespace Poggus
             _graphics.PreferredBackBufferWidth = 1024;
             _graphics.PreferredBackBufferHeight = 704;
             _graphics.ApplyChanges();
-
+            screenDims = new Rectangle(new Point(0, 0), new Point(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight));
             //Initialize the sprite factories
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
@@ -88,7 +89,7 @@ namespace Poggus
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             font = Content.Load<SpriteFont>("Credits");
-
+            fadeImage = Content.Load<Texture2D>("fadePixel");
             //Load all textures from the link sprite factory.
             linkSpriteFactory.LoadAllTextures(Content);
 
@@ -111,7 +112,7 @@ namespace Poggus
             DungeonLoader.instance.LoadDungeons();
 
             handler = new CollisionHandler(this);
-
+            
         }
 
         protected override void Update(GameTime gameTime)
@@ -153,10 +154,16 @@ namespace Poggus
             //Draw Link
             link.Draw(_spriteBatch);
 
+            if (fade)
+            {
+                _spriteBatch.Draw(fadeImage, new Vector2(screenDims.X, screenDims.Y) ,null, Color.Black, 0, new Vector2(screenDims.X, screenDims.Y), 1.0f, SpriteEffects.None, 1.0f);
+            }
             _spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+        
 
         public void Reset()
         {
@@ -175,6 +182,12 @@ namespace Poggus
 
             handler = new CollisionHandler(this);
             
+        }
+
+        public void fadeout()
+        {
+            fade = true;
+            //fadeImage.Width = _graphics.PreferredBackBufferWidth;
         }
         public void SetDungeon(Dungeon dungeon)
         {
