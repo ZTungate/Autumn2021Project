@@ -12,9 +12,6 @@ namespace Poggus.Items
         {
 
         }
-        public override void useItem(ILink link)
-        {
-            link.LinkInventory.AddCompass();
-        }
+        
     }
 }

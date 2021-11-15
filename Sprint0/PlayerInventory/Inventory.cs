@@ -7,8 +7,8 @@ namespace Poggus.PlayerInventory
 {
     public class Inventory
     {
-        private int arrows = 0;
-        private int bombs = 0;
+        private int arrows = 5; //added for testing: TO REMOVE
+        private int bombs = 5;
         private int rupee = 0;
         private int keys = 0;
         protected bool hasMap = false;
