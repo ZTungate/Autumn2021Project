@@ -22,7 +22,7 @@ namespace Poggus
         private bool fade = false;
         private SpriteFont font;
         private Rectangle screenDims;
-
+        float fadeTimer = 0.0f;
         public List<IController> controllerList;
 
         public CollisionDetection detector = new CollisionDetection();
@@ -136,6 +136,10 @@ namespace Poggus
 
                 base.Update(gameTime);
             }
+            if (fade)
+            {
+                fadeTimer += 0.01f;
+            }
         }
 
         protected override void Draw(GameTime gameTime)
@@ -156,7 +160,7 @@ namespace Poggus
 
             if (fade)
             {
-                _spriteBatch.Draw(fadeImage, new Vector2(screenDims.X, screenDims.Y) ,null, Color.Black, 0, new Vector2(screenDims.X, screenDims.Y), 1.0f, SpriteEffects.None, 1.0f);
+                _spriteBatch.Draw(fadeImage, new Vector2(screenDims.X, screenDims.Y) ,null, Color.Black * fadeTimer, 0, new Vector2(screenDims.X, screenDims.Y), 10000, SpriteEffects.None, 1.0f);
             }
             _spriteBatch.End();
 
