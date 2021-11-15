@@ -22,6 +22,7 @@ namespace Poggus.Levels
         private Dictionary<string, Level> levels = new Dictionary<string, Level>();
         public void LoadAllLevels(ContentManager content)
         {
+            levels.Clear();
             blockSpriteSheet = content.Load<Texture2D>("BlockSpriteSheet");
 
             BackgroundSprite defaultBackground = new BackgroundSprite(blockSpriteSheet);
