@@ -63,7 +63,11 @@ namespace Poggus
             this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
             this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
             this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
+
+            //GAME CONTROLS
             this.controllerMappings.Add(Keys.P, new PauseCommand(myGame));
+            this.controllerMappings.Add(Keys.M, new ToggleSoundCommand(myGame));
+
 
             this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
             this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));

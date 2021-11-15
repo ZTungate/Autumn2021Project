@@ -9,6 +9,8 @@ using Poggus.Projectiles;
 using Poggus.Collisions;
 using Poggus.Levels;
 using Poggus.Levels.Sprites;
+using Microsoft.Xna.Framework.Audio;
+using Poggus.Sound;
 
 namespace Poggus
 {
@@ -17,7 +19,7 @@ namespace Poggus
         public static float gameScaleX, gameScaleY;
         public static Game1 instance;
         private Dungeon dungeon;
-        
+
         private Texture2D fadeImage;
         private bool fade = false;
         private SpriteFont font;
@@ -42,9 +44,12 @@ namespace Poggus
         public ILink link;
 
         //Projectiles
-        public ProjectileFactory projectileFactory; 
+        public ProjectileFactory projectileFactory;
         private bool isPaused = false;
         private bool inventoryOpen = false;
+
+        //Sound
+        public SoundManager soundManager;
 
         public Game1()
         {
@@ -69,6 +74,9 @@ namespace Poggus
             projectileFactory = ProjectileFactory.Instance;
             projectileFactory.Initalize();
 
+            //Initialize sound
+            soundManager = SoundManager.Instance;
+
             controllerList = new List<IController>()
             {
                 new KeyboardController(this),
@@ -78,7 +86,8 @@ namespace Poggus
             //Initialize Player (Link)
             link = new Link
             {
-                ProjectileFactory = projectileFactory
+                ProjectileFactory = projectileFactory,
+                SoundManager = soundManager
             };
             handler = new CollisionHandler(this);
 
@@ -111,8 +120,11 @@ namespace Poggus
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
 
+            //Load sounds
+            soundManager.LoadContent(Content);
+
             handler = new CollisionHandler(this);
-            
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -121,8 +133,7 @@ namespace Poggus
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-            if (!isPaused)
-            {
+            if (!isPaused) {
                 //Update Link
                 link.Update(gameTime);
 
@@ -131,18 +142,22 @@ namespace Poggus
                 //Update the projectiles
                 projectileFactory.UpdateProjectiles(gameTime);
 
-                //TODO: poop
+                //collision handler
                 handler.Update();
+
+                soundManager.ResumeMusic();
 
                 base.Update(gameTime);
             }
-            if (fade)
-            {
+            else {
+                soundManager.StopMusic();
+            }
+            if (fade) {
                 fadeTimer += 0.01f;
             }
         }
 
-        protected override void Draw(GameTime gameTime)
+    protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
@@ -174,7 +189,8 @@ namespace Poggus
             
             link = new Link
             {
-                ProjectileFactory = projectileFactory
+                ProjectileFactory = projectileFactory,
+                SoundManager = soundManager
             };
             link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
             DoorFactory.instance.LoadContent(Content);
@@ -210,6 +226,11 @@ namespace Poggus
         public void togglePause()
         {
             isPaused = !isPaused;
+        }
+
+        public void toggleSound()
+        {
+            soundManager.ToggleSound();
         }
         public void toggleOpenInventory()
         {

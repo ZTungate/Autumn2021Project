@@ -59,7 +59,7 @@ namespace Poggus.Projectiles
                 else
                 {
                     //If life < 0, add it to the list for removal.
-                    toRemove.Add(projectile);
+                    toRemove.Add(projectile); 
                 }
             }
             //Remove all projectiles that had life < 0 from the active list.
@@ -180,7 +180,7 @@ namespace Poggus.Projectiles
 
         public void NewRegArrow(Point position, Direction facing)
         {
-            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            //Generate an arrow with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile regArrow;
             switch (facing) {
                 case Direction.right:
@@ -208,7 +208,7 @@ namespace Poggus.Projectiles
 
         public void NewBlueArrow(Point position, Direction facing)
         {
-            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            //Generate an arrow with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile regArrow;
             switch (facing) {
                 case Direction.right:
