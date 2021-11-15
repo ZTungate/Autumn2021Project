@@ -11,6 +11,7 @@ using Poggus.Levels;
 using Poggus.Levels.Sprites;
 using Microsoft.Xna.Framework.Audio;
 using Poggus.Sound;
+using Poggus.Main;
 
 namespace Poggus
 {
@@ -140,6 +141,9 @@ namespace Poggus
                 controller.Update();
             }
             if (!isPaused) {
+
+                Camera.main.Update(gameTime);
+
                 //Update Link
                 link.Update(gameTime);
 
@@ -171,7 +175,7 @@ namespace Poggus
             //Using front to back sorting, and point clamp to improve look of pixel art sprites
             _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp);
 
-            dungeon.DrawCurrent(_spriteBatch);
+            dungeon.Draw(_spriteBatch);
 
             //Draw all projectiles
             projectileFactory.DrawProjectiles(_spriteBatch);

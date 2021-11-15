@@ -90,15 +90,15 @@ namespace Poggus.Levels
         {
             foreach(KeyValuePair<Point,Level> entry in levelDictionary)
             {
-                entry.Value.UpdateContentPosition(new Point(entry.Key.X * levelWidth, entry.Key.Y * levelHeight));
+                entry.Value.UpdateContentPosition(new Point(entry.Key.X * levelWidth, -entry.Key.Y * levelHeight));
             }
         }
         public void SetCurrentLevel(Point levelPoint)
         {
-            Point dir = levelPoint - currentLevelPoint;
+            //Point dir = levelPoint - currentLevelPoint;
             currentLevelPoint = levelPoint;
             this.currentLevel = levelDictionary[levelPoint];
-            UpdateLevelContentPositions(new Point(-dir.X * levelWidth, -dir.Y * levelHeight));
+            //UpdateLevelContentPositions(new Point(-dir.X * levelWidth, -dir.Y * levelHeight));
         }
         public Level GetCurrentLevel()
         {
@@ -118,6 +118,18 @@ namespace Poggus.Levels
             {
                 entry.Value.Draw(batch);
             }
+        }
+        public void Draw(SpriteBatch batch)
+        {
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                entry.Value.DrawLayoutOnly(batch);
+            }
+            this.currentLevel.Draw(batch);
+        }
+        public Point GetLevelSize()
+        {
+            return new Point(levelWidth, levelHeight);
         }
     }
 }

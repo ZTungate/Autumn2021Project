@@ -120,6 +120,19 @@ namespace Poggus.Levels
                 door.Draw(batch);
             }
         }
+        public void DrawLayoutOnly(SpriteBatch batch)
+        {
+            this.backgroundSprite.Draw(batch, this.backgroundRectangle);
+
+            foreach (KeyValuePair<Point, IBlock> entry in blocks)
+            {
+                entry.Value.Draw(batch);
+            }
+            foreach (LevelDoor door in doors)
+            {
+                door.Draw(batch);
+            }
+        }
         public Point GetPosition()
         {
             return this.location;

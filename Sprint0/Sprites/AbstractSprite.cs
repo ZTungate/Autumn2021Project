@@ -4,6 +4,7 @@ using System.Text;
 using Poggus;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Poggus.Main;
 
 namespace Poggus
 {
@@ -51,7 +52,8 @@ namespace Poggus
         public virtual void Draw(SpriteBatch spriteBatch, Rectangle rect)
         {
             //LayerDepth set to 1, normally this would mean this object will always been drawn in front but because of Begin() call in Game1 objects are drawn in the order their Draw() method is called
-            spriteBatch.Draw(Texture, rect, SourceRect[CurrentFrame], Color, 0, Vector2.Zero, effects, 1);
+            Rectangle worldRect = new Rectangle(rect.Location + Camera.main.GetPosition(), rect.Size);
+            spriteBatch.Draw(Texture, worldRect, SourceRect[CurrentFrame], Color, Camera.main.GetRotation(), Vector2.Zero, effects, 1);
         }
     }
 }
