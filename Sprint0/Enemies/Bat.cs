@@ -11,20 +11,28 @@ namespace Poggus.Enemies
     {
         public Bat(Point position) : base(EnemyType.Bat, position, new Point(32,32))
         {
-            health = EnemyConstants.batHealth;
+            Health = EnemyConstants.batHealth;
         }
 
         public override void Update(GameTime gameTime)
         {
-            oldPosition = this.DestRect.Location;
-
-            int lastFrame = Sprite.CurrentFrame;
-            Sprite.Update(gameTime);
-
-            //Move the bat if the animation frame changed
-            if (lastFrame != Sprite.CurrentFrame)
+            //Update the enemy if not stunned
+            if (StunTimer <= 0)
             {
-                this.DestRect = new Rectangle(BatRandomMove(), DestRect.Size);
+                oldPosition = this.DestRect.Location;
+
+                int lastFrame = Sprite.CurrentFrame;
+                Sprite.Update(gameTime);
+
+                //Move the bat if the animation frame changed
+                if (lastFrame != Sprite.CurrentFrame)
+                {
+                    this.DestRect = new Rectangle(BatRandomMove(), DestRect.Size);
+                }
+            }
+            else
+            {
+                StunTimer -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 

@@ -19,11 +19,20 @@ namespace Poggus.Projectiles
             blueBoomerang
         }
 
-        public static Vector2 ArrowVelocity = new Vector2(6, 6);
-        public static Vector2 RegBoomerangVelocity = new Vector2(7, 7);
-        public static Vector2 BlueBoomerangVelocity = new Vector2(8, 8);
-        public static Vector2 FireVelocity = new Vector2(6, 6);
+        public static Point ArrowVelocity = new Point(6, 6);
+        public static Point RegBoomerangVelocity = new Point(7, 7);
+        public static Point BlueBoomerangVelocity = new Point(8, 8);
+        public static Point FireVelocity = new Point(6, 6);
         public static Point linkBoomerangVelocity = new Point(7,7);
+
+        //Sword beam explosion velocities (change velocity by changing the base).
+        private static Point baseSBExplosionVelocity = new Point(4, 4);
+        public static Point upLeftSBExplosionVelocity = new Point(-1, -1) * baseSBExplosionVelocity;
+        public static Point upRightSBExplosionVelocity = new Point(1, -1) * baseSBExplosionVelocity;
+        public static Point downLeftSBExplosionVelocity = new Point(-1, 1) * baseSBExplosionVelocity;
+        public static Point downRightSBExplosionVelocity = new Point(1, 1) * baseSBExplosionVelocity;
+
+        public static Point fireAcceleration = new Point(-1, -1);
 
         public static Point VertArrowSize = new Point(16, 32);
         public static Point HorizArrowSize = new Point(32, 16);
@@ -42,7 +51,7 @@ namespace Poggus.Projectiles
         public static int fireballLife = 2000;
         public static int fireLife = 2000;
         public static int swordBeamLife = 3000;
-        public static int swordBeamBurstLife = 1000;
+        public static int swordBeamBurstLife = 500;
 
         public static int redArrowDamage = 2;
         public static int blueArrowDamage = 4;
@@ -51,6 +60,8 @@ namespace Poggus.Projectiles
         public static int swordBeamDamage = 1;
         public static int throwerBoomerangDamage = 1;
         public static int fireballDamage = 1;
+
+        public static int boomerangStunTime = 500;
 
     }
 }

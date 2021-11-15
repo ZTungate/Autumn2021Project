@@ -15,23 +15,30 @@ namespace Poggus.Enemies
 
         public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
         {
-            health = EnemyConstants.slimeHealth;
+            Health = EnemyConstants.slimeHealth;
         }
         public override void Update(GameTime gameTime)
         {
-            oldPosition = GetPosition();
-
-            Sprite.Update(gameTime);
-
-            //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
-            if (timer < interval)
+            if (StunTimer <= 0)
             {
-                timer += 5;
+                oldPosition = GetPosition();
+
+                Sprite.Update(gameTime);
+
+                //Timer to prevent from moving too fast, should unify with the timer in sprite.Update();
+                if (timer < interval)
+                {
+                    timer += 5;
+                }
+                else
+                {
+                    timer = 0;
+                    SetPosition(SlimeRandomMove());
+                }
             }
             else
             {
-                timer = 0;
-                SetPosition(SlimeRandomMove());
+                StunTimer -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 

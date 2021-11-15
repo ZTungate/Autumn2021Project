@@ -23,11 +23,11 @@ namespace Poggus.Enemies
 
         public IEnemyState State { get; set; } //May not need this in interface if it only applies to 1 enemy
 
-        public int health { get; set; }
+        public int Health { get; set; }
+        public int StunTimer { get; set; }
 
         public Point GetPosition();
         public void SetPosition(Point pos);
-
         public void TakeDamage(int damageAmount);
     }
 }

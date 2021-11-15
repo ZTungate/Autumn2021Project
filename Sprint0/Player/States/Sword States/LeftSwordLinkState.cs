@@ -17,6 +17,7 @@ namespace Poggus.Player
         {
             link = Link;
             mySprite = new LeftSwordLinkSprite(sprite.Texture, Link);
+            mySprite.Color = sprite.Color;
             link.Sprite = mySprite;
             stateTime = LinkConstants.swordAttackTime;
 
