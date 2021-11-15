@@ -49,18 +49,16 @@ namespace Poggus.Player
         {
             State = new InitialLinkState(this, Sprite); //start the player in the right idle state
 
-            colorIndex = 0;
-
             Sprite.Color = Color.White;
 
             State = new InitialLinkState(this, Sprite); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
-            colorIndex = 0;
             LinkInventory = new Inventory();
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
             maxHealth = Health;
+
         }
         public void Update(GameTime gameTime)
         {
@@ -132,16 +130,7 @@ namespace Poggus.Player
                 DestRect = new Rectangle(DestRect.Location + moveDirection, DestRect.Size);
             }   
         }
-        public void Reset()
-        {
-            //This may not work, since the state does not determine the sprite
-            State = new InitialLinkState(this, Sprite); //start the player in the right idle state
-            DestRect = new Rectangle(new Point(20, 20), DestRect.Size);
-
-            colorIndex = 0;
-
-            Sprite.Color = Color.White;
-        }
+ 
 
         //Attacks
 
