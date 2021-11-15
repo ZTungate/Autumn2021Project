@@ -10,31 +10,33 @@ namespace Poggus.Sound
     public class SoundManager
     {
         public float volume;
+        //background music
         public Song song;
-        public SoundEffect sound;
-        public SoundEffectInstance instance;
 
+        public SoundItem sound;
+
+        private static SoundManager instance = new SoundManager();
+
+        public static SoundManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
         public SoundManager()
         {
-            sound = null;
-            instance = null;
+            volume = 1f;
+            sound = new SoundItem(volume);
         }
 
-
-        public virtual void AdjustVolume(float percent)
-        {
-            if (instance != null) {
-                instance.Volume = percent * volume;
-            }
-
-        }
         public void LoadContent(ContentManager content)
         {
             //load background music
             song = content.Load<Song>("dungeon");
 
-            //load sound effects
-
+            //Load sound effects
+            sound.LoadContent(content);
 
             //start the music
             MediaPlayer.Play(song);
@@ -60,6 +62,7 @@ namespace Poggus.Sound
                 volume = 0;
             }
 
+            sound.SetVolume(volume);
             MediaPlayer.Volume = volume;
 
         }

@@ -26,6 +26,10 @@ namespace Poggus.Player
             if (link.FullHealth())
             {
                 link.ProjectileFactory.NewSwordBeam(link.GetPosition(), Direction.up);
+                link.SoundManager.sound.playSwordCombined();
+            }
+            else {
+                link.SoundManager.sound.playSwordSlash();
             }
         }
 

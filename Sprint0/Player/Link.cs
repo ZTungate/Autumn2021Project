@@ -5,6 +5,7 @@ using Poggus.Projectiles;
 using static Poggus.Projectiles.ProjectileConstants;
 using Poggus.Items;
 using Poggus.PlayerInventory;
+using Poggus.Sound;
 
 namespace Poggus.Player
 {
@@ -19,6 +20,7 @@ namespace Poggus.Player
         public Point OldPosition { get; set; }
         public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
+        public SoundManager SoundManager { get; set; }
         public int Health { get; set; }
         public Inventory LinkInventory { get;}
 

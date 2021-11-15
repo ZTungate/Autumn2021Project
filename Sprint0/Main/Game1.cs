@@ -75,7 +75,7 @@ namespace Poggus
             projectileFactory.Initalize();
 
             //Initialize sound
-            soundManager = new SoundManager();
+            soundManager = SoundManager.Instance;
 
             controllerList = new List<IController>()
             {
@@ -86,7 +86,8 @@ namespace Poggus
             //Initialize Player (Link)
             link = new Link
             {
-                ProjectileFactory = projectileFactory
+                ProjectileFactory = projectileFactory,
+                SoundManager = soundManager
             };
             handler = new CollisionHandler(this);
 
@@ -156,7 +157,7 @@ namespace Poggus
             }
         }
 
-protected override void Draw(GameTime gameTime)
+    protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
@@ -188,7 +189,8 @@ protected override void Draw(GameTime gameTime)
             
             link = new Link
             {
-                ProjectileFactory = projectileFactory
+                ProjectileFactory = projectileFactory,
+                SoundManager = soundManager
             };
             link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
             DoorFactory.instance.LoadContent(Content);
