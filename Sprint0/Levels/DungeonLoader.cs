@@ -13,6 +13,7 @@ namespace Poggus.Levels
         public Dictionary<string, Dungeon> dungeonDictionary = new Dictionary<string, Dungeon>();
         public void LoadDungeons()
         {
+            dungeonDictionary.Clear();
             string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
             string[] fileNames = Directory.GetFiles(dir + "\\Dungeons");
             foreach(string file in fileNames)

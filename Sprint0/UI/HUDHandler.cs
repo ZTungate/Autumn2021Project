@@ -20,10 +20,20 @@ namespace Poggus.UI
         public int hudWidth, hudHeight;
         ILink link;
         Inventory inventory;
-        public HUDHandler(ILink link, Inventory inv)
+        public HUDHandler(ILink link)
         {
             this.link = link;
-            this.inventory = inv;
+            this.inventory = link.LinkInventory;
+            this.heartImages = new List<ImageUI>();
+            hudWidth = Game1.instance._graphics.PreferredBackBufferWidth;
+            hudHeight = Main.Camera.main.GetOffset().Y;
+            mapHandler = new MapUIHandler();
+
+            InitHUD();
+        }
+        public void Reset()
+        {
+            this.inventory = link.LinkInventory;
             this.heartImages = new List<ImageUI>();
             hudWidth = Game1.instance._graphics.PreferredBackBufferWidth;
             hudHeight = Main.Camera.main.GetOffset().Y;
@@ -45,7 +55,7 @@ namespace Poggus.UI
         }
         public void Update(GameTime gameTime)
         {
-            if(link.Health >= 0 && link.Health != heartImages.Count)
+            if(link.Health != heartImages.Count)
             {
                 for(int i = heartImages.Count - 1; i >= link.Health; i--)
                 {

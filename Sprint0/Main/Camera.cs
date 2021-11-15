@@ -15,11 +15,18 @@ namespace Poggus.Main
         Point moveTo;
         bool moveToNext;
         float moveToSpeed;
+
+        Point originalPosition;
         public Camera(Point position, Point constantOffset, float rotation)
         {
             this.position = position + constantOffset;
+            this.originalPosition = this.position;
             this.offset = constantOffset;
             this.rotation = rotation;
+        }
+        public void Reset()
+        {
+            this.position = originalPosition;
         }
         public void Update(GameTime gameTime)
         {

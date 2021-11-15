@@ -134,7 +134,7 @@ namespace Poggus
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
 
-            hudHandler = new HUDHandler(this.link, this.link.LinkInventory);
+            hudHandler = new HUDHandler(this.link);
 
             //Load sounds
             soundManager.LoadContent(Content);
@@ -205,12 +205,8 @@ namespace Poggus
 
         public void Reset()
         {
-            
-            link = new Link
-            {
-                ProjectileFactory = projectileFactory,
-                SoundManager = soundManager
-            };
+            link.Reset();
+
             link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
             DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.ResetLevels();
@@ -218,6 +214,9 @@ namespace Poggus
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
             stateChange.Reset();
+
+            hudHandler.Reset();
+            Camera.main.Reset();
 
             handler = new CollisionHandler(this);
             
@@ -231,7 +230,6 @@ namespace Poggus
         {
             fade = true;
             isPaused = true;
-            
         }
         public void toggleWin()
         {
