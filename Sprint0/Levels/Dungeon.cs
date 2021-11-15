@@ -23,6 +23,10 @@ namespace Poggus.Levels
             this.levelWidth = levelWidth;
             this.levelHeight = levelHeight;
         }
+        public Dictionary<Point, Level> GetLevelDictionary()
+        {
+            return this.levelDictionary;
+        }
         public static Point[] directions = { new Point(0, 1), new Point(1, 0), new Point(0, -1), new Point(-1, 0) };
         public static Dictionary<Point, DoorDirectionEnum> doorDir = new Dictionary<Point, DoorDirectionEnum>
         {
