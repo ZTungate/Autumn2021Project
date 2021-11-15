@@ -9,6 +9,8 @@ using Poggus.Projectiles;
 using Poggus.Collisions;
 using Poggus.Levels;
 using Poggus.Levels.Sprites;
+using Microsoft.Xna.Framework.Audio;
+using Poggus.Sound;
 
 namespace Poggus
 {
@@ -45,6 +47,9 @@ namespace Poggus
         private bool isPaused = false;
         private bool inventoryOpen = false;
 
+        //Sound
+        public SoundManager soundManager;
+
         public Game1()
         {
             instance = this;
@@ -67,6 +72,9 @@ namespace Poggus
             blockSpriteFactory = BlockSpriteFactory.Instance;
             projectileFactory = ProjectileFactory.Instance;
             projectileFactory.Initalize();
+
+            //Initialize sound
+            soundManager = new SoundManager();
 
             controllerList = new List<IController>()
             {
@@ -109,6 +117,9 @@ namespace Poggus
             DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
+
+            //Load sounds
+            soundManager.LoadContent(Content);
 
             handler = new CollisionHandler(this);
 

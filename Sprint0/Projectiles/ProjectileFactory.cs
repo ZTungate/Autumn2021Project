@@ -133,11 +133,6 @@ namespace Poggus.Projectiles
             return new DownBlueArrowSprite(linkSpriteSheet);
         }
 
-        public ISprite CreateArrowPoofSprite()
-        {
-            return new ArrowPoofSprite(linkSpriteSheet);
-        }
-
         public ISprite CreateRightSwordSprite()
         {
             return new RightSwordSprite(linkSpriteSheet);
@@ -259,25 +254,10 @@ namespace Poggus.Projectiles
 
         public void NewBomb(Point position)
         {
-            ISprite mySprite = CreateBombSprite();
-            Vector2 bombPos = new Vector2();
-            switch (facing) {
-                case direction.down: //center and place the bomb below link
-                    bombPos = new Vector2(position.X + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Width)/2 * LinkConstants.scaleX, position.Y + LinkConstants.linkSize * LinkConstants.scaleY);
-                    break;
-                case direction.up:
-                    bombPos = new Vector2(position.X + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Width) / 2 * LinkConstants.scaleX, position.Y - mySprite.SourceRect[mySprite.CurrentFrame].Height * LinkConstants.scaleY);
-                    break;
-                case direction.right:
-                    bombPos = new Vector2(position.X + LinkConstants.linkSize * LinkConstants.scaleX, position.Y + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Height) / 2 * LinkConstants.scaleY);
-                    break;
-                case direction.left:
-                    bombPos = new Vector2(position.X - mySprite.SourceRect[mySprite.CurrentFrame].Width * LinkConstants.scaleX, position.Y + (LinkConstants.linkSize - mySprite.SourceRect[mySprite.CurrentFrame].Height) / 2 * LinkConstants.scaleY);
-                    break;
-            }
-            IProjectile bomb = new BombProjectile(bombPos);
+            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            IProjectile bomb = new BombProjectile(position);
             projectiles.Add(bomb);
-            bomb.Sprite = mySprite;
+            bomb.Sprite = CreateBombSprite();
         }
 
         public ISprite CreateBoomerangSprite()
