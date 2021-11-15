@@ -24,7 +24,7 @@ namespace Poggus.Blocks
         public AbstractBlock(BlockType type, Point pos)
         {
             this.blockType = type;
-            this.DestRect = new Rectangle(pos, new Point(64,64));
+            this.DestRect = new Rectangle(pos, new Point(64,(int)(64 * Game1.heightScalar)));
         }
         public void CreateSprite()
         {

@@ -13,6 +13,7 @@ namespace Poggus.Levels
         public Dictionary<string, Dungeon> dungeonDictionary = new Dictionary<string, Dungeon>();
         public void LoadDungeons()
         {
+            dungeonDictionary.Clear();
             string dir = Directory.GetParent(System.IO.Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName;
             string[] fileNames = Directory.GetFiles(dir + "\\Dungeons");
             foreach(string file in fileNames)
@@ -20,7 +21,7 @@ namespace Poggus.Levels
                 StreamReader reader = File.OpenText(file);
                 string dungeonName = reader.ReadLine();
 
-                Dungeon newDungeon = new Dungeon(dungeonName, Game1.instance._graphics.PreferredBackBufferWidth, Game1.instance._graphics.PreferredBackBufferHeight);
+                Dungeon newDungeon = new Dungeon(dungeonName, Game1.instance._graphics.PreferredBackBufferWidth,(int)(Game1.instance._graphics.PreferredBackBufferHeight * Game1.heightScalar));
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();

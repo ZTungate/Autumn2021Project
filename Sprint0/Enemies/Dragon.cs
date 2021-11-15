@@ -78,9 +78,9 @@ namespace Poggus.Enemies
         public void Attack()
         {
             //Generate three fireballs starting at the dragon's location.
-            projectiles.NewFireBall(DestRect.Location, new Point(-3, -2)); //This one moves up and left.
-            projectiles.NewFireBall(DestRect.Location, new Point(-3, 0)); //This one moves straight left.
-            projectiles.NewFireBall(DestRect.Location, new Point(-3, 2)); //This one moves down and left.
+            projectiles.NewFireball(DestRect.Location, new Point(-3, -2)); //This one moves up and left.
+            projectiles.NewFireball(DestRect.Location, new Point(-3, 0)); //This one moves straight left.
+            projectiles.NewFireball(DestRect.Location, new Point(-3, 2)); //This one moves down and left.
         }
     }
 }

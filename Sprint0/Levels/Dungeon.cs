@@ -52,15 +52,15 @@ namespace Poggus.Levels
                         }
                         if (dir == new Point(1, 0))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorFactory.instance.doorSize.X * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f - scaledDoorHeight / 2);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorFactory.instance.doorSize.X * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f * Game1.heightScalar - scaledDoorHeight / 2);
                         }
                         if (dir == new Point(0, -1))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f - scaledDoorWidth / 2, Game1.instance._graphics.PreferredBackBufferHeight - DoorFactory.instance.doorSize.Y * scaleY);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f - scaledDoorWidth / 2, Game1.instance._graphics.PreferredBackBufferHeight * Game1.heightScalar - DoorFactory.instance.doorSize.Y * scaleY);
                         }
                         if (dir == new Point(-1, 0))
                         {
-                            doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f - scaledDoorHeight/2);
+                            doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f * Game1.heightScalar - scaledDoorHeight/2);
                         }
                         entry.Value.AddDoor(DoorFactory.instance.GetNewOpenDoor(doorPos.ToPoint(), new Point(scaledDoorWidth, scaledDoorHeight), doorDir[dir]), doorDir[dir]);
                     }
@@ -90,15 +90,15 @@ namespace Poggus.Levels
         {
             foreach(KeyValuePair<Point,Level> entry in levelDictionary)
             {
-                entry.Value.UpdateContentPosition(new Point(entry.Key.X * levelWidth, entry.Key.Y * levelHeight));
+                entry.Value.UpdateContentPosition(new Point(entry.Key.X * levelWidth, -entry.Key.Y * levelHeight));
             }
         }
         public void SetCurrentLevel(Point levelPoint)
         {
-            Point dir = levelPoint - currentLevelPoint;
+            //Point dir = levelPoint - currentLevelPoint;
             currentLevelPoint = levelPoint;
             this.currentLevel = levelDictionary[levelPoint];
-            UpdateLevelContentPositions(new Point(-dir.X * levelWidth, -dir.Y * levelHeight));
+            //UpdateLevelContentPositions(new Point(-dir.X * levelWidth, -dir.Y * levelHeight));
         }
         public Level GetCurrentLevel()
         {
@@ -118,6 +118,18 @@ namespace Poggus.Levels
             {
                 entry.Value.Draw(batch);
             }
+        }
+        public void Draw(SpriteBatch batch)
+        {
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                entry.Value.DrawLayoutOnly(batch);
+            }
+            this.currentLevel.Draw(batch);
+        }
+        public Point GetLevelSize()
+        {
+            return new Point(levelWidth, levelHeight);
         }
     }
 }

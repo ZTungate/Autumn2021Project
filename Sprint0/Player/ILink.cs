@@ -34,5 +34,7 @@ namespace Poggus.Player
         void SetPosition(Point pos);
         bool FullHealth();
 
+        void Reset();
+
     }
 }

@@ -19,6 +19,7 @@ namespace Poggus.Commands
         public void Execute()
         {
             game.link.PickUp(myItem);
+            //game.link.LinkInventory.AddItem(myItem); might work?
         }
     }
 }

@@ -76,6 +76,7 @@ namespace Poggus.Projectiles
                 }else if(projectile is BombProjectile)
                 {
                     //Spawn a large explosion.
+                    NewBombExplosions(projectile.GetPosition());
                 }
                 else if (projectile is LinkBoomerangProjectile){
                     //stop boomerang sound
@@ -100,7 +101,6 @@ namespace Poggus.Projectiles
         {
             return new BombSprite(linkSpriteSheet);
         }
-
         public ISprite CreateRightRegArrowSprite()
         {
             return new RightRegArrowSprite(linkSpriteSheet);
@@ -117,52 +117,42 @@ namespace Poggus.Projectiles
         {
             return new DownRegArrowSprite(linkSpriteSheet);
         }
-
         public ISprite CreateRightBlueArrowSprite()
         {
             return new RightBlueArrowSprite(linkSpriteSheet);
         }
-
         public ISprite CreateLeftBlueArrowSprite()
         {
             return new LeftBlueArrowSprite(linkSpriteSheet);
         }
-
         public ISprite CreateUpBlueArrowSprite()
         {
             return new UpBlueArrowSprite(linkSpriteSheet);
         }
-
         public ISprite CreateDownBlueArrowSprite()
         {
             return new DownBlueArrowSprite(linkSpriteSheet);
         }
-
         public ISprite CreateRightSwordSprite()
         {
             return new RightSwordSprite(linkSpriteSheet);
         }
-
         public ISprite CreateLeftSwordSprite()
         {
             return new LeftSwordSprite(linkSpriteSheet);
         }
-
         public ISprite CreateUpSwordSprite()
         {
             return new UpSwordSprite(linkSpriteSheet);
         }
-
         public ISprite CreateDownSwordSprite()
         {
             return new DownSwordSprite(linkSpriteSheet);
         }
-
         public ISprite CreateFireSprite()
         {
             return new FireSprite(linkSpriteSheet);
         }
-
         public ISprite CreateArrowPoofSprite()
         {
             return new ArrowPoofSprite(linkSpriteSheet);
@@ -183,7 +173,21 @@ namespace Poggus.Projectiles
         {
             return new DownLeftSwordExplosionSprite(linkSpriteSheet);
         }
+        public ISprite CreateBoomerangSprite()
+        {
+            return new BoomerangSprite(enemySpriteSheet);
+        }
 
+        public ISprite CreateBlueBoomerangSprite()
+        {
+            return new BlueBoomerangSprite(linkSpriteSheet);
+        }
+        public ISprite createBombExplosionSprite()
+        {
+            return new BombExplosionSprite(linkSpriteSheet);
+        }
+
+        //Spawners for projectiles/projectile groups
         public void NewRegArrow(Point position, Direction facing)
         {
             //Generate an arrow with given position and velocity, add it to the list, and assign it a sprite.
@@ -297,7 +301,7 @@ namespace Poggus.Projectiles
 
         }
 
-        public void NewFireBall(Point position, Point velocity)
+        public void NewFireball(Point position, Point velocity)
         {
             //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile fireball = new FireballProjectile(position, velocity);
@@ -307,22 +311,32 @@ namespace Poggus.Projectiles
 
         public void NewBomb(Point position)
         {
-            //Generate a fireball with given position and velocity, add it to the list, and assign it a sprite.
+            //Generate a bomb with given position and velocity, add it to the list, and assign it a sprite.
             IProjectile bomb = new BombProjectile(position);
             projectiles.Add(bomb);
             bomb.Sprite = CreateBombSprite();
         }
-
-        public ISprite CreateBoomerangSprite()
+        public void NewBombExplosions(Point pos)
         {
-            return new BoomerangSprite(enemySpriteSheet);
-        }
+            //Generate 7 bomb explosions in a hexagon around the given position.
+            Point stdSize = ProjectileConstants.bombExplosionSize;
+            IProjectile center = new BombExplosionProjectile(pos);
+            IProjectile topLeft = new BombExplosionProjectile(new Point(pos.X - (stdSize.X / 2), pos.Y - (int)(stdSize.Y * 0.866)));
+            IProjectile topRight = new BombExplosionProjectile(new Point(pos.X + (stdSize.X / 2), pos.Y - (int)(stdSize.Y * 0.866)));
+            IProjectile right = new BombExplosionProjectile(new Point(pos.X + stdSize.X ,pos.Y));
+            IProjectile botRight = new BombExplosionProjectile(new Point(pos.X + (stdSize.X / 2), pos.Y + (int)(stdSize.Y * 0.866)));
+            IProjectile botLeft = new BombExplosionProjectile(new Point(pos.X - (stdSize.X / 2), pos.Y + (int)(stdSize.Y * 0.866)));
+            IProjectile left = new BombExplosionProjectile(new Point(pos.X - stdSize.X, pos.Y));
+            List<IProjectile> list = new List<IProjectile>{ center, topLeft, topRight, right, botRight, botLeft, left };
 
-        public ISprite CreateBlueBoomerangSprite()
-        {
-            return new BlueBoomerangSprite(linkSpriteSheet);
-        }
+            //Give each projectile a sprite and add it to the list of projectiles
+            foreach(IProjectile projectile in list)
+            {
+                projectile.Sprite = createBombExplosionSprite();
+                projectiles.Add(projectile);
+            }
 
+        }
         public void NewBoomerang(Point position, Point velocity)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
@@ -362,8 +376,6 @@ namespace Poggus.Projectiles
             projectiles.Add(fire);
             fire.Sprite = CreateFireSprite();
         }
-
-
 
         public List<IProjectile> getProjs()
         {

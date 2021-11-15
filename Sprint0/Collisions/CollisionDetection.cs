@@ -124,6 +124,14 @@ namespace Poggus.Collisions
             return collision;
         }
 
+        //Returns E2R collision
+        public ICollision detectCollision(IEnemy object1, Rectangle object2)
+        {
+            ICollision collision = new E2RCollision(directionDetect(object1.DestRect, object2), object1.DestRect.Intersects(object2), object1, object2);
+
+            return collision;
+        }
+
         public ICollision detectCollision(IBlock object1, ILink object2) 
             {
             /*Vector2 holder1 = object2.position;
@@ -301,6 +309,12 @@ namespace Poggus.Collisions
             ICollision collision = new P2ECollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
             ICollision collision = new P2ECollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object2, object1);
 
+            return collision;
+        }
+
+        public ICollision detectCollision(IProjectile proj, Rectangle rectangle)
+        {
+            ICollision collision= new P2RCollision(directionDetect(proj.DestRect, rectangle), proj.DestRect.Intersects(rectangle), proj, rectangle);
             return collision;
         }
     }

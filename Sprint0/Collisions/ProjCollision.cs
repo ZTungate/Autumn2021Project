@@ -1,4 +1,5 @@
-﻿using Poggus.Blocks;
+﻿using Microsoft.Xna.Framework;
+using Poggus.Blocks;
 using Poggus.Enemies;
 using Poggus.Player;
 using Poggus.Projectiles;
@@ -77,6 +78,24 @@ namespace Poggus.Collisions
             this.IsCollision = IsCollision;
             this.proj1 = proj1;
             this.enemy2 = enemy2;
+        }
+    }
+
+    class P2RCollision : ICollision
+    {
+        public bool IsCollision { get; set; }
+        public ColDirections direction { get; set; }
+
+        public IProjectile proj1 { get; set; }
+
+        public Rectangle rectangle2 { get; set; }
+
+        public P2RCollision(ColDirections direction, bool IsCollision, IProjectile proj1, Rectangle rectangle2)
+        {
+            this.direction = direction;
+            this.IsCollision = IsCollision;
+            this.proj1 = proj1;
+            this.rectangle2= rectangle2;
         }
     }
 }
