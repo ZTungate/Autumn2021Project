@@ -16,15 +16,21 @@ namespace Poggus
 {
     public class Game1 : Game
     {
+        const int textScale = 3;
+        const int blackoutScale = 10000;
         public static float gameScaleX, gameScaleY;
         public static Game1 instance;
         private Dungeon dungeon;
-
+        
         private Texture2D fadeImage;
-        private bool fade = false;
+        private bool fade = true;
         private SpriteFont font;
         private Rectangle screenDims;
         float fadeTimer = 0.0f;
+        private bool win = false;
+        private bool lose = false;
+        private string endGameText;
+        private StateChanges stateChange;
         public List<IController> controllerList;
 
         public CollisionDetection detector = new CollisionDetection();
@@ -65,7 +71,7 @@ namespace Poggus
             _graphics.PreferredBackBufferWidth = 1024;
             _graphics.PreferredBackBufferHeight = 704;
             _graphics.ApplyChanges();
-            screenDims = new Rectangle(new Point(0, 0), new Point(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight));
+            screenDims = new Rectangle(new Point(), new Point(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight));
             //Initialize the sprite factories
             linkSpriteFactory = LinkSpriteFactory.Instance;
             enemySpriteFactory = EnemySpriteFactory.Instance;
@@ -90,7 +96,7 @@ namespace Poggus
                 SoundManager = soundManager
             };
             handler = new CollisionHandler(this);
-
+            
             base.Initialize();
         }
 
@@ -124,7 +130,7 @@ namespace Poggus
             soundManager.LoadContent(Content);
 
             handler = new CollisionHandler(this);
-
+            stateChange = new StateChanges(this, font, fadeImage, _spriteBatch);
         }
 
         protected override void Update(GameTime gameTime)
@@ -152,9 +158,9 @@ namespace Poggus
             else {
                 soundManager.StopMusic();
             }
-            if (fade) {
-                fadeTimer += 0.01f;
-            }
+            
+                stateChange.Update();
+            
         }
 
     protected override void Draw(GameTime gameTime)
@@ -173,10 +179,7 @@ namespace Poggus
             //Draw Link
             link.Draw(_spriteBatch);
 
-            if (fade)
-            {
-                _spriteBatch.Draw(fadeImage, new Vector2(screenDims.X, screenDims.Y) ,null, Color.Black * fadeTimer, 0, new Vector2(screenDims.X, screenDims.Y), 10000, SpriteEffects.None, 1.0f);
-            }
+            stateChange.fadeOut();
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -198,18 +201,35 @@ namespace Poggus
             DungeonLoader.instance.ResetDungeon();
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
-
+            stateChange.Reset();
 
             handler = new CollisionHandler(this);
             
         }
-
+        public void printEndMessage()
+        {
+            Vector2 textMiddlePoint = font.MeasureString(endGameText) / 2;
+            _spriteBatch.DrawString(font, endGameText, new Vector2(screenDims.Width / 2, screenDims.Height / 2), Color.White, 0, textMiddlePoint, textScale, SpriteEffects.None, 0);
+        }
         public void fadeout()
         {
             fade = true;
             isPaused = true;
-            //fadeImage.Width = _graphics.PreferredBackBufferWidth;
+            
         }
+        public void toggleWin()
+        {
+            fadeout();
+            win = !win;
+            
+        }
+
+        public void toggleLose()
+        {
+            fadeout();
+            lose = !lose;
+        }
+        
         public void SetDungeon(Dungeon dungeon)
         {
             this.dungeon = dungeon;
