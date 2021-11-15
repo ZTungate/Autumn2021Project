@@ -218,13 +218,17 @@ namespace Poggus.Collisions
                 if (itemLink.IsCollision) {
                     itemToRemove.Add(itemLink.Item2);
                     if(itemLink.Item2 is TriforcePieceItem) {
+                        
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+                        
+                        
                     }
                 }
             }
             //remove items from the room
             foreach (AbstractItem item in itemToRemove) {
                 myDungeon.GetCurrentLevel().RemoveItem(item);
+                
             }
 
             LevelDoor[] doors = myGame.GetDungeon().GetCurrentLevel().GetDoorListAsArray(); 
