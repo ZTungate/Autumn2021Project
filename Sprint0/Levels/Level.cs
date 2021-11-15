@@ -35,7 +35,7 @@ namespace Poggus.Levels
             items = new List<AbstractItem>();
             boundingBoxList = new List<Rectangle>();
             this.link = link;
-            backgroundRectangle = new Rectangle(0,0,Game1.instance._graphics.PreferredBackBufferWidth, Game1.instance._graphics.PreferredBackBufferHeight);
+            backgroundRectangle = new Rectangle(0,0,Game1.instance._graphics.PreferredBackBufferWidth, (int)(Game1.instance._graphics.PreferredBackBufferHeight * Game1.heightScalar));
         }
         public LevelDoor GetDoorFromDirection(Point direction)
         {
@@ -66,6 +66,11 @@ namespace Poggus.Levels
 
             this.backgroundRectangle.Location = this.backgroundRectangle.Location + p;
 
+            foreach (LevelDoor door in doors)
+            {
+                door.destRect = new Rectangle(door.destRect.Location + p, door.destRect.Size);
+            }
+
             foreach (KeyValuePair<Point, IBlock> entry in blocks)
             {
                 entry.Value.DestRect = new Rectangle(entry.Value.DestRect.X + p.X, entry.Value.DestRect.Y + p.Y, entry.Value.DestRect.Width, entry.Value.DestRect.Height);
@@ -79,10 +84,6 @@ namespace Poggus.Levels
                 item.SetRectangle(new Rectangle(item.GetRectangle().X + p.X, item.GetRectangle().Y + p.Y, item.GetRectangle().Width, item.GetRectangle().Height));
             }
 
-            foreach(LevelDoor door in doors)
-            {
-                door.destRect = new Rectangle(door.destRect.Location + p, door.destRect.Size);
-            }
         }
         public void Update(GameTime gameTime)
         {

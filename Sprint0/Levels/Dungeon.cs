@@ -52,15 +52,15 @@ namespace Poggus.Levels
                         }
                         if (dir == new Point(1, 0))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorFactory.instance.doorSize.X * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f - scaledDoorHeight / 2);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth - DoorFactory.instance.doorSize.X * scaleX, Game1.instance._graphics.PreferredBackBufferHeight/2f * Game1.heightScalar - scaledDoorHeight / 2);
                         }
                         if (dir == new Point(0, -1))
                         {
-                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f - scaledDoorWidth / 2, Game1.instance._graphics.PreferredBackBufferHeight - DoorFactory.instance.doorSize.Y * scaleY);
+                            doorPos = new Vector2(Game1.instance._graphics.PreferredBackBufferWidth/2f - scaledDoorWidth / 2, Game1.instance._graphics.PreferredBackBufferHeight * Game1.heightScalar - DoorFactory.instance.doorSize.Y * scaleY);
                         }
                         if (dir == new Point(-1, 0))
                         {
-                            doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f - scaledDoorHeight/2);
+                            doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f * Game1.heightScalar - scaledDoorHeight/2);
                         }
                         entry.Value.AddDoor(DoorFactory.instance.GetNewOpenDoor(doorPos.ToPoint(), new Point(scaledDoorWidth, scaledDoorHeight), doorDir[dir]), doorDir[dir]);
                     }

@@ -14,6 +14,8 @@ namespace Poggus
 
         Rectangle[] SourceRect { get; set; }
 
+        bool IsUISprite { get; set; }
+
         Color Color { get; set; }
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch, Rectangle rect);

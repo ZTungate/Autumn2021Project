@@ -8,32 +8,33 @@ namespace Poggus.Main
 {
     public class Camera
     {
-        public static Camera main = new Camera(Point.Zero, 0);
-        Point position;
+        public static Camera main = new Camera(Point.Zero, new Point(0,175), 0);
+        Point position,offset;
         float rotation;
 
         Point moveTo;
         bool moveToNext;
         float moveToSpeed;
-        public Camera(Point position, float rotation)
+        public Camera(Point position, Point constantOffset, float rotation)
         {
-            this.position = position;
+            this.position = position + constantOffset;
+            this.offset = constantOffset;
             this.rotation = rotation;
         }
         public void Update(GameTime gameTime)
         {
             if (moveToNext)
             {
-                Point flippedPosition = new Point(-position.X, -position.Y);
+                Point flippedPosition = (new Point(-position.X, -position.Y) + offset);
                 Vector2 dirVector = (moveTo - flippedPosition).ToVector2();
                 dirVector = new Vector2(dirVector.X == 0 ? 0 : dirVector.X / Math.Abs(dirVector.X), dirVector.Y == 0 ? 0 : dirVector.Y / Math.Abs(dirVector.Y));
                 Point dirScaled = new Point((int)(dirVector.X * moveToSpeed), (int)(dirVector.Y * moveToSpeed));
 
                 Translate(new Point(-dirScaled.X, -dirScaled.Y));
-                flippedPosition = new Point(-position.X, -position.Y);
+                flippedPosition = (new Point(-position.X, -position.Y) + offset);
                 if ((moveTo - flippedPosition).ToVector2().LengthSquared() <= ((moveToSpeed / 2)  * (moveToSpeed / 2)))
                 {
-                    position = new Point(-moveTo.X, -moveTo.Y);
+                    position = (new Point(-moveTo.X, -moveTo.Y) + offset);
                     moveToNext = false;
                 }
             }
@@ -55,6 +56,10 @@ namespace Poggus.Main
         public float GetRotation()
         {
             return this.rotation;
+        }
+        public Point GetOffset()
+        {
+            return this.offset;
         }
     }
 }

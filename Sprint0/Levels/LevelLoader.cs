@@ -31,7 +31,7 @@ namespace Poggus.Levels
             XmlReaderSettings settings = new XmlReaderSettings();
 
             Game1.gameScaleX = (float)Game1.instance._graphics.PreferredBackBufferWidth / defaultBackground.SourceRect[0].Width;
-            Game1.gameScaleY = (float)Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height;
+            Game1.gameScaleY = (float)(Game1.instance._graphics.PreferredBackBufferHeight / defaultBackground.SourceRect[0].Height) * Game1.heightScalar;
 
             foreach (string fileName in fileNames)
             {
