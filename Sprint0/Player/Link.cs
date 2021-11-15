@@ -27,13 +27,10 @@ namespace Poggus.Player
         
 
         float damageTimer;
-        Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
         //public Inventory inventory = new Inventory();
         public float Timer = 0f;
-        float damageFlashRate = 50f;
         public bool canMove = true;
         public bool isDamaged = false;
-        int colorIndex = 0;
         float invincibilityFramesDuration = 2000f;
         float hitStunDuration = 500f;
         private int maxHealth;
@@ -43,7 +40,6 @@ namespace Poggus.Player
             State = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
-            colorIndex = 0;
             LinkInventory = new Inventory();
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
@@ -54,38 +50,7 @@ namespace Poggus.Player
         {
             OldPosition = DestRect.Location;
 
-            if (isDamaged)
-            {
-
-                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-                if(invincibilityFramesDuration - damageTimer % damageFlashRate == 0)
-                {
-                    colorIndex++;
-                    Sprite.Color = damageColors[colorIndex % damageColors.Length];
-                }
-
-
-                if (damageTimer % (damageFlashRate) > damageFlashRate * 2)
-                {
-                    colorIndex++;
-                }
-                if (damageTimer <= 50f)
-                { //damage invincibility time
-                    isDamaged = false;
-                    Sprite.Color = Color.White;
-                }
-                else if (damageTimer < (invincibilityFramesDuration-hitStunDuration)) //hit stun duration
-                {
-                    canMove = true;
-                }
-                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
-            }
-            else
-            {
-                canMove = true;
-                colorIndex = 0;
-            }
+            updateDamageState(gameTime);
             State.Update(gameTime);
             Sprite.Update(gameTime);
         }
@@ -97,6 +62,30 @@ namespace Poggus.Player
             Sprite.Draw(spriteBatch, tempRect);   //draw the player sprite
         }
 
+        private void updateDamageState(GameTime gameTime)
+        {
+            if (isDamaged)
+            {
+
+                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+                if (damageTimer <= 50f)
+                { //damage invincibility time
+                    isDamaged = false;
+                    Sprite.Color = Color.White;
+                }
+                else if (damageTimer < (invincibilityFramesDuration - hitStunDuration)) //hit stun duration
+                {
+                    canMove = true;
+                }
+                damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+
+            }
+            else
+            {
+                canMove = true;
+            }
+        }
         public void TakeDamage(int dmgAmount)
         {
             if (!isDamaged) {
@@ -132,9 +121,6 @@ namespace Poggus.Player
             //This may not work, since the state does not determine the sprite
             State = new InitialLinkState(this, Sprite); //start the player in the right idle state
             DestRect = new Rectangle(new Point(20, 20), DestRect.Size);
-
-            colorIndex = 0;
-
             Sprite.Color = Color.White;
         }
 
