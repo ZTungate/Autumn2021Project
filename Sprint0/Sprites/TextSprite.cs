@@ -21,11 +21,37 @@ namespace Poggus
 
         public Color Color { get; set; } = Color.White;
 
-
-        public void Update(GameTime gameTime) { }
-        public void Draw(SpriteBatch spriteBatch, Rectangle rect)
+        private string text;
+        private Color color;
+        private SpriteFont font;
+        private Point position;
+        public TextSprite(SpriteFont font, String text, Color color, Point pos)
         {
-            
+            this.font = font;
+            this.text = text;
+            this.color = color;
+            this.position = pos;
+        }
+        public void Update(GameTime gameTime) { }
+        public void Draw(SpriteBatch spriteBatch, Rectangle destRect)
+        {
+            spriteBatch.DrawString(font, text, destRect.Location.ToVector2(), color, 0, Vector2.Zero, 1, SpriteEffects.None, 1.0f);
+        }
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(font, text, position.ToVector2(), color, 0, Vector2.Zero, 1, SpriteEffects.None, 1.0f);
+        }
+        public void SetPosition(Point pos)
+        {
+            this.position = pos;
+        }
+        public string GetText()
+        {
+            return this.text;
+        }
+        public void SetText(string text)
+        {
+            this.text = text;
         }
     }
 

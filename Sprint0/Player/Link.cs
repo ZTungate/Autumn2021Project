@@ -4,7 +4,7 @@ using System;
 using Poggus.Projectiles;
 using static Poggus.Projectiles.ProjectileConstants;
 using Poggus.Items;
-using Sprint0.Inventory;
+using Poggus.PlayerInventory;
 
 namespace Poggus.Player
 {

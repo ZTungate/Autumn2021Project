@@ -3,12 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Sprint0.Inventory
+namespace Poggus.PlayerInventory
 {
     public class Inventory
     {
-        
-
         private int arrows = 0;
         private int bombs = 0;
         private int rupee = 0;
