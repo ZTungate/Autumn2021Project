@@ -4,6 +4,8 @@ using Poggus.Player;
 using Poggus.Items;
 using System;
 using static Poggus.Projectiles.ProjectileConstants;
+using Poggus.Helpers;
+using Poggus.Projectiles;
 
 namespace Poggus.Player
 {
@@ -24,7 +26,7 @@ namespace Poggus.Player
             //Fire a sword beam if link is at full health
             if (link.FullHealth())
             {
-                link.ProjectileFactory.NewSwordBeam(link.GetPosition(), Direction.left);
+                link.ProjectileFactory.NewSwordBeam(LocationHelpers.GetLocationCenteredSpawnLeft(link.DestRect, ProjectileConstants.horizSwordBeamSize), Direction.left);
                 link.SoundManager.sound.playSwordCombined();
             }
             else {

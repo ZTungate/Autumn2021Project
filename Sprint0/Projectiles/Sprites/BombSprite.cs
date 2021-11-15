@@ -12,14 +12,10 @@ namespace Poggus
         public Vector2 Position { get; set; }
 
         public int counter = 0;
-        public BombSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[4])
+        public BombSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            //Set the two frames for the bat animation
+            //Set the source rectangle for the bomb sprite
             SourceRect[0] = new Rectangle(129, 185, 8, 16);
-            SourceRect[1] = new Rectangle(138, 185, 16, 16);
-            SourceRect[2] = new Rectangle(155, 185, 16, 16);
-            SourceRect[3] = new Rectangle(172, 185, 16, 16);
-            this.Interval = 100;
         }
 
         public override void Update(GameTime gameTime)
