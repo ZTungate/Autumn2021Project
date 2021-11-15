@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Poggus.Items;
 using Poggus.Projectiles;
-using Sprint0.Inventory;
+using Poggus.PlayerInventory;
 using System;
 using System.Collections.Generic;
 using System.Text;
