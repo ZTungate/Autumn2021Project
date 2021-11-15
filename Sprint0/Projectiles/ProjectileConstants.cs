@@ -34,24 +34,26 @@ namespace Poggus.Projectiles
 
         public static Point fireAcceleration = new Point(-1, -1);
 
-        public static Point VertArrowSize = new Point(16, 32);
-        public static Point HorizArrowSize = new Point(32, 16);
-        public static Point vertSwordBeamSize = new Point(16, 32);
-        public static Point horizSwordBeamSize = new Point(32, 16);
-        public static Point BombSize = new Point(32, 32);
+        public static Point VertArrowSize = new Point(32, 64);
+        public static Point HorizArrowSize = new Point(64, 32);
+        public static Point vertSwordBeamSize = new Point(32, 64);
+        public static Point horizSwordBeamSize = new Point(64, 32);
+        public static Point BombSize = new Point(64, 64);
         public static Point fireballSize = new Point(32, 32);
         public static Point boomerangSize = new Point(32, 32);
-        public static Point fireSize = new Point(32, 32);
-        public static Point swordBeamExplosionSize = new Point(8, 8);
+        public static Point fireSize = new Point(64, 64);
+        public static Point swordBeamExplosionSize = new Point(16, 16);
+        public static Point arrowPoofSize = new Point(32,64);
 
-        public static int regArrowLife = 3000;
-        public static int blueArrowLife = 4000;
+        public static int regArrowLife = 500;
+        public static int blueArrowLife = 800;
         public static int boomerangLife = 2000;
         public static int bombLife = 1000;
         public static int fireballLife = 2000;
         public static int fireLife = 2000;
-        public static int swordBeamLife = 3000;
+        public static int swordBeamLife = 1000;
         public static int swordBeamBurstLife = 500;
+        public static int arrowPoofLife = 200;
 
         public static int redArrowDamage = 2;
         public static int blueArrowDamage = 4;

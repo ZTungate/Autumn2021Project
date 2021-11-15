@@ -44,7 +44,6 @@ namespace Poggus.Player
 
         public void SwordAttack()
         {
-            link.State = new UpSwordLinkState(link, mySprite);
         }
 
         public void Move(Direction direction)

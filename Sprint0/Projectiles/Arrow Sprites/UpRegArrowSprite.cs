@@ -9,10 +9,9 @@ namespace Poggus
 {
     public class UpRegArrowSprite : AbstractSprite
     {
-        public UpRegArrowSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[2])
+        public UpRegArrowSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
             SourceRect[0] = new Rectangle(1, 185, 8, 16);  //Set the frame for right idle link
-            SourceRect[1] = new Rectangle(53, 185, 8, 16);
             this.Interval = 500;
         }
 

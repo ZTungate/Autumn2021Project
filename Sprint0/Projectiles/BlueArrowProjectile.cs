@@ -15,11 +15,9 @@ namespace Poggus.Projectiles
         public override void Update(GameTime gameTime)
         {
             //Move the arrow according to its velocity.
-            if (Life > 200)
-            {
-                DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
 
-            }
+            DestRect = new Rectangle(DestRect.Location + Velocity, DestRect.Size);
+
             Sprite.Update(gameTime);
 
             Life -= gameTime.ElapsedGameTime.Milliseconds;

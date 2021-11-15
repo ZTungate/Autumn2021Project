@@ -10,10 +10,9 @@ namespace Poggus
     public class RightRegArrowSprite : AbstractSprite
     {
 
-        public RightRegArrowSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[2])
+        public RightRegArrowSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
             SourceRect[0] = new Rectangle(10, 189, 16, 8);  //Horizontal Red Arrow source Rectangle
-            SourceRect[1] = new Rectangle(53, 189, 8, 8); //Arrow Poof source rectangle
             this.Interval = 500;
 
         }

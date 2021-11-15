@@ -15,7 +15,7 @@ namespace Poggus
             SourceRect[2] = new Rectangle(97, 154, 8, 16);
             SourceRect[3] = new Rectangle(132, 154, 8, 16);
             this.Interval = 50;
-            this.effects = SpriteEffects.FlipVertically;
+            this.effects = SpriteEffects.FlipHorizontally;
         }
 
         public override void Update(GameTime gameTime)

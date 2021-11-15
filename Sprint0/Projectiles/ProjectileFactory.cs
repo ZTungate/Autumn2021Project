@@ -69,10 +69,10 @@ namespace Poggus.Projectiles
 
                 //special after effects for some projectiles
                 if (projectile is SwordBeamProjectile) {
-                        NewSwordBeamExplosions(projectile.GetPosition());
+                    NewSwordBeamExplosions(projectile.GetPosition());
                 }
                 else if (projectile is BlueArrowProjectile | projectile is RegArrowProjectile) {
-                        
+                    NewArrowPoof(projectile.GetPosition());
                 }else if(projectile is BombProjectile)
                 {
                     //Spawn a large explosion.
@@ -161,6 +161,10 @@ namespace Poggus.Projectiles
             return new FireSprite(linkSpriteSheet);
         }
 
+        public ISprite CreateArrowPoofSprite()
+        {
+            return new ArrowPoofSprite(linkSpriteSheet);
+        }
         private ISprite CreateUpLeftSwordExplosionSprite()
         {
             return new UpLeftSwordExplosionSprite(linkSpriteSheet);
@@ -235,6 +239,12 @@ namespace Poggus.Projectiles
             }
         }
 
+        public void NewArrowPoof(Point position)
+        {
+            IProjectile arrowPoof = new ArrowPoofProjectile(position);
+            projectiles.Add(arrowPoof);
+            arrowPoof.Sprite = CreateArrowPoofSprite();
+        }
         public void NewSwordBeam(Point position, Direction facing)
         {
             //Generate a sword beam with given position and velocity, add it to the list, and assign it a sprite.

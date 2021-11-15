@@ -20,7 +20,7 @@ namespace Poggus.Commands
             if (game.link.LinkInventory.GetArrowCount() > 0)
             {
                 game.link.UseItem(ProjectileTypes.redArrow);
-                game.link.LinkInventory.DecrementArrows()
+                game.link.LinkInventory.DecrementArrows();
             }
         }
     }
