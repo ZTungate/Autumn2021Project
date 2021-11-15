@@ -29,7 +29,7 @@ namespace Poggus.Sound
             volume = 1f;
             sound = new SoundItem(volume);
         }
-
+        
         public void LoadContent(ContentManager content)
         {
             //load background music

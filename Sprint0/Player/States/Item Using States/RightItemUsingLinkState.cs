@@ -65,9 +65,11 @@ namespace Poggus.Player
                 //Spawn the relevant projectile moving downwards.
                 case ProjectileTypes.redArrow:
                     link.ProjectileFactory.NewRegArrow(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.HorizArrowSize), Direction.right);
+                    link.SoundManager.sound.playArrow();
                     break;
                 case ProjectileTypes.blueArrow:
                     link.ProjectileFactory.NewBlueArrow(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.HorizArrowSize), Direction.right);
+                    link.SoundManager.sound.playArrow();
                     break;
                 case ProjectileTypes.linkBoomerang:
                     link.ProjectileFactory.LinkBoomerang(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.boomerangSize), (RegBoomerangVelocity * directionVector), link);

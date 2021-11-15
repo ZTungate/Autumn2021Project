@@ -95,6 +95,20 @@ namespace Poggus.Sound
             playSound(instance);
         }
 
+        public void playArrow()
+        {
+            instance = arrowBoomerang.CreateInstance();
+            playSound(instance);
+        }
+
+        public void playBoomerange()
+        {
+            instance = arrowBoomerang.CreateInstance();
+            instance.Volume = myVolume;
+            instance.IsLooped = true;
+            instance.Play();
+        }
+
         public void playSound(SoundEffectInstance instance)
         {
             instance.Volume = myVolume;
