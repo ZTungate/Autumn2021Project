@@ -17,6 +17,7 @@ namespace Poggus.Commands
         public void Execute()
         {
             //Call useItem on link's current state.
+            
             game.link.UseItem(ProjectileTypes.blueBoomerang);
         }
     }

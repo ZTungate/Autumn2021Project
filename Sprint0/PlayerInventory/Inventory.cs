@@ -8,6 +8,7 @@ namespace Poggus.PlayerInventory
     public class Inventory
     {
         private int arrows = 5; //added for testing: TO REMOVE
+        private int blueArrows = 5;
         private int bombs = 5;
         private int rupee = 0;
         private int keys = 0;
@@ -15,6 +16,7 @@ namespace Poggus.PlayerInventory
         protected bool hasCompass = false;
         protected List<AbstractItem> itemList = new List<AbstractItem>();
         protected int Arrows { get => arrows; set => arrows = value; }
+        protected int BlueArrows { get => blueArrows; set => blueArrows = value; }
         protected int Bombs { get => bombs; set => bombs = value; }
         protected int Rupees { get => rupee; set => rupee = value; }
         protected int Keys { get => keys; set => keys = value; }
@@ -22,6 +24,21 @@ namespace Poggus.PlayerInventory
         public Inventory()
         {
             
+        }
+
+        public void IncrementBlueArrows()
+        {
+            BlueArrows++;
+        }
+
+        public void DecrementBlueArrows()
+        {
+            BlueArrows--;
+        }
+
+        public int GetBlueArrowCount()
+        {
+            return BlueArrows;
         }
 
         public void IncrementKeys()
