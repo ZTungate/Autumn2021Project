@@ -155,7 +155,10 @@ namespace Poggus
 
                 //Update Link
                 link.Update(gameTime);
-
+                if(link.Health <= 0)
+                {
+                    toggleLose();
+                }
                 dungeon.UpdateCurrent(gameTime);
 
                 //Update the projectiles
@@ -172,7 +175,14 @@ namespace Poggus
             else {
                 soundManager.StopMusic();
             }
-                
+            if (win)
+            {
+                stateChange.winGame();
+            } else if (lose)
+            {
+                stateChange.loseGame();
+            }
+            
                 stateChange.Update();
             
         }
@@ -229,7 +239,7 @@ namespace Poggus
         public void fadeout()
         {
             fade = true;
-            isPaused = true;
+            //isPaused = true; needs to be set later
         }
         public void toggleWin()
         {

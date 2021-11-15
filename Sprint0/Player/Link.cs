@@ -115,6 +115,7 @@ namespace Poggus.Player
             if(Health <= 0)
             {
                 State = new DeadLinkState(this, Sprite);
+                
             }
         }
 
