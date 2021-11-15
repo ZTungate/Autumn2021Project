@@ -142,10 +142,15 @@ namespace Poggus
                 //Update the projectiles
                 projectileFactory.UpdateProjectiles(gameTime);
 
-                //TODO: poop
+                //collision handler
                 handler.Update();
 
+                soundManager.ResumeMusic();
+
                 base.Update(gameTime);
+            }
+            else {
+                soundManager.StopMusic();
             }
         }
 
@@ -216,6 +221,11 @@ namespace Poggus
         public void togglePause()
         {
             isPaused = !isPaused;
+        }
+
+        public void toggleSound()
+        {
+            soundManager.ToggleSound();
         }
         public void toggleOpenInventory()
         {

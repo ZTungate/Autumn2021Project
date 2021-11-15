@@ -30,19 +30,38 @@ namespace Poggus.Sound
         }
         public void LoadContent(ContentManager content)
         {
+            //load background music
             song = content.Load<Song>("dungeon");
-            
-        }
 
-        public void PlayMusic()
-        {
+            //load sound effects
+
+
+            //start the music
             MediaPlayer.Play(song);
             MediaPlayer.IsRepeating = true;
         }
 
+        public void ResumeMusic()
+        {
+            MediaPlayer.Resume();
+        }
+
         public void StopMusic()
         {
-            MediaPlayer.Stop();
+            MediaPlayer.Pause();
+        }
+
+        public void ToggleSound()
+        {
+            if (volume == 0) {
+                volume = 1;
+            }
+            else {
+                volume = 0;
+            }
+
+            MediaPlayer.Volume = volume;
+
         }
     }
 }
