@@ -27,13 +27,7 @@ namespace LevelCreator.Sprites
             //no-op
         }
 
-        public string GetText()
-        {
-            return this.text;
-        }
-        public void SetText(string text)
-        {
-            this.text = text;
-        }
+
+
     }
 }

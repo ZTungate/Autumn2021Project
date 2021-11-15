@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using Poggus.Levels.Sprites;
+using Poggus.Main;
 
 namespace Poggus.Collisions
 {
@@ -258,7 +259,10 @@ namespace Poggus.Collisions
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect); 
                 if (boundLink.IsCollision) 
                 { 
-                    Point dir = Dungeon.directions[(int)door.GetDirection()]; 
+                    Point dir = Dungeon.directions[(int)door.GetDirection()];
+
+                    Point nextPoint = myGame.GetDungeon().GetCurrentLevel().GetPosition() + new Point(dir.X, -dir.Y) * myGame.GetDungeon().GetLevelSize();
+                    
                     myGame.GetDungeon().SwitchLevel(dir);
                     Rectangle linkRect = myLink.DestRect;
 
@@ -283,7 +287,9 @@ namespace Poggus.Collisions
                         LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0)); 
                         linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width + 3), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height/2 - linkRect.Height/2); 
                     }
-                    myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos); 
+                    myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos);
+                    
+                    Camera.main.BeginMoveTo(nextPoint, 10);
                 } 
             }
 

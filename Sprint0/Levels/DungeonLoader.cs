@@ -20,7 +20,7 @@ namespace Poggus.Levels
                 StreamReader reader = File.OpenText(file);
                 string dungeonName = reader.ReadLine();
 
-                Dungeon newDungeon = new Dungeon(dungeonName, Game1.instance._graphics.PreferredBackBufferWidth, Game1.instance._graphics.PreferredBackBufferHeight);
+                Dungeon newDungeon = new Dungeon(dungeonName, Game1.instance._graphics.PreferredBackBufferWidth,(int)(Game1.instance._graphics.PreferredBackBufferHeight * Game1.heightScalar));
                 while (!reader.EndOfStream)
                 {
                     string line = reader.ReadLine();

@@ -11,6 +11,8 @@ using Poggus.Levels;
 using Poggus.Levels.Sprites;
 using Microsoft.Xna.Framework.Audio;
 using Poggus.Sound;
+using Poggus.Main;
+using Poggus.UI;
 
 namespace Poggus
 {
@@ -19,6 +21,7 @@ namespace Poggus
         const int textScale = 3;
         const int blackoutScale = 10000;
         public static float gameScaleX, gameScaleY;
+        public static float heightScalar = 0.75f;
         public static Game1 instance;
         private Dungeon dungeon;
         
@@ -36,6 +39,7 @@ namespace Poggus
         public CollisionDetection detector = new CollisionDetection();
         public ICollision collision;
         public CollisionHandler handler;
+        public HUDHandler hudHandler;
 
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
@@ -45,6 +49,7 @@ namespace Poggus
         public EnemySpriteFactory enemySpriteFactory;
         public ItemSpriteFactory itemSpriteFactory;
         public BlockSpriteFactory blockSpriteFactory;
+        public HUDSpriteFactory hudSpriteFactory;
 
         //Link
         public ILink link;
@@ -78,6 +83,7 @@ namespace Poggus
             itemSpriteFactory = ItemSpriteFactory.Instance;
             blockSpriteFactory = BlockSpriteFactory.Instance;
             projectileFactory = ProjectileFactory.Instance;
+            hudSpriteFactory = HUDSpriteFactory.instance;
             projectileFactory.Initalize();
 
             //Initialize sound
@@ -119,12 +125,16 @@ namespace Poggus
             //Load all item textures and generate items (must be done after textures are loaded)
             itemSpriteFactory.LoadAllTextures(Content);
 
+            hudSpriteFactory.LoadContent(Content);
+
             //Create sprite for Link
             link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
             DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
+
+            hudHandler = new HUDHandler(this.link, this.link.LinkInventory);
 
             //Load sounds
             soundManager.LoadContent(Content);
@@ -140,6 +150,9 @@ namespace Poggus
                 controller.Update();
             }
             if (!isPaused) {
+
+                Camera.main.Update(gameTime);
+
                 //Update Link
                 link.Update(gameTime);
 
@@ -150,6 +163,7 @@ namespace Poggus
 
                 //collision handler
                 handler.Update();
+                hudHandler.Update(gameTime);
 
                 soundManager.ResumeMusic();
 
@@ -158,7 +172,7 @@ namespace Poggus
             else {
                 soundManager.StopMusic();
             }
-            
+                
                 stateChange.Update();
             
         }
@@ -171,13 +185,15 @@ namespace Poggus
             //Using front to back sorting, and point clamp to improve look of pixel art sprites
             _spriteBatch.Begin(SpriteSortMode.Immediate, null, SamplerState.PointClamp);
 
-            dungeon.DrawCurrent(_spriteBatch);
+            dungeon.Draw(_spriteBatch);
 
             //Draw all projectiles
             projectileFactory.DrawProjectiles(_spriteBatch);
 
             //Draw Link
             link.Draw(_spriteBatch);
+
+            hudHandler.Draw(_spriteBatch);
 
             stateChange.fadeOut();
             _spriteBatch.End();

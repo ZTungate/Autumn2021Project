@@ -18,6 +18,7 @@ namespace Poggus
         public Texture2D Texture { get; set; }
 
         public Rectangle[] SourceRect { get; set; }
+        public bool IsUISprite { get; set; } = true;
 
         public Color Color { get; set; } = Color.White;
 
