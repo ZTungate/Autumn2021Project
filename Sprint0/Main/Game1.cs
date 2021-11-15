@@ -191,6 +191,7 @@ namespace Poggus
         public void fadeout()
         {
             fade = true;
+            isPaused = true;
             //fadeImage.Width = _graphics.PreferredBackBufferWidth;
         }
         public void SetDungeon(Dungeon dungeon)
