@@ -10,7 +10,7 @@ namespace Poggus
     {
         const int screenWidth = 1024;
         const int screenHeight = 704;
-        const int textScale = 3;
+        const int textScale = 2;
         const int blackoutScale = 10000;
         const float totalBlackout = 1.0f;
         const float blackoutSpeed = 0.01f;

@@ -158,7 +158,7 @@ namespace Poggus
             else {
                 soundManager.StopMusic();
             }
-            
+                
                 stateChange.Update();
             
         }
