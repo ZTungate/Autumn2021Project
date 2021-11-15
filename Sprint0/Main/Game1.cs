@@ -19,7 +19,7 @@ namespace Poggus
         public static float gameScaleX, gameScaleY;
         public static Game1 instance;
         private Dungeon dungeon;
-        
+
         private Texture2D fadeImage;
         private bool fade = false;
         private SpriteFont font;
@@ -44,7 +44,7 @@ namespace Poggus
         public ILink link;
 
         //Projectiles
-        public ProjectileFactory projectileFactory; 
+        public ProjectileFactory projectileFactory;
         private bool isPaused = false;
         private bool inventoryOpen = false;
 
@@ -123,7 +123,7 @@ namespace Poggus
             soundManager.LoadContent(Content);
 
             handler = new CollisionHandler(this);
-            
+
         }
 
         protected override void Update(GameTime gameTime)
@@ -132,8 +132,7 @@ namespace Poggus
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
-            if (!isPaused)
-            {
+            if (!isPaused) {
                 //Update Link
                 link.Update(gameTime);
 
@@ -152,12 +151,11 @@ namespace Poggus
             else {
                 soundManager.StopMusic();
             }
-        }
-                    if (fade)
-            {
+            if (fade) {
                 fadeTimer += 0.01f;
             }
-}
+        }
+
 protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
