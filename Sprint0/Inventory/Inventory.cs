@@ -12,19 +12,34 @@ namespace Sprint0.Inventory
         private int arrows = 0;
         private int bombs = 0;
         private int rupee = 0;
+        private int keys = 0;
         protected bool hasMap = false;
         protected bool hasCompass = false;
         protected List<AbstractItem> itemList = new List<AbstractItem>();
         protected int Arrows { get => arrows; set => arrows = value; }
         protected int Bombs { get => bombs; set => bombs = value; }
         protected int Rupees { get => rupee; set => rupee = value; }
+        protected int Keys { get => keys; set => keys = value; }
 
         public Inventory()
         {
             
         }
 
+        public void IncrementKeys()
+        {
+            Keys++;
+        }
 
+        public void DecrementKeys()
+        {
+            Keys--;
+        }
+
+        public int GetKeyCount()
+        {
+            return Keys;
+        }
         public void IncrementArrows()
         {
             Arrows++;

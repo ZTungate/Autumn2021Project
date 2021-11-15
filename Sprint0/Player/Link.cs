@@ -20,10 +20,13 @@ namespace Poggus.Player
         public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
         public int Health { get; set; }
+        public Inventory LinkInventory { get;}
+
+        
 
         float damageTimer;
         Color[] damageColors = new Color[2] { Color.Red, Color.Blue };
-        public Inventory inventory = new Inventory();
+        //public Inventory inventory = new Inventory();
         public float Timer = 0f;
         float damageFlashRate = 50f;
         public bool canMove = true;
@@ -39,6 +42,7 @@ namespace Poggus.Player
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             colorIndex = 0;
+            LinkInventory = new Inventory();
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
             maxHealth = Health;

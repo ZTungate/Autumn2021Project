@@ -14,7 +14,7 @@ namespace Poggus.Items
         }
         public override void useItem(ILink link)
         {
-            link.inventory.DecrementBombs();
+            link.LinkInventory.DecrementBombs();
         }
     }
 }

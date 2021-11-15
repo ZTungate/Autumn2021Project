@@ -20,7 +20,7 @@ namespace Poggus.Player
         public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get;  set; }
         public int Health { get; set; }
-        public Inventory inventory { get; set; }
+        public Inventory LinkInventory { get;}
         void TakeDamage(int damageAmount);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);

@@ -14,7 +14,7 @@ namespace Poggus.Items
         }
         public override void useItem(ILink link) //TODO ask about this
         {
-            link.inventory.DecrementArrows();
+            link.LinkInventory.DecrementArrows();
         }
     }
 }
