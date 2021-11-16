@@ -3,6 +3,9 @@ Boggus Poggus Group
 Program Controls: 
 Arrow keys and WASD to move 
 Z and N to use sword
+M to mute sound
+R to reset
+Q to quit
 1 to throw regular boomerang
 2 to throw magic boomerang
 3 to fire a regular arrow
@@ -12,25 +15,13 @@ Z and N to use sword
 Instead of using mouse controls to change rooms: numpad8 goes north, numpad2 goes south, numpad4 goes west, numpad6 goes east.
 
 Known Bugs:
-Multiple key presses with links movement doesn't behave properly.
-Sword beam comes out too fast
-Swords don't explode at the end.
-Can throw multiple of the same projectile.
-Bombs have no collision/spawn weird
-Projectiles don't get deleted on level change.
-Sometimes stuck in block with level swapping.
-No bounding box where doors should be if there's no door.
+Can throw multiple of same projectile
 Going into doors puts you too far into the room.
-Link is too big.
 Room transition collision goes out too far.
-Sword beam has incorrect scaling.
-
+slotA for UI doesn't display correctly
 
 Following is not implemented
-Camera transitions - not implemented yet
-No reset key - not implemented yet
-No knockback - not implemented yet
-Health stats - not implemented yet
+Fully finished UI: 
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
 
 Sprint 2:
@@ -56,4 +47,11 @@ Depth of Inheritance: 2
 Class Coupling: 239
 Lines of Source code: 10,079
 Lines of Executable code: 2,713
+
+Sprint 4:
+
+
+
+
+
 
