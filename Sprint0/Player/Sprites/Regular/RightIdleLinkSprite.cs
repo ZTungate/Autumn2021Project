@@ -15,8 +15,6 @@ namespace Poggus.Player
         {
             this.player = player;
             SourceRect[0] = new Rectangle(35, 11, 16, 16);  //Set the frame for right idle link
-            this.Interval = 40;
-            /*Position = pos;*/     //Sets the position to Link's position
         }
 
     }

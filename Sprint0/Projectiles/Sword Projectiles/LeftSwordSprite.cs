@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +15,7 @@ namespace Poggus
             SourceRect[1] = new Rectangle(45, 154, 16, 16);  //Set the frame for sword
             SourceRect[2] = new Rectangle(80, 154, 16, 16);  //Set the frame for sword
             SourceRect[3] = new Rectangle(115, 154, 16, 16);  //Set the frame for sword
-            this.Interval = 50;
+            this.Interval = ProjectileConstants.swordBeamAnimInterval;
             this.effects = SpriteEffects.FlipHorizontally;
         }
 

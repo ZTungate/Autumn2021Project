@@ -149,7 +149,15 @@ namespace Poggus.Collisions
                     P2RCollision boundProj = (P2RCollision)detector.detectCollision(proj, rectangle);
                     if (boundProj.IsCollision)
                     {
-                        proj.Life = 0;
+                        //Boomerangs bounce off the walls, other projectiles just break.
+                        if (boundProj.proj1 is BoomerangProjectile || boundProj.proj1 is LinkBoomerangProjectile)
+                        {
+                            boundProj.proj1.Life /= 2;
+                        }
+                        else
+                        {
+                            proj.Life = 0;
+                        }
                     }
                 }
 
@@ -160,7 +168,7 @@ namespace Poggus.Collisions
                 foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                     P2BCollision projBlock = (P2BCollision)detector.detectCollision(block, proj);
                     if (projBlock.IsCollision && !projBlock.block2.Walkable) {
-                        projBlock.proj1.Life = 0;
+                       // projBlock.proj1.Life = 0;
                     }
                 }
             }            
@@ -179,7 +187,7 @@ namespace Poggus.Collisions
             List<IEnemy> eneToRemove = new List<IEnemy>();
 
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
-                if (!(proj is ArrowPoofProjectile)) {
+                //if (!(proj is ArrowPoofProjectile)) {
                     foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                         P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
                         if (projEne.IsCollision && (projEne.proj1 is LinkBoomerangProjectile) && (projEne.enemy2 is Slime || projEne.enemy2 is Bat)) {
@@ -217,6 +225,12 @@ namespace Poggus.Collisions
                             else if (projectile is FireProjectile) {
                                 projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
                                 projEne.proj1.Life = 0;
+                            }else if(projectile is SwordStabProjectile)
+                            {
+                                projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            }else if(projectile is BoomerangProjectile && projEne.enemy2 is Thrower && projectile.Life < ProjectileConstants.boomerangLife/2)
+                            {
+                                projectile.Life = 0;
                             }
                         }
 
@@ -225,7 +239,7 @@ namespace Poggus.Collisions
                             eneToRemove.Add(projEne.enemy2);
                         }
                     }
-                }
+                //}
             }
             //remove enemies from the room
             foreach (IEnemy ene in eneToRemove) {
@@ -239,11 +253,38 @@ namespace Poggus.Collisions
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
                 if (itemLink.IsCollision) {
                     itemToRemove.Add(itemLink.Item2);
-                    if(itemLink.Item2 is TriforcePieceItem) {
-                        
+                    if(itemLink.Item2 is BombItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementBombs();
+                    }
+                    if (itemLink.Item2 is ArrowItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementArrows();
+                    }
+                    if (itemLink.Item2 is KeyItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementKeys();
+                    }
+                    if (itemLink.Item2 is RupeeItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementRupees();
+                    }
+                    if (itemLink.Item2 is BowItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                    }
+                    if (itemLink.Item2 is BoomerangItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                    }
+                    if (itemLink.Item2 is CompassItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddCompass();
+                    }
+                    
+                    if (itemLink.Item2 is TriforcePieceItem) {
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
-                        
-                        
+
                     }
                 }
             }

@@ -30,8 +30,6 @@ namespace Poggus.Player
             linkSpriteSheet = content.Load<Texture2D>("LinkSpriteSheet");
         }
 
-        //TODO Add CreateSprite methods for each Link Sprite type
-
         public ISprite UpIdleLinkSprite(ILink player)
         {
             return new UpIdleLinkSprite(linkSpriteSheet, player);

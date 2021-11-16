@@ -19,7 +19,7 @@ namespace Poggus.Player
             SourceRect[2] = new Rectangle(46, 77, 23, 16);
             SourceRect[3] = new Rectangle(70, 77, 19, 16);
             SourceRect[4] = new Rectangle(35, 11, 16, 16);  //Set the frame for right idle link
-            this.Interval = 64f;
+            this.Interval = LinkConstants.swordAnimInterval;
             this.effects = SpriteEffects.FlipHorizontally;
         }
 

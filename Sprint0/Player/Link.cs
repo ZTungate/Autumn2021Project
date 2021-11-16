@@ -24,15 +24,13 @@ namespace Poggus.Player
         public int Health { get; set; }
         public Inventory LinkInventory { get; set; }
 
-
-        const float damgeDelay = 50f;
         float damageTimer;
         //public Inventory inventory = new Inventory();
         public float Timer = 0f;
         public bool canMove = true;
         public bool isDamaged = false;
-        float invincibilityFramesDuration = 2000f;
-        float hitStunDuration = 500f;
+        float invincibilityFramesDuration = LinkConstants.linkInvincibilityDuration;
+        float hitStunDuration = LinkConstants.linkHitStunDuration;
         private int maxHealth;
         
         public Link()
@@ -41,6 +39,7 @@ namespace Poggus.Player
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
+            
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
             maxHealth = Health;
@@ -83,7 +82,7 @@ namespace Poggus.Player
 
                 damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                if (damageTimer <= damgeDelay)
+                if (damageTimer <= LinkConstants.linkDamageDelay)
                 { //damage invincibility time
                     isDamaged = false;
                     Sprite.Color = Color.White;

@@ -67,5 +67,11 @@ namespace Poggus.Projectiles
 
         public static int boomerangStunTime = 500;
 
+        //Animation intervals
+        public static int boomerangAnimInterval = 20;
+        public static int fireballAnimInterval = 20;
+        public static int fireFlipInterval = 75;
+        public static int swordBeamAnimInterval = 50;
+
     }
 }
