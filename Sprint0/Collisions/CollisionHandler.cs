@@ -176,8 +176,8 @@ namespace Poggus.Collisions
             //handle enemy block collision
             foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
-                    E2BCollision eneBlock = (E2BCollision)detector.detectCollision(ene, block);
-                    if (eneBlock.IsCollision && !eneBlock.block2.Walkable && !(eneBlock.enemy1 is Bat)) {
+                    E2RCollision eneBlock = (E2RCollision)detector.detectCollision(ene, block.DestRect);
+                    if (eneBlock.IsCollision && !block.Walkable && !(eneBlock.enemy1 is Bat)) {
                         ene.SetPosition(ene.oldPosition);
                     }
                 }
