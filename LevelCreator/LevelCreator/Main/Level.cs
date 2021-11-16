@@ -151,16 +151,6 @@ namespace LevelCreator
             }
             writer.WriteEndElement();
 
-            writer.WriteStartElement(null, "Bounds", null);
-            foreach (LineSprite bound in bounds)
-            {
-                writer.WriteStartElement(null, "Bound", null);
-                writer.WriteElementString("Start", bound.GetP1().X / 3 + "," + bound.GetP1().Y / 3);
-                writer.WriteElementString("End", bound.GetP2().X / 3 + "," + bound.GetP2().Y / 3);
-                writer.WriteEndElement();
-            }
-            writer.WriteEndElement();
-
             writer.WriteEndElement();
 
             writer.Close();

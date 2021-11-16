@@ -128,32 +128,9 @@ namespace Poggus.Levels
 
                         newLevel.AddEnemy(enemy);
                     }
-                    if (reader.IsStartElement() && reader.Name == "Bound")
-                    {
-
-                        reader.ReadToDescendant("Start");
-                        reader.MoveToContent();
-                        string location = reader.ReadElementContentAsString();
-                        int commaLoc = location.IndexOf(",");
-                        string xString = location.Substring(0, commaLoc);
-                        string yString = location.Substring(commaLoc + 1);
-                        int startX = (int)(int.Parse(xString) * Game1.gameScaleX);
-                        int startY = (int)(int.Parse(yString) * Game1.gameScaleY);
-
-                        reader.ReadToDescendant("End");
-                        reader.MoveToContent();
-                        location = reader.ReadElementContentAsString();
-                        commaLoc = location.IndexOf(",");
-                        xString = location.Substring(0, commaLoc);
-                        yString = location.Substring(commaLoc + 1);
-                        int endX = (int)(int.Parse(xString) * Game1.gameScaleX);
-                        int endY = (int)(int.Parse(yString) * Game1.gameScaleY);
-
-                        newLevel.AddNewBoundingBox(new Point(startX, startY), new Point(endX, endY));
-                    }
                     reader.MoveToElement();
                 }
-
+                newLevel.ConstructLevelBounds();
                 levels.Add(levelName, newLevel);
             }
         }

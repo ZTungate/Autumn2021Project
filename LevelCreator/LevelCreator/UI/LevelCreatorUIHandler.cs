@@ -146,57 +146,6 @@ namespace LevelCreator.UI
                     }
                 }
             }
-            if(state.MiddleButton == ButtonState.Pressed && lastState.MiddleButton != ButtonState.Pressed)
-            {
-                if (firstClick)
-                {
-                    Point firstPos = mousePos;
-                    foreach(LineSprite line in LevelCreator.instace.currentLevel.GetBoundList())
-                    {
-                        if(LineSprite.Distance(mousePos, line.GetP1()) < 10f)
-                        {
-                            firstPos = line.GetP1();
-
-                            break;
-                        }
-                        if(LineSprite.Distance(mousePos,line.GetP2()) < 10f)
-                        {
-                            firstPos = line.GetP2();
-
-                            break;
-                        }
-                    }
-                    LineSprite newLine = new LineSprite(Color.White, firstPos);
-                    currentLine = newLine;
-                    LevelCreator.instace.currentLevel.AddBound(newLine);
-                    firstClick = false;
-                }
-                else
-                {
-                    firstClick = true;
-                }
-            }
-            if (!firstClick)
-            {
-                Point[] pointArr = new Point[4];
-
-                pointArr[0] = LineSprite.FindNearestPointOnLine(currentLine.GetP1().ToVector2(), currentLine.GetP1().ToVector2() + new Vector2(1000, 0), mousePos.ToVector2()).ToPoint();
-                pointArr[1] = LineSprite.FindNearestPointOnLine(currentLine.GetP1().ToVector2(), currentLine.GetP1().ToVector2() + new Vector2(-1000, 0), mousePos.ToVector2()).ToPoint();
-                pointArr[2] = LineSprite.FindNearestPointOnLine(currentLine.GetP1().ToVector2(), currentLine.GetP1().ToVector2() + new Vector2(0, 1000), mousePos.ToVector2()).ToPoint();
-                pointArr[3] = LineSprite.FindNearestPointOnLine(currentLine.GetP1().ToVector2(), currentLine.GetP1().ToVector2() + new Vector2(0, -1000), mousePos.ToVector2()).ToPoint();
-
-                //Vector2 pointX = LineSprite.FindNearestPointOnLine(currentLine.GetP1().ToVector2(), currentLine.GetP1().ToVector2() + new Vector2(1000, 0), mousePos.ToVector2());
-                Point closestPoint = pointArr[0];
-                foreach(Point p in pointArr)
-                {
-                    if(LineSprite.Distance(p, mousePos) < LineSprite.Distance(closestPoint, mousePos))
-                    {
-                        closestPoint = p;
-                    }
-                }
-
-                currentLine.SetP2(closestPoint);
-            }
             if (placing != null) placing.SetPos(mousePos - new Point(placing.GetRectangle().Width / 2, placing.GetRectangle().Height/2));
         }
         LineSprite currentLine;
