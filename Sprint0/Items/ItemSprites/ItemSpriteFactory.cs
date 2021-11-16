@@ -44,6 +44,7 @@ namespace Poggus.Items.ItemSprites
             itemSpriteDictionary.Add(ItemEnum.Key, new KeySprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Rupee, new RupeeSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.TriforcePiece, new TriforcePieceSprite(itemSpriteSheet));
+            itemSpriteDictionary.Add(ItemEnum.Sword, new SwordSprite(itemSpriteSheet));
         }
         public ISprite GetItemSprite(ItemEnum item)
         {

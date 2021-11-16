@@ -1,4 +1,5 @@
 ﻿using Poggus.Items;
+using Poggus.Items.ItemSprites;
 using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
@@ -26,8 +27,8 @@ namespace Poggus.PlayerInventory
         protected AbstractItem SlotB { get => slotB; set => slotB = value; }
         public Inventory()
         {
-            ProjectileFactory factory = ProjectileFactory.Instance;
-            slotA = factory.CreateUpSwordSprite(); //might not work
+            ItemSpriteFactory factory = ItemSpriteFactory.Instance;
+            slotA = factory.GetItemSprite(ItemEnum.Sword); //might not work
             
         }
         public void setSlotB(AbstractItem item)
