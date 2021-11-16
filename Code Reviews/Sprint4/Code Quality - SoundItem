@@ -1,0 +1,14 @@
+Author of the code review: Mason Pacenta
+Date of the code review: 11/15/21
+Sprint number: 4
+Name of the .cs file being reviewed:  SoundItem
+Author of the .cs file being reviewed: Wesley
+Number of minutes taken to complete the review: 11:16 - 11:21 (5 minutes)
+
+Overall SoundItem class behaves much like a factory, with a separate SoundEffect for each item. While factories do tend to have higher coupling,
+I believe this class could be condensed dramatically. Instead of having a separate play function for each sound, you could instead have a SoundItemEnum
+and a method that simply takes in that enum then gets the sound from a dictionary and plays it. This would mean you only need to add the sounds once
+in the load content method with their respective enum to the dictionary, then you can simply call PlaySound(SoundEnum type), and what could even work better
+is since Items already have an ItemEnum you could tie in the sounds of items with their ItemEnum, so then a PlayItemSound(ItemEnum type) method could be put
+in the Item itself which would improve overall cohesion. This also eliminates the need to have a bunch of undeclared SoundEffect objects and would only need
+a single dictionary to store the sounds.

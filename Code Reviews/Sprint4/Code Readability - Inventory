@@ -1,0 +1,12 @@
+Author of the code review: Mason Pacenta
+Date of the code review: 11/15/21
+Sprint number: 4
+Name of the .cs file being reviewed:  Inventory
+Author of the .cs file being reviewed: Zach Tungate
+Number of minutes taken to complete the review: 11:21 - 11:26 (5 minutes)
+
+Inventory is very readable, due to the fact that every function to increment or decrement aspects of the inventory is separate. While this may not be the best
+practice in terms of quality, it does make it easy to tell what each function is doing and how it is doing it. The only issue I can think of with readability
+is that the reader may be confused why there are separate variables for number of bombs, rupees, etc. even though there is an Item List. While we as the developers
+know the use, a new reader may need to look through other code files to see how those variables are being used. It may be better to have just a single dictionary,
+that holds the ItemEnum type and int amt, that would condense almost the entire file, and may be more intuitive. However, overall this code is very readable.
