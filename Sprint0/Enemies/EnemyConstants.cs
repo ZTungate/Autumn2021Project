@@ -49,5 +49,7 @@ namespace Poggus.Enemies
         //Enemy attack rates
         public static int dragonAttackInterval = 2000;
         public static int throwerAttackDelay = 3000;
+
+        public static int clockStunTime = 2000;
     }
 }

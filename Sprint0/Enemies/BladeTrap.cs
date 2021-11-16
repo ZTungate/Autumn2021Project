@@ -49,11 +49,6 @@ namespace Poggus.Enemies
                     DestRect = new Rectangle(DestRect.Location + moveDir, DestRect.Size);
                     attackTimer -= gameTime.ElapsedGameTime.Milliseconds;
                 }
-                /*else if (returnTimer == EnemyConstants.horizBladeMoveTime * 2 || returnTimer == EnemyConstants.vertBladeMoveTime * 2)
-                {//Set moveVector back towards home
-                    returnTimer -= gameTime.ElapsedGameTime.Milliseconds;
-                    moveVector = ReturnHome();
-                }*/
                 else if (returnTimer > 0)
                 {//Move back towards home, and decrement returnTimer
                     moveDir = ReturnHome();
@@ -121,7 +116,7 @@ namespace Poggus.Enemies
         {
             Point dist = homePos - DestRect.Location;
             int returnSpeed = returnTimer / 10;
-            moveDir = new Point(dist.X / returnSpeed, dist.Y / returnSpeed); //TODO:Figure out an appropriate return speed.
+            moveDir = new Point(dist.X / returnSpeed, dist.Y / returnSpeed); 
             return moveDir;
         }
     }

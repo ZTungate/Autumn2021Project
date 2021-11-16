@@ -65,6 +65,7 @@ namespace Poggus.Collisions
                                 break;
                             case EnemyType.Grabber:
                                 eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage);
+
                                 break;
                             case EnemyType.Skeleton:
                                 eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage);
@@ -295,6 +296,12 @@ namespace Poggus.Collisions
                     {
                         LinkConstants.linkHealth++;
                         itemLink.Link1.Health++;
+                    }else if(itemLink.Item2 is ClockItem)
+                    {
+                        foreach(IEnemy enemy in myDungeon.GetCurrentLevel().GetEnemyList())
+                        {
+                            enemy.StunTimer = EnemyConstants.clockStunTime;
+                        }
                     }
                 }
             }
