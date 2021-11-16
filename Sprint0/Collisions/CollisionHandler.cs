@@ -273,6 +273,10 @@ namespace Poggus.Collisions
                     {
                         itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
                     }
+                    if (itemLink.Item2 is BoomerangItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                    }
                     if (itemLink.Item2 is CompassItem)
                     {
                         itemLink.Link1.LinkInventory.AddCompass();

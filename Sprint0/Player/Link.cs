@@ -39,6 +39,7 @@ namespace Poggus.Player
             DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
+            
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
             maxHealth = Health;
