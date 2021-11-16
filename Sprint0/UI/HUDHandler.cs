@@ -73,7 +73,7 @@ namespace Poggus.UI
             for (int i = 0; i < link.Health; i++)
             {
                 ISprite heartSprite = HUDSpriteFactory.instance.GetNewHeartSprite();
-                heartImages.Add(new ImageUI(heartSprite, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + i * 30, hudHeight - 65), new Point(25,25)));
+                heartImages.Add(new ImageUI(heartSprite, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
             }
             foreach(Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
             {
@@ -88,6 +88,14 @@ namespace Poggus.UI
                 for(int i = heartImages.Count - 1; i >= link.Health; i--)
                 {
                     heartImages.RemoveAt(i);
+                }
+            }
+            if (link.Health > heartImages.Count)
+            {
+                for (int i = heartImages.Count; i < link.Health; i++)
+                {
+                    ISprite heartSprite = HUDSpriteFactory.instance.GetNewHeartSprite();
+                    heartImages.Add(new ImageUI(heartSprite, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
                 }
             }
 
