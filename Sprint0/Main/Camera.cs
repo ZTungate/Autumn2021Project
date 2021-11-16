@@ -70,5 +70,9 @@ namespace Poggus.Main
         {
             return this.offset;
         }
+        public bool IsMoving()
+        {
+            return this.moveToNext;
+        }
     }
 }
