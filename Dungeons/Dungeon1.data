@@ -1,6 +1,11 @@
 Dungeon1
-Level1:0,0
-Level2:1,0
-Level3:0,1
-Level5:0,-1
-SlimeLevel:1,1
+StatueLevel:0,0
+HeartLevel:1,0
+ClockLevel:1,1
+ItemLevel1:-1,0
+SlimeLevel:0,1
+OldManLevel1:0,2
+SwordLevel:0,-1
+WaterLevel:1,-1
+ThrowerWaterLevel:2,-1
+DragonLevel:3,-1

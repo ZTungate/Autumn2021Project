@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="OldManLevel1">
+  <Blocks>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>208,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>208,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items>
+    <Item>
+      <Object>Bow</Object>
+      <Location>122,92</Location>
+      <Conditions> </Conditions>
+    </Item>
+  </Items>
+  <Enemies>
+    <Enemy>
+      <Object>OldMan</Object>
+      <Location>117,64</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+  </Enemies>
+</root>

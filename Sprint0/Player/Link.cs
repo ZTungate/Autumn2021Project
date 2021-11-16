@@ -36,10 +36,10 @@ namespace Poggus.Player
         public Link()
         {
             State = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
+            DestRect = new Rectangle(new Point(300, 250), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
-            
+            LinkInventory.setSlotA(Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Arrow)); //temp to set sword
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
             maxHealth = Health;
@@ -51,7 +51,7 @@ namespace Poggus.Player
             Sprite.Color = Color.White;
 
             State = new InitialLinkState(this, Sprite); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            DestRect = new Rectangle(new Point(300, 300), new Point(64, 64));
+            DestRect = new Rectangle(new Point(300, 250), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
             //Set link's health and maxHealth

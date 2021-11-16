@@ -53,10 +53,10 @@ namespace Poggus.UI
             this.bSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), this.lifeText.GetPosition() + new Point(-200,0), new Point(40,75));
             this.aSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), this.bSlotBackground.DestRect.Location + new Point(65, 0), new Point(40, 75));
 
-            /*if (inventory.getSlotA() != null)
+            if (inventory.getSlotA() != null)
             {
                 this.slotAItemImage = new ImageUI(inventory.getSlotA(), this.aSlotBackground.GetPosition() + new Point(5, 5), this.aSlotBackground.DestRect.Size - new Point(5, 5));
-            }*/
+            }
             if (inventory.getSlotB() != null)
             {
                 this.slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), this.bSlotBackground.GetPosition() + new Point(5, 5), this.bSlotBackground.DestRect.Size - new Point(5, 5));
@@ -102,10 +102,10 @@ namespace Poggus.UI
                 ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(3 + inventoryImages.Count * 26, 3 + (inventoryImages.Count / 10) * 26), new Point(25, 25));
                 inventoryImages.Add(itemImage);
             }
-            /*if (inventory.getSlotA() != null)
+            if (inventory.getSlotA() != null)
             {
                 this.slotAItemImage = new ImageUI(inventory.getSlotA(), this.aSlotBackground.GetPosition() + new Point(5, 5), this.aSlotBackground.DestRect.Size - new Point(5, 5));
-            }*/
+            }
             if (inventory.getSlotB() != null)
             {
                 this.slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), this.bSlotBackground.GetPosition() + new Point(5, 5), this.bSlotBackground.DestRect.Size - new Point(5, 5));
@@ -138,10 +138,12 @@ namespace Poggus.UI
             if (slotAItemImage != null) 
             {
                 this.slotAItemImage.Draw(batch);
+                System.Diagnostics.Debug.WriteLine("Drawing A");
             }
             if (slotBItemImage != null) 
             {
                 this.slotBItemImage.Draw(batch);
+                System.Diagnostics.Debug.WriteLine("Drawing B");
             }
 
             rupeeImage.Draw(batch);
