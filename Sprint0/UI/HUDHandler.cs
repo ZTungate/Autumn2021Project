@@ -138,10 +138,12 @@ namespace Poggus.UI
             if (slotAItemImage != null) 
             {
                 this.slotAItemImage.Draw(batch);
+                System.Diagnostics.Debug.WriteLine("Drawing A");
             }
             if (slotBItemImage != null) 
             {
                 this.slotBItemImage.Draw(batch);
+                System.Diagnostics.Debug.WriteLine("Drawing B");
             }
 
             rupeeImage.Draw(batch);

@@ -27,6 +27,8 @@ namespace Poggus.Main
         public void Reset()
         {
             this.position = originalPosition;
+            this.moveToNext = false;
+            this.moveTo = Point.Zero;
         }
         public void Update(GameTime gameTime)
         {
