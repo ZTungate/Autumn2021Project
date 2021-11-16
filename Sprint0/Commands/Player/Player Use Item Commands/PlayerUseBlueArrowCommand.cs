@@ -17,10 +17,10 @@ namespace Poggus.Commands
         public void Execute()
         {
             //Call useItem on link's current state.
-            if (game.link.LinkInventory.GetBlueArrowCount() > 0)
+            if (game.link.LinkInventory.GetArrowCount() > 0)
             {
                 game.link.UseItem(ProjectileTypes.blueArrow);
-                game.link.LinkInventory.DecrementBlueArrows();
+                game.link.LinkInventory.DecrementArrows();
             }
         }
     }
