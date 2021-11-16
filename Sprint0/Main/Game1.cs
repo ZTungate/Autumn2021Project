@@ -222,6 +222,7 @@ namespace Poggus
             DungeonLoader.instance.ResetDungeon();
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
+            ProjectileFactory.Instance.ClearProjectiles();
             stateChange.Reset();
             win = false;
             lose = false;
