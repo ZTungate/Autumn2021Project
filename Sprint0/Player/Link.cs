@@ -41,6 +41,10 @@ namespace Poggus.Player
             LinkInventory = new Inventory();
             //LinkInventory.setSlotA(Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Arrow)); //temp to set sword
             LinkInventory.AddItem(new BowItem(new Point())); //temp to add item
+            LinkInventory.AddItem(new SwordItem(new Point())); //temp to add item
+            LinkInventory.AddItem(new ArrowItem(new Point())); //temp to add item
+            LinkInventory.AddItem(new ClockItem(new Point())); //temp to add item
+
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
             maxHealth = Health;

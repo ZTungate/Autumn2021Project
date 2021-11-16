@@ -77,7 +77,7 @@ namespace Poggus.UI
             }
             foreach(Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
             {
-                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(3 + inventoryImages.Count * 26, 3 + (inventoryImages.Count / 10) * 26), new Point(25,25));
+                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25,25));
                 inventoryImages.Add(itemImage);
             }
         }
@@ -102,7 +102,7 @@ namespace Poggus.UI
             inventoryImages.Clear();
             foreach (Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
             {
-                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(3 + inventoryImages.Count * 26, 3 + (inventoryImages.Count / 10) * 26), new Point(25, 25));
+                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25, 25));
                 inventoryImages.Add(itemImage);
             }
             /*if (inventory.getSlotA() != null)
