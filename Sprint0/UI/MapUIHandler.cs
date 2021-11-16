@@ -55,6 +55,19 @@ namespace Poggus.UI
                 }
             }
         }
+        public void UpdatePosition(Point pos)
+        {
+            this.initialPoint += pos;
+            linkImage.SetPosition(linkImage.GetPosition() + pos);
+            foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
+            {
+                entry.Value.SetPosition(entry.Value.GetPosition() + pos);
+            }
+        }
+        public Point GetPosition()
+        {
+            return this.initialPoint;
+        }
         public void Update(GameTime gameTime)
         {
             int totalDungeonWidth = (Game1.instance.GetDungeon().GetMaxDungeonSize().X - Game1.instance.GetDungeon().GetMinDungeonSize().X);

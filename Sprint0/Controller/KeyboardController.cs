@@ -63,6 +63,7 @@ namespace Poggus
             this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
             this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
             this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
+            this.controllerMappings.Add(Keys.Tab, new HUDToggleCommand(myGame));
 
             //GAME CONTROLS
             this.controllerMappings.Add(Keys.P, new PauseCommand(myGame));
@@ -105,6 +106,10 @@ namespace Poggus
                 if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P))
                 {
                     controllerMappings[Keys.P].Execute();
+                }
+                if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab))
+                {
+                    controllerMappings[Keys.Tab].Execute();
                 }
             }
             //Checks if movement controls are released to play the idle animation & stop movement
