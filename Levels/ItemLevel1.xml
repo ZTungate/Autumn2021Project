@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="ItemLevel1">
+  <Blocks>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>208,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>208,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items>
+    <Item>
+      <Object>Arrow</Object>
+      <Location>44,38</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Arrow</Object>
+      <Location>57,38</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Sword</Object>
+      <Location>83,37</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Rupee</Object>
+      <Location>119,40</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Rupee</Object>
+      <Location>142,41</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Rupee</Object>
+      <Location>161,41</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Compass</Object>
+      <Location>187,41</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Clock</Object>
+      <Location>43,71</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Bow</Object>
+      <Location>170,65</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Bomb</Object>
+      <Location>100,66</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Key</Object>
+      <Location>205,95</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Key</Object>
+      <Location>206,118</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Heart</Object>
+      <Location>44,103</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Heart</Object>
+      <Location>44,125</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>HeartContainer</Object>
+      <Location>66,102</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>HeartContainer</Object>
+      <Location>66,124</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Bomb</Object>
+      <Location>76,68</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>TriforcePiece</Object>
+      <Location>208,43</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Fairy</Object>
+      <Location>199,67</Location>
+      <Conditions> </Conditions>
+    </Item>
+  </Items>
+  <Enemies />
+</root>
