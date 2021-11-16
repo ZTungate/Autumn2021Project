@@ -28,13 +28,10 @@ namespace Poggus
         private Dungeon dungeon;
         
         private Texture2D fadeImage;
-        private bool fade = true;
         private SpriteFont font;
         private Rectangle screenDims;
-        float fadeTimer = 0.0f;
         private bool win = false;
         private bool lose = false;
-        private string endGameText;
         private StateChanges stateChange;
         public List<IController> controllerList;
 

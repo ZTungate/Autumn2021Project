@@ -23,6 +23,7 @@ namespace Poggus.Player
 
             link.Sprite = mySprite; 
             stateTime = LinkConstants.swordAttackTime;
+            link.ProjectileFactory.NewStab(LocationHelpers.GetLocationCenteredSpawnRight(link.DestRect, ProjectileConstants.horizSwordBeamSize), Direction.right);
 
             //Fire a sword beam if link is at full health
             if (link.FullHealth())
