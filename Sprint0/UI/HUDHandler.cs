@@ -27,7 +27,7 @@ namespace Poggus.UI
             this.heartImages = new List<ImageUI>();
             hudWidth = Game1.instance._graphics.PreferredBackBufferWidth;
             hudHeight = Main.Camera.main.GetOffset().Y;
-            mapHandler = new MapUIHandler();
+            mapHandler = new MapUIHandler(new Point(50,hudHeight-100));
 
             InitHUD();
         }
@@ -37,7 +37,7 @@ namespace Poggus.UI
             this.heartImages = new List<ImageUI>();
             hudWidth = Game1.instance._graphics.PreferredBackBufferWidth;
             hudHeight = Main.Camera.main.GetOffset().Y;
-            mapHandler = new MapUIHandler();
+            mapHandler = new MapUIHandler(new Point(50, hudHeight - 100));
 
             InitHUD();
         }
@@ -45,8 +45,9 @@ namespace Poggus.UI
         {
             this.hudBlackBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlackBlockSprite(), new Point(0, 0), new Point(Game1.instance._graphics.PreferredBackBufferWidth, hudHeight));
             this.lifeText = new TextSprite(HUDSpriteFactory.instance.hudFont, "--LIFE--", Color.Red, new Point(Game1.instance._graphics.PreferredBackBufferWidth-175, hudHeight - 100));
+            this.levelText = new TextSprite(HUDSpriteFactory.instance.hudFont, Game1.instance.GetDungeon().GetDungeonName(), Color.White, new Point(10, hudHeight - 165));
 
-            for(int i = 0; i < link.Health; i++)
+            for (int i = 0; i < link.Health; i++)
             {
                 ISprite heartSprite = HUDSpriteFactory.instance.GetNewHeartSprite();
                 heartSprite.IsUISprite = true;
@@ -62,6 +63,7 @@ namespace Poggus.UI
                     heartImages.RemoveAt(i);
                 }
             }
+            mapHandler.Update(gameTime);
         }
         public void Draw(SpriteBatch batch)
         {
@@ -71,6 +73,9 @@ namespace Poggus.UI
             {
                 image.Draw(batch);
             }
+
+            levelText.Draw(batch);
+            mapHandler.Draw(batch);
 
             /*aSlotBackground.Draw(batch);
             slotAText.Draw(batch);

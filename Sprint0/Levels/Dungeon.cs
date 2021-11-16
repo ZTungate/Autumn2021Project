@@ -104,6 +104,10 @@ namespace Poggus.Levels
         {
             return this.currentLevel;
         }
+        public Point GetUnscaledLevelPoint()
+        {
+            return currentLevelPoint;
+        }
         public bool AddLevel(Point p, Level level)
         {
             return this.levelDictionary.TryAdd(p, level);
@@ -130,6 +134,42 @@ namespace Poggus.Levels
         public Point GetLevelSize()
         {
             return new Point(levelWidth, levelHeight);
+        }
+        public Point GetMaxDungeonSize()
+        {
+            int maxX = int.MinValue, maxY = int.MinValue;
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                if(entry.Value.GetPosition().X > maxX)
+                {
+                    maxX = entry.Value.GetPosition().X;
+                }
+                if(entry.Value.GetPosition().Y > maxY)
+                {
+                    maxY = entry.Value.GetPosition().Y;
+                }
+            }
+            return new Point(maxX, maxY);
+        }
+        public Point GetMinDungeonSize()
+        {
+            int minX = int.MaxValue, minY = int.MaxValue;
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                if (entry.Value.GetPosition().X < minX)
+                {
+                    minX = entry.Value.GetPosition().X;
+                }
+                if (entry.Value.GetPosition().Y < minY)
+                {
+                    minY = entry.Value.GetPosition().Y;
+                }
+            }
+            return new Point(minX, minY);
+        }
+        public string GetDungeonName()
+        {
+            return this.dungeonName;
         }
     }
 }
