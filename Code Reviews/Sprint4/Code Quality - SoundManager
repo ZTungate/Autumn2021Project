@@ -3,4 +3,11 @@ Date of the code review: 11/15/21
 Sprint number: 4
 Name of the .cs file being reviewed:  Sound Manager
 Author of the .cs file being reviewed: Wesley
-Number of minutes taken to complete the review: X
+Number of minutes taken to complete the review: 15
+
+It was a good idea to make this singleton so that there aren't several soundManagers in existence.
+It might be a better idea to have volume be a float value with an increase volume method to increase it between 0-1 in increments of something like 0.1 or 0.01.
+It also seems like soundItem is more of a soundManager then soundManager it might be a good idea to have soundManager deal with playing all sounds and have soundItem just be what is being played.
+Currently soundManager is only playing the background music which doesn't reflect the name well.
+
+
