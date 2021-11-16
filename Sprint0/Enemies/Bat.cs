@@ -24,7 +24,12 @@ namespace Poggus.Enemies
 
                 int lastFrame = Sprite.CurrentFrame;
                 Sprite.Update(gameTime);
-
+                
+                //Decrement the invincibility timer if there is time on it
+                if (InvincibilityTimer > 0)
+                {
+                    InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
                 //Move the bat if the animation frame changed
                 if (lastFrame != Sprite.CurrentFrame)
                 {

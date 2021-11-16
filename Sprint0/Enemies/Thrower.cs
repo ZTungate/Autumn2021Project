@@ -36,6 +36,12 @@ namespace Poggus.Enemies
                 //Try to move the thrower
                 TryRandomMove(lastFrame);
 
+                //Decrement the invincibility timer if there is time on it
+                if (InvincibilityTimer > 0)
+                {
+                    InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
+
                 wait -= gameTime.ElapsedGameTime.Milliseconds;
                 if (throwDelay <= 0)
                 {

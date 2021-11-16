@@ -14,6 +14,11 @@ namespace Poggus.Enemies
         {
             oldPosition = DestRect.Location;
             Sprite.Update(gameTime);
+            //Decrement the invincibility timer if there is time on it
+            if (InvincibilityTimer > 0)
+            {
+                InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+            }
         }
 
         public OldMan(Point pos) : base(EnemyType.OldMan, pos, new Point(32, 32))

@@ -36,6 +36,11 @@ namespace Poggus.Enemies
                     timer = 0;
                     SetPosition(SlimeRandomMove());
                 }
+                //Decrement the invincibility timer if there is time on it
+                if (InvincibilityTimer > 0)
+                {
+                    InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
             }
             else
             {
