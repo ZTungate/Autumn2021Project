@@ -18,7 +18,7 @@ namespace Poggus.Player
             SourceRect[2] = new Rectangle(35, 47, 16, 23);
             SourceRect[3] = new Rectangle(52, 47, 16, 19);
             SourceRect[4] = new Rectangle(1, 11, 16, 16);  //Set the frame for right idle link
-            this.Interval = 64f;
+            this.Interval = LinkConstants.swordAnimInterval;
         }
 
         public override void Update(GameTime gameTime)
