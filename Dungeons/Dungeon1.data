@@ -9,3 +9,5 @@ SwordLevel:0,-1
 WaterLevel:1,-1
 ThrowerWaterLevel:2,-1
 DragonLevel:3,-1
+GrabberLevel:-1,-1
+BladeTrapLevel:2,1

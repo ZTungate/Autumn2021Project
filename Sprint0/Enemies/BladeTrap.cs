@@ -17,9 +17,9 @@ namespace Poggus.Enemies
         Rectangle xTargeting;
         Rectangle yTargeting;
 
-        public BladeTrap(ILink gameLink, Point position) : base(EnemyType.BladeTrap, position, new Point(32, 32))
+        public BladeTrap(Point position) : base(EnemyType.BladeTrap, position, new Point(32, 32))
         {
-            link = gameLink;
+            link = Game1.instance.link;
             homePos = position;
 
             xTargeting = new Rectangle(//Rectangle to cover all X coordinates this blade trap sees

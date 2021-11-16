@@ -97,14 +97,14 @@ namespace Poggus.UI
                 ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(3 + inventoryImages.Count * 26, 3 + (inventoryImages.Count / 10) * 26), new Point(25, 25));
                 inventoryImages.Add(itemImage);
             }
-            if (inventory.getSlotA() != null)
+            /*if (inventory.getSlotA() != null)
             {
                 this.slotAItemImage = new ImageUI(inventory.getSlotA(), this.aSlotBackground.GetPosition() + new Point(5, 5), this.aSlotBackground.DestRect.Size - new Point(5, 5));
             }
             if (inventory.getSlotB() != null)
             {
                 this.slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), this.bSlotBackground.GetPosition() + new Point(5, 5), this.bSlotBackground.DestRect.Size - new Point(5, 5));
-            }
+            }*/
 
             this.rupeeAmtText.SetText("X" + link.LinkInventory.GetRupeeCount());
             this.keyAmtText.SetText("X" + link.LinkInventory.GetKeyCount());
