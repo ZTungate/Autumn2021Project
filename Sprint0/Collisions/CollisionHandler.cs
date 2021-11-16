@@ -291,6 +291,10 @@ namespace Poggus.Collisions
                     }
                     else if (itemLink.Item2 is TriforcePieceItem) {
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+                    }else if (itemLink.Item2 is HeartContainerItem)
+                    {
+                        LinkConstants.linkHealth++;
+                        itemLink.Link1.Health++;
                     }
                 }
             }

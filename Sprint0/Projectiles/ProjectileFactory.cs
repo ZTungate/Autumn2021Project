@@ -402,5 +402,10 @@ namespace Poggus.Projectiles
             return projectiles;
         }
 
+        public void ClearProjectiles()
+        {
+            projectiles.Clear();
+        }
+
     }
 }
