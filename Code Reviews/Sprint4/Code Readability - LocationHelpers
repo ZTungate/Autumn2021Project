@@ -3,4 +3,9 @@ Date of the code review: 11/15/21
 Sprint number: 4
 Name of the .cs file being reviewed:  LocationHelpers
 Author of the .cs file being reviewed: Jonah
-Number of minutes taken to complete the review: X
+Number of minutes taken to complete the review: 5
+
+It's kindof hard to understand the parameters for the methods so better names could be useful.
+The method names are a little hard to understand what exactly they do.
+Everything else is decently readable but could benefit from being split up.
+
