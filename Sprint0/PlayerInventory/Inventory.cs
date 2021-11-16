@@ -1,4 +1,5 @@
 ﻿using Poggus.Items;
+using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,8 @@ namespace Poggus.PlayerInventory
         private int bombs = 5;
         private int rupee = 0;
         private int keys = 0;
+        private ISprite slotA;
+        private AbstractItem slotB;
         protected bool hasMap = false;
         protected bool hasCompass = false;
         protected List<AbstractItem> itemList = new List<AbstractItem>();
@@ -20,12 +23,26 @@ namespace Poggus.PlayerInventory
         protected int Bombs { get => bombs; set => bombs = value; }
         protected int Rupees { get => rupee; set => rupee = value; }
         protected int Keys { get => keys; set => keys = value; }
-
+        protected AbstractItem SlotB { get => slotB; set => slotB = value; }
         public Inventory()
         {
+            ProjectileFactory factory = ProjectileFactory.Instance;
+            slotA = factory.CreateUpSwordSprite(); //might not work
             
         }
+        public void setSlotB(AbstractItem item)
+        {
+            SlotB = item;
+        }
+        public AbstractItem getSlotB()
+        {
+            return SlotB;
+        }
 
+        public ISprite getSlotA()
+        {
+            return slotA;
+        }
         public void IncrementBlueArrows()
         {
             BlueArrows++;
