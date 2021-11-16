@@ -24,12 +24,17 @@ namespace Poggus.PlayerInventory
         protected int Bombs { get => bombs; set => bombs = value; }
         protected int Rupees { get => rupee; set => rupee = value; }
         protected int Keys { get => keys; set => keys = value; }
+        protected ISprite SlotA { get => slotA; set => slotA = value; }
         protected AbstractItem SlotB { get => slotB; set => slotB = value; }
+        
         public Inventory()
         {
-            ItemSpriteFactory factory = ItemSpriteFactory.Instance;
-            slotA = factory.GetItemSprite(ItemEnum.Sword); //might not work
             
+            slotA = ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Sword);
+        }
+        public void setSlotA(ISprite item)
+        {
+            SlotA = item;
         }
         public void setSlotB(AbstractItem item)
         {
