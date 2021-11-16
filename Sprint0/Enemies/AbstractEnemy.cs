@@ -17,6 +17,8 @@ namespace Poggus.Enemies
         public int Health { get; set; }
         public int StunTimer { get; set; }
 
+        public int InvincibilityTimer { get; set; }
+
         public AbstractEnemy(EnemyType type, Point position, Point size)
         {
             this.EnemyType = type;
@@ -47,7 +49,11 @@ namespace Poggus.Enemies
 
         public void TakeDamage(int damageAmount)
         {
-            this.Health -= damageAmount;
+            if (InvincibilityTimer <= 0)
+            {
+                this.Health -= damageAmount;
+                this.InvincibilityTimer = EnemyConstants.invincibilityTime;
+            }
         }
     }
 }

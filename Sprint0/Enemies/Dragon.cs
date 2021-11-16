@@ -38,6 +38,11 @@ namespace Poggus.Enemies
                 {
                     DestRect = new Rectangle(DragonMove(), DestRect.Size);
                 }
+                //Decrement the invincibility timer if there is time on it
+                if (InvincibilityTimer > 0)
+                {
+                    InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
 
                 //Attack if enough time has passed since last attack.
                 if (attackTimer < attackInterval)
