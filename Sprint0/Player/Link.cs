@@ -24,8 +24,8 @@ namespace Poggus.Player
         public int Health { get; set; }
         public Inventory LinkInventory { get; set; }
 
-        
 
+        const float damgeDelay = 50f;
         float damageTimer;
         //public Inventory inventory = new Inventory();
         public float Timer = 0f;
@@ -34,7 +34,7 @@ namespace Poggus.Player
         float invincibilityFramesDuration = 2000f;
         float hitStunDuration = 500f;
         private int maxHealth;
-
+        
         public Link()
         {
             State = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
@@ -83,7 +83,7 @@ namespace Poggus.Player
 
                 damageTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                if (damageTimer <= 50f)
+                if (damageTimer <= damgeDelay)
                 { //damage invincibility time
                     isDamaged = false;
                     Sprite.Color = Color.White;

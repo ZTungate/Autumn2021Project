@@ -10,6 +10,7 @@ namespace Poggus.Enemies
 {
     public class Grabber : AbstractEnemy
     {
+        const int RANDMOVE = 4;
         public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
         {
             Health = EnemyConstants.grabberHealth;
@@ -43,7 +44,7 @@ namespace Poggus.Enemies
 
             //Get a random number from 0-3
             Random rand = new Random();
-            int i = rand.Next(4);
+            int i = rand.Next(RANDMOVE);
 
             if (i == 0)
             {

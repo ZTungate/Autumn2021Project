@@ -9,10 +9,11 @@ namespace Poggus.Enemies
 {
     public class Slime : AbstractEnemy
     {
+
         //Timers for updating sprite without moving
         private int interval = 40;
         private int timer = 0;
-
+        const int RANDMOVE = 5;
         public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
         {
             Health = EnemyConstants.slimeHealth;
@@ -50,7 +51,7 @@ namespace Poggus.Enemies
 
             //Get a random number from 0-3
             Random rand = new Random();
-            int i = rand.Next(5);
+            int i = rand.Next(RANDMOVE);
 
             if (i == 0)
             {
