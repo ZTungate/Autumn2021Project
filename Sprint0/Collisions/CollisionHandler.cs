@@ -257,41 +257,46 @@ namespace Poggus.Collisions
                     {
                         itemLink.Link1.LinkInventory.IncrementBombs();
                     }
-                    if (itemLink.Item2 is ArrowItem)
+                    else if (itemLink.Item2 is ArrowItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementArrows();
                     }
-                    if (itemLink.Item2 is KeyItem)
+                    else if (itemLink.Item2 is KeyItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementKeys();
                     }
-                    if (itemLink.Item2 is RupeeItem)
+                    else if (itemLink.Item2 is RupeeItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementRupees();
                     }
-                    if (itemLink.Item2 is BowItem)
+                    else if (itemLink.Item2 is BowItem)
                     {
                         itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
                     }
-                    if (itemLink.Item2 is BoomerangItem)
+                    else if (itemLink.Item2 is BoomerangItem)
                     {
                         itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
                     }
-                    if (itemLink.Item2 is CompassItem)
+                    else if (itemLink.Item2 is CompassItem)
                     {
                         itemLink.Link1.LinkInventory.AddCompass();
                     }
-                    
-                    if (itemLink.Item2 is TriforcePieceItem) {
+                    else if(itemLink.Item2 is FairyItem)
+                    {
+                        itemLink.Link1.Health = LinkConstants.linkHealth;
+                    }
+                    else if(itemLink.Item2 is HeartItem)
+                    {
+                        itemLink.Link1.Health++;
+                    }
+                    else if (itemLink.Item2 is TriforcePieceItem) {
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
-
                     }
                 }
             }
             //remove items from the room
             foreach (AbstractItem item in itemToRemove) {
                 myDungeon.GetCurrentLevel().RemoveItem(item);
-                
             }
 
             LevelDoor[] doors = myGame.GetDungeon().GetCurrentLevel().GetDoorListAsArray(); 
