@@ -9,6 +9,7 @@ namespace Poggus.Enemies
 {
     public class Bat : AbstractEnemy
     {
+        const int RANDMOVE = 4;
         public Bat(Point position) : base(EnemyType.Bat, position, new Point(32,32))
         {
             Health = EnemyConstants.batHealth;
@@ -48,7 +49,7 @@ namespace Poggus.Enemies
 
             //Get a random number from 0-3
             Random rand = new Random();
-            int i = rand.Next(4);
+            int i = rand.Next(RANDMOVE);
 
             if (i == 0)
             {

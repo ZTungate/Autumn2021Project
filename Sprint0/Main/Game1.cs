@@ -19,6 +19,8 @@ namespace Poggus
     public class Game1 : Game
     {
         const int textScale = 3;
+        const int BUFFERWIDTH = 1024;
+        const int BUFFERHEIGHT = 704;
         const int blackoutScale = 10000;
         public static float gameScaleX, gameScaleY;
         public static float heightScalar = 0.75f;
@@ -26,13 +28,10 @@ namespace Poggus
         private Dungeon dungeon;
         
         private Texture2D fadeImage;
-        private bool fade = true;
         private SpriteFont font;
         private Rectangle screenDims;
-        float fadeTimer = 0.0f;
         private bool win = false;
         private bool lose = false;
-        private string endGameText;
         private StateChanges stateChange;
         public List<IController> controllerList;
 
@@ -73,8 +72,8 @@ namespace Poggus
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = 1024;
-            _graphics.PreferredBackBufferHeight = 704;
+            _graphics.PreferredBackBufferWidth = BUFFERWIDTH;
+            _graphics.PreferredBackBufferHeight = BUFFERHEIGHT;
             _graphics.ApplyChanges();
             screenDims = new Rectangle(new Point(), new Point(_graphics.PreferredBackBufferWidth, _graphics.PreferredBackBufferHeight));
             //Initialize the sprite factories
@@ -224,33 +223,26 @@ namespace Poggus
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
             stateChange.Reset();
-
+            win = false;
+            lose = false;
             hudHandler.Reset();
             Camera.main.Reset();
 
             handler = new CollisionHandler(this);
             
         }
-        public void printEndMessage()
-        {
-            Vector2 textMiddlePoint = font.MeasureString(endGameText) / 2;
-            _spriteBatch.DrawString(font, endGameText, new Vector2(screenDims.Width / 2, screenDims.Height / 2), Color.White, 0, textMiddlePoint, textScale, SpriteEffects.None, 0);
-        }
-        public void fadeout()
-        {
-            fade = true;
-            //isPaused = true; needs to be set later
-        }
+        
+        
         public void toggleWin()
         {
-            fadeout();
+            
             win = !win;
             
         }
 
         public void toggleLose()
         {
-            fadeout();
+            
             lose = !lose;
         }
         

@@ -242,11 +242,34 @@ namespace Poggus.Collisions
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
                 if (itemLink.IsCollision) {
                     itemToRemove.Add(itemLink.Item2);
-                    if(itemLink.Item2 is TriforcePieceItem) {
-                        
+                    if(itemLink.Item2 is BombItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementBombs();
+                    }
+                    if (itemLink.Item2 is ArrowItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementArrows();
+                    }
+                    if (itemLink.Item2 is KeyItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementKeys();
+                    }
+                    if (itemLink.Item2 is RupeeItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementRupees();
+                    }
+                    if (itemLink.Item2 is BowItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                    }
+                    if (itemLink.Item2 is CompassItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddCompass();
+                    }
+                    
+                    if (itemLink.Item2 is TriforcePieceItem) {
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
-                        
-                        
+
                     }
                 }
             }

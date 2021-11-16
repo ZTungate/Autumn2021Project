@@ -46,6 +46,10 @@ namespace Poggus
         {
             this.position = pos;
         }
+        public Point GetPosition()
+        {
+            return this.position;
+        }
         public string GetText()
         {
             return this.text;

@@ -32,7 +32,31 @@ namespace Poggus.UI
         }
         public ISprite GetNewHeartSprite()
         {
-            return Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Heart);
+            ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Heart);
+            sprite.IsUISprite = true;
+            return sprite;
+        }
+        public ISprite GetNewBombSprite()
+        {
+            ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Bomb);
+            sprite.IsUISprite = true;
+            return sprite;
+        }
+        public ISprite GetNewKeySprite()
+        {
+            ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Key);
+            sprite.IsUISprite = true;
+            return sprite;
+        }
+        public ISprite GetNewRupeeSprite()
+        {
+            ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Rupee);
+            sprite.IsUISprite = true;
+            return sprite;
+        }
+        public ISprite GetNewBlueBorderSprite()
+        {
+            return new BlueBorderSprite(hudSpriteSheet);
         }
 
     }

@@ -10,6 +10,7 @@ namespace Poggus.Enemies
 {
     public class Skeleton : AbstractEnemy
     {
+        const int RANDMOVE = 4;
         public Skeleton(Point pos) : base(EnemyType.Skeleton, pos, new Point(32, 32))
         {
             Health = EnemyConstants.skeletonHealth;
@@ -47,7 +48,7 @@ namespace Poggus.Enemies
 
             //Get a random number from 0-3
             Random rand = new Random();
-            int i = rand.Next(4);
+            int i = rand.Next(RANDMOVE);
 
             if (i == 0)
             {

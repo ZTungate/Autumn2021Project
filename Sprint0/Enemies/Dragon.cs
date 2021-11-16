@@ -13,7 +13,7 @@ namespace Poggus.Enemies
     {
         //ProjectileHandler for spawning fireballs during an attack
         ProjectileFactory projectiles;
-
+        const int RANDMOVE = 3;
         private int interval = 120;
         private int timer = 0;
         private int attackTimer = 0;
@@ -66,7 +66,7 @@ namespace Poggus.Enemies
             //Initialize an RNG to randomly move the dragon.
             Random rand = new Random();
             Point newPosition = DestRect.Location;
-            int val = rand.Next(3);
+            int val = rand.Next(RANDMOVE);
 
             //1/3 chance to move forwards, 1/3 chance to move back, and 1/3 chance to do nothing.
             if (val == 0)

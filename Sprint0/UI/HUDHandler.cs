@@ -47,10 +47,24 @@ namespace Poggus.UI
             this.lifeText = new TextSprite(HUDSpriteFactory.instance.hudFont, "--LIFE--", Color.Red, new Point(Game1.instance._graphics.PreferredBackBufferWidth-175, hudHeight - 100));
             this.levelText = new TextSprite(HUDSpriteFactory.instance.hudFont, Game1.instance.GetDungeon().GetDungeonName(), Color.White, new Point(10, hudHeight - 165));
 
+            this.bSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), this.lifeText.GetPosition() + new Point(-200,0), new Point(40,75));
+            this.aSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), this.bSlotBackground.DestRect.Location + new Point(65, 0), new Point(40, 75));
+
+            this.slotBText = new TextSprite(HUDSpriteFactory.instance.hudFont, "B", Color.White, bSlotBackground.DestRect.Location + new Point(10, -15));
+            this.slotAText = new TextSprite(HUDSpriteFactory.instance.hudFont, "A", Color.White, aSlotBackground.DestRect.Location + new Point(10, -15));
+
+            this.rupeeAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, slotBText.GetPosition() + new Point(-75, 0));
+            this.keyAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, rupeeAmtText.GetPosition() + new Point(0, 30));
+            this.bombAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, keyAmtText.GetPosition() + new Point(0, 30));
+
+            this.rupeeImage = new ImageUI(HUDSpriteFactory.instance.GetNewRupeeSprite(), this.rupeeAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
+            this.keyImage = new ImageUI(HUDSpriteFactory.instance.GetNewKeySprite(), this.keyAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
+            this.bombImage = new ImageUI(HUDSpriteFactory.instance.GetNewBombSprite(), this.bombAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
+
+
             for (int i = 0; i < link.Health; i++)
             {
                 ISprite heartSprite = HUDSpriteFactory.instance.GetNewHeartSprite();
-                heartSprite.IsUISprite = true;
                 heartImages.Add(new ImageUI(heartSprite, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + i * 30, hudHeight - 65), new Point(25,25)));
             }
         }
@@ -63,6 +77,10 @@ namespace Poggus.UI
                     heartImages.RemoveAt(i);
                 }
             }
+            this.rupeeAmtText.SetText("X" + link.LinkInventory.GetRupeeCount());
+            this.keyAmtText.SetText("X" + link.LinkInventory.GetKeyCount());
+            this.bombAmtText.SetText("X" + link.LinkInventory.GetBombCount());
+
             mapHandler.Update(gameTime);
         }
         public void Draw(SpriteBatch batch)
@@ -77,14 +95,20 @@ namespace Poggus.UI
             levelText.Draw(batch);
             mapHandler.Draw(batch);
 
-            /*aSlotBackground.Draw(batch);
+            aSlotBackground.Draw(batch);
             slotAText.Draw(batch);
 
             bSlotBackground.Draw(batch);
             slotBText.Draw(batch);
 
-            levelText.Draw(batch);
-            */
+            rupeeImage.Draw(batch);
+            keyImage.Draw(batch);
+            bombImage.Draw(batch);
+
+            rupeeAmtText.Draw(batch);
+            keyAmtText.Draw(batch);
+            bombAmtText.Draw(batch);
+
             lifeText.Draw(batch);
             if (fullHUD)
             {
