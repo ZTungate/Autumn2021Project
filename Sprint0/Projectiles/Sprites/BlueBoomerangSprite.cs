@@ -16,7 +16,7 @@ namespace Poggus
             SourceRect[0] = new Rectangle(91, 189, 8, 8);
             SourceRect[1] = new Rectangle(100, 189, 8, 8);
             SourceRect[2] = new Rectangle(109, 189, 8, 8);
-            this.Interval = 20;
+            this.Interval = ProjectileConstants.boomerangAnimInterval;
 
         }
 
@@ -25,34 +25,6 @@ namespace Poggus
             //Animate the sprites (pulled from animatedStillSprite.cs)
             this.FrameStep(gameTime);
         }
-        /*public void Draw(SpriteBatch spriteBatch)
-        {
-            //Draw projectile at its position at twice its source size.
-
-            int cycle = TotalFrames % 8;
-
-            Rectangle destRect = new Rectangle((int)Position.X, (int)Position.Y, SourceRect[CurrentFrame].Width * (int)LinkConstants.scaleX, SourceRect[CurrentFrame].Height * (int)LinkConstants.scaleY);
-            switch (cycle) {
-                case 0:
-                case 1:
-                case 2:
-                    spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
-                    break;
-                case 3:
-                case 4:
-                    spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.FlipHorizontally, 1);
-                    break;
-                case 5:
-                case 6:
-                    spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.None, 1);
-
-                    break;
-                case 7:
-                    spriteBatch.Draw(Texture, Position, SourceRect[CurrentFrame % FrameCount], Color.White, 0, new Vector2(0, 0), (int)LinkConstants.scaleX, SpriteEffects.FlipVertically, 1);
-                    break;
-
-            }
-        }*/
     }
 
 }

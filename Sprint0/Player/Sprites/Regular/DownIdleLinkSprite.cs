@@ -22,7 +22,6 @@ namespace Poggus.Player
             colors[1] = Color.Red;
     
             SourceRect[0] = new Rectangle(1, 11, 16, 16);
-            this.Interval = 40;
         }
 
     }

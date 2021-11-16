@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Poggus.Player;
+using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Poggus
             SourceRect[5] = new Rectangle(335, 15, 8, 8);
             SourceRect[6] = new Rectangle(344, 15, 8, 8);
             SourceRect[7] = new Rectangle(353, 15, 8, 8);
-            this.Interval = 20;
+            this.Interval = ProjectileConstants.boomerangAnimInterval;
         }
 
         public override void Update(GameTime gameTime)

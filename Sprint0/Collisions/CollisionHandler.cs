@@ -149,7 +149,15 @@ namespace Poggus.Collisions
                     P2RCollision boundProj = (P2RCollision)detector.detectCollision(proj, rectangle);
                     if (boundProj.IsCollision)
                     {
-                        proj.Life = 0;
+                        //Boomerangs bounce off the walls, other projectiles just break.
+                        if (boundProj.proj1 is BoomerangProjectile || boundProj.proj1 is LinkBoomerangProjectile)
+                        {
+                            boundProj.proj1.Life /= 2;
+                        }
+                        else
+                        {
+                            proj.Life = 0;
+                        }
                     }
                 }
 
@@ -160,7 +168,7 @@ namespace Poggus.Collisions
                 foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                     P2BCollision projBlock = (P2BCollision)detector.detectCollision(block, proj);
                     if (projBlock.IsCollision && !projBlock.block2.Walkable) {
-                        projBlock.proj1.Life = 0;
+                       // projBlock.proj1.Life = 0;
                     }
                 }
             }            
@@ -179,7 +187,7 @@ namespace Poggus.Collisions
             List<IEnemy> eneToRemove = new List<IEnemy>();
 
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
-                if (!(proj is ArrowPoofProjectile)) {
+                //if (!(proj is ArrowPoofProjectile)) {
                     foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                         P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
                         if (projEne.IsCollision && (projEne.proj1 is LinkBoomerangProjectile) && (projEne.enemy2 is Slime || projEne.enemy2 is Bat)) {
@@ -220,6 +228,9 @@ namespace Poggus.Collisions
                             }else if(projectile is SwordStabProjectile)
                             {
                                 projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            }else if(projectile is BoomerangProjectile && projEne.enemy2 is Thrower && projectile.Life < ProjectileConstants.boomerangLife/2)
+                            {
+                                projectile.Life = 0;
                             }
                         }
 
@@ -228,7 +239,7 @@ namespace Poggus.Collisions
                             eneToRemove.Add(projEne.enemy2);
                         }
                     }
-                }
+                //}
             }
             //remove enemies from the room
             foreach (IEnemy ene in eneToRemove) {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Poggus.Player;
+using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,13 +17,13 @@ namespace Poggus
             SourceRect[0] = new Rectangle(191, 185, 16, 16);
 
         }
-        public float flipTime = 75;
+        public float flipTime = ProjectileConstants.fireFlipInterval;
         public override void Update(GameTime gameTime)
         {
             if(flipTime <= 0)
             {
                 counter++;
-                flipTime = 75;
+                flipTime = ProjectileConstants.fireFlipInterval;
             }
             flipTime -= gameTime.ElapsedGameTime.Milliseconds;
         }
