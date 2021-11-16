@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="GrabberLevel">
+  <Blocks>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>208,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>32,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>208,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items>
+    <Item>
+      <Object>Bomb</Object>
+      <Location>132,79</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Bomb</Object>
+      <Location>106,79</Location>
+      <Conditions> </Conditions>
+    </Item>
+  </Items>
+  <Enemies>
+    <Enemy>
+      <Object>Grabber</Object>
+      <Location>98,118</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>Grabber</Object>
+      <Location>67,51</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>Grabber</Object>
+      <Location>178,58</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+  </Enemies>
+</root>

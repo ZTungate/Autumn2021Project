@@ -39,7 +39,8 @@ namespace Poggus.Player
             DestRect = new Rectangle(new Point(300, 250), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
-            LinkInventory.setSlotA(Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Arrow)); //temp to set sword
+            //LinkInventory.setSlotA(Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Arrow)); //temp to set sword
+            LinkInventory.AddItem(new BowItem(new Point())); //temp to add item
             //Set link's health and maxHealth
             Health = LinkConstants.linkHealth;
             maxHealth = Health;

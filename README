@@ -3,6 +3,9 @@ Boggus Poggus Group
 Program Controls: 
 Arrow keys and WASD to move 
 Z and N to use sword
+R to reset
+Q to quit
+M to mute volume
 1 to throw regular boomerang
 2 to throw magic boomerang
 3 to fire a regular arrow
@@ -27,10 +30,8 @@ Sword beam has incorrect scaling.
 
 
 Following is not implemented
-Camera transitions - not implemented yet
-No reset key - not implemented yet
-No knockback - not implemented yet
-Health stats - not implemented yet
+No full inventory
+Test rooms: Not full dungeon 1
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
 
 Sprint 2:

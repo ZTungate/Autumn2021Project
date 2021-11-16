@@ -79,6 +79,10 @@ namespace Poggus.Levels
                 SetCurrentLevel(nextLevelPoint);
             }
         }
+        public bool HasDungeonAtNextDirection(Point dir)
+        {
+            return levelDictionary.ContainsKey(currentLevelPoint + dir);
+        }
         public void UpdateLevelContentPositions(Point direction)
         {
             foreach (KeyValuePair<Point, Level> entry in levelDictionary)
