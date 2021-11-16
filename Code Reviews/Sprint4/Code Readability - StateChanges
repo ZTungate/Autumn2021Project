@@ -1,0 +1,9 @@
+Author of the code review: Michael Fong
+Date of the code review: 11/15/21
+Sprint number: 4
+Name of the .cs file being reviewed:  StateChanges
+Author of the .cs file being reviewed: Zach Tungate
+Number of minutes taken to complete the review: 9:42 to 9:47 (5 minutes)
+
+The code is pretty intuitive to understand. It handles the gamestate changes, such as losing upon death, winning upon triforce pickup, and resetting. 
+There are no magic numbers in the code, and variables have descriptive names. It is easy to understand each function, since it is well-done and quite simple.
