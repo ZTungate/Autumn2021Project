@@ -65,7 +65,9 @@ namespace Poggus.Collisions
                                 break;
                             case EnemyType.Grabber:
                                 eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage);
-
+                                eneLink.Link1.SetPosition(LinkConstants.originPos);
+                                myDungeon.SetCurrentLevel(new Point(0,0));
+                                Main.Camera.main.BeginMoveTo(myDungeon.GetCurrentLevel().GetPosition(), 12);
                                 break;
                             case EnemyType.Skeleton:
                                 eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage);

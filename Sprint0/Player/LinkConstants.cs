@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,6 +20,8 @@ namespace Poggus.Player
         public static int movementAnimInterval = 128;
         public static int swordAnimInterval = 64;
         public static int pickupAnimInterval = 1000;
+
+        public static Point originPos = new Point(300, 250);
 
         public static int linkDamageDelay = 50;
         public static int linkInvincibilityDuration = 2000;
