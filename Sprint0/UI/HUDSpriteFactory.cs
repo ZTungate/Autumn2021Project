@@ -54,9 +54,19 @@ namespace Poggus.UI
             sprite.IsUISprite = true;
             return sprite;
         }
+        public ISprite GetUIItemSprite(Poggus.Items.IItem item)
+        {
+            ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(item.itemType);
+            sprite.IsUISprite = true;
+            return sprite;
+        }
         public ISprite GetNewBlueBorderSprite()
         {
             return new BlueBorderSprite(hudSpriteSheet);
+        }
+        public ISprite GetNewBlueSquareBorderSprite()
+        {
+            return new BlueSquareBorderSprite(hudSpriteSheet);
         }
 
     }

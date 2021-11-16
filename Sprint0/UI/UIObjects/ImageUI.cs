@@ -26,5 +26,13 @@ namespace Poggus.UI.UIObjects
         {
             //no-op
         }
+        public void SetPosition(Point pos)
+        {
+            this.DestRect = new Rectangle(pos, DestRect.Size);
+        }
+        public Point GetPosition()
+        {
+            return this.DestRect.Location;
+        }
     }
 }

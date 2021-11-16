@@ -150,5 +150,9 @@ namespace Poggus.PlayerInventory
             return itemList.Contains(check);
 
         }
+        public List<AbstractItem> GetItemList()
+        {
+            return this.itemList;
+        }
     }
 }

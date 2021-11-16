@@ -14,6 +14,8 @@ namespace Poggus.Items
         void Draw(SpriteBatch batch);
 
         Point GetPosition();
+
+        ItemEnum itemType { get; set; }
         void SetPosition(Point pos);
     }
 }

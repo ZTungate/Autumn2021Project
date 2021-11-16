@@ -12,5 +12,8 @@ namespace Poggus.UI.UIObjects
         bool Visible { get; set; }
         void Draw(SpriteBatch batch);
         void Update(GameTime gameTime);
+
+        Point GetPosition();
+        void SetPosition(Point pos);
     }
 }
