@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Text;
 using Poggus.Levels.Sprites;
 using Poggus.Main;
+using Poggus.Sound;
 
 namespace Poggus.Collisions
 {
@@ -23,6 +24,7 @@ namespace Poggus.Collisions
         private Dungeon myDungeon;
         private CollisionDetection detector;
         public List<ICollision> collides;
+        public SoundManager SoundManager { get; set; }
 
 
         public CollisionHandler(Game1 game)
@@ -49,6 +51,7 @@ namespace Poggus.Collisions
                     //If link is attacking, damage the enemy he contacts.
                     if (eneLink.Link1.State is DownSwordLinkState || eneLink.Link1.State is RightSwordLinkState || eneLink.Link1.State is UpSwordLinkState || eneLink.Link1.State is LeftSwordLinkState) {
                         ene.TakeDamage(LinkConstants.swordDamage);
+                        SoundManager.sound.playEnemyHit();
                     }
                     else {
                         //Link gets hurt, damage him based on the enemy contacted.

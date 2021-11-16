@@ -120,15 +120,18 @@ namespace Poggus.Player
                 canMove = false;
                 Sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
-
+                //TODO: Knockback
                 Health -= dmgAmount;
+                SoundManager.sound.playLinkHit();
             }
 
             //Kill link if his health hits zero
             if(Health <= 0)
             {
-                State = new DeadLinkState(this, Sprite);
+                this.State = new DeadLinkState(this, Sprite);
+                SoundManager.sound.playLinkDeath();
             }
+
         }
 
         public void UseItem(ProjectileTypes item)
