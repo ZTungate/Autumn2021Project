@@ -109,7 +109,7 @@ namespace Poggus.Collisions
                         else
                         {
                             //Kill the fireball and hurt link
-                            projLink.proj1.Life = 0;
+                            projLink.proj1.Life -= ProjectileConstants.boomerangLife;
                             projLink.link2.TakeDamage(ProjectileConstants.fireballDamage);
                         }
                         
@@ -118,7 +118,7 @@ namespace Poggus.Collisions
                 }else if(projLink.IsCollision && projLink.proj1 is LinkBoomerangProjectile && projLink.proj1.Life <= ProjectileConstants.boomerangLife / 2)
                 {
                     //Kill a link boomerang if it collides with him while returning.
-                    projLink.proj1.Life = 0;
+                    projLink.proj1.Life -= ProjectileConstants.boomerangLife;
                 }
             }
 
