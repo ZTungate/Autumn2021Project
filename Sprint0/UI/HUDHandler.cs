@@ -83,6 +83,22 @@ namespace Poggus.UI
         }
         public void Update(GameTime gameTime)
         {
+
+
+            /* The following is Michael's suggestion on how to do the health UI
+             It probably needs tweaking but hopefully its a good start point
+            for (int i = 0; i < link.maxHealth; i+=2){
+                if ((link.Health - i ) > 1){
+                    DRAW FULL HEART
+                }else if ((link.Health - i) == 1){
+                    DRAW HALF HEART
+                }else {
+                    DRAW EMPTY HEART
+                }
+            }
+             
+             */
+
             if(link.Health < heartImages.Count && heartImages.Count > 0)
             {
                 for(int i = heartImages.Count - 1; i >= link.Health; i--)

@@ -286,7 +286,7 @@ namespace Poggus.Collisions
                     }
                     else if(itemLink.Item2 is FairyItem)
                     {
-                        itemLink.Link1.Health = LinkConstants.linkHealth;
+                        itemLink.Link1.Health = LinkConstants.linkInitialHealth;
                     }
                     else if(itemLink.Item2 is HeartItem)
                     {
@@ -296,7 +296,7 @@ namespace Poggus.Collisions
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
                     }else if (itemLink.Item2 is HeartContainerItem)
                     {
-                        LinkConstants.linkHealth++;
+                        itemLink.Link1.maxHealth++;
                         itemLink.Link1.Health++;
                     }else if(itemLink.Item2 is ClockItem)
                     {

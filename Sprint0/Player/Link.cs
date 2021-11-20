@@ -25,6 +25,8 @@ namespace Poggus.Player
         public ProjectileFactory ProjectileFactory { get; set; }
         public SoundManager SoundManager { get; set; }
         public int Health { get; set; }
+        public int maxHealth { get; set; }
+
         public Inventory LinkInventory { get; set; }
 
         float damageTimer;
@@ -34,7 +36,7 @@ namespace Poggus.Player
         public bool isDamaged = false;
         float invincibilityFramesDuration = LinkConstants.linkInvincibilityDuration;
         float hitStunDuration = LinkConstants.linkHitStunDuration;
-        private int maxHealth;
+        
         
         public Link()
         {
@@ -49,7 +51,7 @@ namespace Poggus.Player
             LinkInventory.AddItem(new ClockItem(new Point())); //temp to add item
 
             //Set link's health and maxHealth
-            Health = LinkConstants.linkHealth;
+            Health = LinkConstants.linkInitialHealth;
             maxHealth = Health;
         }
         public void Reset()
@@ -63,7 +65,7 @@ namespace Poggus.Player
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
             //Set link's health and maxHealth
-            Health = LinkConstants.linkHealth;
+            Health = LinkConstants.linkInitialHealth;
             maxHealth = Health;
 
         }
@@ -115,7 +117,7 @@ namespace Poggus.Player
                 Sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
 
-                /*                Health -= dmgAmount;*/
+                Health -= dmgAmount;
                 knockback(damageDirection);
             }
 

@@ -23,6 +23,7 @@ namespace Poggus.Player
         public ProjectileFactory ProjectileFactory { get;  set; }
         public SoundManager SoundManager { get; set; }
         public int Health { get; set; }
+        public int maxHealth { get; set; }
         public Inventory LinkInventory { get;}
         void TakeDamage(int damageAmount, ColDirections damageDir);
         void Update(GameTime gameTime);
