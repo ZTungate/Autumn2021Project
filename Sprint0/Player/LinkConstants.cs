@@ -12,6 +12,7 @@ namespace Poggus.Player
         public static int swordAttackTime = 320;
         public static float scaleX, scaleY;
         public static int linkSpeed = 3;
+        public static int knockbackDistance = 50;
 
         public static int swordDamage = 1;
 
@@ -26,5 +27,6 @@ namespace Poggus.Player
         public static int linkDamageDelay = 50;
         public static int linkInvincibilityDuration = 2000;
         public static int linkHitStunDuration = 500;
+        public static int linkKnockbackDistancePerFrame = 5;
     }
 }

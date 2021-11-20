@@ -55,28 +55,28 @@ namespace Poggus.Collisions
                         switch (eneLink.enemy2.EnemyType)
                         {
                             case EnemyType.Bat:
-                                eneLink.Link1.TakeDamage(EnemyConstants.batDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.batDamage, eneLink.direction);
                                 break;
                             case EnemyType.BladeTrap:
-                                eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage, eneLink.direction);
                                 break;
                             case EnemyType.Dragon:
-                                eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage, eneLink.direction);
                                 break;
                             case EnemyType.Grabber:
-                                eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage, eneLink.direction);
                                 eneLink.Link1.SetPosition(LinkConstants.originPos);
                                 myDungeon.SetCurrentLevel(new Point(0,0));
                                 Main.Camera.main.BeginMoveTo(myDungeon.GetCurrentLevel().GetPosition(), 12);
                                 break;
                             case EnemyType.Skeleton:
-                                eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage, eneLink.direction);
                                 break;
                             case EnemyType.Slime:
-                                eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage, eneLink.direction);
                                 break;
                             case EnemyType.Thrower:
-                                eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage, eneLink.direction);
                                 break;
                         }
                     }
@@ -104,13 +104,13 @@ namespace Poggus.Collisions
                     else {//hurt link by the damage of the projectile that hit him.
                         if(projLink.proj1 is BoomerangProjectile)
                         {
-                            projLink.link2.TakeDamage(ProjectileConstants.throwerBoomerangDamage);
+                            projLink.link2.TakeDamage(ProjectileConstants.throwerBoomerangDamage, projLink.direction);
                         }
                         else
                         {
                             //Kill the fireball and hurt link
                             projLink.proj1.Life -= ProjectileConstants.boomerangLife;
-                            projLink.link2.TakeDamage(ProjectileConstants.fireballDamage);
+                            projLink.link2.TakeDamage(ProjectileConstants.fireballDamage, projLink.direction);
                         }
                         
                     }

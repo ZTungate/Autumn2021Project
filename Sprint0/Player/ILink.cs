@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using static Poggus.Projectiles.ProjectileConstants;
 using Poggus.Sound;
+using Poggus.Collisions;
 
 namespace Poggus.Player
 {
@@ -23,7 +24,7 @@ namespace Poggus.Player
         public SoundManager SoundManager { get; set; }
         public int Health { get; set; }
         public Inventory LinkInventory { get;}
-        void TakeDamage(int damageAmount);
+        void TakeDamage(int damageAmount, ColDirections damageDir);
         void Update(GameTime gameTime);
         void Draw(SpriteBatch spriteBatch);
         void Move(Point moveDirection);

@@ -6,6 +6,7 @@ using static Poggus.Projectiles.ProjectileConstants;
 using Poggus.Items;
 using Poggus.PlayerInventory;
 using Poggus.Sound;
+using Poggus.Collisions;
 
 namespace Poggus.Player
 {
@@ -106,7 +107,7 @@ namespace Poggus.Player
                 canMove = true;
             }
         }
-        public void TakeDamage(int dmgAmount)
+        public void TakeDamage(int dmgAmount, ColDirections damageDirection)
         {
             if (!isDamaged) {
                 isDamaged = true;
@@ -114,7 +115,8 @@ namespace Poggus.Player
                 Sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
 
-                Health -= dmgAmount;
+                /*                Health -= dmgAmount;*/
+                knockback(damageDirection);
             }
 
             //Kill link if his health hits zero
@@ -122,6 +124,34 @@ namespace Poggus.Player
             {
                 State = new DeadLinkState(this, Sprite);
                 
+            }
+        }
+
+        private void knockback(ColDirections dir)
+        {
+            switch (dir)
+            {
+                case ColDirections.North:
+                    //knockback down
+                    DestRect = new Rectangle(DestRect.Location + new Point(0,-LinkConstants.knockbackDistance), DestRect.Size);
+
+                    break;
+                case ColDirections.South:
+                    //knockback up
+                    DestRect = new Rectangle(DestRect.Location + new Point(0, LinkConstants.knockbackDistance), DestRect.Size);
+                    break;
+                case ColDirections.East:
+                    //knockback left
+                    DestRect = new Rectangle(DestRect.Location + new Point(LinkConstants.knockbackDistance, 0), DestRect.Size);
+                    break;
+                case ColDirections.West:
+                    //knockback right
+                    DestRect = new Rectangle(DestRect.Location + new Point(-LinkConstants.knockbackDistance, 0), DestRect.Size);
+                    break;
+                case ColDirections.None:
+                    //no knockback
+                    break;
+
             }
         }
 
@@ -157,7 +187,7 @@ namespace Poggus.Player
         }
         public void SetPosition(Point pos)
         {
-            this.DestRect = new Rectangle(pos, DestRect.Size);
+            this.DestRect = new Rectangle(pos, DestRect.Size); 
         }
 
         public bool FullHealth()
