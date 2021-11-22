@@ -16,7 +16,7 @@ namespace Poggus.Commands
         public void Execute()
         {
             //Dummy damage
-            game.link.TakeDamage(1);
+            game.link.TakeDamage(1, Collisions.ColDirections.None);
 /*            game.link = new DamagedLink(game.link, game);*/ //Decorator for taking damage (State design pattern)
             /*game.link.state = new RightIdleLinkState();*/
         }

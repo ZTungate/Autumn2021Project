@@ -7,6 +7,8 @@ namespace Poggus.Enemies
 {
     public static class EnemyConstants
     {
+
+        public static int invincibilityTime = 1000;
         //Enemy movement speeds
         public static int batMoveSpeed = 6;
         public static int dragonMoveSpeed = 6;
@@ -47,5 +49,7 @@ namespace Poggus.Enemies
         //Enemy attack rates
         public static int dragonAttackInterval = 2000;
         public static int throwerAttackDelay = 3000;
+
+        public static int clockStunTime = 2000;
     }
 }

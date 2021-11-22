@@ -10,6 +10,7 @@ namespace Poggus.Enemies
 {
     public class Grabber : AbstractEnemy
     {
+        const int RANDMOVE = 4;
         public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
         {
             Health = EnemyConstants.grabberHealth;
@@ -30,6 +31,11 @@ namespace Poggus.Enemies
                 {
                     DestRect = new Rectangle(RandomMove(), DestRect.Size);
                 }
+                //Decrement the invincibility timer if there is time on it
+                if (InvincibilityTimer > 0)
+                {
+                    InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
             }
             else
             {
@@ -43,7 +49,7 @@ namespace Poggus.Enemies
 
             //Get a random number from 0-3
             Random rand = new Random();
-            int i = rand.Next(4);
+            int i = rand.Next(RANDMOVE);
 
             if (i == 0)
             {

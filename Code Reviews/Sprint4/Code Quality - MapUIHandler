@@ -1,0 +1,12 @@
+Author of the code review: Michael Fong
+Date of the code review: 11/15/21
+Sprint number: 4
+Name of the .cs file being reviewed:  MapUIHandler
+Author of the .cs file being reviewed: Mason
+Number of minutes taken to complete the review: 9:50 to 9:57 (7 Minutes)
+
+This file handles the map UI and the location within a room. The code is definitely functional, having tested the game for myself. However, the code could do with comments detailing what
+functions do, such as in line 32 which seems to lay out the dungeon layout on the map.
+Impressive that the green dot moves in the minimap as Link moves around the room.
+One small bug in the code-- the green dot doesn't reach the right edge of the blue map tile, even if link is in the far right of the room.
+Overall, well done and impressive functionality. Good job, Mason.

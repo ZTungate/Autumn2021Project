@@ -37,6 +37,48 @@ namespace Poggus.Levels
             this.link = link;
             backgroundRectangle = new Rectangle(0,0,Game1.instance._graphics.PreferredBackBufferWidth, (int)(Game1.instance._graphics.PreferredBackBufferHeight * Game1.heightScalar));
         }
+        public void ConstructLevelBounds()
+        {
+            boundingBoxList.Clear();
+            int minX = int.MaxValue, minY = int.MaxValue, maxX = int.MinValue, maxY = int.MinValue;
+            foreach(KeyValuePair<Point,IBlock> entry in blocks)
+            {
+                if ((entry.Value.GetPosition().X + entry.Value.DestRect.Size.X) > maxX)
+                {
+                    maxX = entry.Value.GetPosition().X + entry.Value.DestRect.Size.X;
+                }
+                if ((entry.Value.GetPosition().Y + entry.Value.DestRect.Size.Y) > maxY)
+                {
+                    maxY = entry.Value.GetPosition().Y + entry.Value.DestRect.Size.Y;
+                }
+            }
+            foreach (KeyValuePair<Point, IBlock> entry in blocks)
+            {
+                if (entry.Value.GetPosition().X < minX)
+                {
+                    minX = entry.Value.GetPosition().X;
+                }
+                if (entry.Value.GetPosition().Y < minY)
+                {
+                    minY = entry.Value.GetPosition().Y;
+                }
+            }
+            maxX -= location.X;
+            maxY -= location.Y;
+
+            minX -= location.X;
+            minY -= location.Y;
+            Rectangle upBound = new Rectangle(location + new Point(0, 0), new Point(backgroundRectangle.Width, minY - 4));
+            Rectangle downBound = new Rectangle(location + new Point(0, maxY + 15), new Point(backgroundRectangle.Width, backgroundRectangle.Height - (maxY + 1)));
+
+            Rectangle leftBound = new Rectangle(location + new Point(0, 0), new Point(minX - 4, backgroundRectangle.Height));
+            Rectangle rightBound = new Rectangle(location + new Point(maxX + 4, 0), new Point(backgroundRectangle.Width - (maxX + 1), backgroundRectangle.Height));
+
+            boundingBoxList.Add(upBound);
+            boundingBoxList.Add(downBound);
+            boundingBoxList.Add(leftBound);
+            boundingBoxList.Add(rightBound);
+        }
         public LevelDoor GetDoorFromDirection(Point direction)
         {
             foreach(LevelDoor door in doors)
@@ -84,6 +126,7 @@ namespace Poggus.Levels
                 item.SetRectangle(new Rectangle(item.GetRectangle().X + p.X, item.GetRectangle().Y + p.Y, item.GetRectangle().Width, item.GetRectangle().Height));
             }
 
+            ConstructLevelBounds();
         }
         public void Update(GameTime gameTime)
         {
@@ -137,30 +180,6 @@ namespace Poggus.Levels
         public Point GetPosition()
         {
             return this.location;
-        }
-        public void AddNewBoundingBox(Point p1, Point p2)
-        {
-            int width = p2.X - p1.X;
-            int height = p2.Y - p1.Y;
-            if(width == 0)
-            {
-                width = 5;
-            }
-            if (height == 0)
-            {
-                height = 5;
-            }
-            if(width < 0)
-            {
-                p1 = p2;
-                width = -width;
-            }
-            if(height < 0)
-            {
-                p1 = p2;
-                height = -height;
-            }
-            this.boundingBoxList.Add(new Rectangle(p1.X, p1.Y, width, height));
         }
         public void AddDoor(LevelDoor door, DoorDirectionEnum dir)
         {

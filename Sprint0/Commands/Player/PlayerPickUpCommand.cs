@@ -19,6 +19,10 @@ namespace Poggus.Commands
         public void Execute()
         {
             game.link.PickUp(myItem);
+            if(myItem is TriforcePieceItem)
+            {
+                game.toggleWin();
+            }
             //game.link.LinkInventory.AddItem(myItem); might work?
         }
     }

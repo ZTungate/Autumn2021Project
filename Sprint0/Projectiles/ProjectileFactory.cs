@@ -376,10 +376,37 @@ namespace Poggus.Projectiles
             projectiles.Add(fire);
             fire.Sprite = CreateFireSprite();
         }
-
+        public void NewStab(Point position, Direction dir)
+        {
+            IProjectile stab;
+            switch (dir)
+            {
+                case Direction.up:
+                    stab = new SwordStabProjectile(position,ProjectileConstants.vertSwordBeamSize);
+                    projectiles.Add(stab);
+                    break;
+                case Direction.down:
+                    stab = new SwordStabProjectile(position, ProjectileConstants.vertSwordBeamSize);
+                    projectiles.Add(stab);
+                    break;
+                case Direction.left:
+                    stab = new SwordStabProjectile(position, ProjectileConstants.horizSwordBeamSize);
+                    projectiles.Add(stab);
+                    break;
+                case Direction.right:
+                    stab = new SwordStabProjectile(position, ProjectileConstants.horizSwordBeamSize);
+                    projectiles.Add(stab);
+                    break;
+            }
+        }
         public List<IProjectile> getProjs()
         {
             return projectiles;
+        }
+
+        public void ClearProjectiles()
+        {
+            projectiles.Clear();
         }
 
     }

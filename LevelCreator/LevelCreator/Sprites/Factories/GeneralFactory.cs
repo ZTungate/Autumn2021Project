@@ -30,6 +30,7 @@ namespace LevelCreator.Sprites.Factories
             spriteSheets.Add("ENEMYSPRITESHEET", content.Load<Texture2D>("EnemySpriteSheet"));
             spriteSheets.Add("BOSSSPRITESHEET", content.Load<Texture2D>("BossSpriteSheet"));
             spriteSheets.Add("ITEMSPRITESHEET", content.Load<Texture2D>("ItemSpriteSheet"));
+            spriteSheets.Add("NPCSPRITESHEET", content.Load<Texture2D>("NPCSpriteSheet"));
 
             whiteSquare = content.Load<Texture2D>("WhiteSquare");
 

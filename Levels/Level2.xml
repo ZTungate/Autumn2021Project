@@ -446,38 +446,4 @@
       <Conditions> </Conditions>
     </Enemy>
   </Enemies>
-  <Bounds>
-    <Bound>
-      <Start>31,30</Start>
-      <End>108,30</End>
-    </Bound>
-    <Bound>
-      <Start>147,29</Start>
-      <End>223,29</End>
-    </Bound>
-    <Bound>
-      <Start>223,29</Start>
-      <End>223,66</End>
-    </Bound>
-    <Bound>
-      <Start>224,108</Start>
-      <End>224,144</End>
-    </Bound>
-    <Bound>
-      <Start>224,144</Start>
-      <End>148,144</End>
-    </Bound>
-    <Bound>
-      <Start>108,144</Start>
-      <End>31,144</End>
-    </Bound>
-    <Bound>
-      <Start>31,144</Start>
-      <End>31,108</End>
-    </Bound>
-    <Bound>
-      <Start>31,69</Start>
-      <End>31,30</End>
-    </Bound>
-  </Bounds>
 </root>

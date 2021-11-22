@@ -13,7 +13,7 @@ namespace Poggus.Player
             SourceRect[0] = new Rectangle(306, 11, 16, 16);  //Set the frame for right idle link
             SourceRect[1] = new Rectangle(289, 11, 16, 16);
 
-            this.Interval = 128;
+            this.Interval = LinkConstants.movementAnimInterval;
 
         }
 

@@ -8,11 +8,10 @@ namespace Poggus.Items
     public abstract class AbstractItem : IItem
     {
         protected ISprite sprite;
-        protected ItemEnum itemType;
         protected Rectangle rect;
 
         Rectangle IItem.rect { get => this.rect; set => this.rect = value; }
-
+        public ItemEnum itemType {get; set;}
         public AbstractItem(ItemEnum itemType, Point pos, Point size)
         {
             this.itemType = itemType;

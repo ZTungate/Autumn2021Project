@@ -9,6 +9,7 @@ namespace Poggus.Enemies
 {
     public class Bat : AbstractEnemy
     {
+        const int RANDMOVE = 4;
         public Bat(Point position) : base(EnemyType.Bat, position, new Point(32,32))
         {
             Health = EnemyConstants.batHealth;
@@ -23,7 +24,12 @@ namespace Poggus.Enemies
 
                 int lastFrame = Sprite.CurrentFrame;
                 Sprite.Update(gameTime);
-
+                
+                //Decrement the invincibility timer if there is time on it
+                if (InvincibilityTimer > 0)
+                {
+                    InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
                 //Move the bat if the animation frame changed
                 if (lastFrame != Sprite.CurrentFrame)
                 {
@@ -43,7 +49,7 @@ namespace Poggus.Enemies
 
             //Get a random number from 0-3
             Random rand = new Random();
-            int i = rand.Next(4);
+            int i = rand.Next(RANDMOVE);
 
             if (i == 0)
             {

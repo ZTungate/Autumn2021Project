@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="BladeTrapLevel">
+  <Blocks>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>208,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>32,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>208,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items />
+  <Enemies>
+    <Enemy>
+      <Object>BladeTrap</Object>
+      <Location>73,54</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>BladeTrap</Object>
+      <Location>72,108</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>BladeTrap</Object>
+      <Location>173,108</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>BladeTrap</Object>
+      <Location>174,52</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+  </Enemies>
+</root>

@@ -13,6 +13,7 @@ namespace Poggus.Enemies
         ProjectileFactory projectiles;
         int wait = 0;
         int throwDelay = EnemyConstants.throwerAttackDelay;
+        const int RANDMOVE = 20;
         public Thrower(Point pos) : base(EnemyType.Thrower, pos, new Point(32, 32))
         {
             //Default a new thrower as a left thrower
@@ -34,6 +35,12 @@ namespace Poggus.Enemies
 
                 //Try to move the thrower
                 TryRandomMove(lastFrame);
+
+                //Decrement the invincibility timer if there is time on it
+                if (InvincibilityTimer > 0)
+                {
+                    InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
+                }
 
                 wait -= gameTime.ElapsedGameTime.Milliseconds;
                 if (throwDelay <= 0)
@@ -62,7 +69,7 @@ namespace Poggus.Enemies
             {
                 //Get a random number from 0 to 19
                 Random rand = new Random();
-                int value = rand.Next(20);
+                int value = rand.Next(RANDMOVE);
 
                 //Change directions or move based on the random number
                 if (value == 0)

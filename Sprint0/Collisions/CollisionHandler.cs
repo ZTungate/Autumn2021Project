@@ -58,25 +58,28 @@ namespace Poggus.Collisions
                         switch (eneLink.enemy2.EnemyType)
                         {
                             case EnemyType.Bat:
-                                eneLink.Link1.TakeDamage(EnemyConstants.batDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.batDamage, eneLink.direction);
                                 break;
                             case EnemyType.BladeTrap:
-                                eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage, eneLink.direction);
                                 break;
                             case EnemyType.Dragon:
-                                eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage, eneLink.direction);
                                 break;
                             case EnemyType.Grabber:
-                                eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage, eneLink.direction);
+                                eneLink.Link1.SetPosition(LinkConstants.originPos);
+                                myDungeon.SetCurrentLevel(new Point(0,0));
+                                Main.Camera.main.BeginMoveTo(myDungeon.GetCurrentLevel().GetPosition(), 12);
                                 break;
                             case EnemyType.Skeleton:
-                                eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage, eneLink.direction);
                                 break;
                             case EnemyType.Slime:
-                                eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage, eneLink.direction);
                                 break;
                             case EnemyType.Thrower:
-                                eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage);
+                                eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage, eneLink.direction);
                                 break;
                         }
                     }
@@ -104,13 +107,13 @@ namespace Poggus.Collisions
                     else {//hurt link by the damage of the projectile that hit him.
                         if(projLink.proj1 is BoomerangProjectile)
                         {
-                            projLink.link2.TakeDamage(ProjectileConstants.throwerBoomerangDamage);
+                            projLink.link2.TakeDamage(ProjectileConstants.throwerBoomerangDamage, projLink.direction);
                         }
                         else
                         {
                             //Kill the fireball and hurt link
-                            projLink.proj1.Life = 0;
-                            projLink.link2.TakeDamage(ProjectileConstants.fireballDamage);
+                            projLink.proj1.Life -= ProjectileConstants.boomerangLife;
+                            projLink.link2.TakeDamage(ProjectileConstants.fireballDamage, projLink.direction);
                         }
                         
                     }
@@ -118,7 +121,7 @@ namespace Poggus.Collisions
                 }else if(projLink.IsCollision && projLink.proj1 is LinkBoomerangProjectile && projLink.proj1.Life <= ProjectileConstants.boomerangLife / 2)
                 {
                     //Kill a link boomerang if it collides with him while returning.
-                    projLink.proj1.Life = 0;
+                    projLink.proj1.Life -= ProjectileConstants.boomerangLife;
                 }
             }
 
@@ -152,7 +155,15 @@ namespace Poggus.Collisions
                     P2RCollision boundProj = (P2RCollision)detector.detectCollision(proj, rectangle);
                     if (boundProj.IsCollision)
                     {
-                        proj.Life = 0;
+                        //Boomerangs bounce off the walls, other projectiles just break.
+                        if (boundProj.proj1 is BoomerangProjectile || boundProj.proj1 is LinkBoomerangProjectile)
+                        {
+                            boundProj.proj1.Life /= 2;
+                        }
+                        else
+                        {
+                            proj.Life = 0;
+                        }
                     }
                 }
 
@@ -163,7 +174,7 @@ namespace Poggus.Collisions
                 foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                     P2BCollision projBlock = (P2BCollision)detector.detectCollision(block, proj);
                     if (projBlock.IsCollision && !projBlock.block2.Walkable) {
-                        projBlock.proj1.Life = 0;
+                       // projBlock.proj1.Life = 0;
                     }
                 }
             }            
@@ -171,8 +182,8 @@ namespace Poggus.Collisions
             //handle enemy block collision
             foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
-                    E2BCollision eneBlock = (E2BCollision)detector.detectCollision(ene, block);
-                    if (eneBlock.IsCollision && !eneBlock.block2.Walkable && !(eneBlock.enemy1 is Bat)) {
+                    E2RCollision eneBlock = (E2RCollision)detector.detectCollision(ene, block.DestRect);
+                    if (eneBlock.IsCollision && !block.Walkable && !(eneBlock.enemy1 is Bat)) {
                         ene.SetPosition(ene.oldPosition);
                     }
                 }
@@ -182,7 +193,7 @@ namespace Poggus.Collisions
             List<IEnemy> eneToRemove = new List<IEnemy>();
 
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
-                if (!(proj is ArrowPoofProjectile)) {
+                //if (!(proj is ArrowPoofProjectile)) {
                     foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                         P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
                         if (projEne.IsCollision && (projEne.proj1 is LinkBoomerangProjectile) && (projEne.enemy2 is Slime || projEne.enemy2 is Bat)) {
@@ -220,6 +231,12 @@ namespace Poggus.Collisions
                             else if (projectile is FireProjectile) {
                                 projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
                                 projEne.proj1.Life = 0;
+                            }else if(projectile is SwordStabProjectile)
+                            {
+                                projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            }else if(projectile is BoomerangProjectile && projEne.enemy2 is Thrower && projectile.Life < ProjectileConstants.boomerangLife/2)
+                            {
+                                projectile.Life = 0;
                             }
                         }
 
@@ -228,7 +245,7 @@ namespace Poggus.Collisions
                             eneToRemove.Add(projEne.enemy2);
                         }
                     }
-                }
+                //}
             }
             //remove enemies from the room
             foreach (IEnemy ene in eneToRemove) {
@@ -242,23 +259,78 @@ namespace Poggus.Collisions
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
                 if (itemLink.IsCollision) {
                     itemToRemove.Add(itemLink.Item2);
-                    if(itemLink.Item2 is TriforcePieceItem) {
-                        
+                    if(itemLink.Item2 is BombItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementBombs();
+                    }
+                    else if (itemLink.Item2 is ArrowItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementArrows();
+                    }
+                    else if (itemLink.Item2 is KeyItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementKeys();
+                    }
+                    else if (itemLink.Item2 is RupeeItem)
+                    {
+                        itemLink.Link1.LinkInventory.IncrementRupees();
+                    }
+                    else if (itemLink.Item2 is BowItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                    }
+                    else if (itemLink.Item2 is BoomerangItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                    }
+                    else if (itemLink.Item2 is CompassItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddCompass();
+                    }
+                    else if(itemLink.Item2 is FairyItem)
+                    {
+                        itemLink.Link1.Health = itemLink.Link1.maxHealth;
+                    }
+                    else if(itemLink.Item2 is HeartItem)
+                    {
+                        itemLink.Link1.Health++;
+                        if (itemLink.Link1.Health > itemLink.Link1.maxHealth)
+                        {
+                            itemLink.Link1.Health = itemLink.Link1.maxHealth;
+                        }
+                    }
+                    else if (itemLink.Item2 is TriforcePieceItem) {
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
-                        
-                        
+                    }else if (itemLink.Item2 is HeartContainerItem)
+                    {
+                        itemLink.Link1.maxHealth++;
+                        itemLink.Link1.Health++;
+                    }else if(itemLink.Item2 is ClockItem)
+                    {
+                        foreach(IEnemy enemy in myDungeon.GetCurrentLevel().GetEnemyList())
+                        {
+                            enemy.StunTimer = EnemyConstants.clockStunTime;
+                        }
                     }
                 }
             }
             //remove items from the room
             foreach (AbstractItem item in itemToRemove) {
                 myDungeon.GetCurrentLevel().RemoveItem(item);
-                
             }
 
             LevelDoor[] doors = myGame.GetDungeon().GetCurrentLevel().GetDoorListAsArray(); 
             foreach (LevelDoor door in doors) 
-            { 
+            {
+                foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList())
+                {
+                    E2RCollision boundEnemy = (E2RCollision)detector.detectCollision(ene, door.destRect);
+                    if (boundEnemy.IsCollision)
+                    {
+                        ene.SetPosition(ene.oldPosition);
+                    }
+                }
+
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect); 
                 if (boundLink.IsCollision) 
                 { 
@@ -272,22 +344,22 @@ namespace Poggus.Collisions
                     Point linkNewPos = Point.Zero; 
                     if (dir == new Point(0, 1))
                     { 
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1)); 
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1));
                         linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width/2 - linkRect.Width/2, oppositeDoor.destRect.Y - (linkRect.Height)); 
                     } 
                     if (dir == new Point(1, 0)) 
                     { 
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0)); 
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0));
                         linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height/2); 
                     } 
                     if (dir == new Point(0, -1)) 
                     { 
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1)); 
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1));
                         linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width/2 - linkRect.Width/2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height); 
                     } 
-                    if (dir == new Point(-1, 0)) 
-                    { 
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0)); 
+                    if (dir == new Point(-1, 0))
+                    {
+                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0));
                         linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height/2 - linkRect.Height/2); 
                     }
                     myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos);
