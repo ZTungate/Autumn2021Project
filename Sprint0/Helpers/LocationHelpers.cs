@@ -38,5 +38,12 @@ namespace Poggus.Helpers
             int x = spawningObjectRectangle.X + (spawningObjectRectangle.Width / 2) - (toSpawnSize.X / 2);
             return new Point(x, y);
         }
+
+        public static Point GetLocationLeftJustifiedSpawnUp(Rectangle spawningObjectRectangle, Point toSpawnSize)
+        {
+            int y = spawningObjectRectangle.Y - toSpawnSize.Y;
+            int x = spawningObjectRectangle.X;
+            return new Point(x, y);
+        }
     }
 }
