@@ -38,8 +38,12 @@ namespace Poggus.Player
             //spriteBatch.Draw(Texture, rect, SourceRect[CurrentFrame], Color, 0, Vector2.Zero, effects, 1);
             base.Draw(spriteBatch, rect);
 
-            myItem.SetPosition(LocationHelpers.GetLocationCenteredSpawnUp(player.DestRect, myItem.GetRectangle().Size));
-
+            if (myItem is TriforcePieceItem) {
+                myItem.SetPosition(LocationHelpers.GetLocationCenteredSpawnUp(player.DestRect, myItem.GetRectangle().Size));
+            }
+            else {
+                myItem.SetPosition(LocationHelpers.GetLocationLeftJustifiedSpawnUp(player.DestRect, myItem.GetRectangle().Size));
+            }
             myItem.Draw(spriteBatch);
         }
 

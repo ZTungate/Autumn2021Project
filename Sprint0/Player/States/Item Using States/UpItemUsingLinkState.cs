@@ -69,6 +69,8 @@ namespace Poggus.Player
                     break;
                 case ProjectileTypes.linkBoomerang:
                     link.ProjectileFactory.LinkBoomerang(LocationHelpers.GetLocationCenteredSpawnUp(link.DestRect, ProjectileConstants.boomerangSize), (RegBoomerangVelocity * directionVector), link);
+                    //TODO get boomerang sound working
+                    //link.SoundManager.sound.playBoomerang();
                     break;
                 case ProjectileTypes.blueBoomerang:
                     link.ProjectileFactory.LinkBlueBoomerang(LocationHelpers.GetLocationCenteredSpawnUp(link.DestRect, ProjectileConstants.boomerangSize), (BlueBoomerangVelocity * directionVector), link);

@@ -117,8 +117,9 @@ namespace Poggus.Player
                 canMove = false;
                 Sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
-
+                //TODO: Knockback
                 Health -= dmgAmount;
+                SoundManager.sound.playLinkHit();
                 knockback(damageDirection);
             }
 
@@ -127,7 +128,8 @@ namespace Poggus.Player
             {
                 this.SoundManager.sound.playLinkDeath();
                 State = new DeadLinkState(this, Sprite);
-                
+                SoundManager.sound.playLinkDeath();
+
             }
         }
 
@@ -157,6 +159,7 @@ namespace Poggus.Player
                     break;
 
             }
+
         }
 
         public void UseItem(ProjectileTypes item)

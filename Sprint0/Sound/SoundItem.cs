@@ -133,11 +133,38 @@ namespace Poggus.Sound
             playSound();
         }
 
+        public void playLinkHit()
+        {
+            instance = linkHit.CreateInstance();
+            playSound();
+        }
 
+        public void playLinkDeath()
+        {
+            instance = linkDeath.CreateInstance();
+            playSound();
+        }
+
+        public void playEnemyHit()
+        {
+            instance = enemyHit.CreateInstance();
+            playSound();
+        }
+
+        public void playEnemyDeath()
+        {
+            instance = enemyDeath.CreateInstance();
+            playSound();
+        }
         public void playSound()
         {
             instance.Volume = myVolume;
             instance.Play();
+        }
+
+        public void stopSound()
+        {
+            instance.Stop();
         }
 
     }
