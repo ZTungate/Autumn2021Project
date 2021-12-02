@@ -112,7 +112,7 @@ namespace Poggus.Player
         public void TakeDamage(int dmgAmount, ColDirections damageDirection)
         {
             if (!isDamaged) {
-                this.SoundManager.sound.playLinkDamage();
+                this.SoundManager.sound.playLinkHit();
                 isDamaged = true;
                 canMove = false;
                 Sprite.Color = Color.Red;
