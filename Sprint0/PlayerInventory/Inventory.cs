@@ -14,7 +14,7 @@ namespace Poggus.PlayerInventory
         private int bombs = 5;
         private int rupee = 0;
         private int keys = 0;
-        private ISprite slotA;
+        private AbstractItem slotA;
         private AbstractItem slotB;
         protected bool hasMap = false;
         protected bool hasCompass = false;
@@ -24,16 +24,17 @@ namespace Poggus.PlayerInventory
         protected int Bombs { get => bombs; set => bombs = value; }
         protected int Rupees { get => rupee; set => rupee = value; }
         protected int Keys { get => keys; set => keys = value; }
-        protected ISprite SlotA { get => slotA; set => slotA = value; }
+        protected AbstractItem SlotA { get => slotA; set => slotA = value; }
         protected AbstractItem SlotB { get => slotB; set => slotB = value; }
         
         public Inventory()
         {
+
             
-            slotA = ItemSpriteFactory.Instance.GetItemSprite(ItemEnum.Sword);
         }
-        public void setSlotA(ISprite item)
+        public void setSlotA(AbstractItem item)
         {
+            item.CreateSprite();
             SlotA = item;
         }
         public void setSlotB(AbstractItem item)
@@ -45,7 +46,7 @@ namespace Poggus.PlayerInventory
             return SlotB;
         }
 
-        public ISprite getSlotA()
+        public AbstractItem getSlotA()
         {
             return slotA;
         }
