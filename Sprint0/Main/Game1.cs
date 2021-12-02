@@ -100,10 +100,6 @@ namespace Poggus
                 ProjectileFactory = projectileFactory,
                 SoundManager = soundManager
             };
-            handler = new CollisionHandler(this)
-            {
-                SoundManager = soundManager
-            };
             
             base.Initialize();
         }
@@ -141,7 +137,10 @@ namespace Poggus
             //Load sounds
             soundManager.LoadContent(Content);
 
-            handler = new CollisionHandler(this);
+            handler = new CollisionHandler(this)
+            {
+                SoundManager = soundManager
+            };
             stateChange = new StateChanges(this, font, fadeImage, _spriteBatch);
         }
 
