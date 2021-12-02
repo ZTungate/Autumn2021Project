@@ -213,7 +213,7 @@ namespace Poggus.Collisions
                         else if (projectile is RegArrowProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
                             projEne.proj1.Life = 0;
-                            eSoundManager.sound.playEnemyHit();
+                            SoundManager.sound.playEnemyHit();
                         }
                         else if (projectile is BlueArrowProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
