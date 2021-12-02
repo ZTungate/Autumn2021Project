@@ -101,18 +101,6 @@ namespace Poggus.Sound
             playSound();
         }
 
-        public void playLinkDamage()
-        {
-            instance = linkHit.CreateInstance();
-            playSound();
-        }
-
-        public void playLinkDeath()
-        {
-            instance = linkDeath.CreateInstance();
-            playSound();
-        }
-
         public SoundEffectInstance playBoomerang()
         {
             instance = arrowBoomerang.CreateInstance();
