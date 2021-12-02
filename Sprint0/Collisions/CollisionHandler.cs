@@ -212,22 +212,22 @@ namespace Poggus.Collisions
                         else if (projectile is RegArrowProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
                             projEne.proj1.Life = 0;
-                            SoundManager.sound.playEnemyHit();
+                            /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BlueArrowProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
                             projEne.proj1.Life = 0;
-                            SoundManager.sound.playEnemyHit();
+                            /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BombProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
                             projEne.proj1.Life = 0;
-                            SoundManager.sound.playEnemyHit();
+                            /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BombExplosionProjectile)
                         {
                             projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
-                            SoundManager.sound.playEnemyHit();
+                            /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is SwordBeamExplosionProjectile || projectile is SwordBeamProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
@@ -237,7 +237,7 @@ namespace Poggus.Collisions
                         else if (projectile is FireProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
                             projEne.proj1.Life = 0;
-                            SoundManager.sound.playEnemyHit();
+                            /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if(projectile is SwordStabProjectile)
                         {

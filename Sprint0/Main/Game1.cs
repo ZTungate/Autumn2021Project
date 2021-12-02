@@ -83,10 +83,12 @@ namespace Poggus
             blockSpriteFactory = BlockSpriteFactory.Instance;
             projectileFactory = ProjectileFactory.Instance;
             hudSpriteFactory = HUDSpriteFactory.instance;
-            projectileFactory.Initalize();
+
 
             //Initialize sound
             soundManager = SoundManager.Instance;
+
+            projectileFactory.Initalize(soundManager);
 
             controllerList = new List<IController>()
             {
