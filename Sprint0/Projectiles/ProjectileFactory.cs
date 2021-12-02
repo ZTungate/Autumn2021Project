@@ -358,6 +358,7 @@ namespace Poggus.Projectiles
             IProjectile boomerang = new LinkBoomerangProjectile(position, velocity, link);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
+            soundManager.sound.playBoomerang();
         }
 
         public void NewBlueBoomerang(Point position, Point velocity)

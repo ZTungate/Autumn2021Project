@@ -272,18 +272,22 @@ namespace Poggus.Collisions
                     if(itemLink.Item2 is BombItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementBombs();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is ArrowItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementArrows();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is KeyItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementKeys();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is RupeeItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementRupees();
+                        SoundManager.sound.playRupeePickup();
                     }
                     else if (itemLink.Item2 is BowItem)
                     {
@@ -307,6 +311,7 @@ namespace Poggus.Collisions
                     }
                     else if(itemLink.Item2 is HeartItem)
                     {
+                        SoundManager.sound.playHeartPickup();
                         itemLink.Link1.Health++;
                         if (itemLink.Link1.Health > itemLink.Link1.maxHealth)
                         {

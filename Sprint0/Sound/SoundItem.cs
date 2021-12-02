@@ -144,6 +144,24 @@ namespace Poggus.Sound
             playSound();
         }
 
+        public void playItemPickup()
+        {
+            instance = getItem.CreateInstance();
+            playSound();
+        }
+
+        public void playRupeePickup()
+        {
+            instance = getRupee.CreateInstance();
+            playSound();
+        }
+
+        public void playHeartPickup()
+        {
+            instance = getHeart.CreateInstance();
+            playSound();
+        }
+
         public void playEnemyHit()
         {
             instance = enemyHit.CreateInstance();
