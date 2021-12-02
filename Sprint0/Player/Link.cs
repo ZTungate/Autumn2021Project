@@ -112,6 +112,7 @@ namespace Poggus.Player
         public void TakeDamage(int dmgAmount, ColDirections damageDirection)
         {
             if (!isDamaged) {
+                this.SoundManager.sound.playLinkDamage();
                 isDamaged = true;
                 canMove = false;
                 Sprite.Color = Color.Red;
@@ -124,6 +125,7 @@ namespace Poggus.Player
             //Kill link if his health hits zero
             if(Health <= 0)
             {
+                this.SoundManager.sound.playLinkDeath();
                 State = new DeadLinkState(this, Sprite);
                 
             }
