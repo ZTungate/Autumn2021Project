@@ -7,6 +7,7 @@ using Poggus.Player;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Poggus.Sound;
 
 namespace Poggus.Projectiles
 {
@@ -15,7 +16,7 @@ namespace Poggus.Projectiles
         private List<IProjectile> projectiles;
         private Texture2D enemySpriteSheet;
         private Texture2D linkSpriteSheet;
-
+        private SoundManager soundManager { get; set; }
 
         private static ProjectileFactory instance = new ProjectileFactory();
 
@@ -31,10 +32,11 @@ namespace Poggus.Projectiles
         {
         }
 
-        public void Initalize()
+        public void Initalize(SoundManager soundManager)
         {
             //Initialize the projectile list
             projectiles = new List<IProjectile>();
+            this.soundManager = soundManager;
         }
 
         public void LoadAllTextures(ContentManager content)
@@ -77,8 +79,12 @@ namespace Poggus.Projectiles
                 {
                     //Spawn a large explosion.
                     NewBombExplosions(projectile.GetPosition());
+                    
+                    
                 }
-
+                else if (projectile is LinkBoomerangProjectile){
+                    //stop boomerang sound
+                }
             }
         }
 
@@ -327,6 +333,9 @@ namespace Poggus.Projectiles
             IProjectile left = new BombExplosionProjectile(new Point(pos.X - stdSize.X, pos.Y));
             List<IProjectile> list = new List<IProjectile>{ center, topLeft, topRight, right, botRight, botLeft, left };
 
+            //Play bomb explosion sound
+            soundManager.sound.playBombBlow();
+
             //Give each projectile a sprite and add it to the list of projectiles
             foreach(IProjectile projectile in list)
             {
@@ -349,6 +358,7 @@ namespace Poggus.Projectiles
             IProjectile boomerang = new LinkBoomerangProjectile(position, velocity, link);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
+            soundManager.sound.playBoomerang();
         }
 
         public void NewBlueBoomerang(Point position, Point velocity)

@@ -113,20 +113,24 @@ namespace Poggus.Player
         public void TakeDamage(int dmgAmount, ColDirections damageDirection)
         {
             if (!isDamaged) {
+                this.SoundManager.sound.playLinkHit();
                 isDamaged = true;
                 canMove = false;
                 Sprite.Color = Color.Red;
                 damageTimer = invincibilityFramesDuration;
-
+                //TODO: Knockback
                 Health -= dmgAmount;
+                SoundManager.sound.playLinkHit();
                 knockback(damageDirection);
             }
 
             //Kill link if his health hits zero
             if(Health <= 0)
             {
+                this.SoundManager.sound.playLinkDeath();
                 State = new DeadLinkState(this, Sprite);
-                
+                SoundManager.sound.playLinkDeath();
+
             }
         }
 
@@ -156,6 +160,7 @@ namespace Poggus.Player
                     break;
 
             }
+
         }
 
         public void UseItem(ProjectileTypes item)

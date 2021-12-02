@@ -83,10 +83,12 @@ namespace Poggus
             blockSpriteFactory = BlockSpriteFactory.Instance;
             projectileFactory = ProjectileFactory.Instance;
             hudSpriteFactory = HUDSpriteFactory.instance;
-            projectileFactory.Initalize();
+
 
             //Initialize sound
             soundManager = SoundManager.Instance;
+
+            projectileFactory.Initalize(soundManager);
 
             controllerList = new List<IController>()
             {
@@ -100,7 +102,6 @@ namespace Poggus
                 ProjectileFactory = projectileFactory,
                 SoundManager = soundManager
             };
-            handler = new CollisionHandler(this);
             
             base.Initialize();
         }
@@ -138,7 +139,10 @@ namespace Poggus
             //Load sounds
             soundManager.LoadContent(Content);
 
-            handler = new CollisionHandler(this);
+            handler = new CollisionHandler(this)
+            {
+                SoundManager = soundManager
+            };
             stateChange = new StateChanges(this, font, fadeImage, _spriteBatch);
         }
 

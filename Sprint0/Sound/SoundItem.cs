@@ -76,7 +76,7 @@ namespace Poggus.Sound
         {
             myVolume = volume;
         }
-
+        
         public void playSwordSlash()
         {
             instance = swordSlash.CreateInstance();
@@ -101,6 +101,17 @@ namespace Poggus.Sound
             playSound();
         }
 
+        public void playBombDrop()
+        {
+            instance = bombDrop.CreateInstance();
+            playSound();
+        }
+
+        public void playBombBlow()
+        {
+            instance = bombBlow.CreateInstance();
+            playSound();
+        }
         public SoundEffectInstance playBoomerang()
         {
             instance = arrowBoomerang.CreateInstance();
@@ -121,11 +132,56 @@ namespace Poggus.Sound
             playSound();
         }
 
+        public void playLinkHit()
+        {
+            instance = linkHit.CreateInstance();
+            playSound();
+        }
 
+        public void playLinkDeath()
+        {
+            instance = linkDeath.CreateInstance();
+            playSound();
+        }
+
+        public void playItemPickup()
+        {
+            instance = getItem.CreateInstance();
+            playSound();
+        }
+
+        public void playRupeePickup()
+        {
+            instance = getRupee.CreateInstance();
+            playSound();
+        }
+
+        public void playHeartPickup()
+        {
+            instance = getHeart.CreateInstance();
+            playSound();
+        }
+
+        public void playEnemyHit()
+        {
+            instance = enemyHit.CreateInstance();
+            playSound();
+        }
+
+        public void playEnemyDeath()
+        {
+            instance = enemyDeath.CreateInstance();
+            playSound();
+        }
         public void playSound()
         {
             instance.Volume = myVolume;
             instance.Play();
+        }
+
+        public void stopSound()
+        {
+            instance.Stop();
         }
 
     }

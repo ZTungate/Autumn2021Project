@@ -21,6 +21,7 @@ namespace Poggus.Commands
             {
                 game.link.UseItem(ProjectileTypes.bomb);
                 game.link.LinkInventory.DecrementBombs();
+                game.link.SoundManager.sound.playBombDrop();
             }
         }
     }

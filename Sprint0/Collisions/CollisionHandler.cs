@@ -13,6 +13,7 @@ using System.Diagnostics;
 using System.Text;
 using Poggus.Levels.Sprites;
 using Poggus.Main;
+using Poggus.Sound;
 
 namespace Poggus.Collisions
 {
@@ -23,6 +24,7 @@ namespace Poggus.Collisions
         private Dungeon myDungeon;
         private CollisionDetection detector;
         public List<ICollision> collides;
+        public SoundManager SoundManager { get; set; }
 
 
         public CollisionHandler(Game1 game)
@@ -191,57 +193,68 @@ namespace Poggus.Collisions
 
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                 //if (!(proj is ArrowPoofProjectile)) {
-                    foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
-                        P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
-                        if (projEne.IsCollision && (projEne.proj1 is LinkBoomerangProjectile) && (projEne.enemy2 is Slime || projEne.enemy2 is Bat)) {
-                            //If the projectile was a boomerang and the enemy was a bat or slime, kill it.
-                            eneToRemove.Add(projEne.enemy2);
-                        }
-                        else if (projEne.IsCollision) {
-                            //For any non-enemy projectile, have the enemy take damage and kill the projectile.
-                            IProjectile projectile = projEne.proj1;
-                            if (projectile is LinkBoomerangProjectile) {
-                                //Stun the enemy and set link's boomerang to return.
-                                projEne.enemy2.StunTimer = ProjectileConstants.boomerangStunTime;
-                                projEne.proj1.Life = ProjectileConstants.boomerangLife / 2;
-                            }
-                            else if (projectile is RegArrowProjectile) {
-                                projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
-                                projEne.proj1.Life = 0;
-                            }
-                            else if (projectile is BlueArrowProjectile) {
-                                projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
-                                projEne.proj1.Life = 0;
-                            }
-                            else if (projectile is BombProjectile) {
-                                projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
-                                projEne.proj1.Life = 0;
-                            }
-                            else if (projectile is BombExplosionProjectile)
-                            {
-                                projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
-                            }
-                            else if (projectile is SwordBeamExplosionProjectile || projectile is SwordBeamProjectile) {
-                                projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
-                                projEne.proj1.Life = 0;
-                            }
-                            else if (projectile is FireProjectile) {
-                                projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
-                                projEne.proj1.Life = 0;
-                            }else if(projectile is SwordStabProjectile)
-                            {
-                                projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
-                            }else if(projectile is BoomerangProjectile && projEne.enemy2 is Thrower && projectile.Life < ProjectileConstants.boomerangLife/2)
-                            {
-                                projectile.Life = 0;
-                            }
-                        }
+                foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
+                    P2ECollision projEne = (P2ECollision)detector.detectCollision(proj, ene);
+                    if (projEne.IsCollision && (projEne.proj1 is LinkBoomerangProjectile) && (projEne.enemy2 is Slime || projEne.enemy2 is Bat)) {
+                        //If the projectile was a boomerang and the enemy was a bat or slime, kill it.
+                        eneToRemove.Add(projEne.enemy2);
+                    }
+                    else if (projEne.IsCollision) {
+                        //For any non-enemy projectile, have the enemy take damage and kill the projectile.
+                        IProjectile projectile = projEne.proj1;
 
-                        //Kill any enemies with health <= 0;
-                        if (projEne.enemy2.Health <= 0) {
-                            eneToRemove.Add(projEne.enemy2);
+                        if (projectile is LinkBoomerangProjectile) {
+                            //Stun the enemy and set link's boomerang to return.
+                            projEne.enemy2.StunTimer = ProjectileConstants.boomerangStunTime;
+                            projEne.proj1.Life = ProjectileConstants.boomerangLife / 2;
+                            SoundManager.sound.playEnemyHit();
+                        }
+                        else if (projectile is RegArrowProjectile) {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
+                            projEne.proj1.Life = 0;
+                            /*SoundManager.sound.playEnemyHit();*/
+                        }
+                        else if (projectile is BlueArrowProjectile) {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
+                            projEne.proj1.Life = 0;
+                            /*SoundManager.sound.playEnemyHit();*/
+                        }
+                        else if (projectile is BombProjectile) {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
+                            projEne.proj1.Life = 0;
+                            /*SoundManager.sound.playEnemyHit();*/
+                        }
+                        else if (projectile is BombExplosionProjectile)
+                        {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
+                            /*SoundManager.sound.playEnemyHit();*/
+                        }
+                        else if (projectile is SwordBeamExplosionProjectile || projectile is SwordBeamProjectile) {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            projEne.proj1.Life = 0;
+                            /*SoundManager.sound.playEnemyHit();*/
+                        }
+                        else if (projectile is FireProjectile) {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
+                            projEne.proj1.Life = 0;
+                            /*SoundManager.sound.playEnemyHit();*/
+                        }
+                        else if(projectile is SwordStabProjectile)
+                        {
+                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            /*SoundManager.sound.playEnemyHit();*/
+                        }
+                        else if(projectile is BoomerangProjectile && projEne.enemy2 is Thrower && projectile.Life < ProjectileConstants.boomerangLife/2)
+                        {
+                            projectile.Life = 0;
                         }
                     }
+
+                    //Kill any enemies with health <= 0;
+                    if (projEne.enemy2.Health <= 0) {
+                        eneToRemove.Add(projEne.enemy2);
+                    }
+                }
                 //}
             }
             //remove enemies from the room
@@ -259,22 +272,30 @@ namespace Poggus.Collisions
                     if(itemLink.Item2 is BombItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementBombs();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is ArrowItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementArrows();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is KeyItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementKeys();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is RupeeItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementRupees();
+                        SoundManager.sound.playRupeePickup();
                     }
                     else if (itemLink.Item2 is BowItem)
                     {
                         itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                        new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+                    }
+                    else if (itemLink.Item2 is SwordItem) {
+                        new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
                     }
                     else if (itemLink.Item2 is BoomerangItem)
                     {
@@ -290,6 +311,7 @@ namespace Poggus.Collisions
                     }
                     else if(itemLink.Item2 is HeartItem)
                     {
+                        SoundManager.sound.playHeartPickup();
                         itemLink.Link1.Health++;
                         if (itemLink.Link1.Health > itemLink.Link1.maxHealth)
                         {
