@@ -20,7 +20,7 @@ namespace Poggus
         private string endGameText;
         private Texture2D fadeImage;
         private SpriteBatch _spriteBatch;
-        private Rectangle screenDims = new Rectangle(new Point(), new Point(screenWidth,screenHeight));
+        private Rectangle screenDims = new Rectangle(new Point(), new Point(screenWidth, screenHeight));
         private float fadeTimer = 0.0f;
         private bool fade = false;
 
@@ -37,11 +37,12 @@ namespace Poggus
             if (fade)
             {
                 fadeTimer += blackoutSpeed;
-                
+
             }
         }
         public void loseGame()
         {
+
             endGameText = "Game Over!\nPress R to restart or Q to quit out.";
             fade = true;
         }
@@ -50,7 +51,7 @@ namespace Poggus
         {
             endGameText = "Congrats you win!";
             fade = true;
-            
+
         }
 
         public void Reset()
@@ -70,13 +71,20 @@ namespace Poggus
             if (fade)
             {
                 _spriteBatch.Draw(fadeImage, new Vector2(screenDims.X, screenDims.Y), null, Color.Black * fadeTimer, 0, new Vector2(screenDims.X, screenDims.Y), blackoutScale, SpriteEffects.None, 1.0f);
-                if (fadeTimer > 1f) printEndMessage();
-                
+                if (fadeTimer > 1f)
+                {
+                    printEndMessage();
+                    if (game.soundManager.volume > 0)
+                    {
+                        game.toggleSound();
+                    }
+
+                }
+
+
             }
-            
+
 
         }
-
-        
     }
 }

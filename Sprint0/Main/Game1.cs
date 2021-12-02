@@ -90,11 +90,7 @@ namespace Poggus
 
             projectileFactory.Initalize(soundManager);
 
-            controllerList = new List<IController>()
-            {
-                new KeyboardController(this),
-                new MouseController(this)
-            };
+            
 
             //Initialize Player (Link)
             link = new Link
@@ -102,7 +98,12 @@ namespace Poggus
                 ProjectileFactory = projectileFactory,
                 SoundManager = soundManager
             };
-            
+            controllerList = new List<IController>()
+            {
+                new KeyboardController(this),
+                new MouseController(this)
+            };
+
             base.Initialize();
         }
 
@@ -153,7 +154,7 @@ namespace Poggus
                 controller.Update();
             }
             if (!isPaused) {
-
+                
                 Camera.main.Update(gameTime);
 
                 //Update Link
@@ -227,14 +228,22 @@ namespace Poggus
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
             ProjectileFactory.Instance.ClearProjectiles();
+            soundManager.LoadContent(Content);
             stateChange.Reset();
             win = false;
             lose = false;
             hudHandler.Reset();
             Camera.main.Reset();
+            if(soundManager.volume < 1)
+            {
+                toggleSound();
+            }
 
-            handler = new CollisionHandler(this);
-            
+            handler = new CollisionHandler(this)
+            {
+                SoundManager = soundManager
+            };
+
         }
         
         
@@ -272,6 +281,7 @@ namespace Poggus
         public void toggleSound()
         {
             soundManager.ToggleSound();
+            
         }
         public void toggleOpenInventory()
         {

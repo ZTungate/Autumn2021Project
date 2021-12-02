@@ -42,29 +42,30 @@ namespace Poggus
             //Create commands to change sprites
             this.controllerMappings.Add(Keys.Q, new Quit(myGame));
             this.controllerMappings.Add(Keys.R, new ResetCommand(myGame));
+            
+                //Player Movement
+                this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
+                this.controllerMappings.Add(Keys.W, new PlayerUpMoveCommand(myGame));
+                this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
+                this.controllerMappings.Add(Keys.D, new PlayerRightMoveCommand(myGame));
+                this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
+                this.controllerMappings.Add(Keys.A, new PlayerLeftMoveCommand(myGame));
+                this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
+                this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
 
-            //Player Movement
-            this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.W, new PlayerUpMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.D, new PlayerRightMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.A, new PlayerLeftMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
+                //Player Controls
 
-            //Player Controls
-            this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
-            this.controllerMappings.Add(Keys.D1, new PlayerUseRegBoomerangCommand(myGame));
-            this.controllerMappings.Add(Keys.D2, new PlayerUseBlueBoomerangCommand(myGame));
-            this.controllerMappings.Add(Keys.D3, new PlayerUseRegArrowCommand(myGame));
-            this.controllerMappings.Add(Keys.D4, new PlayerUseBlueArrowCommand(myGame));
-            this.controllerMappings.Add(Keys.D5, new PlayerUseBombCommand(myGame));
-            this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
-            this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
-            this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
-            this.controllerMappings.Add(Keys.Tab, new HUDToggleCommand(myGame));
-
+                this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
+                this.controllerMappings.Add(Keys.D1, new PlayerUseRegBoomerangCommand(myGame));
+                this.controllerMappings.Add(Keys.D2, new PlayerUseBlueBoomerangCommand(myGame));
+                this.controllerMappings.Add(Keys.D3, new PlayerUseRegArrowCommand(myGame));
+                this.controllerMappings.Add(Keys.D4, new PlayerUseBlueArrowCommand(myGame));
+                this.controllerMappings.Add(Keys.D5, new PlayerUseBombCommand(myGame));
+                this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
+                this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
+                this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
+                this.controllerMappings.Add(Keys.Tab, new HUDToggleCommand(myGame));
+            
             //GAME CONTROLS
             this.controllerMappings.Add(Keys.P, new PauseCommand(myGame));
             this.controllerMappings.Add(Keys.M, new ToggleSoundCommand(myGame));
@@ -79,39 +80,43 @@ namespace Poggus
         KeyboardState state;
         public void Update()
         {
-
+            
             KeyboardState lastState = state;
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();
-            if (!myGame.Paused())
-            {
-                checkPlayerIdle(lastState, state);
 
-                foreach (Keys key in pressedKeys)
+            if(!Main.Camera.main.IsMoving())
                 {
-                    if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
+                    if (!myGame.Paused())
                     {
-                        //If this key is bound to a command, and was not down last tick, execute the relevant command.
-                        controllerMappings[key].Execute();
+                        checkPlayerIdle(lastState, state);
+
+                        foreach (Keys key in pressedKeys)
+                        {
+                            if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
+                            {
+                                //If this key is bound to a command, and was not down last tick, execute the relevant command.
+                                controllerMappings[key].Execute();
+                            }
+                            else if (controllerMappings.ContainsKey(key) && movementKeys.Contains(key))
+                            {
+                                //If this key is pressed, was pressed last tick, and is a movement key, execute the command.
+                                controllerMappings[key].Execute();
+                            }
+                        }
                     }
-                    else if (controllerMappings.ContainsKey(key) && movementKeys.Contains(key))
+                    else
                     {
-                        //If this key is pressed, was pressed last tick, and is a movement key, execute the command.
-                        controllerMappings[key].Execute();
+                        if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P))
+                        {
+                            controllerMappings[Keys.P].Execute();
+                        }
+                        if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab))
+                        {
+                            controllerMappings[Keys.Tab].Execute();
+                        }
                     }
                 }
-            }
-            else
-            {
-                if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P))
-                {
-                    controllerMappings[Keys.P].Execute();
-                }
-                if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab))
-                {
-                    controllerMappings[Keys.Tab].Execute();
-                }
-            }
             //Checks if movement controls are released to play the idle animation & stop movement
         }
 

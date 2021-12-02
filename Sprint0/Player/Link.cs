@@ -113,6 +113,7 @@ namespace Poggus.Player
         public void TakeDamage(int dmgAmount, ColDirections damageDirection)
         {
             if (!isDamaged) {
+                
                 this.SoundManager.sound.playLinkHit();
                 isDamaged = true;
                 canMove = false;

@@ -52,12 +52,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(IEnemy object1, IEnemy object2) //returns E2E Collision
         {
-            /*Vector2 holder1 = object1.Position;
-            Vector2 holder2 = object2.Position;
             
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            */
             
             ICollision collision = new E2ECollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
             return collision;
@@ -65,35 +60,21 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(IEnemy object1, IBlock object2) 
         {
-            /*Vector2 holder1 = object1.Position;
             
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int) EnemyConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            Rectangle two = object2.destRect;*/
             ICollision collision = new E2BCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
             return collision;
         }
 
         public ICollision detectCollision(ILink object1, IEnemy object2) 
         {
-            /*Vector2 holder1 = object1.position;
-            Vector2 holder2 = object2.Position;
             
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * 2, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * 2);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int) EnemyConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int) EnemyConstants.scaleY);
-            */
             ICollision collision = new L2ECollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
             return collision;
         }
 
         public ICollision detectCollision(IEnemy object1, ILink object2) 
         {
-            /*Vector2 holder1 = object1.Position;
-            Vector2 holder2 = object2.position;
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            ICollision collision = new L2ECollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
+            
             ICollision collision = new L2ECollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object2, object1);
 
             return collision;
@@ -101,12 +82,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(ILink object1, IBlock object2) 
         {
-            /*Vector2 holder1 = object1.position;
-
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = object2.destRect;
-            ICollision collision = new L2BCollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
+            
             ICollision collision = new L2BCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
 
             return collision;
@@ -114,11 +90,7 @@ namespace Poggus.Collisions
         //Returns L2R collision
         public ICollision detectCollision(ILink object1, Rectangle object2)
         {
-            /*Vector2 holder1 = object1.position;
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = object2;
-            ICollision collision = new L2RCollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
+            
             ICollision collision = new L2RCollision(directionDetect(object1.DestRect, object2), object1.DestRect.Intersects(object2), object1, object2);
 
             return collision;
@@ -134,12 +106,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(IBlock object1, ILink object2) 
             {
-            /*Vector2 holder1 = object2.position;
-
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = object1.destRect;
-            ICollision collision = new L2BCollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
+            
             ICollision collision = new L2BCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object2, object1);
 
             return collision;
@@ -147,12 +114,7 @@ namespace Poggus.Collisions
 
             public ICollision detectCollision(ILink object1, AbstractItem object2) 
         {
-            /*Vector2 holder1 = object1.position;
             
-            
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = object2.GetRectangle();
-            ICollision collision = new L2ICollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
             ICollision collision = new L2ICollision(directionDetect(object1.DestRect, object2.GetRectangle()), object1.DestRect.Intersects(object2.GetRectangle()), object1, object2);
 
             return collision;
@@ -160,12 +122,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(AbstractItem object1, ILink object2) 
         {
-            /*Vector2 holder1 = object2.position;
-
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = object1.GetRectangle();
-            ICollision collision = new L2ICollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
+            
             ICollision collision = new L2ICollision(directionDetect(object1.GetRectangle(), object2.DestRect), object1.GetRectangle().Intersects(object2.DestRect), object2, object1);
 
             return collision;
@@ -186,13 +143,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(AbstractItem object1, IEnemy object2) 
         {
-            /*Vector2 holder2 = object2.Position;
-
-
-            Rectangle one = object1.GetRectangle();
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
             
-            ICollision collision = new E2ICollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
             ICollision collision = new E2ICollision(directionDetect(object1.GetRectangle(), object2.DestRect), object1.GetRectangle().Intersects(object2.DestRect), object2, object1);
 
             return collision;
@@ -200,13 +151,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(IEnemy object1, AbstractItem object2)
         {
-            /*Vector2 holder2 = object1.Position;
-
-
-            Rectangle one = object2.GetRectangle();
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-
-            ICollision collision = new E2ICollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
+            
             ICollision collision = new E2ICollision(directionDetect(object1.DestRect, object2.GetRectangle()), object1.DestRect.Intersects(object2.GetRectangle()), object1, object2);
 
 
@@ -215,13 +160,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(IProjectile object1, IProjectile object2) 
         {
-            /*Vector2 holder1 = object1.Position;
-            Vector2 holder2 = object2.Position;
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * 2, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * 2);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * 2, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * 2);
-
-            ICollision collision = new P2PCollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
+            
             ICollision collision = new P2PCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
 
 
@@ -229,13 +168,7 @@ namespace Poggus.Collisions
         }
         public ICollision detectCollision(ILink object1, IProjectile object2) 
         {
-            /*Vector2 holder1 = object1.position;
-            Vector2 holder2 = object2.Position;
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.sprite.SourceRect[object1.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             
-            ICollision collision = new P2LCollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
             ICollision collision = new P2LCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object2, object1);
 
             return collision;
@@ -243,13 +176,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(IProjectile object1, ILink object2) 
         {
-            /*Vector2 holder1 = object1.Position;
-            Vector2 holder2 = object2.position;
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object2.sprite.SourceRect[object2.sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-
-            ICollision collision = new P2LCollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
+            
             ICollision collision = new P2LCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
 
 
@@ -259,12 +186,7 @@ namespace Poggus.Collisions
         public ICollision detectCollision(IBlock object1, IProjectile object2) 
         {
 
-            /*Vector2 holder2 = object2.Position;
-
-            Rectangle one = object1.destRect; 
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleY, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
             
-            ICollision collision = new P2BCollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
             ICollision collision = new P2BCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object2, object1);
 
 
@@ -274,12 +196,7 @@ namespace Poggus.Collisions
         public ICollision detectCollision(IProjectile object1, IBlock object2) 
         {
 
-            /*Vector2 holder2 = object1.Position;
-
-            Rectangle one = object2.destRect;
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-
-            ICollision collision = new P2BCollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
+            
             ICollision collision = new P2BCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
 
 
@@ -287,12 +204,7 @@ namespace Poggus.Collisions
         }
         public ICollision detectCollision(IProjectile object1, IEnemy object2) 
         {
-            /*Vector2 holder1 = object1.Position;
-            Vector2 holder2 = object2.Position;
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            ICollision collision = new P2ECollision(directionDetect(one, two), one.Intersects(two), object1, object2);*/
+            
             ICollision collision = new P2ECollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
 
 
@@ -301,12 +213,7 @@ namespace Poggus.Collisions
 
         public ICollision detectCollision(IEnemy object1, IProjectile object2)
         {
-            /*Vector2 holder1 = object2.Position;
-            Vector2 holder2 = object1.Position;
-
-            Rectangle one = new Rectangle((int)holder1.X, (int)holder1.Y, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Width * (int)EnemyConstants.scaleX, object2.Sprite.SourceRect[object2.Sprite.CurrentFrame].Height * (int)EnemyConstants.scaleY);
-            Rectangle two = new Rectangle((int)holder2.X, (int)holder2.Y, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Width * (int)LinkConstants.scaleX, object1.Sprite.SourceRect[object1.Sprite.CurrentFrame].Height * (int)LinkConstants.scaleY);
-            ICollision collision = new P2ECollision(directionDetect(one, two), one.Intersects(two), object2, object1);*/
+            
             ICollision collision = new P2ECollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object2, object1);
 
             return collision;

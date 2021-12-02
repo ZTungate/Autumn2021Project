@@ -181,6 +181,7 @@ namespace Poggus.Sound
 
         public void stopSound()
         {
+            instance = textLoop.CreateInstance();
             instance.Stop();
         }
 
