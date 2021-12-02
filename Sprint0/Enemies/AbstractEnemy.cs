@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Poggus.Enemies.Sprites;
+using Poggus.Sound;
 
 namespace Poggus.Enemies
 {
@@ -53,7 +54,7 @@ namespace Poggus.Enemies
             {
                 this.Health -= damageAmount;
                 this.InvincibilityTimer = EnemyConstants.invincibilityTime;
-                
+                Game1.instance.soundManager.sound.playEnemyHit();
             }
         }
     }

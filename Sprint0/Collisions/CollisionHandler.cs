@@ -51,7 +51,6 @@ namespace Poggus.Collisions
                     //If link is attacking, damage the enemy he contacts.
                     if (eneLink.Link1.State is DownSwordLinkState || eneLink.Link1.State is RightSwordLinkState || eneLink.Link1.State is UpSwordLinkState || eneLink.Link1.State is LeftSwordLinkState) {
                         ene.TakeDamage(LinkConstants.swordDamage);
-                        SoundManager.sound.playEnemyHit();
                     }
                     else {
                         //Link gets hurt, damage him based on the enemy contacted.
@@ -233,7 +232,7 @@ namespace Poggus.Collisions
                         else if (projectile is SwordBeamExplosionProjectile || projectile is SwordBeamProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
                             projEne.proj1.Life = 0;
-                            SoundManager.sound.playEnemyHit();
+                            /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is FireProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
@@ -243,7 +242,7 @@ namespace Poggus.Collisions
                         else if(projectile is SwordStabProjectile)
                         {
                             projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
-                            SoundManager.sound.playEnemyHit();
+                            /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if(projectile is BoomerangProjectile && projEne.enemy2 is Thrower && projectile.Life < ProjectileConstants.boomerangLife/2)
                         {

@@ -76,7 +76,7 @@ namespace Poggus.Sound
         {
             myVolume = volume;
         }
-
+        
         public void playSwordSlash()
         {
             instance = swordSlash.CreateInstance();
@@ -101,6 +101,17 @@ namespace Poggus.Sound
             playSound();
         }
 
+        public void playBombDrop()
+        {
+            instance = bombDrop.CreateInstance();
+            playSound();
+        }
+
+        public void playBombBlow()
+        {
+            instance = bombBlow.CreateInstance();
+            playSound();
+        }
         public SoundEffectInstance playBoomerang()
         {
             instance = arrowBoomerang.CreateInstance();
