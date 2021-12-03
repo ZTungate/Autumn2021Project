@@ -112,7 +112,7 @@ namespace Poggus.Player
         }
         public void TakeDamage(int dmgAmount, ColDirections damageDirection)
         {
-            if (!isDamaged && !(State is DeadLinkState)d) {
+            if (!isDamaged && !(State is DeadLinkState)) {
                 
                 isDamaged = true;
                 canMove = false;
