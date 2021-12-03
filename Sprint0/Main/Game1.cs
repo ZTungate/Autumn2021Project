@@ -234,6 +234,8 @@ namespace Poggus
             lose = false;
             hudHandler.Reset();
             Camera.main.Reset();
+
+            toggleSound();
             if(soundManager.volume < 1)
             {
                 toggleSound();
@@ -267,6 +269,7 @@ namespace Poggus
             lose = false;
             hudHandler.Reset();
             Camera.main.Reset();
+
             if (soundManager.volume < 1)
             {
                 toggleSound();

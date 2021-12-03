@@ -51,11 +51,12 @@ namespace Poggus.Sound
         public void StopMusic()
         {
             MediaPlayer.Pause();
+            sound.stopSound();
         }
 
         public void Reset()
         {
-            sound.stopSound();
+
         }
 
         public void ToggleSound()

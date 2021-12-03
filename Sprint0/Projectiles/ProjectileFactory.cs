@@ -85,7 +85,7 @@ namespace Poggus.Projectiles
                     
                     
                 }
-                else if (projectile is LinkBoomerangProjectile){
+                else if ((projectile is LinkBoomerangProjectile) | (projectile is BoomerangProjectile)){
                     boomerangSounds[projectile].Stop();
                 }
             }
@@ -353,6 +353,8 @@ namespace Poggus.Projectiles
             IProjectile boomerang = new BoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
+            boomerangSounds.Add(boomerang, soundManager.sound.playBoomerang());
+
         }
 
         public void LinkBoomerang(Point position, Point velocity, ILink link)
@@ -371,6 +373,8 @@ namespace Poggus.Projectiles
             IProjectile boomerang = new BoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBlueBoomerangSprite();
+            boomerangSounds.Add(boomerang, soundManager.sound.playBoomerang());
+
         }
 
         public void LinkBlueBoomerang(Point position, Point velocity, ILink link)
@@ -419,6 +423,11 @@ namespace Poggus.Projectiles
 
         public void ClearProjectiles()
         {
+            foreach (IProjectile projectile in projectiles) {
+                if ((projectile is LinkBoomerangProjectile) | (projectile is BoomerangProjectile)) {
+                    boomerangSounds[projectile].Stop();
+                }
+            }
             projectiles.Clear();
         }
 
