@@ -34,6 +34,12 @@ namespace Poggus.Player
         public float Timer = 0f;
         public bool canMove = true;
         public bool isDamaged = false;
+
+
+        public bool isKnockedBack = false;
+        public ColDirections knockBackDirection;
+        public float knockBackTime = 0;
+        
         float invincibilityFramesDuration = LinkConstants.linkInvincibilityDuration;
         float hitStunDuration = LinkConstants.linkHitStunDuration;
         
@@ -75,6 +81,7 @@ namespace Poggus.Player
             OldPosition = DestRect.Location;
 
             updateDamageState(gameTime);
+            knockback(gameTime);
             State.Update(gameTime);
             Sprite.Update(gameTime);
         }
@@ -121,7 +128,9 @@ namespace Poggus.Player
                 //TODO: Knockback
                 Health -= dmgAmount;
                 SoundManager.sound.playLinkHit();
-                knockback(damageDirection);
+                isKnockedBack = true;
+                knockBackDirection = damageDirection;
+                knockBackTime = LinkConstants.knockBackTime;
             }
 
             //Kill link if his health hits zero
@@ -133,31 +142,34 @@ namespace Poggus.Player
             }
         }
 
-        private void knockback(ColDirections dir)
+        private void knockback(GameTime gameTime)
         {
-            switch (dir)
-            {
-                case ColDirections.North:
-                    //knockback down
-                    DestRect = new Rectangle(DestRect.Location + new Point(0,-LinkConstants.knockbackDistance), DestRect.Size);
+            if (isKnockedBack && knockBackTime > 0) {
+                knockBackTime -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-                    break;
-                case ColDirections.South:
-                    //knockback up
-                    DestRect = new Rectangle(DestRect.Location + new Point(0, LinkConstants.knockbackDistance), DestRect.Size);
-                    break;
-                case ColDirections.East:
-                    //knockback left
-                    DestRect = new Rectangle(DestRect.Location + new Point(LinkConstants.knockbackDistance, 0), DestRect.Size);
-                    break;
-                case ColDirections.West:
-                    //knockback right
-                    DestRect = new Rectangle(DestRect.Location + new Point(-LinkConstants.knockbackDistance, 0), DestRect.Size);
-                    break;
-                case ColDirections.None:
-                    //no knockback
-                    break;
+                switch (knockBackDirection) {
+                    case ColDirections.North:
+                        //knockback down
+                        Move(new Point(0, LinkConstants.knockBackSpeed));
 
+                        break;
+                    case ColDirections.South:
+                        //knockback up
+                        Move(new Point(0, -LinkConstants.knockBackSpeed));
+                        break;
+                    case ColDirections.East:
+                        //knockback left
+                        Move(new Point(-LinkConstants.knockBackSpeed, 0));
+                        break;
+                    case ColDirections.West:
+                        //knockback right
+                        Move(new Point(LinkConstants.knockBackSpeed, 0));
+                        break;
+                    case ColDirections.None:
+                        //no knockback
+                        break;
+
+                }
             }
 
         }

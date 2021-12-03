@@ -46,7 +46,7 @@ namespace Poggus.Collisions
             
             //handle link enemy collision
             foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
-                L2ECollision eneLink = (L2ECollision)detector.detectCollision(myLink, ene);
+                L2ECollision eneLink = (L2ECollision)detector.detectCollision(ene, myLink);
                 if (eneLink.IsCollision) {
                     //If link is attacking, damage the enemy he contacts.
                     if (eneLink.Link1.State is DownSwordLinkState || eneLink.Link1.State is RightSwordLinkState || eneLink.Link1.State is UpSwordLinkState || eneLink.Link1.State is LeftSwordLinkState) {
@@ -207,7 +207,6 @@ namespace Poggus.Collisions
                             //Stun the enemy and set link's boomerang to return.
                             projEne.enemy2.StunTimer = ProjectileConstants.boomerangStunTime;
                             projEne.proj1.Life = ProjectileConstants.boomerangLife / 2;
-                            SoundManager.sound.playEnemyHit();
                         }
                         else if (projectile is RegArrowProjectile) {
                             projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
