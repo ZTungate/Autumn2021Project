@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Audio;
 using Poggus.Sound;
 using Poggus.Main;
 using Poggus.UI;
+using Poggus.Levels.Generation;
 
 namespace Poggus
 {
@@ -215,8 +216,6 @@ namespace Poggus
             base.Draw(gameTime);
         }
 
-        
-
         public void Reset()
         {
             link.Reset();
@@ -227,6 +226,7 @@ namespace Poggus
             DungeonLoader.instance.ResetDungeon();
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
+
             ProjectileFactory.Instance.ClearProjectiles();
             soundManager.LoadContent(Content);
             stateChange.Reset();
@@ -245,8 +245,38 @@ namespace Poggus
             };
 
         }
-        
-        
+        //DO NOT MODIFY THIS FUNCTION (IT IS NOT THE RESET FUNCTION!)
+        public void TempGenerateNewDungeon()
+        {
+            link.Reset();
+
+            link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
+            DoorFactory.instance.LoadContent(Content);
+            LevelLoader.instance.ResetLevels();
+            DungeonLoader.instance.ResetDungeon();
+            LevelLoader.instance.LoadAllLevels(Content);
+            DungeonLoader.instance.LoadDungeons();
+
+            DungeonGenerator dungeonGenerator = new DungeonGenerator();
+            dungeon = dungeonGenerator.GenerateDungeon();
+
+            ProjectileFactory.Instance.ClearProjectiles();
+            soundManager.LoadContent(Content);
+            stateChange.Reset();
+            win = false;
+            lose = false;
+            hudHandler.Reset();
+            Camera.main.Reset();
+            if (soundManager.volume < 1)
+            {
+                toggleSound();
+            }
+
+            handler = new CollisionHandler(this)
+            {
+                SoundManager = soundManager
+            };
+        }
         public void toggleWin()
         {
             

@@ -42,9 +42,10 @@ namespace Poggus
             //Create commands to change sprites
             this.controllerMappings.Add(Keys.Q, new Quit(myGame));
             this.controllerMappings.Add(Keys.R, new ResetCommand(myGame));
-            
-                //Player Movement
-                this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.J, new GenerateNewDungeonCommand(myGame));
+
+            //Player Movement
+            this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
                 this.controllerMappings.Add(Keys.W, new PlayerUpMoveCommand(myGame));
                 this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
                 this.controllerMappings.Add(Keys.D, new PlayerRightMoveCommand(myGame));

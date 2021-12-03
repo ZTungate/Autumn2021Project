@@ -15,6 +15,7 @@ namespace Poggus.UI
         Dictionary<Point, ImageUI> levelLayout;
         ImageUI linkImage;
         Point initialPoint;
+        Point initialLinkPoint;
         public MapUIHandler(Point initialPoint)
         {
             levelLayout = new Dictionary<Point, ImageUI>();
@@ -27,14 +28,15 @@ namespace Poggus.UI
         {
             this.dungeon = Game1.instance.GetDungeon();
             levelLayout.Clear();
-            foreach(KeyValuePair<Point,Level> entry in this.dungeon.GetLevelDictionary())
+
+            foreach (KeyValuePair<Point, Level> entry in this.dungeon.GetLevelDictionary())
             {
-                levelLayout.Add(entry.Key, new ImageUI(HUDSpriteFactory.instance.GetNewBlueBlockSprite(), initialPoint + entry.Key * new Point(38,-11), new Point(35,8)));
+                levelLayout.Add(entry.Key, new ImageUI(HUDSpriteFactory.instance.GetNewBlueBlockSprite(), initialPoint + entry.Key * new Point(38, -11), new Point(35, 8)));
             }
-            
+
             foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
             {
-                if(entry.Value.DestRect.Location.X > maxMapX)
+                if (entry.Value.DestRect.Location.X > maxMapX)
                 {
                     maxMapX = entry.Value.DestRect.Location.X;
                 }
@@ -54,6 +56,15 @@ namespace Poggus.UI
                     minMapY = entry.Value.DestRect.Location.Y;
                 }
             }
+            if (minMapX < 0)
+            {
+                foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
+                {
+                    entry.Value.SetPosition(entry.Value.GetPosition() + new Point(-minMapX + 32, 0));
+                }
+                initialLinkPoint = new Point(-minMapX + 32, 0);
+            }
+            
         }
         public void UpdatePosition(Point pos)
         {
@@ -74,8 +85,8 @@ namespace Poggus.UI
             int totalDungeonHeight = (Game1.instance.GetDungeon().GetMaxDungeonSize().Y - Game1.instance.GetDungeon().GetMinDungeonSize().Y);
 
             Point linkUIPos = new Point((int)(Game1.instance.link.GetPosition().X / (float)totalDungeonWidth * (maxMapX-minMapX)) - 5 - Game1.instance.GetDungeon().GetUnscaledLevelPoint().X, (int)(Game1.instance.link.GetPosition().Y / (float)totalDungeonHeight * (maxMapY - minMapY)) - 2 - Game1.instance.GetDungeon().GetUnscaledLevelPoint().Y);
-            
-            this.linkImage.DestRect = new Rectangle(linkUIPos + initialPoint, this.linkImage.DestRect.Size);
+
+            this.linkImage.DestRect = new Rectangle(linkUIPos + initialLinkPoint + initialPoint, this.linkImage.DestRect.Size);
         }
         public void Draw(SpriteBatch batch)
         {
