@@ -35,8 +35,6 @@ namespace Poggus.Player
         public bool canMove = true;
         public bool isDamaged = false;
 
-
-        public bool isKnockedBack = false;
         public ColDirections knockBackDirection;
         public float knockBackTime = 0;
         
@@ -128,7 +126,6 @@ namespace Poggus.Player
                 //TODO: Knockback
                 Health -= dmgAmount;
                 SoundManager.sound.playLinkHit();
-                isKnockedBack = true;
                 knockBackDirection = damageDirection;
                 knockBackTime = LinkConstants.knockBackTime;
             }
@@ -144,34 +141,31 @@ namespace Poggus.Player
 
         private void knockback(GameTime gameTime)
         {
-            if (isKnockedBack && knockBackTime > 0) {
+            if (knockBackTime > 0) {
                 knockBackTime -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 switch (knockBackDirection) {
                     case ColDirections.North:
                         //knockback down
-                        Move(new Point(0, LinkConstants.knockBackSpeed));
-
+                        knockbackMove(new Point(0, LinkConstants.knockBackSpeed));
                         break;
                     case ColDirections.South:
                         //knockback up
-                        Move(new Point(0, -LinkConstants.knockBackSpeed));
+                        knockbackMove(new Point(0, -LinkConstants.knockBackSpeed));
                         break;
                     case ColDirections.East:
                         //knockback left
-                        Move(new Point(-LinkConstants.knockBackSpeed, 0));
+                        knockbackMove(new Point(-LinkConstants.knockBackSpeed, 0));
                         break;
                     case ColDirections.West:
                         //knockback right
-                        Move(new Point(LinkConstants.knockBackSpeed, 0));
+                        knockbackMove(new Point(LinkConstants.knockBackSpeed, 0));
                         break;
                     case ColDirections.None:
                         //no knockback
                         break;
-
                 }
             }
-
         }
 
         public void UseItem(ProjectileTypes item)
@@ -187,9 +181,12 @@ namespace Poggus.Player
             }   
         }
  
+        private void knockbackMove(Point moveDirection)
+        {
+            DestRect = new Rectangle(DestRect.Location + moveDirection, DestRect.Size);
+        }
 
         //Attacks
-
         public void SwordAttack()
         {
             State.SwordAttack();
