@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Poggus.Player;
+using Poggus.Main;
 
 namespace Poggus.Player
 {
@@ -26,5 +27,12 @@ namespace Poggus.Player
             this.FrameStep(gameTime);
         }
 
+        public override void Draw(SpriteBatch spriteBatch, Rectangle rect)
+        {
+            //LayerDepth set to 1, normally this would mean this object will always been drawn in front but because of Begin() call in Game1 objects are drawn in the order their Draw() method is called
+            Rectangle worldRect = rect;
+            if (!IsUISprite) { worldRect = new Rectangle(rect.Location + Camera.main.GetPosition(), rect.Size); }
+            spriteBatch.Draw(Texture, worldRect, SourceRect[CurrentFrame], Color, Camera.main.GetRotation(), new Vector2(0, SourceRect[CurrentFrame % FrameCount].Height - LinkConstants.linkSize), effects, 1);
+        }
     }
 }

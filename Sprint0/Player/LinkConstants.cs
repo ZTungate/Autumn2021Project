@@ -8,11 +8,13 @@ namespace Poggus.Player
     public static class LinkConstants
     {
         //Amount of time link is in an item use state (miliseconds)
-        public static int itemUseTime = 700;
+        public static int itemUseTime = 350;
         public static int swordAttackTime = 320;
         public static float scaleX, scaleY;
         public static int linkSpeed = 3;
         public static int knockbackDistance = 50;
+
+        public static int linkSize = 16;
 
         public static int swordDamage = 1;
 

@@ -70,6 +70,7 @@ namespace Poggus.Sound
 
             sound.SetVolume(volume);
             sound.stopSound();
+            
             MediaPlayer.Volume = volume;
 
 

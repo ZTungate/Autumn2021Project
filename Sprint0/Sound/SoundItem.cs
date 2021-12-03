@@ -182,7 +182,9 @@ namespace Poggus.Sound
 
         public void stopSound()
         {
-            instance.Stop();
+            if (!(instance is null)) {
+                instance.Stop();
+            }
         }
 
     }
