@@ -112,6 +112,7 @@ namespace Poggus.Sound
             instance = bombBlow.CreateInstance();
             playSound();
         }
+
         public SoundEffectInstance playBoomerang()
         {
             instance = arrowBoomerang.CreateInstance();

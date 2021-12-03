@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Poggus;
 using Poggus.Helpers;
 using Poggus.Player;
+using Poggus.Sound;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,10 +15,15 @@ namespace Poggus.Projectiles
         Point direction;
         ILink myLink;
         bool returning;
+        SoundEffectInstance boomerangSound;
+        public SoundManager soundManager { get; set; }
+
         public LinkBoomerangProjectile(Point position, Point velocity, ILink link) : base(position, velocity, ProjectileConstants.boomerangSize)
         {
             myLink = link;
             Life = ProjectileConstants.boomerangLife;
+            boomerangSound = soundManager.sound.playBoomerang();
+
         }
         public override void Update(GameTime gameTime)
         {
