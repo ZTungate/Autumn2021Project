@@ -252,6 +252,7 @@ namespace Poggus.Collisions
 
                     //Kill any enemies with health <= 0;
                     if (projEne.enemy2.Health <= 0) {
+                        SoundManager.sound.playEnemyDeath();
                         eneToRemove.Add(projEne.enemy2);
                     }
                 }

@@ -122,11 +122,6 @@ namespace Poggus.Sound
             return instance;
         }
 
-        public void stopBoomerang(SoundEffectInstance instance)
-        {
-            instance.Stop();
-        }
-
         public void playFanfare()
         {
             instance = fanfare.CreateInstance();
