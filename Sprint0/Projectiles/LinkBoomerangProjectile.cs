@@ -22,8 +22,6 @@ namespace Poggus.Projectiles
         {
             myLink = link;
             Life = ProjectileConstants.boomerangLife;
-            boomerangSound = soundManager.sound.playBoomerang();
-
         }
         public override void Update(GameTime gameTime)
         {

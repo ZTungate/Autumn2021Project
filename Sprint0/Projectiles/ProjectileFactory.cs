@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Poggus.Sound;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Poggus.Projectiles
 {
@@ -19,6 +20,8 @@ namespace Poggus.Projectiles
         private SoundManager soundManager { get; set; }
 
         private static ProjectileFactory instance = new ProjectileFactory();
+
+        private Dictionary<IProjectile, SoundEffectInstance> boomerangSounds = new Dictionary<IProjectile, SoundEffectInstance>();
 
         public static ProjectileFactory Instance
         {
@@ -83,7 +86,7 @@ namespace Poggus.Projectiles
                     
                 }
                 else if (projectile is LinkBoomerangProjectile){
-                    //stop boomerang sound
+                    boomerangSounds[projectile].Stop();
                 }
             }
         }
@@ -355,12 +358,11 @@ namespace Poggus.Projectiles
         public void LinkBoomerang(Point position, Point velocity, ILink link)
         {
             //Generate a Boomerang with given position and velocity, add it to the list, and assign it a sprite.
-            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity, link)
-            {
-                soundManager = soundManager
-            };
+            IProjectile boomerang = new LinkBoomerangProjectile(position, velocity, link);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
+            boomerangSounds.Add(boomerang, soundManager.sound.playBoomerang());
+
         }
 
         public void NewBlueBoomerang(Point position, Point velocity)
@@ -377,6 +379,7 @@ namespace Poggus.Projectiles
             IProjectile boomerang = new LinkBoomerangProjectile(position, velocity, link);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBlueBoomerangSprite();
+            boomerangSounds.Add(boomerang, soundManager.sound.playBoomerang());
         }
 
         public void NewFire(Point position, Point velocity)
