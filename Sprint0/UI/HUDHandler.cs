@@ -72,7 +72,7 @@ namespace Poggus.UI
 
             for (int i = 0; i < link.Health; i++)
             {
-                ISprite heartSprite = HUDSpriteFactory.instance.GetNewHeartSprite();
+                ISprite heartSprite = HUDSpriteFactory.instance.GetNewEmptyHeartSprite();
                 heartImages.Add(new ImageUI(heartSprite, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
             }
             foreach(Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())

@@ -41,6 +41,8 @@ namespace Poggus.Items.ItemSprites
             itemSpriteDictionary.Add(ItemEnum.Fairy, new FairySprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.HeartContainer, new HeartContainerSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Heart, new HeartSprite(itemSpriteSheet));
+            itemSpriteDictionary.Add(ItemEnum.HalfHeart, new HalfHeartSprite(itemSpriteSheet));
+            itemSpriteDictionary.Add(ItemEnum.EmptyHeart, new EmptyHeartSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Key, new KeySprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Rupee, new RupeeSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Sword, new SwordSprite(itemSpriteSheet));

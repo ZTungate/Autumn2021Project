@@ -36,6 +36,21 @@ namespace Poggus.UI
             sprite.IsUISprite = true;
             return sprite;
         }
+
+        public ISprite GetNewHalfHeartSprite()
+        {
+            ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.HalfHeart);
+            sprite.IsUISprite = true;
+            return sprite;
+        }
+
+        public ISprite GetNewEmptyHeartSprite()
+        {
+            ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.EmptyHeart);
+            sprite.IsUISprite = true;
+            return sprite;
+        }
+
         public ISprite GetNewBombSprite()
         {
             ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Bomb);
