@@ -46,26 +46,26 @@ namespace Poggus
 
             //Player Movement
             this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
-                this.controllerMappings.Add(Keys.W, new PlayerUpMoveCommand(myGame));
-                this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
-                this.controllerMappings.Add(Keys.D, new PlayerRightMoveCommand(myGame));
-                this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
-                this.controllerMappings.Add(Keys.A, new PlayerLeftMoveCommand(myGame));
-                this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
-                this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.W, new PlayerUpMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.D, new PlayerRightMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.A, new PlayerLeftMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
+            this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
 
-                //Player Controls
+            //Player Controls
 
-                this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
-                this.controllerMappings.Add(Keys.D1, new PlayerUseRegBoomerangCommand(myGame));
-                this.controllerMappings.Add(Keys.D2, new PlayerUseBlueBoomerangCommand(myGame));
-                this.controllerMappings.Add(Keys.D3, new PlayerUseRegArrowCommand(myGame));
-                this.controllerMappings.Add(Keys.D4, new PlayerUseBlueArrowCommand(myGame));
-                this.controllerMappings.Add(Keys.D5, new PlayerUseBombCommand(myGame));
-                this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
-                this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
-                this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
-                this.controllerMappings.Add(Keys.Tab, new HUDToggleCommand(myGame));
+            this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
+            this.controllerMappings.Add(Keys.D1, new PlayerUseRegBoomerangCommand(myGame));
+            this.controllerMappings.Add(Keys.D2, new PlayerUseBlueBoomerangCommand(myGame));
+            this.controllerMappings.Add(Keys.D3, new PlayerUseRegArrowCommand(myGame));
+            this.controllerMappings.Add(Keys.D4, new PlayerUseBlueArrowCommand(myGame));
+            this.controllerMappings.Add(Keys.D5, new PlayerUseBombCommand(myGame));
+            this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
+            this.controllerMappings.Add(Keys.N, new PlayerSwordCommand(myGame));
+            this.controllerMappings.Add(Keys.Z, new PlayerSwordCommand(myGame));
+            this.controllerMappings.Add(Keys.Tab, new HUDToggleCommand(myGame));
             
             //GAME CONTROLS
             this.controllerMappings.Add(Keys.P, new PauseCommand(myGame));
