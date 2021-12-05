@@ -148,6 +148,11 @@ namespace Poggus.Collisions
                     if (boundEnemy.IsCollision)
                     {
                         ene.SetPosition(ene.oldPosition);
+                        if(boundEnemy.enemy1 is Grabber)
+                        {
+                            //Flip the grabber's direction (by sending a special stun time to the grabber).
+                            boundEnemy.enemy1.StunTimer = EnemyConstants.grabberFlipTrigger;
+                        }
                     }
                 }
                 foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {

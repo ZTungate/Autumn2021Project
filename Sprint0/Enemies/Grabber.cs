@@ -11,6 +11,7 @@ namespace Poggus.Enemies
     public class Grabber : AbstractEnemy
     {
         const int RANDMOVE = 4;
+        private bool vertical;
         public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
         {
             Health = EnemyConstants.grabberHealth;
@@ -29,7 +30,14 @@ namespace Poggus.Enemies
                 //Move the grabber if the animation frame changed
                 if (lastFrame != Sprite.CurrentFrame)
                 {
-                    DestRect = new Rectangle(RandomMove(), DestRect.Size);
+                    if (vertical) {
+                        DestRect = new Rectangle(YMove(), DestRect.Size);
+                    }
+                    else
+                    {
+                        DestRect = new Rectangle(XMove(), DestRect.Size);
+                    }
+
                 }
                 //Decrement the invincibility timer if there is time on it
                 if (InvincibilityTimer > 0)
@@ -37,36 +45,55 @@ namespace Poggus.Enemies
                     InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
                 }
             }
+            else if (StunTimer == EnemyConstants.grabberFlipTrigger)
+            {
+                //If given a specific stunTime, flip movement axis
+                vertical = !vertical;
+                StunTimer = 0;
+            }
             else
             {
                 StunTimer -= gameTime.ElapsedGameTime.Milliseconds;
             }
         }
 
-        public Point RandomMove()
+        private Point XMove()
         {
+            //Get the current position and a random number.
             Point newPosition = this.DestRect.Location;
-
-            //Get a random number from 0-3
             Random rand = new Random();
             int i = rand.Next(RANDMOVE);
 
+
+            //Move left, right, or not at all based on the random number generated.
             if (i == 0)
             {
                 newPosition.X += EnemyConstants.grabberMoveSpeed;
             }
             else if (i == 1)
             {
-                newPosition.Y += EnemyConstants.grabberMoveSpeed;
-            }
-            else if (i == 2)
-            {
                 newPosition.X -= EnemyConstants.grabberMoveSpeed;
             }
-            else
+            return newPosition;
+        }
+
+        private Point YMove()
+        {
+            //Get the current position and a random number.
+            Point newPosition = this.DestRect.Location;
+            Random rand = new Random();
+            int i = rand.Next(RANDMOVE);
+
+            //Move up, down, or not at all based on the random number generated.
+            if (i == 0)
+            {
+                newPosition.Y += EnemyConstants.grabberMoveSpeed;
+            }
+            else if (i == 1)
             {
                 newPosition.Y -= EnemyConstants.grabberMoveSpeed;
             }
+
             return newPosition;
         }
 

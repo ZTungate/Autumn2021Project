@@ -21,6 +21,7 @@ namespace Poggus.Enemies
         {
             link = Game1.instance.link;
             homePos = position;
+            Health = EnemyConstants.bladeTrapHealth;
 
             xTargeting = new Rectangle(//Rectangle to cover all X coordinates this blade trap sees
                 0,
@@ -118,6 +119,11 @@ namespace Poggus.Enemies
             int returnSpeed = returnTimer / 10;
             moveDir = new Point(dist.X / returnSpeed, dist.Y / returnSpeed); 
             return moveDir;
+        }
+
+        public override void TakeDamage(int damageAmount)
+        {
+            //Blade traps do not take damage.
         }
     }
 }

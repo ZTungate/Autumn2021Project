@@ -10,14 +10,14 @@ namespace Poggus.Enemies
 
         public static int invincibilityTime = 500;
         //Enemy movement speeds
-        public static int batMoveSpeed = 6;
+        public static int batMoveSpeed = 8;
         public static int dragonMoveSpeed = 6;
         public static int skeletonMoveSpeed = 6;
-        public static int slimeMoveSpeed = 6;
+        public static int slimeMoveSpeed = 8;
         public static int throwerMoveSpeed = 6;
         public static int bladeAttackSpeed = 10;
         public static int bladeReturnSpeed = bladeAttackSpeed / 2;
-        public static int grabberMoveSpeed = 6;
+        public static int grabberMoveSpeed = 10;
 
         //Enemy sizes
         public static float scaleX, scaleY;
@@ -36,6 +36,7 @@ namespace Poggus.Enemies
         public static int throwerHealth = 3;
         public static int grabberHealth = 2;
         public static int dragonHealth = 6;
+        public static int bladeTrapHealth = 99; //Note: blade traps do not take damage, so any number > 0 works
 
         //Enemy Attack Damage
         public static int batDamage = 1;
@@ -51,5 +52,6 @@ namespace Poggus.Enemies
         public static int throwerAttackDelay = 3000;
 
         public static int clockStunTime = 2000;
+        public static int grabberFlipTrigger = -10000;
     }
 }

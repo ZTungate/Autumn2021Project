@@ -48,7 +48,7 @@ namespace Poggus.Enemies
             this.DestRect = new Rectangle(pos, DestRect.Size);
         }
 
-        public void TakeDamage(int damageAmount)
+        public virtual void TakeDamage(int damageAmount)
         {
             if (InvincibilityTimer <= 0)
             {
