@@ -18,8 +18,10 @@ namespace Poggus.UI
         ImageUI slotAItemImage, slotBItemImage;
         List<ImageUI> heartImages;
         List<ImageUI> inventoryImages;
+        private int healthDrawn;
 
         public int hudWidth, hudHeight;
+        
         ILink link;
         Inventory inventory;
         public HUDHandler(ILink link)
@@ -28,6 +30,7 @@ namespace Poggus.UI
             this.inventory = link.LinkInventory;
             this.heartImages = new List<ImageUI>();
             inventoryImages = new List<ImageUI>();
+            healthDrawn = 0;
             hudWidth = Game1.instance._graphics.PreferredBackBufferWidth;
             hudHeight = Main.Camera.main.GetOffset().Y;
             mapHandler = new MapUIHandler(new Point(50,hudHeight-100));
@@ -39,6 +42,7 @@ namespace Poggus.UI
             this.inventory = link.LinkInventory;
             this.heartImages = new List<ImageUI>();
             inventoryImages = new List<ImageUI>();
+            healthDrawn = 0;
             hudWidth = Game1.instance._graphics.PreferredBackBufferWidth;
             hudHeight = Main.Camera.main.GetOffset().Y;
             mapHandler = new MapUIHandler(new Point(50, hudHeight - 100));
@@ -70,11 +74,27 @@ namespace Poggus.UI
             this.inventoryText = new TextSprite(HUDSpriteFactory.instance.hudFont, "INVENTORY", Color.Red, new Point(75, 75));
             this.inventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueSquareBorderSprite(), this.inventoryText.GetPosition() + new Point(200,50), new Point(300, 150));
 
-            for (int i = 0; i < link.Health; i++)
+            for (int i = 0; i < link.maxHealth; i+=2)
             {
-                ISprite heartSprite = HUDSpriteFactory.instance.GetNewEmptyHeartSprite();
-                heartImages.Add(new ImageUI(heartSprite, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
+                ISprite currentHeartType;
+                if (link.Health - i > 1)
+                {
+                    currentHeartType = HUDSpriteFactory.instance.GetNewHeartSprite();
+                    healthDrawn += 2;
+                }
+                else if (link.Health - i == 1)
+                {
+                    currentHeartType = HUDSpriteFactory.instance.GetNewHalfHeartSprite();
+                    healthDrawn += 1;
+                }
+                else
+                {
+                    currentHeartType = HUDSpriteFactory.instance.GetNewEmptyHeartSprite();
+                }
+
+                heartImages.Add(new ImageUI(currentHeartType, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
             }
+
             foreach(Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
             {
                 ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25,25));
@@ -84,36 +104,7 @@ namespace Poggus.UI
         public void Update(GameTime gameTime)
         {
 
-
-            /* The following is Michael's suggestion on how to do the health UI
-             It probably needs tweaking but hopefully its a good start point
-            for (int i = 0; i < link.maxHealth; i+=2){
-                if ((link.Health - i ) > 1){
-                    DRAW FULL HEART
-                }else if ((link.Health - i) == 1){
-                    DRAW HALF HEART
-                }else {
-                    DRAW EMPTY HEART
-                }
-            }
-             
-             */
-
-            if(link.Health < heartImages.Count && heartImages.Count > 0)
-            {
-                for(int i = heartImages.Count - 1; i >= link.Health; i--)
-                {
-                    heartImages.RemoveAt(i);
-                }
-            }
-            if (link.Health > heartImages.Count)
-            {
-                for (int i = heartImages.Count; i < link.Health; i++)
-                {
-                    ISprite heartSprite = HUDSpriteFactory.instance.GetNewHeartSprite();
-                    heartImages.Add(new ImageUI(heartSprite, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
-                }
-            }
+            updateLinkHealth();
 
             inventoryImages.Clear();
             foreach (Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
@@ -135,6 +126,35 @@ namespace Poggus.UI
             this.bombAmtText.SetText("X" + link.LinkInventory.GetBombCount());
 
             mapHandler.Update(gameTime);
+        }
+
+        private void updateLinkHealth()
+        {
+            if (link.Health != healthDrawn)
+            {
+                heartImages.Clear();
+
+                for (int i = 0; i < link.maxHealth; i += 2)
+                {
+                    ISprite currentHeartType;
+                    if (link.Health - i > 1)
+                    {
+                        currentHeartType = HUDSpriteFactory.instance.GetNewHeartSprite();
+                        healthDrawn += 2;
+                    }
+                    else if (link.Health - i == 1)
+                    {
+                        currentHeartType = HUDSpriteFactory.instance.GetNewHalfHeartSprite();
+                        healthDrawn += 1;
+                    }
+                    else
+                    {
+                        currentHeartType = HUDSpriteFactory.instance.GetNewEmptyHeartSprite();
+                    }
+
+                    heartImages.Add(new ImageUI(currentHeartType, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
+                }
+            }
         }
         public void Draw(SpriteBatch batch)
         {

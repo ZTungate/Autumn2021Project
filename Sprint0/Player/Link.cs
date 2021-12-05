@@ -126,8 +126,13 @@ namespace Poggus.Player
                 //TODO: Knockback
                 Health -= dmgAmount;
                 SoundManager.sound.playLinkHit();
-                knockBackDirection = damageDirection;
-                knockBackTime = LinkConstants.knockBackTime;
+
+                if (Health > 0)
+                {
+                    knockBackDirection = damageDirection;
+                    knockBackTime = LinkConstants.knockBackTime;
+                }
+            
             }
 
             //Kill link if his health hits zero

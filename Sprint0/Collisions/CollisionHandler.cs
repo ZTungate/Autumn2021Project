@@ -312,7 +312,7 @@ namespace Poggus.Collisions
                     else if(itemLink.Item2 is HeartItem)
                     {
                         SoundManager.sound.playHeartPickup();
-                        itemLink.Link1.Health++;
+                        itemLink.Link1.Health+= 2;
                         if (itemLink.Link1.Health > itemLink.Link1.maxHealth)
                         {
                             itemLink.Link1.Health = itemLink.Link1.maxHealth;
@@ -323,7 +323,7 @@ namespace Poggus.Collisions
                     }else if (itemLink.Item2 is HeartContainerItem)
                     {
                         itemLink.Link1.maxHealth++;
-                        itemLink.Link1.Health++;
+                        itemLink.Link1.Health += 2;
                     }else if(itemLink.Item2 is ClockItem)
                     {
                         foreach(IEnemy enemy in myDungeon.GetCurrentLevel().GetEnemyList())
