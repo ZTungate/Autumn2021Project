@@ -327,7 +327,7 @@ namespace Poggus.Collisions
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
                     }else if (itemLink.Item2 is HeartContainerItem)
                     {
-                        itemLink.Link1.maxHealth++;
+                        itemLink.Link1.maxHealth+=2;
                         itemLink.Link1.Health += 2;
                     }else if(itemLink.Item2 is ClockItem)
                     {
