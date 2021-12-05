@@ -82,8 +82,6 @@ namespace Poggus.Projectiles
                 {
                     //Spawn a large explosion.
                     NewBombExplosions(projectile.GetPosition());
-                    
-                    
                 }
                 else if ((projectile is LinkBoomerangProjectile) | (projectile is BoomerangProjectile)){
                     boomerangSounds[projectile].Stop();
@@ -184,7 +182,6 @@ namespace Poggus.Projectiles
         {
             return new BoomerangSprite(enemySpriteSheet);
         }
-
         public ISprite CreateBlueBoomerangSprite()
         {
             return new BlueBoomerangSprite(linkSpriteSheet);
@@ -251,12 +248,17 @@ namespace Poggus.Projectiles
 
             }
         }
-
         public void NewArrowPoof(Point position)
         {
             IProjectile arrowPoof = new ArrowPoofProjectile(position);
             projectiles.Add(arrowPoof);
             arrowPoof.Sprite = CreateArrowPoofSprite();
+        }
+        public void NewEnemyPoof(Point position, Point size)
+        {
+            IProjectile enemyPoof = new EnemyPoofProjectile(position, size);
+            projectiles.Add(enemyPoof);
+            enemyPoof.Sprite = createBombExplosionSprite();
         }
         public void NewSwordBeam(Point position, Direction facing)
         {

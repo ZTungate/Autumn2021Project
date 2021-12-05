@@ -264,6 +264,7 @@ namespace Poggus.Collisions
             }
             //remove enemies from the room
             foreach (IEnemy ene in eneToRemove) {
+                myGame.projectileFactory.NewEnemyPoof(ene.DestRect.Location,ene.DestRect.Size);
                 myDungeon.GetCurrentLevel().RemoveEnemy(ene);
             }
 
