@@ -9,7 +9,7 @@ namespace Poggus.Blocks
     {
         public EntryFloor(Point pos) : base(BlockType.EntryFloor, pos)
         {
-
+            Walkable = true;
         }
     }
 }

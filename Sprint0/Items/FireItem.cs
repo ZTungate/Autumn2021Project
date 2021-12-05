@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Poggus.Blocks
+namespace Poggus.Items
 {
-    class FloorBlock : AbstractBlock
+    class FireItem : AbstractItem
     {
-        public FloorBlock(Point pos) : base(BlockType.FloorBlock, pos)
+        public FireItem(Point pos) : base(ItemEnum.Fire, pos, Point.Zero)
         {
 
         }

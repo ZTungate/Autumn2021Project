@@ -9,7 +9,7 @@ namespace Poggus.Items.ItemSprites
 {
     public class ItemSpriteFactory
     {
-        private Texture2D itemSpriteSheet;
+        private Texture2D itemSpriteSheet, npcSpriteSheet;
 
         private static ItemSpriteFactory instance = new ItemSpriteFactory();
 
@@ -31,6 +31,7 @@ namespace Poggus.Items.ItemSprites
         public void LoadAllTextures(ContentManager content)
         {
             itemSpriteSheet = content.Load<Texture2D>("ItemSpriteSheet");
+            npcSpriteSheet = content.Load<Texture2D>("NPCSheet");
             //For each item in the enum add its corresponding item sprite class to the dictionary
             itemSpriteDictionary.Add(ItemEnum.Arrow, new ArrowSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Bomb, new BombItemSprite(itemSpriteSheet));
@@ -47,7 +48,9 @@ namespace Poggus.Items.ItemSprites
             itemSpriteDictionary.Add(ItemEnum.Rupee, new RupeeSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.Sword, new SwordSprite(itemSpriteSheet));
             itemSpriteDictionary.Add(ItemEnum.TriforcePiece, new TriforcePieceSprite(itemSpriteSheet));
-            
+            itemSpriteDictionary.Add(ItemEnum.Map, new MapItemSprite(itemSpriteSheet));
+            itemSpriteDictionary.Add(ItemEnum.Fire, new FireItemSprite(npcSpriteSheet));
+
         }
         public ISprite GetItemSprite(ItemEnum item)
         {

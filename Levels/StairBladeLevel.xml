@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root xmlns="Level1">
+<root xmlns="StairBladeLevel">
   <Blocks>
     <Block>
       <Object>Floor</Object>
@@ -28,12 +28,7 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>112,32</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>80,32</Location>
+      <Location>96,32</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -43,12 +38,22 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>80,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
       <Location>48,32</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>32,32</Location>
+      <Location>48,48</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -78,6 +83,11 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>48,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
       <Location>48,128</Location>
       <Conditions> </Conditions>
     </Block>
@@ -88,12 +98,7 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>48,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>48,96</Location>
+      <Location>48,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -103,12 +108,12 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>48,48</Location>
+      <Location>48,96</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>48,80</Location>
+      <Location>64,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -118,12 +123,37 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>96,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>112,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>112,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
       <Location>64,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>64,80</Location>
+      <Location>80,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>80,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>96,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -134,11 +164,6 @@
     <Block>
       <Object>Floor</Object>
       <Location>64,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>64,128</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -158,42 +183,7 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>80,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>80,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>80,48</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>96,32</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>96,48</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>96,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>96,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>96,112</Location>
+      <Location>64,128</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -203,17 +193,52 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>112,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>96,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MoveableFloorBlock</Object>
+      <Location>96,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>80,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
       <Location>112,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
-      <Object>Floor</Object>
-      <Location>96,64</Location>
+      <Object>FloorBlock</Object>
+      <Location>112,96</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>112,48</Location>
+      <Location>112,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Stair</Object>
+      <Location>128,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>128,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,48</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -227,68 +252,13 @@
       <Conditions> </Conditions>
     </Block>
     <Block>
-      <Object>Floor</Object>
-      <Location>128,48</Location>
+      <Object>FloorBlock</Object>
+      <Location>144,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
-      <Object>Floor</Object>
-      <Location>128,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,80</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>112,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>128,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>144,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>144,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>144,96</Location>
+      <Object>FloorBlock</Object>
+      <Location>160,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -298,17 +268,12 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>144,64</Location>
+      <Location>160,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
       <Location>160,48</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>176,48</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -323,7 +288,7 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>208,64</Location>
+      <Location>176,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -333,17 +298,12 @@
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>176,64</Location>
+      <Location>176,48</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>160,64</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>160,80</Location>
+      <Location>208,64</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -353,12 +313,27 @@
     </Block>
     <Block>
       <Object>Floor</Object>
+      <Location>176,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>192,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
       <Location>208,80</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>176,80</Location>
+      <Location>208,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>192,112</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -372,43 +347,28 @@
       <Conditions> </Conditions>
     </Block>
     <Block>
-      <Object>Floor</Object>
-      <Location>160,112</Location>
+      <Object>FloorBlock</Object>
+      <Location>144,96</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>160,128</Location>
+      <Location>128,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>FloorBlock</Object>
+      <Location>128,112</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
-      <Location>176,128</Location>
+      <Location>144,112</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
       <Object>Floor</Object>
       <Location>176,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>192,128</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>192,112</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>208,96</Location>
-      <Conditions> </Conditions>
-    </Block>
-    <Block>
-      <Object>Floor</Object>
-      <Location>192,96</Location>
       <Conditions> </Conditions>
     </Block>
     <Block>
@@ -421,43 +381,67 @@
       <Location>208,128</Location>
       <Conditions> </Conditions>
     </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>176,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>160,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>160,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>144,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>112,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>96,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>128,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>192,128</Location>
+      <Conditions> </Conditions>
+    </Block>
   </Blocks>
-  <Items>
-    <Item>
-      <Object>TriforcePiece</Object>
-      <Location>140,52</Location>
-      <Conditions> </Conditions>
-    </Item>
-    <Item>
-      <Object>TriforcePiece</Object>
-      <Location>79,90</Location>
-      <Conditions> </Conditions>
-    </Item>
-    <Item>
-      <Object>Fairy</Object>
-      <Location>153,70</Location>
-      <Conditions> </Conditions>
-    </Item>
-  </Items>
+  <Items />
   <Enemies>
     <Enemy>
-      <Object>Dragon</Object>
-      <Location>179,53</Location>
+      <Object>BladeTrap</Object>
+      <Location>207,33</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
-      <Object>Dragon</Object>
-      <Location>61,39</Location>
+      <Object>BladeTrap</Object>
+      <Location>207,127</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
-      <Object>Skeleton</Object>
-      <Location>158,101</Location>
+      <Object>BladeTrap</Object>
+      <Location>33,127</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
-      <Object>Skeleton</Object>
-      <Location>118,98</Location>
+      <Object>BladeTrap</Object>
+      <Location>33,33</Location>
       <Conditions> </Conditions>
     </Enemy>
   </Enemies>

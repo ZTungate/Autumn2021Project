@@ -10,7 +10,7 @@ namespace Poggus.Blocks.Sprites
     {
         public MoveableFloorBlockSprite(Texture2D spriteSheet) : base(spriteSheet, new Rectangle[1])
         {
-            SourceRect[0] = new Rectangle(386, 49, 16, 16);
+            SourceRect[0] = new Rectangle(418, 435, 16, 16);
         }
 
     }

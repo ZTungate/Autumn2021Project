@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="FireRoom">
+  <Blocks>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>32,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>208,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Floor</Object>
+      <Location>208,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items>
+    <Item>
+      <Object>Fire</Object>
+      <Location>79,66</Location>
+      <Conditions> </Conditions>
+    </Item>
+    <Item>
+      <Object>Fire</Object>
+      <Location>160,68</Location>
+      <Conditions> </Conditions>
+    </Item>
+  </Items>
+  <Enemies>
+    <Enemy>
+      <Object>OldMan</Object>
+      <Location>120,66</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+  </Enemies>
+</root>

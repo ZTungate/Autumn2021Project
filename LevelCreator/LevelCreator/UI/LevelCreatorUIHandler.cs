@@ -46,8 +46,14 @@ namespace LevelCreator.UI
         public override void Update(GameTime gameTime)
         {
             levelNameField.Update(gameTime);
-            newObjectUI.Update(gameTime);
-            placeObjectUI.Update(gameTime);
+            if (newObjectUI.IsVisible())
+            {
+                newObjectUI.Update(gameTime);
+            }
+            if (placeObjectUI.IsVisible())
+            {
+                placeObjectUI.Update(gameTime);
+            }
 
             MouseState lastState = state;
             state = Mouse.GetState();
