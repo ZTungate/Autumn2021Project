@@ -349,7 +349,7 @@ namespace Poggus.Collisions
                         ene.SetPosition(ene.oldPosition);
                     }
                 }
-
+                //Boundary and door collisions
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect); 
                 if (boundLink.IsCollision) 
                 { 
@@ -382,6 +382,7 @@ namespace Poggus.Collisions
                         linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height/2 - linkRect.Height/2); 
                     }
                     myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos);
+                    myGame.link.State.Idle();
                     
                     Camera.main.BeginMoveTo(nextPoint, 10);
                 } 
