@@ -62,7 +62,7 @@ namespace Poggus.Levels
                         {
                             doorPos = new Vector2(0, Game1.instance._graphics.PreferredBackBufferHeight / 2f * Game1.heightScalar - scaledDoorHeight/2);
                         }
-                        entry.Value.AddDoor(DoorFactory.instance.GetNewOpenDoor(doorPos.ToPoint(), new Point(scaledDoorWidth, scaledDoorHeight), doorDir[dir]), doorDir[dir]);
+                        entry.Value.AddDoor(DoorFactory.instance.GetNewDoor(entry.Value.GetDoorCondition(dir), doorPos.ToPoint(), new Point(scaledDoorWidth, scaledDoorHeight), doorDir[dir]), doorDir[dir]);
                     }
                 }
             }
@@ -78,6 +78,15 @@ namespace Poggus.Levels
             {
                 SetCurrentLevel(nextLevelPoint);
             }
+        }
+        public Level GetLevelFromCurrent(Point direction)
+        {
+            Point nextLevelPoint = currentLevelPoint + direction;
+            if (levelDictionary.ContainsKey(nextLevelPoint))
+            {
+                return levelDictionary[nextLevelPoint];
+            }
+            return null;
         }
         public bool HasDungeonAtNextDirection(Point dir)
         {
@@ -99,6 +108,9 @@ namespace Poggus.Levels
         }
         public void SetCurrentLevel(Point levelPoint)
         {
+
+            if (this.currentLevel != null) { currentLevel.ResetEnemySpawnAnimation(); }
+
             //Point dir = levelPoint - currentLevelPoint;
             currentLevelPoint = levelPoint;
             this.currentLevel = levelDictionary[levelPoint];
