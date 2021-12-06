@@ -60,9 +60,9 @@ namespace Poggus.UI
             {
                 foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
                 {
-                    entry.Value.SetPosition(entry.Value.GetPosition() + new Point(-minMapX + 32, 0));
+                    entry.Value.SetPosition(entry.Value.GetPosition() + new Point(-minMapX + 32, 32));
                 }
-                initialLinkPoint = new Point(-minMapX + 32, 0);
+                initialLinkPoint = new Point(-minMapX + 32, 32);
             }
             
         }
