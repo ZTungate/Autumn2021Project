@@ -216,38 +216,38 @@ namespace Poggus.Collisions
                             projEne.proj1.Life = ProjectileConstants.boomerangLife / 2;
                         }
                         else if (projectile is RegArrowProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage, projEne.direction);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BlueArrowProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.blueArrowDamage, projEne.direction);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BombProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage, projEne.direction);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BombExplosionProjectile)
                         {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage, projEne.direction);
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is SwordBeamExplosionProjectile || projectile is SwordBeamProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage, projEne.direction);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is FireProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage, projEne.direction);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if(projectile is SwordStabProjectile)
                         {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage, projEne.direction);
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if(projectile is BoomerangProjectile && projEne.enemy2 is Thrower && projectile.Life < ProjectileConstants.boomerangLife/2)
@@ -277,7 +277,7 @@ namespace Poggus.Collisions
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
                 if (itemLink.IsCollision) {
                     itemToRemove.Add(itemLink.Item2);
-                    if(itemLink.Item2 is BombItem)
+                    if (itemLink.Item2 is BombItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementBombs();
                         SoundManager.sound.playItemPickup();
@@ -342,6 +342,9 @@ namespace Poggus.Collisions
                         {
                             enemy.StunTimer = EnemyConstants.clockStunTime;
                         }
+                    }else if(itemLink.Item2 is FireItem)
+                    {
+                        itemToRemove.Remove(itemLink.Item2);
                     }
                 }
             }

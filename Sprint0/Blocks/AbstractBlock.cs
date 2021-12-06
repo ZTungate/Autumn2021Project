@@ -34,7 +34,7 @@ namespace Poggus.Blocks
         {
             this.Sprite = BlockSpriteFactory.Instance.GetBlockSprite(blockType);
         }
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             //no-op
         }

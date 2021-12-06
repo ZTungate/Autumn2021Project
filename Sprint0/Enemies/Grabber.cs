@@ -18,11 +18,12 @@ namespace Poggus.Enemies
         }
         public override void Update(GameTime gameTime)
         {
+            oldPosition = DestRect.Location;
             if (StunTimer <= 0)
             {
                 //Get the number for the last frame
                 int lastFrame = Sprite.CurrentFrame;
-                oldPosition = DestRect.Location;
+                
 
                 //Update the sprite
                 Sprite.Update(gameTime);

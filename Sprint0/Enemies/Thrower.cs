@@ -26,11 +26,11 @@ namespace Poggus.Enemies
 
         public override void Update(GameTime gameTime)
         {
+            oldPosition = DestRect.Location;
             if (StunTimer <= 0)
             {
                 int lastFrame = Sprite.CurrentFrame;
 
-                oldPosition = DestRect.Location;
                 Sprite.Update(gameTime);
 
                 //Try to move the thrower

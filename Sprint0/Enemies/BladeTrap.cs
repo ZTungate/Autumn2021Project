@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Poggus.Collisions;
 using Poggus.Player;
 using System;
 using System.Collections.Generic;
@@ -142,7 +143,7 @@ namespace Poggus.Enemies
             return moveDir;
         }
 
-        public override void TakeDamage(int damageAmount)
+        public override void TakeDamage(int damageAmount, ColDirections damageDirection)
         {
             //Blade traps do not take damage.
         }

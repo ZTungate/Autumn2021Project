@@ -20,9 +20,9 @@ namespace Poggus.Enemies
         }
         public override void Update(GameTime gameTime)
         {
+            oldPosition = GetPosition();
             if (StunTimer <= 0)
             {
-                oldPosition = GetPosition();
 
                 Sprite.Update(gameTime);
 
