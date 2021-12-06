@@ -96,7 +96,7 @@ namespace Poggus.Player
             State.Update(gameTime);
             Sprite.Update(gameTime);
 
-            ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f) - 4), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f)));
+            ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f)), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f) - 12));
         }
         Point nextPoint, moveDir;
         bool movingTo;

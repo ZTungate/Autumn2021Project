@@ -85,7 +85,7 @@ namespace Poggus.Levels
             minX -= location.X;
             minY -= location.Y;
             Rectangle upBound = new Rectangle(location + new Point(0, 0), new Point(backgroundRectangle.Width, minY - 4));
-            Rectangle downBound = new Rectangle(location + new Point(0, maxY + 15), new Point(backgroundRectangle.Width, backgroundRectangle.Height - (maxY + 1)));
+            Rectangle downBound = new Rectangle(location + new Point(0, maxY + 5), new Point(backgroundRectangle.Width, backgroundRectangle.Height - (maxY + 1)));
 
             Rectangle leftBound = new Rectangle(location + new Point(0, 0), new Point(minX - 4, backgroundRectangle.Height));
             Rectangle rightBound = new Rectangle(location + new Point(maxX + 4, 0), new Point(backgroundRectangle.Width - (maxX + 1), backgroundRectangle.Height));
