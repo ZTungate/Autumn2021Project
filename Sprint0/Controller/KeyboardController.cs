@@ -89,7 +89,7 @@ namespace Poggus
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();
 
-            if(!Main.Camera.main.IsMoving())
+            if(!myGame.link.movingTo)
                 {
                     if (!myGame.Paused())
                     {

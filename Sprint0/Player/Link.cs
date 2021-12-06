@@ -38,6 +38,7 @@ namespace Poggus.Player
         public bool isDamaged = false;
         public bool canAttack = true;
         public bool canUseItems = true;
+        public bool movingTo { get; set; }
 
         public ColDirections knockBackDirection;
         public float knockBackTime = 0;
@@ -99,7 +100,6 @@ namespace Poggus.Player
             ColliderRect = new Rectangle(DestRect.Location + new Point(8, (int)(DestRect.Height / 2f)), new Point(DestRect.Width - 16, (int)(DestRect.Height / 2f) - 12));
         }
         Point nextPoint, moveDir;
-        bool movingTo;
         public void StartMoveToNewRoom(Point nextPoint)
         {
             if (!movingTo)
