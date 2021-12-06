@@ -104,6 +104,7 @@ namespace Poggus.UI
         public void Update(GameTime gameTime)
         {
             mapHandler.linkHasMap = link.LinkInventory.GetMapState();
+            mapHandler.linkHasCompass = link.LinkInventory.GetCompassState();
             updateLinkHealth();
 
             inventoryImages.Clear();

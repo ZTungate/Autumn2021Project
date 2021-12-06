@@ -54,11 +54,11 @@ namespace Poggus.Blocks
         {
             //only used by moveable blocks
         }
-        virtual public void MoveRight()
+        virtual public void MoveLeft()
         {
             //only used by moveable blocks
         }
-        virtual public void MoveLeft()
+        virtual public void MoveRight()
         {
             //only used by moveable blocks
         }
