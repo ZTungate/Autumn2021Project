@@ -434,7 +434,10 @@ namespace Poggus.Collisions
                     E2RCollision boundEnemy = (E2RCollision)detector.detectCollision(ene, door.destRect);
                     if (boundEnemy.IsCollision)
                     {
-                        ene.SetPosition(ene.oldPosition);
+                        if (!(boundEnemy.enemy1 is Grabber))
+                        {
+                            ene.SetPosition(ene.oldPosition);
+                        }
                     }
                 }
                 //Boundary and door collisions
