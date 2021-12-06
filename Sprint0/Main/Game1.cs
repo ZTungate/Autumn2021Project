@@ -58,7 +58,7 @@ namespace Poggus
         //Projectiles
         public ProjectileFactory projectileFactory;
         private bool isPaused = false;
-        private bool inventoryOpen = false;
+        public bool inventoryOpen = false; //public for pause menu
 
         //Sound
         public SoundManager soundManager;
@@ -155,6 +155,7 @@ namespace Poggus
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
+            
             if (!isPaused) {
                 
                 Camera.main.Update(gameTime);
@@ -179,6 +180,10 @@ namespace Poggus
                 base.Update(gameTime);
             }
             else {
+                if (!inventoryOpen)
+                {
+                    menuHandler.Update(); //only if inventory isn't open
+                }
                 soundManager.StopMusic();
             }
             if (win)
@@ -311,6 +316,10 @@ namespace Poggus
         {
             isPaused = !isPaused;
             link.State.Idle();
+            if (!isPaused)
+            {
+                menuHandler.options = false;
+            }
         }
 
         public void toggleSound()

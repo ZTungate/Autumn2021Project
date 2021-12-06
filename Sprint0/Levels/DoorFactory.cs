@@ -27,6 +27,10 @@ namespace Poggus.Levels
             {
                 return GetNewClosedDoor(pos, size, dir);
             }
+            if(doorType == DoorType.RoomClear)
+            {
+                return GetNewRoomClearDoor(pos, size, dir);
+            }
             if(doorType == DoorType.Key)
             {
                 return GetNewKeyDoor(pos, size, dir);
@@ -40,6 +44,11 @@ namespace Poggus.Levels
         public LevelDoor GetNewClosedDoor(Point pos, Point size, DoorDirectionEnum dir)
         {
             LevelDoor door = new LevelDoor(DoorType.Closed,new DoorClosedSprite(doorSpriteSheet), dir, new Rectangle(pos,size));
+            return door;
+        }
+        public LevelDoor GetNewRoomClearDoor(Point pos, Point size, DoorDirectionEnum dir)
+        {
+            LevelDoor door = new LevelDoor(DoorType.RoomClear, new DoorClosedSprite(doorSpriteSheet), dir, new Rectangle(pos, size));
             return door;
         }
         public LevelDoor GetNewOpenDoor(Point pos, Point size, DoorDirectionEnum dir)

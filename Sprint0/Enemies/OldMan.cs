@@ -23,7 +23,7 @@ namespace Poggus.Enemies
 
         public OldMan(Point pos) : base(EnemyType.OldMan, pos, EnemyConstants.stdEnemySize.Size)
         {
-
+            Health = 100;
         }
 
     }

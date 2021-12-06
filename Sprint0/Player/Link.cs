@@ -27,6 +27,7 @@ namespace Poggus.Player
         public SoundManager SoundManager { get; set; }
         public int Health { get; set; }
         public int maxHealth { get; set; }
+        public bool collideWithBounds { get; set; } = true;
 
         public Inventory LinkInventory { get; set; }
 
@@ -80,13 +81,45 @@ namespace Poggus.Player
         public void Update(GameTime gameTime)
         {
             OldPosition = DestRect.Location;
-
+            if (movingTo)
+            {
+                this.SetPosition(this.GetPosition() + moveDir);
+                if((this.GetPosition().ToVector2() - nextPoint.ToVector2()).LengthSquared() <= 2f)
+                {
+                    this.SetPosition(nextPoint);
+                    this.movingTo = false;
+                    this.collideWithBounds = true;
+                }
+            }
             updateDamageState(gameTime);
             knockback(gameTime);
             State.Update(gameTime);
             Sprite.Update(gameTime);
 
             ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f) - 4), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f)));
+        }
+        Point nextPoint, moveDir;
+        bool movingTo;
+        public void StartMoveToNewRoom(Point nextPoint)
+        {
+            if (!movingTo)
+            {
+                this.collideWithBounds = false;
+                this.nextPoint = nextPoint;
+                moveDir = new Point(nextPoint.X - GetPosition().X, nextPoint.Y - GetPosition().Y);
+                if (moveDir.X != 0)
+                {
+                    moveDir.X /= Math.Abs(moveDir.X);
+                }
+                if (moveDir.Y != 0)
+                {
+                    moveDir.Y /= Math.Abs(moveDir.Y);
+                }
+                moveDir.X *= 3;
+                moveDir.Y *= 3;
+
+                movingTo = true;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)

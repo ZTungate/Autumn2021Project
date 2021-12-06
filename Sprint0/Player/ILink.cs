@@ -25,6 +25,7 @@ namespace Poggus.Player
         public SoundManager SoundManager { get; set; }
         public int Health { get; set; }
         public int maxHealth { get; set; }
+        public bool collideWithBounds { get; set; }
         public Inventory LinkInventory { get;}
         void TakeDamage(int damageAmount, ColDirections damageDir);
         void Update(GameTime gameTime);
@@ -36,6 +37,7 @@ namespace Poggus.Player
         Point GetPosition();
         void SetPosition(Point pos);
         bool FullHealth();
+        void StartMoveToNewRoom(Point pos);
 
         void Reset();
 

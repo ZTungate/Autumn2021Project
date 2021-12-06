@@ -13,14 +13,19 @@ namespace Poggus.UI
         bool visible = true;
         Dungeon dungeon;
         Dictionary<Point, ImageUI> levelLayout;
-        ImageUI linkImage;
+        ImageUI linkImage, triforceImage;
+        public bool displayTriforce;
         Point initialPoint;
         Point initialLinkPoint;
+
+        Point initalTriforcePoint;
+        public bool linkHasMap, linkHasCompass;
         public MapUIHandler(Point initialPoint)
         {
             levelLayout = new Dictionary<Point, ImageUI>();
             this.initialPoint = initialPoint;
             this.linkImage = new ImageUI(HUDSpriteFactory.instance.GetNewGreenBlockSprite(), Point.Zero, new Point(3,3));
+            this.triforceImage = new ImageUI(HUDSpriteFactory.instance.GetNewRedBlockSprite(), Point.Zero, new Point(3, 3));
             UpdateDungeon();
         }
         int maxMapX = int.MinValue, maxMapY = int.MinValue, minMapX = int.MaxValue, minMapY = int.MaxValue;
@@ -63,6 +68,7 @@ namespace Poggus.UI
                     entry.Value.SetPosition(entry.Value.GetPosition() + new Point(-minMapX + 32, 32));
                 }
                 initialLinkPoint = new Point(-minMapX + 32, 32);
+                initalTriforcePoint = new Point(-minMapX + 32, 32);
             }
             
         }
@@ -70,12 +76,12 @@ namespace Poggus.UI
         {
             this.initialPoint += pos;
             linkImage.SetPosition(linkImage.GetPosition() + pos);
+            triforceImage.SetPosition(triforceImage.GetPosition() + pos);
             foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
             {
                 entry.Value.SetPosition(entry.Value.GetPosition() + pos);
             }
         }
-        public bool linkHasMap;
         public Point GetPosition()
         {
             return this.initialPoint;
@@ -86,6 +92,11 @@ namespace Poggus.UI
             int totalDungeonHeight = (Game1.instance.GetDungeon().GetMaxDungeonSize().Y - Game1.instance.GetDungeon().GetMinDungeonSize().Y);
 
             Point linkUIPos = new Point((int)(Game1.instance.link.GetPosition().X / (float)totalDungeonWidth * (maxMapX-minMapX)) - 5 - Game1.instance.GetDungeon().GetUnscaledLevelPoint().X, (int)(Game1.instance.link.GetPosition().Y / (float)totalDungeonHeight * (maxMapY - minMapY)) - 2 - Game1.instance.GetDungeon().GetUnscaledLevelPoint().Y);
+            if (Game1.instance.GetDungeon().triforceItem != null)
+            {
+                Point triforceUIPos = new Point((int)(Game1.instance.GetDungeon().triforceItem.GetPosition().X / (float)totalDungeonWidth * (maxMapX - minMapX)) - 5 - Game1.instance.GetDungeon().GetUnscaledLevelPoint().X, (int)(Game1.instance.GetDungeon().triforceItem.GetPosition().Y / (float)totalDungeonHeight * (maxMapY - minMapY)) - 2 - Game1.instance.GetDungeon().GetUnscaledLevelPoint().Y);
+                this.triforceImage.DestRect = new Rectangle(triforceUIPos + initalTriforcePoint + initialPoint, this.triforceImage.DestRect.Size);
+            }
 
             this.linkImage.DestRect = new Rectangle(linkUIPos + initialLinkPoint + initialPoint, this.linkImage.DestRect.Size);
         }
@@ -98,6 +109,13 @@ namespace Poggus.UI
                     foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
                     {
                         entry.Value.Draw(batch);
+                    }
+                }
+                if (linkHasCompass)
+                {
+                    if (triforceImage != null)
+                    {
+                        triforceImage.Draw(batch);
                     }
                 }
                 linkImage.Draw(batch);

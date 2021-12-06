@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Poggus
 {
-    class TextSprite : ISprite
+    public class TextSprite : ISprite
     {
         public int CurrentFrame { get; set; }
 
@@ -36,11 +36,15 @@ namespace Poggus
         public void Update(GameTime gameTime) { }
         public void Draw(SpriteBatch spriteBatch, Rectangle destRect)
         {
-            spriteBatch.DrawString(font, text, destRect.Location.ToVector2(), color, 0, Vector2.Zero, 1, SpriteEffects.None, 1.0f);
+            Rectangle worldRect = destRect;
+            if (!IsUISprite) { worldRect = new Rectangle(destRect.Location + Main.Camera.main.GetPosition(), destRect.Size); }
+            spriteBatch.DrawString(font, text, worldRect.Location.ToVector2(), color, 0, Vector2.Zero, 1, SpriteEffects.None, 1.0f);
         }
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(font, text, position.ToVector2(), color, 0, Vector2.Zero, 1, SpriteEffects.None, 1.0f);
+            Point worldPos = position;
+            if (!IsUISprite) { worldPos = position + Main.Camera.main.GetPosition(); }
+            spriteBatch.DrawString(font, text, worldPos.ToVector2(), color, 0, Vector2.Zero, 1, SpriteEffects.None, 1.0f);
         }
         public void SetPosition(Point pos)
         {

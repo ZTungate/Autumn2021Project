@@ -54,6 +54,14 @@ namespace Poggus.Blocks
         {
             //only used by moveable blocks
         }
+        virtual public void MoveLeft()
+        {
+            //only used by moveable blocks
+        }
+        virtual public void MoveRight()
+        {
+            //only used by moveable blocks
+        }
         public void SetPosition(Point pos)
         {
             this.DestRect = new Rectangle(pos, DestRect.Size);
