@@ -45,13 +45,13 @@ namespace Poggus
             this.controllerMappings.Add(Keys.J, new GenerateNewDungeonCommand(myGame));
 
             //Player Movement
-            this.controllerMappings.Add(Keys.Up, new PlayerUpMoveCommand(myGame));
+            
             this.controllerMappings.Add(Keys.W, new PlayerUpMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.Right, new PlayerRightMoveCommand(myGame));
+            
             this.controllerMappings.Add(Keys.D, new PlayerRightMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.Left, new PlayerLeftMoveCommand(myGame));
+            
             this.controllerMappings.Add(Keys.A, new PlayerLeftMoveCommand(myGame));
-            this.controllerMappings.Add(Keys.Down, new PlayerDownMoveCommand(myGame));
+            
             this.controllerMappings.Add(Keys.S, new PlayerDownMoveCommand(myGame));
 
             //Player Controls
@@ -70,8 +70,10 @@ namespace Poggus
             //GAME CONTROLS
             this.controllerMappings.Add(Keys.P, new PauseCommand(myGame));
             this.controllerMappings.Add(Keys.M, new ToggleSoundCommand(myGame));
-
-
+            this.controllerMappings.Add(Keys.Left, new MenuLeftCommand(myGame));
+            this.controllerMappings.Add(Keys.Down, new MenuDownCommand(myGame));
+            this.controllerMappings.Add(Keys.Right, new MenuRightCommand(myGame));
+            this.controllerMappings.Add(Keys.Up, new MenuUpCommand(myGame));
             this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
             this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
             this.controllerMappings.Add(Keys.NumPad2, new SwitchLevelCommand(myGame, new Point(0, -1)));
