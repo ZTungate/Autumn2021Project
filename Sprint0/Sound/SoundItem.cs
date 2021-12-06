@@ -169,6 +169,13 @@ namespace Poggus.Sound
             instance = enemyDeath.CreateInstance();
             playSound();
         }
+
+        public void playSecret()
+        {
+            instance = secret.CreateInstance();
+            playSound();
+        }
+
         public void playSound()
         {
             instance.Volume = myVolume;

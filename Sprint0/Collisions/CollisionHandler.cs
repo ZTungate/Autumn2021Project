@@ -48,40 +48,35 @@ namespace Poggus.Collisions
             foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(ene, myLink);
                 if (eneLink.IsCollision) {
-                    //If link is attacking, damage the enemy he contacts.
-                    if (eneLink.Link1.State is DownSwordLinkState || eneLink.Link1.State is RightSwordLinkState || eneLink.Link1.State is UpSwordLinkState || eneLink.Link1.State is LeftSwordLinkState) {
-                        ene.TakeDamage(LinkConstants.swordDamage);
+                    //Link gets hurt, damage him based on the enemy contacted.
+                    switch (eneLink.enemy2.EnemyType)
+                    {
+                        case EnemyType.Bat:
+                            eneLink.Link1.TakeDamage(EnemyConstants.batDamage, eneLink.direction);
+                            break;
+                        case EnemyType.BladeTrap:
+                            eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage, eneLink.direction);
+                            break;
+                        case EnemyType.Dragon:
+                            eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage, eneLink.direction);
+                            break;
+                        case EnemyType.Grabber:
+                            eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage, eneLink.direction);
+                            eneLink.Link1.SetPosition(LinkConstants.originPos);
+                            myDungeon.SetCurrentLevel(new Point(0,0));
+                            Main.Camera.main.BeginMoveTo(myDungeon.GetCurrentLevel().GetPosition(), 12);
+                            break;
+                        case EnemyType.Skeleton:
+                            eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage, eneLink.direction);
+                            break;
+                        case EnemyType.Slime:
+                            eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage, eneLink.direction);
+                            break;
+                        case EnemyType.Thrower:
+                            eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage, eneLink.direction);
+                            break;
                     }
-                    else {
-                        //Link gets hurt, damage him based on the enemy contacted.
-                        switch (eneLink.enemy2.EnemyType)
-                        {
-                            case EnemyType.Bat:
-                                eneLink.Link1.TakeDamage(EnemyConstants.batDamage, eneLink.direction);
-                                break;
-                            case EnemyType.BladeTrap:
-                                eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage, eneLink.direction);
-                                break;
-                            case EnemyType.Dragon:
-                                eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage, eneLink.direction);
-                                break;
-                            case EnemyType.Grabber:
-                                eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage, eneLink.direction);
-                                eneLink.Link1.SetPosition(LinkConstants.originPos);
-                                myDungeon.SetCurrentLevel(new Point(0,0));
-                                Main.Camera.main.BeginMoveTo(myDungeon.GetCurrentLevel().GetPosition(), 12);
-                                break;
-                            case EnemyType.Skeleton:
-                                eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage, eneLink.direction);
-                                break;
-                            case EnemyType.Slime:
-                                eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage, eneLink.direction);
-                                break;
-                            case EnemyType.Thrower:
-                                eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage, eneLink.direction);
-                                break;
-                        }
-                    }
+                    
                 }
             }
 
