@@ -23,6 +23,7 @@ namespace Poggus.Levels
         public Point returnSpawn = Point.Zero;
 
         public List<MoveableFloorBlock> moveableBlockList = new List<MoveableFloorBlock>();
+        public List<TextSprite> textList = new List<TextSprite>();
         List<LevelDoor> doors;
         ISprite backgroundSprite;
         Point location;
@@ -144,6 +145,10 @@ namespace Poggus.Levels
             {
                 item.SetRectangle(new Rectangle(item.GetRectangle().X + p.X, item.GetRectangle().Y + p.Y, item.GetRectangle().Width, item.GetRectangle().Height));
             }
+            foreach(TextSprite textSprite in textList)
+            {
+                textSprite.SetPosition(textSprite.GetPosition() + p);
+            }
 
             ConstructLevelBounds();
         }
@@ -210,6 +215,11 @@ namespace Poggus.Levels
                     enemy.Draw(batch);
                 }
             }
+            foreach (TextSprite text in textList)
+            {
+                text.Draw(batch);
+            }
+
         }
         public IProjectile spawnAnimationProjectile;
         public void DoEnemySpawnAnimation()

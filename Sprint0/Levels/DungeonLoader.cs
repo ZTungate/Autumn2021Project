@@ -181,6 +181,14 @@ namespace Poggus.Levels
 
                                 i = finalComma;
                             }
+                            else if(ch == 'W')
+                            {
+                                string textString = levelConditions.Substring(i + 2);
+                                TextSprite textSprite = new TextSprite(UI.HUDSpriteFactory.instance.hudFont, textString, Color.White, level.GetPosition() + new Point(4 * Blocks.AbstractBlock.BLOCK_SIZE_X, 2 * Blocks.AbstractBlock.BLOCK_SIZE_Y));
+                                textSprite.IsUISprite = false;
+                                level.textList.Add(textSprite);
+                                i = levelConditions.Length;
+                            }
                         }
                     }
 
