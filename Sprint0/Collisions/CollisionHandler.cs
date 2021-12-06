@@ -323,18 +323,22 @@ namespace Poggus.Collisions
                     else if (itemLink.Item2 is BoomerangItem)
                     {
                         itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is CompassItem)
                     {
                         itemLink.Link1.LinkInventory.AddCompass();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if(itemLink.Item2 is MapItem)
                     {
                         itemLink.Link1.LinkInventory.AddMap();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if(itemLink.Item2 is FairyItem)
                     {
                         itemLink.Link1.Health = itemLink.Link1.maxHealth;
+                        SoundManager.sound.playItemPickup();
                     }
                     else if(itemLink.Item2 is HeartItem)
                     {

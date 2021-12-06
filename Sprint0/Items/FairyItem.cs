@@ -8,11 +8,42 @@ namespace Poggus.Items
 {
     public class FairyItem : AbstractItem
     {
+        const int RANDMOVE = 4;
+        const int MOVESPEED = 4;
         public FairyItem(Point pos) : base(ItemEnum.Fairy, pos, Point.Zero)
         {
 
         }
 
-        
+        public override void Update(GameTime gameTime)
+        {
+            this.sprite.Update(gameTime);
+        }
+        private Point RandomMove()
+        {
+            Point newPosition = rect.Location;
+
+            //Get a random number from 0-3
+            Random rand = new Random();
+            int i = rand.Next(RANDMOVE);
+
+            if (i == 0)
+            {
+                newPosition.X += MOVESPEED;
+            }
+            else if (i == 1)
+            {
+                newPosition.Y += MOVESPEED;
+            }
+            else if (i == 2)
+            {
+                newPosition.X -= MOVESPEED;
+            }
+            else
+            {
+                newPosition.Y -= MOVESPEED;
+            }
+            return newPosition;
+        }
     }
 }
