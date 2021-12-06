@@ -77,6 +77,10 @@ namespace Poggus.Levels
             if (levelDictionary.ContainsKey(nextLevelPoint))
             {
                 SetCurrentLevel(nextLevelPoint);
+                if (currentLevel.hasCustomSpawn)
+                {
+                    currentLevel.GetLink().SetPosition(currentLevel.customSpawnLocation);
+                }
             }
         }
         public Level GetLevelFromCurrent(Point direction)

@@ -75,6 +75,7 @@ namespace Poggus.UI
                 entry.Value.SetPosition(entry.Value.GetPosition() + pos);
             }
         }
+        public bool linkHasMap;
         public Point GetPosition()
         {
             return this.initialPoint;
@@ -92,9 +93,12 @@ namespace Poggus.UI
         {
             if (visible)
             {
-                foreach(KeyValuePair<Point,ImageUI> entry in levelLayout)
+                if (linkHasMap)
                 {
-                    entry.Value.Draw(batch);
+                    foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
+                    {
+                        entry.Value.Draw(batch);
+                    }
                 }
                 linkImage.Draw(batch);
             }
@@ -106,6 +110,10 @@ namespace Poggus.UI
         public bool IsVisible()
         {
             return visible;
+        }
+        public void SetVisible(bool vis)
+        {
+            this.visible = vis;
         }
     }
 }

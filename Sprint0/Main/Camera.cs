@@ -50,6 +50,10 @@ namespace Poggus.Main
                 }
             }
         }
+        public void SetPosition(Point pos)
+        {
+            position = (new Point(-pos.X, -pos.Y) + offset);
+        }
         public void BeginMoveTo(Point pos, float moveToSpeed)
         {
             this.moveTo = pos;

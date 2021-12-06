@@ -132,6 +132,15 @@ namespace Poggus.Collisions
                         linkBlock.block2.MoveUp();
                         SoundManager.sound.playSecret();
                     }
+                    if (linkBlock.IsCollision && block is Stair)
+                    {
+                        Stair stairBlock = (Stair)block;
+                        myDungeon.SetCurrentLevel(stairBlock.referenceLevelPoint);
+
+                        myLink.SetPosition(myDungeon.GetCurrentLevel().GetPosition() + myDungeon.GetCurrentLevel().customSpawnLocation);
+                        Main.Camera.main.SetPosition(myDungeon.GetCurrentLevel().GetPosition());
+                        Game1.instance.GetDungeon().GetCurrentLevel().DoEnemySpawnAnimation();
+                    }
                 }
             }
             foreach (IBlock moveable in myDungeon.GetCurrentLevel().moveableBlockList)
@@ -159,7 +168,19 @@ namespace Poggus.Collisions
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, rectangle);
                 if (boundLink.IsCollision)
                 {
-                    myLink.SetPosition(myLink.OldPosition);
+                    if (myGame.GetDungeon().GetCurrentLevel().hasCustomSpawn)
+                    {
+                        Point returnPoint = myGame.GetDungeon().GetCurrentLevel().returnSpawn;
+                        myGame.GetDungeon().SetCurrentLevel(myGame.GetDungeon().GetCurrentLevel().returnLevelPoint);
+                        myLink.SetPosition(myGame.GetDungeon().GetCurrentLevel().GetPosition() + returnPoint);
+
+                        Main.Camera.main.SetPosition(myDungeon.GetCurrentLevel().GetPosition());
+                        Game1.instance.GetDungeon().GetCurrentLevel().DoEnemySpawnAnimation();
+                    }
+                    else
+                    {
+                        myLink.SetPosition(myLink.OldPosition);
+                    }
                 }
                 
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList())
@@ -213,9 +234,24 @@ namespace Poggus.Collisions
                 }
             }
 
+            foreach(IProjectile proj in myGame.projectileFactory.getProjs())
+            {
+                foreach(LevelDoor door in myDungeon.GetCurrentLevel().GetDoorListAsArray())
+                {
+                    if(door.doorType == DoorType.Hole && door.isClosed)
+                    {
+                        P2RCollision projRect = (P2RCollision)detector.detectCollision(proj, door.destRect);
+                        if (projRect.IsCollision && proj is BombProjectile)
+                        {
+                            door.BlowUp();
+                        }
+                    }
+                }
+            }
+
             //handle enemy projectile collision
             List<IEnemy> eneToRemove = new List<IEnemy>();
-
+            
             foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                 //if (!(proj is ArrowPoofProjectile)) {
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
@@ -430,7 +466,14 @@ namespace Poggus.Collisions
                         }
                         if(oppositeDoor != null && oppositeDoor.isClosed)
                         {
-                            oppositeDoor.OpenDoor();
+                            if(oppositeDoor.doorType == DoorType.Hole)
+                            {
+                                oppositeDoor.BlowUp();
+                            }
+                            else
+                            {
+                                oppositeDoor.OpenDoor();
+                            }
                         }
 
                         myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos);
