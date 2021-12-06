@@ -13,7 +13,17 @@ namespace Poggus.Commands
         }
         public void Execute()
         {
-
+            if (game.Paused())
+            {
+                if (game.menuHandler.options)
+                {
+                    
+                }
+                else
+                {
+                    game.menuHandler.selectNext();
+                }
+            }
         }
     }
 }
