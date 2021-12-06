@@ -165,14 +165,9 @@ namespace Poggus.Collisions
                 foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList())
                 {
                     E2RCollision boundEnemy = (E2RCollision)detector.detectCollision(ene, rectangle);
-                    if (boundEnemy.IsCollision)
+                    if (boundEnemy.IsCollision && !(boundEnemy.enemy1 is Grabber))
                     {
                         ene.SetPosition(ene.oldPosition);
-                        if(boundEnemy.enemy1 is Grabber)
-                        {
-                            //Flip the grabber's direction (by sending a special stun time to the grabber).
-                            boundEnemy.enemy1.StunTimer = EnemyConstants.grabberFlipTrigger;
-                        }
                     }
                 }
                 foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
@@ -279,12 +274,23 @@ namespace Poggus.Collisions
                         SoundManager.sound.playEnemyDeath();
                         eneToRemove.Add(projEne.enemy2);
 
-                        Random rand = new Random();
-                        if(rand.Next(EnemyConstants.rupeeDropRate) <= 3)
+                        if (projEne.enemy2 is Dragon)
                         {
-                            AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
-                            rupee.CreateSprite();
-                            myDungeon.GetCurrentLevel().AddItem(rupee);
+                            //Spawn a heart container when the dragon dies.
+                            AbstractItem heartContainer = new HeartContainerItem(projEne.enemy2.GetPosition());
+                            heartContainer.CreateSprite();
+                            myDungeon.GetCurrentLevel().AddItem(heartContainer);
+                        }
+                        else
+                        {
+                            //Sometimes spawn a rupee when an enemy is killed.
+                            Random rand = new Random();
+                            if (rand.Next(EnemyConstants.rupeeDropRate) <= 3)
+                            {
+                                AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
+                                rupee.CreateSprite();
+                                myDungeon.GetCurrentLevel().AddItem(rupee);
+                            }
                         }
                     }
                 }
