@@ -20,6 +20,7 @@ namespace Poggus.Blocks
         void SetPosition(Point point);
 
         void MoveUp();
+        void MoveDown();
 
     }
 }
