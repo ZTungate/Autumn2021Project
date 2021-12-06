@@ -84,7 +84,7 @@ namespace Poggus.Player
             if (movingTo)
             {
                 this.SetPosition(this.GetPosition() + moveDir);
-                if((this.GetPosition().ToVector2() - nextPoint.ToVector2()).LengthSquared() <= 2f)
+                if((this.GetPosition().ToVector2() - nextPoint.ToVector2()).LengthSquared() <= 4f)
                 {
                     this.SetPosition(nextPoint);
                     this.movingTo = false;
@@ -96,7 +96,7 @@ namespace Poggus.Player
             State.Update(gameTime);
             Sprite.Update(gameTime);
 
-            ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f)), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f) - 12));
+            ColliderRect = new Rectangle(DestRect.Location + new Point(8, (int)(DestRect.Height / 2f)), new Point(DestRect.Width - 16, (int)(DestRect.Height / 2f) - 12));
         }
         Point nextPoint, moveDir;
         bool movingTo;

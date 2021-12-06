@@ -20,6 +20,7 @@ namespace Poggus.Enemies
 
         public Rectangle DestRect{ get; set; }
         public Rectangle ColliderRect { get; set; }
+        public bool interactable { get; set; }
 
         public Point oldPosition { get; set; }
 

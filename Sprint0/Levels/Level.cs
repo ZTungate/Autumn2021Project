@@ -178,7 +178,15 @@ namespace Poggus.Levels
             {
                 foreach (IEnemy enemy in enemies)
                 {
+                    enemy.interactable = true;
                     enemy.Update(gameTime);
+                }
+            }
+            else
+            {
+                foreach (IEnemy enemy in enemies)
+                {
+                    enemy.interactable = false;
                 }
             }
             foreach (AbstractItem item in items)

@@ -426,7 +426,7 @@
     <Item>
       <Object>Key</Object>
       <Location>164,127</Location>
-      <Conditions> </Conditions>
+      <Conditions>RoomClear</Conditions>
     </Item>
   </Items>
   <Enemies>

@@ -47,7 +47,7 @@ namespace Poggus.Collisions
             //handle link enemy collision
             foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(ene, myLink);
-                if (eneLink.IsCollision && myLink.collideWithBounds) {
+                if (eneLink.IsCollision && myLink.collideWithBounds && ene.interactable) {
                     //Link gets hurt, damage him based on the enemy contacted.
                     switch (eneLink.enemy2.EnemyType)
                     {
@@ -344,7 +344,7 @@ namespace Poggus.Collisions
 
             foreach (AbstractItem item in myDungeon.GetCurrentLevel().GetItemList()) {
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
-                if (itemLink.IsCollision) {
+                if (itemLink.IsCollision && item.interactable) {
                     itemToRemove.Add(itemLink.Item2);
                     if (itemLink.Item2 is BombItem)
                     {
