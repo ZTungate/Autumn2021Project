@@ -16,26 +16,15 @@ namespace Poggus.Enemies
         int returnTimer = 0;
         Rectangle xTargeting;
         Rectangle yTargeting;
+        private Direction lastAttack;
+        private Boolean attacking;
 
-        public BladeTrap(Point position) : base(EnemyType.BladeTrap, position, new Point(32, 32))
+        public BladeTrap(Point position) : base(EnemyType.BladeTrap, position, EnemyConstants.bladeTrapSize.Size)
         {
             link = Game1.instance.link;
             homePos = position;
             Health = EnemyConstants.bladeTrapHealth;
-
-            xTargeting = new Rectangle(//Rectangle to cover all X coordinates this blade trap sees
-                0,
-                (int)homePos.Y,
-                1000,
-                (int)(EnemyConstants.stdEnemySize.Width * EnemyConstants.scaleY)
-                );
-
-            yTargeting = new Rectangle(//Rectangle to cover all Y coords this blade trap sees.
-                (int)homePos.X,
-                0,
-                (int)(EnemyConstants.stdEnemySize.Width * EnemyConstants.scaleX),
-                1000
-            );
+            
         }
 
         public override void Update(GameTime gameTime)
@@ -43,7 +32,7 @@ namespace Poggus.Enemies
             oldPosition = DestRect.Location;
 
             //Change positions if the movement vector is not zero.
-            if (moveDir != Point.Zero)
+            if (attacking)
             {
                 if (attackTimer > 0)
                 {//Move into the attack and decrement attackTimer
@@ -59,8 +48,10 @@ namespace Poggus.Enemies
                 else
                 {//Stop movement and reset the timers
                     moveDir = Point.Zero;
+                    DestRect = new Rectangle(homePos, DestRect.Size);
                     attackTimer = 0;
                     returnTimer = 0;
+                    attacking = false;
                 }
             }
             else
@@ -72,52 +63,82 @@ namespace Poggus.Enemies
 
         private Point TryAttack()
         {
+            homePos = DestRect.Location;
             Rectangle linkRectangle = link.DestRect;
+            xTargeting = new Rectangle(//Rectangle to cover all X coordinates this blade trap sees
+                (int)DestRect.X - EnemyConstants.roomLength,
+                (int)DestRect.Y,
+                EnemyConstants.roomLength * 2,
+                (int)EnemyConstants.stdEnemySize.Width
+                );
 
-
+            yTargeting = new Rectangle(//Rectangle to cover all Y coords this blade trap sees.
+                (int)DestRect.X,
+                (int)DestRect.Y - EnemyConstants.roomHeight,
+                (int)EnemyConstants.stdEnemySize.Width,
+                EnemyConstants.roomHeight * 2
+            ) ;
+            
             if (Rectangle.Intersect(linkRectangle, xTargeting) != new Rectangle(0, 0, 0, 0))
             {
                 //If link is within the Y dimensions of the blade trap, check if he's to the left or right.
                 if (link.GetPosition().X < DestRect.X)
                 {
-                    moveDir = new Point(-EnemyConstants.bladeAttackSpeed, 0);
-                    attackTimer = EnemyConstants.horizBladeMoveTime;
-                    returnTimer = EnemyConstants.horizBladeMoveTime * 2;
+                    //Link is to the left
+                    moveDir = new Point(-EnemyConstants.bladeAttackSpeedHoriz, 0);
+                    lastAttack = Direction.left;
                 }
                 else
                 {
-                    moveDir = new Point(EnemyConstants.bladeAttackSpeed, 0);
-                    attackTimer = EnemyConstants.horizBladeMoveTime;
-                    returnTimer = EnemyConstants.horizBladeMoveTime * 2;
+                    //Link is to the right
+                    moveDir = new Point(EnemyConstants.bladeAttackSpeedHoriz, 0);
+                    lastAttack = Direction.right;
                 }
-
+                attackTimer = EnemyConstants.horizBladeAttackTime;
+                returnTimer = EnemyConstants.horizBladeReturnTime;
+                attacking = true;
             }
             else if(Rectangle.Intersect(linkRectangle,yTargeting) != new Rectangle(0, 0, 0, 0))
             {
                 //If link is within the X dimensions of the blade trap, check if he's above or below.
                 if (link.GetPosition().Y < DestRect.Y)
                 {
-                    //Link is above, move upwards and set timers
-                    moveDir = new Point(0, -EnemyConstants.bladeAttackSpeed);
-                    attackTimer = EnemyConstants.vertBladeMoveTime;
-                    returnTimer = EnemyConstants.vertBladeMoveTime * 2;
+                    //Link is above, move upwards
+                    moveDir = new Point(0, -EnemyConstants.bladeAttackSpeedVert);
+                    lastAttack = Direction.up;
                 }
                 else
                 {
-                    //Link is below, move downwards and set timers.
-                    moveDir = new Point(0, EnemyConstants.bladeAttackSpeed);
-                    attackTimer = EnemyConstants.vertBladeMoveTime;
-                    returnTimer = EnemyConstants.vertBladeMoveTime * 2;
+                    //Link is below, move downwards
+                    moveDir = new Point(0, EnemyConstants.bladeAttackSpeedVert);
+                    lastAttack = Direction.down;
                 }
+                //Set movement timers and the attack direction boolean.
+                attackTimer = EnemyConstants.vertBladeAttackTime;
+                returnTimer = EnemyConstants.vertBladeReturnTime;
+                attacking = true;
             }
             return moveDir;
         }
 
         private Point ReturnHome()
         {
-            Point dist = homePos - DestRect.Location;
-            int returnSpeed = returnTimer / 10;
-            moveDir = new Point(dist.X / returnSpeed, dist.Y / returnSpeed); 
+            switch (lastAttack)
+            {
+                //Make the blade trap return in the oppisite direction it attacked.
+                case Direction.up:
+                    moveDir = new Point(0, EnemyConstants.bladeReturnSpeedVert);
+                    break;
+                case Direction.down:
+                    moveDir = new Point(0, -EnemyConstants.bladeReturnSpeedVert);
+                    break;
+                case Direction.left:
+                    moveDir = new Point(EnemyConstants.bladeReturnSpeedHoriz, 0);
+                    break;
+                case Direction.right:
+                    moveDir = new Point(-EnemyConstants.bladeReturnSpeedHoriz, 0);
+                    break;
+            }
             return moveDir;
         }
 

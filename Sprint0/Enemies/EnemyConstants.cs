@@ -15,19 +15,24 @@ namespace Poggus.Enemies
         public static int skeletonMoveSpeed = 6;
         public static int slimeMoveSpeed = 8;
         public static int throwerMoveSpeed = 6;
-        public static int bladeAttackSpeed = 10;
-        public static int bladeReturnSpeed = bladeAttackSpeed / 2;
+        public static int bladeAttackSpeedHoriz = 6;
+        public static int bladeAttackSpeedVert = 3;
+        public static int bladeReturnSpeedHoriz = 2;
+        public static int bladeReturnSpeedVert = 1;
         public static int grabberMoveSpeed = 10;
 
         //Enemy sizes
         public static float scaleX, scaleY;
         public static Rectangle stdEnemySize = new Rectangle(0,0, 16, 16);//Size of thrower, bladeTrap, skeleton, bat, and grabber.
+        public static Rectangle bladeTrapSize = new Rectangle(0, 0, 30, 30);
         public static Rectangle slimeSize = new Rectangle(0, 0, 8, 16);
         public static Rectangle dragonSize = new Rectangle(0, 0, 24, 32);
 
         //Blade trap move times
-        public static int horizBladeMoveTime = 1000;
-        public static int vertBladeMoveTime = 500;
+        public static int horizBladeAttackTime = 900;
+        public static int vertBladeAttackTime = 600;
+        public static int horizBladeReturnTime = 2700;
+        public static int vertBladeReturnTime = vertBladeAttackTime * 3;
 
         //Enemy Healths
         public static int batHealth = 1;
@@ -53,5 +58,8 @@ namespace Poggus.Enemies
 
         public static int clockStunTime = 2000;
         public static int grabberFlipTrigger = -10000;
+
+        public static int roomHeight = 1000;
+        public static int roomLength = 1000;
     }
 }
