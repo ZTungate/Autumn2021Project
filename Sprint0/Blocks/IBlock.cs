@@ -21,6 +21,8 @@ namespace Poggus.Blocks
 
         void MoveUp();
         void MoveDown();
+        void MoveRight();
+        void MoveLeft();
 
     }
 }

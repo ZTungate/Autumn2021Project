@@ -9,9 +9,14 @@ namespace Poggus.Blocks
     {
         private static int velocity = 1;
         private static int BLOCK_SIZE_Y = (int)(64 * Game1.heightScalar);
+        private static int BLOCK_SIZE_X = 64;
         private bool isMovingUp = false;
         private bool isMovingDown = false;
+        private bool isMovingLeft = false;
+        private bool isMovingRight = false;
         private int destinationY;
+        private int destinationX;
+
         public MoveableFloorBlock(Point pos) : base(BlockType.MoveableFloorBlock, pos)
         {
             this.Moveable = true;
@@ -35,7 +40,29 @@ namespace Poggus.Blocks
                 }
                 else
                 {
-                    isMovingUp = false;
+                    isMovingDown = false;
+                }
+            }
+            if (isMovingRight)
+            {
+                if (GetPosition().X > destinationX)
+                {
+                    DestRect = new Rectangle(DestRect.Location + new Point(2, 0), DestRect.Size);
+                }
+                else
+                {
+                    isMovingRight = false;
+                }
+            }
+            if (isMovingLeft)
+            {
+                if (GetPosition().X < destinationX)
+                {
+                    DestRect = new Rectangle(DestRect.Location + new Point(-2, 0), DestRect.Size);
+                }
+                else
+                {
+                    isMovingLeft = false;
                 }
             }
         }
@@ -57,6 +84,26 @@ namespace Poggus.Blocks
             int X = this.GetPosition().X;
             int Y = this.GetPosition().Y;
             destinationY = Y + BLOCK_SIZE_Y;
+            this.Moveable = false;
+
+        }
+        public override void MoveRight()
+        {
+
+            isMovingRight = true;
+            int X = this.GetPosition().X;
+            int Y = this.GetPosition().Y;
+            destinationX = X + BLOCK_SIZE_Y;
+            this.Moveable = false;
+
+        }
+        public override void MoveLeft()
+        {
+
+            isMovingLeft = true;
+            int X = this.GetPosition().X;
+            int Y = this.GetPosition().Y;
+            destinationX = X - BLOCK_SIZE_Y;
             this.Moveable = false;
 
         }
