@@ -19,7 +19,6 @@ namespace Poggus.Enemies
         public static int bladeAttackSpeedVert = 3;
         public static int bladeReturnSpeedHoriz = 2;
         public static int bladeReturnSpeedVert = 1;
-        public static int grabberMoveSpeed = 10;
 
         //Enemy sizes
         public static float scaleX, scaleY;
@@ -33,6 +32,11 @@ namespace Poggus.Enemies
         public static int vertBladeAttackTime = 600;
         public static int horizBladeReturnTime = 2700;
         public static int vertBladeReturnTime = vertBladeAttackTime * 3;
+
+        //Grabber stuff
+        public static int grabberStateTime = 2000;
+        public static int grabberEmergeVelocity = 1;
+        public static int grabberSlideVelocity = 2;
 
         //Enemy Healths
         public static int batHealth = 1;
