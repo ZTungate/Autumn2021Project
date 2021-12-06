@@ -83,14 +83,14 @@ namespace Poggus.Player
             knockback(gameTime);
             State.Update(gameTime);
             Sprite.Update(gameTime);
+
+            ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f) - 4), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f)));
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             Rectangle tempRect = new Rectangle(DestRect.Location, new Point((int)(Sprite.SourceRect[Sprite.CurrentFrame].Width * Game1.gameScaleX * LinkConstants.linkScaleX), (int)(Sprite.SourceRect[Sprite.CurrentFrame].Height * Game1.gameScaleY * LinkConstants.linkScaleY)));
-
-            ColliderRect = new Rectangle(tempRect.Location + new Point(0,(int)(tempRect.Height/2f)), new Point(tempRect.Width, (int)(tempRect.Height/2f)));
-
+            
             Sprite.Draw(spriteBatch, tempRect);   //draw the player sprite
         }
 
@@ -211,7 +211,7 @@ namespace Poggus.Player
         }
         public void SetPosition(Point pos)
         {
-            this.DestRect = new Rectangle(pos, DestRect.Size); 
+            this.DestRect = new Rectangle(pos, DestRect.Size);
         }
         public Rectangle GetCollider()
         {
