@@ -75,7 +75,7 @@ namespace Poggus.PauseMenu
 
         public void Draw(SpriteBatch batch, Texture2D fadeImage)
         {
-            if (game.Paused())
+            if (game.Paused() && !game.inventoryOpen)
             {
                 if (options)
                 {

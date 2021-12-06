@@ -13,6 +13,7 @@ namespace Poggus.Commands
         }
         public void Execute()
         {
+            game.inventoryOpen = !game.inventoryOpen;
             game.hudHandler.ToggleFullscreen();
             game.togglePause();
         }
