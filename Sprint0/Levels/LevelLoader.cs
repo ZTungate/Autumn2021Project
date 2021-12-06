@@ -142,7 +142,6 @@ namespace Poggus.Levels
                     }
                     reader.MoveToElement();
                 }
-                newLevel.ConstructLevelBounds();
                 levels.Add(levelName, newLevel);
             }
         }

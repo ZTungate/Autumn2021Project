@@ -84,16 +84,69 @@ namespace Poggus.Levels
 
             minX -= location.X;
             minY -= location.Y;
-            Rectangle upBound = new Rectangle(location + new Point(0, 0), new Point(backgroundRectangle.Width, minY - 4));
-            Rectangle downBound = new Rectangle(location + new Point(0, maxY + 5), new Point(backgroundRectangle.Width, backgroundRectangle.Height - (maxY + 1)));
 
-            Rectangle leftBound = new Rectangle(location + new Point(0, 0), new Point(minX - 4, backgroundRectangle.Height));
-            Rectangle rightBound = new Rectangle(location + new Point(maxX + 4, 0), new Point(backgroundRectangle.Width - (maxX + 1), backgroundRectangle.Height));
+            LevelDoor door;
 
-            boundingBoxList.Add(upBound);
-            boundingBoxList.Add(downBound);
-            boundingBoxList.Add(leftBound);
-            boundingBoxList.Add(rightBound);
+            //UP BOUND
+            if((door = GetDoorFromDirection(new Point(0, 1))) != null)
+            {
+                Rectangle upBound1 = new Rectangle(location + new Point(0, 0), new Point(door.destRect.X - location.X, minY - 4));
+                Rectangle upBound2 = new Rectangle(upBound1.Location + new Point(upBound1.Width + door.destRect.Width,0), upBound1.Size);
+
+                boundingBoxList.Add(upBound1);
+                boundingBoxList.Add(upBound2);
+            }
+            else
+            {
+                Rectangle upBound = new Rectangle(location + new Point(0, 0), new Point(backgroundRectangle.Width, minY - 4));
+                boundingBoxList.Add(upBound);
+            }
+
+            //DOWN BOUND
+            if ((door = GetDoorFromDirection(new Point(0, -1))) != null)
+            {
+                Rectangle downBound1 = new Rectangle(location + new Point(0, maxY + 5), new Point(door.destRect.X - location.X, backgroundRectangle.Height - (maxY + 1)));
+                Rectangle downBound2 = new Rectangle(downBound1.Location + new Point(downBound1.Width + door.destRect.Width, 0), downBound1.Size);
+
+
+                boundingBoxList.Add(downBound1);
+                boundingBoxList.Add(downBound2);
+            }
+            else
+            {
+                Rectangle downBound = new Rectangle(location + new Point(0, maxY + 5), new Point(backgroundRectangle.Width, backgroundRectangle.Height - (maxY + 1)));
+                boundingBoxList.Add(downBound);
+            }
+
+            //LEFT BOUND
+            if ((door = GetDoorFromDirection(new Point(-1, 0))) != null)
+            {
+                Rectangle leftBound1 = new Rectangle(location + new Point(0, 0), new Point(minX - 4, door.destRect.Y - location.Y));
+                Rectangle leftBound2 = new Rectangle(leftBound1.Location + new Point(0,leftBound1.Height + door.destRect.Height), leftBound1.Size);
+
+                boundingBoxList.Add(leftBound1);
+                boundingBoxList.Add(leftBound2);
+            }
+            else
+            {
+                Rectangle leftBound = new Rectangle(location + new Point(0, 0), new Point(minX - 4, backgroundRectangle.Height));
+                boundingBoxList.Add(leftBound);
+            }
+
+            //RIGHT BOUND
+            if ((door = GetDoorFromDirection(new Point(1, 0))) != null)
+            {
+                Rectangle rightBound1 = new Rectangle(location + new Point(maxX + 4, 0), new Point(backgroundRectangle.Width - (maxX + 1), door.destRect.Y - location.Y));
+                Rectangle rightBound2 = new Rectangle(rightBound1.Location + new Point(0, rightBound1.Height + door.destRect.Height), rightBound1.Size);
+
+                boundingBoxList.Add(rightBound1);
+                boundingBoxList.Add(rightBound2);
+            }
+            else
+            {
+                Rectangle rightBound = new Rectangle(location + new Point(maxX + 4, 0), new Point(backgroundRectangle.Width - (maxX + 1), backgroundRectangle.Height));
+                boundingBoxList.Add(rightBound);
+            }
         }
         public LevelDoor GetDoorFromDirection(Point direction)
         {

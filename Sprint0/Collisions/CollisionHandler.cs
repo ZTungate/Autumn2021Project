@@ -441,7 +441,7 @@ namespace Poggus.Collisions
                     }
                 }
                 //Boundary and door collisions
-                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect);
+                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.collider);
                 if (boundLink.IsCollision && myLink.collideWithBounds)
                 {
                     Point dir = Dungeon.directions[(int)door.GetDirection()];
@@ -497,6 +497,7 @@ namespace Poggus.Collisions
                     }
                     else
                     {
+                        myLink.SetPosition(myLink.OldPosition);
                         if (door.doorType == DoorType.Key && myLink.LinkInventory.GetKeyCount() > 0)
                         {
                             myLink.LinkInventory.DecrementKeys();

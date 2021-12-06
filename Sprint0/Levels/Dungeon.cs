@@ -70,6 +70,13 @@ namespace Poggus.Levels
                 }
             }
         }
+        public void ConstructLevelBounds()
+        {
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                entry.Value.ConstructLevelBounds();
+            }
+        }
         public void UpdateCurrent(GameTime gameTime)
         {
             currentLevel.Update(gameTime);
