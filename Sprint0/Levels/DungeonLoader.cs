@@ -75,7 +75,7 @@ namespace Poggus.Levels
                                     doorType = DoorType.Hole;
                                     level.AddDoorCondition(doorDir, doorType);
                                 }
-                                i += 3;
+                                i += 2;
                             }
                             else if (ch == 'D')
                             {
@@ -96,7 +96,7 @@ namespace Poggus.Levels
                                     doorType = DoorType.Hole;
                                     level.AddDoorCondition(doorDir, doorType);
                                 }
-                                i += 3;
+                                i += 2;
                             }
                             else if (ch == 'L')
                             {
@@ -117,7 +117,7 @@ namespace Poggus.Levels
                                     doorType = DoorType.Hole;
                                     level.AddDoorCondition(doorDir, doorType);
                                 }
-                                i += 3;
+                                i += 2;
                             }
                             else if (ch == 'R')
                             {
@@ -138,15 +138,68 @@ namespace Poggus.Levels
                                     doorType = DoorType.Hole;
                                     level.AddDoorCondition(doorDir, doorType);
                                 }
-                                i += 3;
+                                i += 2;
                             }
                             else if (ch == 'S')
                             {
-
+                                int nextComma = levelConditions.IndexOf(",", i);
+                                string levelX = levelConditions.Substring(i + 2, nextComma - (i + 2));
+                                string levelY = levelConditions.Substring(nextComma+1);
+                                int levelXVal = int.Parse(levelX);
+                                int levelYVal = int.Parse(levelY);
+                                Blocks.IBlock[] blocks = level.GetBlockArray();
+                                foreach (Blocks.IBlock block in blocks)
+                                {
+                                    if(block is Blocks.Stair)
+                                    {
+                                        Blocks.Stair stairBlock = (Blocks.Stair)block;
+                                        stairBlock.referenceLevelPoint = new Point(levelXVal, levelYVal);
+                                    }
+                                }
                             }
                             else if (ch == 'B')
                             {
+                                int nextComma = levelConditions.IndexOf(",", i);
+                                string blockMoveDirX = levelConditions.Substring(i + 2, nextComma - (i + 2));
+                                string blockMoveDirY = levelConditions.Substring(nextComma + 1);
 
+                            }
+                            else if(ch == 'Q')
+                            {
+                                int nextComma = levelConditions.IndexOf(",", i);
+                                string customSpawnX = levelConditions.Substring(i + 2, nextComma - (i + 2));
+                                string customSpawnY = levelConditions.Substring(nextComma + 1);
+                                int spawnX = int.Parse(customSpawnX);
+                                int spawnY = int.Parse(customSpawnY);
+                                level.hasCustomSpawn = true;
+                                level.customSpawnLocation = new Point((int)(spawnX * Blocks.AbstractBlock.BLOCK_SIZE_X), (int)(spawnY * Blocks.AbstractBlock.BLOCK_SIZE_Y));
+                                i = levelConditions.Length - 1;
+                            }
+                            else if(ch == 'Y')
+                            {
+                                int nextComma = levelConditions.IndexOf(",", i);
+                                int finalComma = levelConditions.IndexOf(",", nextComma + 1);
+                                string backSpawnX = levelConditions.Substring(i + 2, nextComma - (i + 2));
+                                string backSpawnY = levelConditions.Substring(nextComma + 1, finalComma - nextComma - 1);
+                                int spawnX = int.Parse(backSpawnX);
+                                int spawnY = int.Parse(backSpawnY);
+                                level.hasCustomSpawn = true;
+                                level.returnSpawn = new Point((int)(spawnX * Blocks.AbstractBlock.BLOCK_SIZE_X), (int)(spawnY * Blocks.AbstractBlock.BLOCK_SIZE_Y));
+
+                                i = finalComma;
+                            }
+                            else if(ch == 'P')
+                            {
+                                int nextComma = levelConditions.IndexOf(",", i);
+                                int finalComma = levelConditions.IndexOf(",", nextComma + 1);
+                                string backLevelX = levelConditions.Substring(i + 2, nextComma - (i + 2));
+                                string backLevelY = levelConditions.Substring(nextComma + 1, finalComma - nextComma - 1);
+                                int backX = int.Parse(backLevelX);
+                                int backY = int.Parse(backLevelY);
+                                level.hasCustomSpawn = true;
+                                level.returnLevelPoint = new Point(backX, backY);
+
+                                i = finalComma;
                             }
                         }
                     }

@@ -9,7 +9,7 @@ namespace Poggus.Blocks
     {
         public Ladder(Point pos) : base(BlockType.Ladder, pos)
         {
-
+            Walkable = true;
         }
     }
 }

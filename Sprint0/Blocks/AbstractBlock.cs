@@ -10,8 +10,8 @@ namespace Poggus.Blocks
 {
     public abstract class AbstractBlock : IBlock
     {
-        private static int BLOCK_SIZE_X = 64;
-        private static int BLOCK_SIZE_Y = (int)(64 * Game1.heightScalar);
+        public static int BLOCK_SIZE_X = 64;
+        public static int BLOCK_SIZE_Y = (int)(64 * Game1.heightScalar);
         public ISprite Sprite { get; set; }
         public Rectangle DestRect { get; set; }
         public bool Walkable { set;  get; }

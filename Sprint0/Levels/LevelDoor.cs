@@ -16,10 +16,11 @@ namespace Poggus.Levels
         public Rectangle destRect;
         public bool isClosed;
         public DoorType doorType;
+        
         public LevelDoor(DoorType doorType, ISprite sprite, DoorDirectionEnum direction, Rectangle dest)
         {
             this.doorType = doorType;
-            if(doorType == DoorType.Closed || doorType == DoorType.Key)
+            if(doorType == DoorType.Closed || doorType == DoorType.Key || doorType == DoorType.Hole)
             {
                 this.isClosed = true;
             }
@@ -37,7 +38,15 @@ namespace Poggus.Levels
         }
         public void Draw(SpriteBatch batch)
         {
-            this.sprite.Draw(batch, destRect);
+            bool draw = true;
+            if(doorType == DoorType.Hole && isClosed)
+            {
+                draw = false;
+            }
+            if (draw)
+            {
+                this.sprite.Draw(batch, destRect);
+            }
         }
         public DoorDirectionEnum GetDirection()
         {
@@ -50,5 +59,13 @@ namespace Poggus.Levels
             this.isClosed = false;
             SetDirection(doorDirection);
         }
+        public void BlowUp()
+        {
+            this.doorType = DoorType.Hole;
+            isClosed = false;
+            this.sprite = new HoleDoorSprite(this.sprite.Texture);
+            SetDirection(doorDirection);
+        }
+        
     }
 }

@@ -16,6 +16,11 @@ namespace Poggus.Levels
     public class Level
     {
         Dictionary<Point, DoorType> doorConditions;
+        public bool hasCustomSpawn = false;
+        public Point customSpawnLocation = Point.Zero;
+
+        public Point returnLevelPoint;
+        public Point returnSpawn = Point.Zero;
 
         public List<MoveableFloorBlock> moveableBlockList = new List<MoveableFloorBlock>();
         List<LevelDoor> doors;
@@ -176,13 +181,23 @@ namespace Poggus.Levels
         {
             this.backgroundSprite.Draw(batch, this.backgroundRectangle);
 
-            foreach(KeyValuePair<Point,IBlock> entry in blocks)
+            foreach (LevelDoor door in doors)
+            {
+                door.Draw(batch);
+            }
+
+            foreach (KeyValuePair<Point,IBlock> entry in blocks)
             {
                 entry.Value.Draw(batch);
             }
             foreach (MoveableFloorBlock block in moveableBlockList)
             {
                 block.Draw(batch);
+            }
+
+            foreach (AbstractItem item in items)
+            {
+                item.Draw(batch);
             }
             if (!enemySpawnAnimation)
             {
@@ -191,14 +206,6 @@ namespace Poggus.Levels
                     enemy.Draw(batch);
                 }
             }
-            foreach(AbstractItem item in items)
-            {
-                item.Draw(batch);
-            }
-            foreach (LevelDoor door in doors)
-            {
-                door.Draw(batch);
-            }
         }
         public IProjectile spawnAnimationProjectile;
         public void DoEnemySpawnAnimation()
@@ -206,7 +213,14 @@ namespace Poggus.Levels
             enemySpawnAnimation = true;
             foreach(IEnemy enemy in enemies)
             {
-                spawnAnimationProjectile = Game1.instance.projectileFactory.NewEnemyPoof(enemy.DestRect.Location, enemy.DestRect.Size);
+                if (spawnAnimationProjectile == null)
+                {
+                    spawnAnimationProjectile = Game1.instance.projectileFactory.NewEnemyPoof(enemy.DestRect.Location, enemy.DestRect.Size);
+                }
+                else
+                {
+                    Game1.instance.projectileFactory.NewEnemyPoof(enemy.DestRect.Location, enemy.DestRect.Size);
+                }
             }
         }
         public void ResetEnemySpawnAnimation()
