@@ -313,6 +313,10 @@ namespace Poggus.Collisions
                     {
                         itemLink.Link1.LinkInventory.AddCompass();
                     }
+                    else if(itemLink.Item2 is MapItem)
+                    {
+                        itemLink.Link1.LinkInventory.AddMap();
+                    }
                     else if(itemLink.Item2 is FairyItem)
                     {
                         itemLink.Link1.Health = itemLink.Link1.maxHealth;
