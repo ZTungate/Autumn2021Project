@@ -275,6 +275,14 @@ namespace Poggus.Collisions
                     if (projEne.enemy2.Health <= 0) {
                         SoundManager.sound.playEnemyDeath();
                         eneToRemove.Add(projEne.enemy2);
+
+                        Random rand = new Random();
+                        if(rand.Next(EnemyConstants.rupeeDropRate) <= 3)
+                        {
+                            AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
+                            rupee.CreateSprite();
+                            myDungeon.GetCurrentLevel().AddItem(rupee);
+                        }
                     }
                 }
                 //}
