@@ -9,8 +9,10 @@ namespace Poggus.PauseMenu
 
         private Game1 game;
         float volume;
+        Boolean[] cursor;
         public PauseMenuHandler(Game1 game)
         {
+            cursor[0] = true;
             this.game = game;
             volume = game.soundManager.volume;
         }
