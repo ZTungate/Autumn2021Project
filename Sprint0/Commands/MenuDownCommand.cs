@@ -17,7 +17,7 @@ namespace Poggus.Commands
             {
                 if (game.menuHandler.options)
                 {
-
+                    game.menuHandler.selectNextOptions();
                 }
                 else
                 {

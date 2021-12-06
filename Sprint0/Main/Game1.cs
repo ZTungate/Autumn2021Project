@@ -316,6 +316,10 @@ namespace Poggus
         {
             isPaused = !isPaused;
             link.State.Idle();
+            if (!isPaused)
+            {
+                menuHandler.options = false;
+            }
         }
 
         public void toggleSound()
