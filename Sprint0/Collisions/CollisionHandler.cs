@@ -127,9 +127,10 @@ namespace Poggus.Collisions
                 }
                 else
                 {
-                    if(linkBlock.direction is ColDirections.South)
+                    if(linkBlock.direction is ColDirections.South & block is MoveableFloorBlock)
                     {
                         linkBlock.block2.MoveUp();
+                        SoundManager.sound.playSecret();
                     }
                 }
             }
