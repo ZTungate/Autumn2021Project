@@ -164,7 +164,7 @@ namespace Poggus.Collisions
                     }
                     else if (linkBlock.direction is ColDirections.West)
                     {
-                        linkBlock.block2.MoveRight();
+                        //linkBlock.block2.MoveRight();
                     }
                 }
             }
