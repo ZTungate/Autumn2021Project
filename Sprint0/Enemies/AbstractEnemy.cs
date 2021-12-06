@@ -56,6 +56,7 @@ namespace Poggus.Enemies
                 this.Health -= damageAmount;
                 this.InvincibilityTimer = EnemyConstants.invincibilityTime;
                 Game1.instance.soundManager.sound.playEnemyHit();
+                
             }
         }
     }

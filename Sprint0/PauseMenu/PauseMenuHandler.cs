@@ -4,14 +4,15 @@ using System.Text;
 
 namespace Poggus.PauseMenu
 {
-    class PauseMenuHandler
+    public class PauseMenuHandler
     {
 
-
-
+        private Game1 game;
+        float volume;
         public PauseMenuHandler(Game1 game)
         {
-
+            this.game = game;
+            volume = game.soundManager.volume;
         }
     }
 }
