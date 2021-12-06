@@ -35,6 +35,8 @@ namespace Poggus.Enemies
                 {
                     this.DestRect = new Rectangle(BatRandomMove(), DestRect.Size);
                 }
+                ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f) - 4), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f)));
+
             }
             else
             {

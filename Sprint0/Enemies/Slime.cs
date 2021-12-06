@@ -41,6 +41,8 @@ namespace Poggus.Enemies
                 {
                     InvincibilityTimer -= gameTime.ElapsedGameTime.Milliseconds;
                 }
+                ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f) - 4), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f)));
+
             }
             else
             {

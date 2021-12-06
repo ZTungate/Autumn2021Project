@@ -18,6 +18,7 @@ namespace Poggus.Enemies
         public EnemyType EnemyType { get; }
 
         public Rectangle DestRect{ get; set; }
+        public Rectangle ColliderRect { get; set; }
 
         public Point oldPosition { get; set; }
 

@@ -13,6 +13,7 @@ namespace Poggus.Enemies
         public ISprite Sprite { get; set; }
         public IEnemyState State { get; set; }
         public Rectangle DestRect { get; set; }
+        public Rectangle ColliderRect { get; set; }
         public Point oldPosition { get; set; }
         public EnemyType EnemyType { get; }
         public int Health { get; set; }

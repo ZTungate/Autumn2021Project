@@ -61,7 +61,7 @@ namespace Poggus.Collisions
         public ICollision detectCollision(IEnemy object1, IBlock object2) 
         {
             
-            ICollision collision = new E2BCollision(directionDetect(object1.DestRect, object2.DestRect), object1.DestRect.Intersects(object2.DestRect), object1, object2);
+            ICollision collision = new E2BCollision(directionDetect(object1.ColliderRect, object2.DestRect), object1.ColliderRect.Intersects(object2.DestRect), object1, object2);
             return collision;
         }
 
@@ -99,7 +99,7 @@ namespace Poggus.Collisions
         //Returns E2R collision
         public ICollision detectCollision(IEnemy object1, Rectangle object2)
         {
-            ICollision collision = new E2RCollision(directionDetect(object1.DestRect, object2), object1.DestRect.Intersects(object2), object1, object2);
+            ICollision collision = new E2RCollision(directionDetect(object1.ColliderRect, object2), object1.ColliderRect.Intersects(object2), object1, object2);
 
             return collision;
         }

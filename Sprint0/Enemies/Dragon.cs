@@ -54,6 +54,8 @@ namespace Poggus.Enemies
                     attackTimer = 0;
                     Attack();
                 }
+                ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f) - 4), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f)));
+
             }
             else
             {
