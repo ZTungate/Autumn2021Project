@@ -20,7 +20,7 @@ namespace Poggus.Enemies
         private Direction lastAttack;
         private Boolean attacking;
 
-        public BladeTrap(Point position) : base(EnemyType.BladeTrap, position, EnemyConstants.bladeTrapSize.Size)
+        public BladeTrap(Point position) : base(EnemyType.BladeTrap, position, EnemyConstants.bladeTrapSize)
         {
             link = Game1.instance.link;
             homePos = position;

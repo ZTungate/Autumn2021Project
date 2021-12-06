@@ -9,7 +9,7 @@ namespace Poggus.PauseMenu.PauseSprites
     class SoundBarSprite : AbstractSprite
     {
         
-            public SoundBarSprite(Texture2D texture) : base(texture, new Rectangle[3])
+            public SoundBarSprite(Texture2D texture) : base(texture, new Rectangle[5])
             {
                 SourceRect[0] = new Rectangle(550, 435, 19, 16);
                 SourceRect[1] = new Rectangle(504, 431, 41, 20);

@@ -10,31 +10,58 @@ namespace Poggus.PauseMenu
     public class PauseMenuHandler
     {
         private static float VOLSCALE = 0.2f;
-        private static float VOLFULL = 1f;
-        private static float VOLOFF = 1f;
+        private static float VOLFULL = 1.0f;
+        private static float VOLOFF = 0.0f;
         private Game1 game;
         ISprite Resume;
         ISprite Options;
+        ISprite SoundBar;
         Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
         Rectangle OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
+        Rectangle Backdrop = new Rectangle(new Point(0, 0), new Point(1100, 1100));
+        Rectangle SoundLoc = new Rectangle(new Point(400, 200), new Point(95, 32));
         float volume;
-        Boolean cursor = true;
-        public Boolean options = false;
+        Boolean cursor = true; //true = resume false = options selected
+        public Boolean options = false; //true = in options false = normal page
+        public Boolean optionCursor = false; //true = difficulty false = volume
         public PauseMenuHandler(Game1 game)
         {   
             this.game = game;
             volume = game.soundManager.volume;
             Resume = game.pauseSpriteFactory.GetNewResumeSprite();
             Resume.CurrentFrame = 1;
+            SoundBar = game.pauseSpriteFactory.GetNewSoundBarSprite();
             Options = game.pauseSpriteFactory.GetNewOptionsSprite();
             Options.IsUISprite = true;
             Resume.IsUISprite = true;
+            SoundBar.IsUISprite = true;
         }
-
+        private void getSoundFrame()
+        {
+            volume = game.soundManager.volume;
+            if(volume <= 0.2f && volume > 0.0f)
+            {
+                SoundBar.CurrentFrame = 0;
+            } else if (volume <= 0.4f && volume > 0.2f)
+            {
+                SoundBar.CurrentFrame = 1;
+            } else if (volume <= 0.6f && volume > 0.4f)
+            {
+                SoundBar.CurrentFrame = 2;
+            } else if (volume <= 0.8f && volume > 0.6f)
+            {
+                SoundBar.CurrentFrame = 3;
+            } else if (volume <= 1.0f && volume > 0.8f)
+            {
+                SoundBar.CurrentFrame = 4;
+            }
+        }
+        
         public void Update()
         {
-            ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
-            OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
+            ResumeLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
+            OptionsLoc = new Rectangle(new Point(330, 300), new Point(384, 64));
+            getSoundFrame();
         }
 
         public void increaseVolume()
@@ -43,6 +70,7 @@ namespace Poggus.PauseMenu
             {
                 volume += VOLSCALE;
             }
+            game.soundManager.volume = volume;
         }
         public void decreaseVolume()
         {
@@ -50,6 +78,11 @@ namespace Poggus.PauseMenu
             {
                 volume -= VOLSCALE;
             }
+            game.soundManager.volume = volume;
+        }
+        public void selectNextOptions()
+        {
+            optionCursor = !optionCursor;
         }
         public void toggleOptions()
         {
@@ -57,12 +90,9 @@ namespace Poggus.PauseMenu
         }
         public void executeButton()
         {
-            if (options)
+            if (!options)
             {
-
-            }
-            else
-            {
+                
                 if (cursor)
                 {
                     game.togglePause();
@@ -80,7 +110,9 @@ namespace Poggus.PauseMenu
             {
                 if (options)
                 {
-                    
+                    batch.Draw(fadeImage, Backdrop, Color.Black);
+                    getSoundFrame();
+                    if(volume > 0) SoundBar.Draw(batch, SoundLoc);
                 }
                 else
                 {

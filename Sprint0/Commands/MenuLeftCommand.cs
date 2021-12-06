@@ -13,7 +13,16 @@ namespace Poggus.Commands
         }
         public void Execute()
         {
-
+            if (game.Paused() && !game.inventoryOpen)
+            {
+                if (game.menuHandler.options)
+                {
+                    if (!game.menuHandler.optionCursor)
+                    {
+                        game.menuHandler.decreaseVolume();
+                    }
+                }
+            }
         }
     }
 }

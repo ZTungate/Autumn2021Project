@@ -11,7 +11,7 @@ namespace Poggus.Enemies
     public class Skeleton : AbstractEnemy
     {
         const int RANDMOVE = 4;
-        public Skeleton(Point pos) : base(EnemyType.Skeleton, pos, new Point(32, 32))
+        public Skeleton(Point pos) : base(EnemyType.Skeleton, pos, EnemyConstants.stdEnemySize.Size)
         {
             Health = EnemyConstants.skeletonHealth;
         }

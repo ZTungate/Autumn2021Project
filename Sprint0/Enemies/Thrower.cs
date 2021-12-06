@@ -14,7 +14,7 @@ namespace Poggus.Enemies
         int wait = 0;
         int throwDelay = EnemyConstants.throwerAttackDelay;
         const int RANDMOVE = 20;
-        public Thrower(Point pos) : base(EnemyType.Thrower, pos, new Point(32, 32))
+        public Thrower(Point pos) : base(EnemyType.Thrower, pos, EnemyConstants.stdEnemySize.Size)
         {
             //Default a new thrower as a left thrower
             State = new ThrowerState(new Point(0, 1), Sprite, this);
