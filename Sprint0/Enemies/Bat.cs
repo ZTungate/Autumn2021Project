@@ -17,10 +17,10 @@ namespace Poggus.Enemies
 
         public override void Update(GameTime gameTime)
         {
+            oldPosition = this.DestRect.Location;
             //Update the enemy if not stunned
             if (StunTimer <= 0)
             {
-                oldPosition = this.DestRect.Location;
 
                 int lastFrame = Sprite.CurrentFrame;
                 Sprite.Update(gameTime);

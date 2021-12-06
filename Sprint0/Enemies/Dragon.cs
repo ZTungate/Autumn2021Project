@@ -27,9 +27,9 @@ namespace Poggus.Enemies
         public override void Update(GameTime gameTime)
         {
 
+            oldPosition = DestRect.Location;
             if (StunTimer <= 0)
             {
-                oldPosition = DestRect.Location;
                 //Update the sprite
                 int lastFrame = Sprite.CurrentFrame;
                 Sprite.Update(gameTime);
