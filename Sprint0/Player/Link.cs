@@ -35,6 +35,8 @@ namespace Poggus.Player
         public float Timer = 0f;
         public bool canMove = true;
         public bool isDamaged = false;
+        public bool canAttack = true;
+        public bool canUseItems = true;
 
         public ColDirections knockBackDirection;
         public float knockBackTime = 0;
@@ -150,6 +152,8 @@ namespace Poggus.Player
         private void knockback(GameTime gameTime)
         {
             if (knockBackTime > 0) {
+                canAttack = false;
+                canUseItems = false;
                 knockBackTime -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
                 switch (knockBackDirection) {
@@ -174,11 +178,17 @@ namespace Poggus.Player
                         break;
                 }
             }
+            else {
+                canAttack = true;
+                canUseItems = true;
+            }
         }
 
         public void UseItem(ProjectileTypes item)
         {
-            State.UseItem(item);
+            if (canUseItems) {
+                State.UseItem(item);
+            }
         }
 
         public void Move(Point moveDirection)
@@ -197,7 +207,9 @@ namespace Poggus.Player
         //Attacks
         public void SwordAttack()
         {
-            State.SwordAttack();
+            if (canAttack) {
+                State.SwordAttack();
+            }
         }
 
         public void PickUp(AbstractItem item)
