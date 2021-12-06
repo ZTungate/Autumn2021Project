@@ -10,7 +10,7 @@ namespace Poggus.Enemies
     public class Bat : AbstractEnemy
     {
         const int RANDMOVE = 4;
-        public Bat(Point position) : base(EnemyType.Bat, position, new Point(32,32))
+        public Bat(Point position) : base(EnemyType.Bat, position, EnemyConstants.stdEnemySize.Size)
         {
             Health = EnemyConstants.batHealth;
         }

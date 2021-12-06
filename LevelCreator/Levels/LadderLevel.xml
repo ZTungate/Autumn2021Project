@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root xmlns="LadderLevel">
+  <Blocks>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>128,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>144,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>160,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>176,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>208,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>208,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>192,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>192,0</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>176,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>160,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>144,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>128,16</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>0,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>16,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>48,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>48,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>128,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>128,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>144,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>144,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>160,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>176,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>160,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>192,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>176,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>192,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>208,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>208,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,160</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,144</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>240,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>224,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>32,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>48,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>96,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,48</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>80,64</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,80</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>64,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>128,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>144,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>160,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>208,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>192,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>112,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>128,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>144,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>160,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>176,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>192,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>MarioBrick</Object>
+      <Location>208,32</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>176,128</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>176,112</Location>
+      <Conditions> </Conditions>
+    </Block>
+    <Block>
+      <Object>Ladder</Object>
+      <Location>176,96</Location>
+      <Conditions> </Conditions>
+    </Block>
+  </Blocks>
+  <Items>
+    <Item>
+      <Object>Bow</Object>
+      <Location>130,78</Location>
+      <Conditions> </Conditions>
+    </Item>
+  </Items>
+  <Enemies>
+    <Enemy>
+      <Object>Bat</Object>
+      <Location>168,54</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>Bat</Object>
+      <Location>119,52</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+    <Enemy>
+      <Object>Bat</Object>
+      <Location>199,64</Location>
+      <Conditions> </Conditions>
+    </Enemy>
+  </Enemies>
+</root>

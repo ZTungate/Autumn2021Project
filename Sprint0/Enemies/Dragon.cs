@@ -18,7 +18,7 @@ namespace Poggus.Enemies
         private int timer = 0;
         private int attackTimer = 0;
         private int attackInterval = EnemyConstants.dragonAttackInterval;
-        public Dragon(Point pos) : base(EnemyType.Dragon, pos, new Point(32, 32))
+        public Dragon(Point pos) : base(EnemyType.Dragon, pos, EnemyConstants.dragonSize.Size)
         {
             projectiles = ProjectileFactory.Instance;
             Health = EnemyConstants.dragonHealth;

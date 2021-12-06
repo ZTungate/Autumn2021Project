@@ -19,5 +19,7 @@ namespace Poggus.Blocks
         Point GetPosition();
         void SetPosition(Point point);
 
+        void MoveUp();
+
     }
 }

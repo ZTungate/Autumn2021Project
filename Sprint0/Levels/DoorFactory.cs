@@ -21,14 +21,40 @@ namespace Poggus.Levels
             doorSpriteSheet = content.Load<Texture2D>("DoorSpriteSheet");
             doorSize = new Point(32, 32);
         }
+        public LevelDoor GetNewDoor(DoorType doorType, Point pos, Point size, DoorDirectionEnum dir)
+        {
+            if(doorType == DoorType.Closed)
+            {
+                return GetNewClosedDoor(pos, size, dir);
+            }
+            if(doorType == DoorType.Key)
+            {
+                return GetNewKeyDoor(pos, size, dir);
+            }
+            if(doorType == DoorType.Hole)
+            {
+                return GetNewHoleDoor(pos, size, dir);
+            }
+            return GetNewOpenDoor(pos, size, dir);
+        }
         public LevelDoor GetNewClosedDoor(Point pos, Point size, DoorDirectionEnum dir)
         {
-            LevelDoor door = new LevelDoor(new DoorClosedSprite(doorSpriteSheet), dir, new Rectangle(pos,size));
+            LevelDoor door = new LevelDoor(DoorType.Closed,new DoorClosedSprite(doorSpriteSheet), dir, new Rectangle(pos,size));
             return door;
         }
         public LevelDoor GetNewOpenDoor(Point pos, Point size, DoorDirectionEnum dir)
         {
-            LevelDoor door = new LevelDoor(new DoorOpenSprite(doorSpriteSheet), dir, new Rectangle(pos, size));
+            LevelDoor door = new LevelDoor(DoorType.Open,new DoorOpenSprite(doorSpriteSheet), dir, new Rectangle(pos, size));
+            return door;
+        }
+        public LevelDoor GetNewHoleDoor(Point pos, Point size, DoorDirectionEnum dir)
+        {
+            LevelDoor door = new LevelDoor(DoorType.Hole,new HoleDoorSprite(doorSpriteSheet), dir, new Rectangle(pos, size));
+            return door;
+        }
+        public LevelDoor GetNewKeyDoor(Point pos, Point size, DoorDirectionEnum dir)
+        {
+            LevelDoor door = new LevelDoor(DoorType.Key,new KeyDoorSprite(doorSpriteSheet), dir, new Rectangle(pos, size));
             return door;
         }
     }

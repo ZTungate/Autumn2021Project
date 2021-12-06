@@ -62,6 +62,7 @@ namespace Poggus.Enemies
                 this.knockBackDirection = damageDirection;
                 this.knockBackTime = Player.LinkConstants.knockBackTime;
                 Game1.instance.soundManager.sound.playEnemyHit();
+                
             }
         }
 

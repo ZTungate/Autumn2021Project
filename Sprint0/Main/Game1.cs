@@ -14,6 +14,7 @@ using Poggus.Sound;
 using Poggus.Main;
 using Poggus.UI;
 using Poggus.Levels.Generation;
+using Poggus.PauseMenu;
 
 namespace Poggus
 {
@@ -40,17 +41,17 @@ namespace Poggus
         public ICollision collision;
         public CollisionHandler handler;
         public HUDHandler hudHandler;
-
+        public PauseMenuHandler menuHandler;
         public GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
-
+        
         //Sprite factories
         public LinkSpriteFactory linkSpriteFactory;
         public EnemySpriteFactory enemySpriteFactory;
         public ItemSpriteFactory itemSpriteFactory;
         public BlockSpriteFactory blockSpriteFactory;
         public HUDSpriteFactory hudSpriteFactory;
-
+        public PauseSpriteFactory pauseSpriteFactory;
         //Link
         public ILink link;
 
@@ -84,7 +85,7 @@ namespace Poggus
             blockSpriteFactory = BlockSpriteFactory.Instance;
             projectileFactory = ProjectileFactory.Instance;
             hudSpriteFactory = HUDSpriteFactory.instance;
-
+            
 
             //Initialize sound
             soundManager = SoundManager.Instance;
@@ -137,7 +138,7 @@ namespace Poggus
             DungeonLoader.instance.LoadDungeons();
 
             hudHandler = new HUDHandler(this.link);
-
+            menuHandler = new PauseMenuHandler(this);
             //Load sounds
             soundManager.LoadContent(Content);
 
@@ -209,7 +210,7 @@ namespace Poggus
             link.Draw(_spriteBatch);
 
             hudHandler.Draw(_spriteBatch);
-
+            menuHandler.Draw(_spriteBatch);
             stateChange.fadeOut();
             _spriteBatch.End();
 
@@ -309,6 +310,7 @@ namespace Poggus
         public void togglePause()
         {
             isPaused = !isPaused;
+            
         }
 
         public void toggleSound()
