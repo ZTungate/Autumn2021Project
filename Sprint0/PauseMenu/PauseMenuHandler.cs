@@ -21,13 +21,14 @@ namespace Poggus.PauseMenu
         Boolean cursor = true;
         public Boolean options = false;
         public PauseMenuHandler(Game1 game)
-        {
-            
+        {   
             this.game = game;
             volume = game.soundManager.volume;
             Resume = game.pauseSpriteFactory.GetNewResumeSprite();
             Resume.CurrentFrame = 1;
             Options = game.pauseSpriteFactory.GetNewOptionsSprite();
+            Options.IsUISprite = true;
+            Resume.IsUISprite = true;
         }
 
         public void Update()
@@ -50,7 +51,7 @@ namespace Poggus.PauseMenu
                 volume -= VOLSCALE;
             }
         }
-        public void toogleOptions()
+        public void toggleOptions()
         {
             options = !options;
         }
@@ -83,9 +84,6 @@ namespace Poggus.PauseMenu
                 }
                 else
                 {
-
-                    
-                    
                     Resume.Draw(batch, ResumeLoc);
                     Options.Draw(batch, OptionsLoc);
                 }
