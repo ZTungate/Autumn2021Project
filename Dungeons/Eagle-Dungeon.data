@@ -6,7 +6,7 @@ SkeletonUpRoom:0,1(D=K)
 SkeletonKeyLevel:0,2(U=H)
 BatCompassLevel:1,2(U=H)
 BatLockedRoom:-1,2(U=K,R=X)
-SlimeBlockLevel:-1,3(L=B,D=K,B=-1,0)
+SlimeBlockLevel:-1,3(L=B-1,0,D=K)
 FireRoom:-2,3
 SlimeMapLevel:0,3(D=H,R=K)
 ThrowerLevel:1,3(D=H,L=K)

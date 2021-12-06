@@ -30,6 +30,10 @@ namespace Poggus.UI
         {
             return new GreenBlockSprite(hudSpriteSheet);
         }
+        public ISprite GetNewRedBlockSprite()
+        {
+            return new RedBlockSprite(hudSpriteSheet);
+        }
         public ISprite GetNewHeartSprite()
         {
             ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Heart);

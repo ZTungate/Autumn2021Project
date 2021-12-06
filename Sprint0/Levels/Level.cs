@@ -157,6 +157,10 @@ namespace Poggus.Levels
                     spawnAnimationProjectile = null;
                 }
             }
+            foreach (LevelDoor door in doors)
+            {
+                door.Update(gameTime);
+            }
             foreach (KeyValuePair<Point, IBlock> entry in blocks)
             {
                 entry.Value.Update(gameTime);
