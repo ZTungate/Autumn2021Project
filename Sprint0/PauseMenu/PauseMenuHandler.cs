@@ -56,8 +56,8 @@ namespace Poggus.PauseMenu
 
                     Resume = game.pauseSpriteFactory.GetNewResumeSprite();
                     
-                    Resume.Draw(batch, new Rectangle(new Point(420, 100), new Point(192, 32)));
-                    game.pauseSpriteFactory.GetNewOptionsSprite().Draw(batch, new Rectangle(new Point(420, 150), new Point(192, 32)));
+                    Resume.Draw(batch, new Rectangle(new Point(330, 100), new Point(384, 64)));
+                    game.pauseSpriteFactory.GetNewOptionsSprite().Draw(batch, new Rectangle(new Point(330, 200), new Point(384, 64)));
                 }
             }
         }
