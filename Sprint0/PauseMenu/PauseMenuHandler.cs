@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,7 +41,7 @@ namespace Poggus.PauseMenu
             options = !options;
         }
 
-        public void Draw(SpriteBatch batch)
+        public void Draw(SpriteBatch batch, Texture2D fadeImage)
         {
             if (game.Paused())
             {
@@ -50,7 +51,8 @@ namespace Poggus.PauseMenu
                 }
                 else
                 {
-
+                    game.pauseSpriteFactory.GetNewResumeSprite().Draw(batch, new Rectangle(new Point(420, 100), new Point(192, 32)));
+                    game.pauseSpriteFactory.GetNewOptionsSprite().Draw(batch, new Rectangle(new Point(420, 150), new Point(192, 32)));
                 }
             }
         }
