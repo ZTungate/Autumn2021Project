@@ -133,7 +133,21 @@ namespace Poggus.Collisions
                     }
                 }
             }
-
+            foreach (IBlock moveable in myDungeon.GetCurrentLevel().moveableBlockList)
+            {
+                L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, moveable);
+                if (linkBlock.IsCollision && !linkBlock.block2.Walkable && (!linkBlock.block2.Moveable || !(linkBlock.direction is ColDirections.South)))
+                {
+                    myLink.SetPosition(myLink.OldPosition);
+                }
+                else
+                {
+                    if (linkBlock.direction is ColDirections.South)
+                    {
+                        linkBlock.block2.MoveUp();
+                    }
+                }
+            }
             //room bounds
             Rectangle[] bounds = myGame.GetDungeon().GetCurrentLevel().GetBoundsAsArray();
             foreach(Rectangle rectangle in bounds)
