@@ -127,9 +127,10 @@ namespace Poggus.Collisions
                 }
                 else
                 {
-                    if(linkBlock.direction is ColDirections.South)
+                    if(linkBlock.direction is ColDirections.South & block is MoveableFloorBlock)
                     {
                         linkBlock.block2.MoveUp();
+                        SoundManager.sound.playSecret();
                     }
                 }
             }
@@ -230,32 +231,32 @@ namespace Poggus.Collisions
                             projEne.proj1.Life = ProjectileConstants.boomerangLife / 2;
                         }
                         else if (projectile is RegArrowProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage, projEne.direction);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.redArrowDamage, ColDirections.None);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BlueArrowProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.blueArrowDamage, projEne.direction);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.blueArrowDamage, ColDirections.None);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BombProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage, projEne.direction);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage, ColDirections.None);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is BombExplosionProjectile)
                         {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage, projEne.direction);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.bombDamage, ColDirections.None);
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is SwordBeamExplosionProjectile || projectile is SwordBeamProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage, projEne.direction);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.swordBeamDamage, ColDirections.None);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }
                         else if (projectile is FireProjectile) {
-                            projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage, projEne.direction);
+                            projEne.enemy2.TakeDamage(ProjectileConstants.fireDamage, ColDirections.None);
                             projEne.proj1.Life = 0;
                             /*SoundManager.sound.playEnemyHit();*/
                         }

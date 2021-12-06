@@ -23,7 +23,7 @@ namespace Poggus.Enemies
                 //Get the number for the last frame
                 int lastFrame = Sprite.CurrentFrame;
                 //Update the sprite
-                Sprite.Update(gameTime);
+                base.Update(gameTime);
 
                 //Move the skeleton if the animation frame changed
                 if (lastFrame != Sprite.CurrentFrame)

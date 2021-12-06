@@ -31,7 +31,7 @@ namespace Poggus.Enemies
             {
                 int lastFrame = Sprite.CurrentFrame;
 
-                Sprite.Update(gameTime);
+                base.Update(gameTime);
 
                 //Try to move the thrower
                 TryRandomMove(lastFrame);

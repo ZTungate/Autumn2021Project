@@ -99,10 +99,12 @@ namespace Poggus.Enemies
 
         private void knockbackMove(Point moveDirection)
         {
-            var xDir = moveDirection.X;
-            var yDir = moveDirection.Y;
-            var currentPos = this.GetPosition();
-            this.SetPosition(new Point(currentPos.X+xDir,currentPos.Y+yDir));
+            /*            var xDir = moveDirection.X;
+                        var yDir = moveDirection.Y;
+                        var currentPos = this.GetPosition();
+                        this.SetPosition(new Point(currentPos.X+xDir,currentPos.Y+yDir));*/
+            DestRect = new Rectangle(DestRect.Location + moveDirection, DestRect.Size);
+            
         }
     }
 }
