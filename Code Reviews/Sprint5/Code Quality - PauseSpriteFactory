@@ -1,0 +1,9 @@
+Author of the code review: Michael Fong
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed:  PauseSpriteFactory
+Author of the .cs file being reviewed: Zach
+Number of minutes taken to complete the review: 4:29 - 4:34 (5 minutes)
+
+This file handles the pause sprites that appear in the pause menu. It is very intuitive and returns each pause menu sprite.
+There isn't much to say other than the need to include more sprites if more menu objects are needed. Very concise and well done.
