@@ -17,6 +17,9 @@ namespace Poggus.Levels
         Point currentLevelPoint;
         Level currentLevel;
         int levelWidth, levelHeight;
+
+        public Items.TriforcePieceItem triforceItem;
+
         public Dungeon(string name, int levelWidth, int levelHeight)
         {
             this.dungeonName = name;
@@ -130,6 +133,13 @@ namespace Poggus.Levels
         }
         public bool AddLevel(Point p, Level level)
         {
+            foreach(Items.AbstractItem item in level.GetItemList())
+            {
+                if(item is Items.TriforcePieceItem)
+                {
+                    triforceItem = (Items.TriforcePieceItem)item;
+                }
+            }
             return this.levelDictionary.TryAdd(p, level);
         }
         public void DrawCurrent(SpriteBatch batch)

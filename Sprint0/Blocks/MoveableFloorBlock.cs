@@ -16,10 +16,15 @@ namespace Poggus.Blocks
         private bool isMovingRight = false;
         private int destinationY;
         private int destinationX;
+        public bool opensDoor;
+        public Point doorDirToOpen;
+        public Point dirToMoveToOpen;
+        private Point startPoint;
 
         public MoveableFloorBlock(Point pos) : base(BlockType.MoveableFloorBlock, pos)
         {
             this.Moveable = true;
+            this.startPoint = pos;
         }
 
         public override void Update(GameTime gameTime)
