@@ -310,7 +310,7 @@ namespace Poggus
         public void togglePause()
         {
             isPaused = !isPaused;
-            
+            link.State.Idle();
         }
 
         public void toggleSound()
