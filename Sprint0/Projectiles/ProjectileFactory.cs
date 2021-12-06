@@ -254,11 +254,12 @@ namespace Poggus.Projectiles
             projectiles.Add(arrowPoof);
             arrowPoof.Sprite = CreateArrowPoofSprite();
         }
-        public void NewEnemyPoof(Point position, Point size)
+        public IProjectile NewEnemyPoof(Point position, Point size)
         {
             IProjectile enemyPoof = new EnemyPoofProjectile(position, size);
             projectiles.Add(enemyPoof);
             enemyPoof.Sprite = createBombExplosionSprite();
+            return enemyPoof;
         }
         public void NewSwordBeam(Point position, Direction facing)
         {

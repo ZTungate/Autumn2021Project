@@ -45,6 +45,8 @@ namespace Poggus.Main
                 {
                     position = (new Point(-moveTo.X, -moveTo.Y) + offset);
                     moveToNext = false;
+
+                    Game1.instance.GetDungeon().GetCurrentLevel().DoEnemySpawnAnimation();
                 }
             }
         }
