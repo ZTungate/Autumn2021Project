@@ -17,6 +17,7 @@ namespace Poggus.Levels
     {
         Dictionary<Point, DoorType> doorConditions;
 
+        public List<MoveableFloorBlock> moveableBlockList = new List<MoveableFloorBlock>();
         List<LevelDoor> doors;
         ISprite backgroundSprite;
         Point location;
@@ -41,6 +42,10 @@ namespace Poggus.Levels
             boundingBoxList = new List<Rectangle>();
             this.link = link;
             backgroundRectangle = new Rectangle(0,0,Game1.instance._graphics.PreferredBackBufferWidth, (int)(Game1.instance._graphics.PreferredBackBufferHeight * Game1.heightScalar));
+        }
+        public void AddMoveableBlock(MoveableFloorBlock block)
+        {
+            this.moveableBlockList.Add(block);
         }
         public void ConstructLevelBounds()
         {
@@ -122,6 +127,10 @@ namespace Poggus.Levels
             {
                 entry.Value.DestRect = new Rectangle(entry.Value.DestRect.X + p.X, entry.Value.DestRect.Y + p.Y, entry.Value.DestRect.Width, entry.Value.DestRect.Height);
             }
+            foreach(MoveableFloorBlock block in moveableBlockList)
+            {
+                block.DestRect = new Rectangle(block.DestRect.X + p.X, block.DestRect.Y + p.Y, block.DestRect.Width, block.DestRect.Height);
+            }
             foreach (IEnemy enemy in enemies)
             {
                 enemy.DestRect = new Rectangle(enemy.DestRect.Location + p, enemy.DestRect.Size);
@@ -147,6 +156,10 @@ namespace Poggus.Levels
             {
                 entry.Value.Update(gameTime);
             }
+            foreach(MoveableFloorBlock block in moveableBlockList)
+            {
+                block.Update(gameTime);
+            }
             if (!enemySpawnAnimation)
             {
                 foreach (IEnemy enemy in enemies)
@@ -166,6 +179,10 @@ namespace Poggus.Levels
             foreach(KeyValuePair<Point,IBlock> entry in blocks)
             {
                 entry.Value.Draw(batch);
+            }
+            foreach (MoveableFloorBlock block in moveableBlockList)
+            {
+                block.Draw(batch);
             }
             if (!enemySpawnAnimation)
             {

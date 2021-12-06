@@ -17,7 +17,7 @@ namespace Poggus.PauseMenu
             
             pauseSpriteSheet = content.Load<Texture2D>("PauseMenuSheet");
         }
-        public ISprite GetNewPauseSprite()
+        public ISprite GetNewResumeSprite()
         {
             return new ResumeButtonSprite(pauseSpriteSheet);
         }

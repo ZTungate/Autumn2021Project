@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<root xmlns="GrabberLevel">
+<root xmlns="GrabberKeyLevel">
   <Blocks>
     <Block>
       <Object>Floor</Object>
@@ -432,42 +432,42 @@
   <Enemies>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>30,111</Location>
+      <Location>234,99</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>30,86</Location>
+      <Location>233,126</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>66,31</Location>
+      <Location>4,110</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>91,31</Location>
+      <Location>5,85</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>208,101</Location>
+      <Location>63,8</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>208,125</Location>
+      <Location>89,8</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>177,28</Location>
+      <Location>183,9</Location>
       <Conditions> </Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
-      <Location>203,30</Location>
+      <Location>207,9</Location>
       <Conditions> </Conditions>
     </Enemy>
   </Enemies>

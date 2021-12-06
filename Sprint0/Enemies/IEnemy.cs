@@ -5,6 +5,7 @@ using Poggus;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Poggus.Collisions;
 
 namespace Poggus.Enemies
 {
@@ -29,6 +30,6 @@ namespace Poggus.Enemies
 
         public Point GetPosition();
         public void SetPosition(Point pos);
-        public void TakeDamage(int damageAmount);
+        public void TakeDamage(int damageAmount, ColDirections damageDirection);
     }
 }
