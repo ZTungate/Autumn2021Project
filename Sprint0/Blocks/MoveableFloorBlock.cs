@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 
 namespace Poggus.Blocks
 {
-    class MoveableFloorBlock : AbstractBlock
+    public class MoveableFloorBlock : AbstractBlock
     {
         private static int velocity = 1;
         private static int BLOCK_SIZE_Y = (int)(64 * Game1.heightScalar);

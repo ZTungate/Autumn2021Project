@@ -127,9 +127,10 @@ namespace Poggus.Collisions
                 }
                 else
                 {
-                    if(linkBlock.direction is ColDirections.South)
+                    if(linkBlock.direction is ColDirections.South & block is MoveableFloorBlock)
                     {
                         linkBlock.block2.MoveUp();
+                        SoundManager.sound.playSecret();
                     }
                 }
             }
@@ -391,7 +392,7 @@ namespace Poggus.Collisions
                         if (dir == new Point(0, -1))
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1));
-                            linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height);
+                            linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height - linkRect.Height / 2 + 5);
                         }
                         if (dir == new Point(-1, 0))
                         {

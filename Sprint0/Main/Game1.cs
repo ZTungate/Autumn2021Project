@@ -85,7 +85,7 @@ namespace Poggus
             blockSpriteFactory = BlockSpriteFactory.Instance;
             projectileFactory = ProjectileFactory.Instance;
             hudSpriteFactory = HUDSpriteFactory.instance;
-            
+            pauseSpriteFactory = PauseSpriteFactory.instance;
 
             //Initialize sound
             soundManager = SoundManager.Instance;
@@ -129,7 +129,7 @@ namespace Poggus
             itemSpriteFactory.LoadAllTextures(Content);
 
             hudSpriteFactory.LoadContent(Content);
-
+            pauseSpriteFactory.LoadContent(Content);
             //Create sprite for Link
             link.Sprite = linkSpriteFactory.RightIdleLinkSprite(link);
 
@@ -210,7 +210,7 @@ namespace Poggus
             link.Draw(_spriteBatch);
 
             hudHandler.Draw(_spriteBatch);
-            menuHandler.Draw(_spriteBatch);
+            menuHandler.Draw(_spriteBatch, fadeImage);
             stateChange.fadeOut();
             _spriteBatch.End();
 
