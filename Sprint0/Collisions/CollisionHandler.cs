@@ -47,7 +47,7 @@ namespace Poggus.Collisions
             //handle link enemy collision
             foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(ene, myLink);
-                if (eneLink.IsCollision) {
+                if (eneLink.IsCollision && myLink.collideWithBounds) {
                     //Link gets hurt, damage him based on the enemy contacted.
                     switch (eneLink.enemy2.EnemyType)
                     {
@@ -167,7 +167,7 @@ namespace Poggus.Collisions
             foreach(Rectangle rectangle in bounds)
             {
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, rectangle);
-                if (boundLink.IsCollision)
+                if (boundLink.IsCollision && myLink.collideWithBounds)
                 {
                     if (myGame.GetDungeon().GetCurrentLevel().hasCustomSpawn)
                     {
@@ -439,7 +439,7 @@ namespace Poggus.Collisions
                 }
                 //Boundary and door collisions
                 L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect);
-                if (boundLink.IsCollision)
+                if (boundLink.IsCollision && myLink.collideWithBounds)
                 {
                     Point dir = Dungeon.directions[(int)door.GetDirection()];
                     Point nextPoint = myGame.GetDungeon().GetCurrentLevel().GetPosition() + new Point(dir.X, -dir.Y) * myGame.GetDungeon().GetLevelSize();
@@ -455,21 +455,25 @@ namespace Poggus.Collisions
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1));
                             linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y - (linkRect.Height));
+                            linkNewPos.X = myLink.GetPosition().X;
                         }
                         if (dir == new Point(1, 0))
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0));
                             linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height / 2);
+                            linkNewPos.Y = myLink.GetPosition().Y;
                         }
                         if (dir == new Point(0, -1))
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1));
                             linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height - linkRect.Height / 2 + 5);
+                            linkNewPos.X = myLink.GetPosition().X;
                         }
                         if (dir == new Point(-1, 0))
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0));
                             linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height / 2);
+                            linkNewPos.Y = myLink.GetPosition().Y;
                         }
                         if(oppositeDoor != null && oppositeDoor.isClosed)
                         {
@@ -483,7 +487,7 @@ namespace Poggus.Collisions
                             }
                         }
 
-                        myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos);
+                        myGame.GetDungeon().GetCurrentLevel().GetLink().StartMoveToNewRoom(linkNewPos);
                         myGame.link.State.Idle();
 
                         Camera.main.BeginMoveTo(nextPoint, 10);
