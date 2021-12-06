@@ -127,8 +127,15 @@ namespace Poggus.Collisions
             //handle link block collision
             foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                 L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, block);
-                if (linkBlock.IsCollision && !linkBlock.block2.Walkable) {
+                if (linkBlock.IsCollision && !linkBlock.block2.Walkable && (!linkBlock.block2.Moveable || !(linkBlock.direction is ColDirections.South))) {
                     myLink.SetPosition(myLink.OldPosition);
+                }
+                else
+                {
+                    if(linkBlock.direction is ColDirections.South)
+                    {
+                        linkBlock.block2.MoveUp();
+                    }
                 }
             }
 
