@@ -356,42 +356,58 @@ namespace Poggus.Collisions
                     }
                 }
                 //Boundary and door collisions
-                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect); 
-                if (boundLink.IsCollision) 
-                { 
+                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect);
+                if (boundLink.IsCollision)
+                {
                     Point dir = Dungeon.directions[(int)door.GetDirection()];
-
                     Point nextPoint = myGame.GetDungeon().GetCurrentLevel().GetPosition() + new Point(dir.X, -dir.Y) * myGame.GetDungeon().GetLevelSize();
-                    
-                    myGame.GetDungeon().SwitchLevel(dir);
-                    Rectangle linkRect = myLink.DestRect;
-
-                    Point linkNewPos = Point.Zero; 
-                    if (dir == new Point(0, 1))
-                    { 
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1));
-                        linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width/2 - linkRect.Width/2, oppositeDoor.destRect.Y - (linkRect.Height)); 
-                    } 
-                    if (dir == new Point(1, 0)) 
-                    { 
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0));
-                        linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height/2); 
-                    } 
-                    if (dir == new Point(0, -1)) 
-                    { 
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1));
-                        linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width/2 - linkRect.Width/2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height); 
-                    } 
-                    if (dir == new Point(-1, 0))
+                    Level nextLevel = myGame.GetDungeon().GetLevelFromCurrent(dir);
+                    if (!door.isClosed)
                     {
-                        LevelDoor oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0));
-                        linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height/2 - linkRect.Height/2); 
+                        myGame.GetDungeon().SwitchLevel(dir);
+                        Rectangle linkRect = myLink.DestRect;
+
+                        Point linkNewPos = Point.Zero;
+                        LevelDoor oppositeDoor = null;
+                        if (dir == new Point(0, 1))
+                        {
+                            oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1));
+                            linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y - (linkRect.Height));
+                        }
+                        if (dir == new Point(1, 0))
+                        {
+                            oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0));
+                            linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height / 2);
+                        }
+                        if (dir == new Point(0, -1))
+                        {
+                            oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1));
+                            linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height);
+                        }
+                        if (dir == new Point(-1, 0))
+                        {
+                            oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0));
+                            linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height / 2);
+                        }
+                        if(oppositeDoor != null && oppositeDoor.isClosed)
+                        {
+                            oppositeDoor.OpenDoor();
+                        }
+
+                        myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos);
+                        myGame.link.State.Idle();
+
+                        Camera.main.BeginMoveTo(nextPoint, 10);
                     }
-                    myGame.GetDungeon().GetCurrentLevel().GetLink().SetPosition(linkNewPos);
-                    myGame.link.State.Idle();
-                    
-                    Camera.main.BeginMoveTo(nextPoint, 10);
-                } 
+                    else
+                    {
+                        if (door.doorType == DoorType.Key && myLink.LinkInventory.GetKeyCount() > 0)
+                        {
+                            myLink.LinkInventory.DecrementKeys();
+                            door.OpenDoor();
+                        }
+                    }
+                }
             }
 
             //TODO: handle link movable block collision
