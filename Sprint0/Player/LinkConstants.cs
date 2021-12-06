@@ -31,5 +31,7 @@ namespace Poggus.Player
         public static int linkInvincibilityDuration = 2000;
         public static int linkHitStunDuration = 500;
         public static int linkKnockbackDistancePerFrame = 5;
+
+        public static float linkScaleX = 0.95f, linkScaleY = 0.95f;
     }
 }

@@ -20,6 +20,7 @@ namespace Poggus.Player
         const int size = 64;
         public ILinkState State { get; set; }
         public Rectangle DestRect { get; set; }
+        public Rectangle ColliderRect { get; set; }
         public Point OldPosition { get; set; }
         public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get; set; }
@@ -86,8 +87,10 @@ namespace Poggus.Player
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle tempRect = new Rectangle(DestRect.Location, new Point((int)(Sprite.SourceRect[Sprite.CurrentFrame].Width * Game1.gameScaleX), (int)(Sprite.SourceRect[Sprite.CurrentFrame].Height * Game1.gameScaleY)));
-            
+            Rectangle tempRect = new Rectangle(DestRect.Location, new Point((int)(Sprite.SourceRect[Sprite.CurrentFrame].Width * Game1.gameScaleX * LinkConstants.linkScaleX), (int)(Sprite.SourceRect[Sprite.CurrentFrame].Height * Game1.gameScaleY * LinkConstants.linkScaleY)));
+
+            ColliderRect = new Rectangle(tempRect.Location + new Point(0,(int)(tempRect.Height/2f)), new Point(tempRect.Width, (int)(tempRect.Height/2f)));
+
             Sprite.Draw(spriteBatch, tempRect);   //draw the player sprite
         }
 
@@ -209,6 +212,10 @@ namespace Poggus.Player
         public void SetPosition(Point pos)
         {
             this.DestRect = new Rectangle(pos, DestRect.Size); 
+        }
+        public Rectangle GetCollider()
+        {
+            return this.ColliderRect;
         }
 
         public bool FullHealth()

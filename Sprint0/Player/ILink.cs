@@ -18,6 +18,7 @@ namespace Poggus.Player
     {
         public ILinkState State { get; set; }
         public Rectangle DestRect { get; set; }
+        public Rectangle ColliderRect { get; set; }
         public Point OldPosition { get; set; }
         public ISprite Sprite { get; set; }
         public ProjectileFactory ProjectileFactory { get;  set; }
