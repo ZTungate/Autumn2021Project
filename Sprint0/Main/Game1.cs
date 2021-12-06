@@ -155,6 +155,7 @@ namespace Poggus
             foreach (IController controller in controllerList) {
                 controller.Update();
             }
+            menuHandler.Update(); //always needs updated
             if (!isPaused) {
                 
                 Camera.main.Update(gameTime);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Poggus.Main;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,8 @@ namespace Poggus.PauseMenu
         private Game1 game;
         ISprite Resume;
         ISprite Options;
+        Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
+        Rectangle OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
         float volume;
         Boolean cursor = true;
         public Boolean options = false;
@@ -25,6 +28,12 @@ namespace Poggus.PauseMenu
             Resume = game.pauseSpriteFactory.GetNewResumeSprite();
             Resume.CurrentFrame = 1;
             Options = game.pauseSpriteFactory.GetNewOptionsSprite();
+        }
+
+        public void Update()
+        {
+            ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
+            OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
         }
 
         public void increaseVolume()
@@ -47,13 +56,20 @@ namespace Poggus.PauseMenu
         }
         public void executeButton()
         {
-            if (cursor)
+            if (options)
             {
-                game.togglePause();
+
             }
             else
             {
-                options = true;
+                if (cursor)
+                {
+                    game.togglePause();
+                }
+                else
+                {
+                    options = true;
+                }
             }
         }
 
@@ -70,8 +86,8 @@ namespace Poggus.PauseMenu
 
                     
                     
-                    Resume.Draw(batch, new Rectangle(new Point(330, 100), new Point(384, 64)));
-                    Options.Draw(batch, new Rectangle(new Point(330, 200), new Point(384, 64)));
+                    Resume.Draw(batch, ResumeLoc);
+                    Options.Draw(batch, OptionsLoc);
                 }
             }
         }
