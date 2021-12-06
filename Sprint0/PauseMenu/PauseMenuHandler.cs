@@ -7,10 +7,12 @@ namespace Poggus.PauseMenu
 {
     public class PauseMenuHandler
     {
-
+        private static float VOLSCALE = 0.2f;
+        private static float VOLFULL = 1f;
+        private static float VOLOFF = 1f;
         private Game1 game;
         float volume;
-        Boolean[] cursor;
+        Boolean[] cursor = new Boolean[3];
         Boolean options = false;
         public PauseMenuHandler(Game1 game)
         {
@@ -21,16 +23,16 @@ namespace Poggus.PauseMenu
 
         public void increaseVolume()
         {
-            if(volume < 1)
+            if(volume < VOLFULL)
             {
-                volume += 0.2f;
+                volume += VOLSCALE;
             }
         }
         public void decreaseVolume()
         {
-            if (volume > 0)
+            if (volume > VOLOFF)
             {
-                volume -= 0.2f;
+                volume -= VOLSCALE;
             }
         }
         public void toogleOptions()
@@ -40,7 +42,17 @@ namespace Poggus.PauseMenu
 
         public void Draw(SpriteBatch batch)
         {
+            if (game.Paused())
+            {
+                if (options)
+                {
+                    
+                }
+                else
+                {
 
+                }
+            }
         }
     }
 }

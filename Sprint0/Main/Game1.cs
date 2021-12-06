@@ -138,7 +138,7 @@ namespace Poggus
             DungeonLoader.instance.LoadDungeons();
 
             hudHandler = new HUDHandler(this.link);
-
+            menuHandler = new PauseMenuHandler(this);
             //Load sounds
             soundManager.LoadContent(Content);
 
@@ -210,7 +210,7 @@ namespace Poggus
             link.Draw(_spriteBatch);
 
             hudHandler.Draw(_spriteBatch);
-
+            menuHandler.Draw(_spriteBatch);
             stateChange.fadeOut();
             _spriteBatch.End();
 

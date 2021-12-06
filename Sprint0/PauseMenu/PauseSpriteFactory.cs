@@ -25,6 +25,9 @@ namespace Poggus.PauseMenu
         {
             return new OptionsButtonSprite(pauseSpriteSheet);
         }
-
+        public ISprite GetNewSoundBarSprite()
+        {
+            return new SoundBarSprite(pauseSpriteSheet);
+        }
     }
 }
