@@ -18,7 +18,7 @@ namespace Poggus.Enemies
 
         private Point velocity;
 
-        public Grabber(Point pos) : base(EnemyType.Grabber, pos, new Point(32, 32))
+        public Grabber(Point pos) : base(EnemyType.Grabber, pos, EnemyConstants.stdEnemySize.Size)
         {
             Health = EnemyConstants.grabberHealth;
             currState = state.emerging;

@@ -21,7 +21,7 @@ namespace Poggus.Enemies
             }
         }
 
-        public OldMan(Point pos) : base(EnemyType.OldMan, pos, new Point(32, 32))
+        public OldMan(Point pos) : base(EnemyType.OldMan, pos, EnemyConstants.stdEnemySize.Size)
         {
 
         }

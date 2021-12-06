@@ -33,7 +33,8 @@ namespace Poggus.Enemies
         public virtual void CreateSprite()
         {
             this.Sprite = EnemySpriteFactory.Instance.GetEnemySprite(this.EnemyType);
-            this.DestRect = new Rectangle(DestRect.Location, new Point((int)(Sprite.SourceRect[0].Width * Game1.gameScaleX),(int)(Sprite.SourceRect[0].Height * Game1.gameScaleY)));
+            //this.DestRect = new Rectangle(DestRect.Location, new Point((int)(Sprite.SourceRect[0].Width * Game1.gameScaleX),(int)(Sprite.SourceRect[0].Height * Game1.gameScaleY)));
+            this.DestRect = new Rectangle(DestRect.Location, new Point((int)(DestRect.Width * Game1.gameScaleX), (int)(DestRect.Height * Game1.gameScaleY)));
         }
         public virtual void Update(GameTime gameTime)
         {

@@ -23,7 +23,7 @@ namespace Poggus.Enemies
         //Enemy sizes
         public static float scaleX, scaleY;
         public static Rectangle stdEnemySize = new Rectangle(0,0, 16, 16);//Size of thrower, bladeTrap, skeleton, bat, and grabber.
-        public static Rectangle bladeTrapSize = new Rectangle(0, 0, 30, 30);
+        public static Point bladeTrapSize = new Point(14, 14);
         public static Rectangle slimeSize = new Rectangle(0, 0, 8, 16);
         public static Rectangle dragonSize = new Rectangle(0, 0, 24, 32);
 

@@ -14,7 +14,7 @@ namespace Poggus.Enemies
         private int interval = 40;
         private int timer = 0;
         const int RANDMOVE = 5;
-        public Slime(Point pos) : base(EnemyType.Slime, pos, new Point(32, 32))
+        public Slime(Point pos) : base(EnemyType.Slime, pos, EnemyConstants.slimeSize.Size)
         {
             Health = EnemyConstants.slimeHealth;
         }
