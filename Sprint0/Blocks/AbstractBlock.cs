@@ -10,10 +10,14 @@ namespace Poggus.Blocks
 {
     public abstract class AbstractBlock : IBlock
     {
+        private static int BLOCK_SIZE_X = 64;
+        private static int BLOCK_SIZE_Y = (int)(64 * Game1.heightScalar);
         public ISprite Sprite { get; set; }
         public Rectangle DestRect { get; set; }
         public bool Walkable { set;  get; }
         public bool Moveable { set;  get; }
+
+        
 
         private BlockType blockType;
         public AbstractBlock(BlockType type, Point pos, Point size)
@@ -24,7 +28,7 @@ namespace Poggus.Blocks
         public AbstractBlock(BlockType type, Point pos)
         {
             this.blockType = type;
-            this.DestRect = new Rectangle(pos, new Point(64,(int)(64 * Game1.heightScalar)));
+            this.DestRect = new Rectangle(pos, new Point(BLOCK_SIZE_X,BLOCK_SIZE_Y));
         }
         public void CreateSprite()
         {
@@ -41,6 +45,10 @@ namespace Poggus.Blocks
         public Point GetPosition()
         {
             return this.DestRect.Location;
+        }
+        virtual public void MoveUp()
+        {
+            //only used by moveable blocks
         }
         public void SetPosition(Point pos)
         {

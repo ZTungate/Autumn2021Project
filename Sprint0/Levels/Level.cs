@@ -15,6 +15,8 @@ namespace Poggus.Levels
 {
     public class Level
     {
+        Dictionary<Point, DoorType> doorConditions;
+
         List<LevelDoor> doors;
         ISprite backgroundSprite;
         Point location;
@@ -24,9 +26,12 @@ namespace Poggus.Levels
         List<Rectangle> boundingBoxList;
         ILink link;
 
+        public bool enemySpawnAnimation = true;
+
         Rectangle backgroundRectangle;
         public Level(ILink link, Point location)
         {
+            this.doorConditions = new Dictionary<Point, DoorType>();
             backgroundSprite = LevelLoader.instance.GetNewBackgroundSprite();
             this.location = location;
             doors = new List<LevelDoor>();
@@ -130,13 +135,24 @@ namespace Poggus.Levels
         }
         public void Update(GameTime gameTime)
         {
+            if(enemySpawnAnimation)
+            {
+                if(spawnAnimationProjectile != null && spawnAnimationProjectile.Life < 0)
+                {
+                    enemySpawnAnimation = false;
+                    spawnAnimationProjectile = null;
+                }
+            }
             foreach (KeyValuePair<Point, IBlock> entry in blocks)
             {
                 entry.Value.Update(gameTime);
             }
-            foreach (IEnemy enemy in enemies)
+            if (!enemySpawnAnimation)
             {
-                enemy.Update(gameTime);
+                foreach (IEnemy enemy in enemies)
+                {
+                    enemy.Update(gameTime);
+                }
             }
             foreach (AbstractItem item in items)
             {
@@ -151,9 +167,12 @@ namespace Poggus.Levels
             {
                 entry.Value.Draw(batch);
             }
-            foreach(IEnemy enemy in enemies)
+            if (!enemySpawnAnimation)
             {
-                enemy.Draw(batch);
+                foreach (IEnemy enemy in enemies)
+                {
+                    enemy.Draw(batch);
+                }
             }
             foreach(AbstractItem item in items)
             {
@@ -163,6 +182,20 @@ namespace Poggus.Levels
             {
                 door.Draw(batch);
             }
+        }
+        public IProjectile spawnAnimationProjectile;
+        public void DoEnemySpawnAnimation()
+        {
+            enemySpawnAnimation = true;
+            foreach(IEnemy enemy in enemies)
+            {
+                spawnAnimationProjectile = Game1.instance.projectileFactory.NewEnemyPoof(enemy.DestRect.Location, enemy.DestRect.Size);
+            }
+        }
+        public void ResetEnemySpawnAnimation()
+        {
+            enemySpawnAnimation = true;
+            spawnAnimationProjectile = null;
         }
         public void DrawLayoutOnly(SpriteBatch batch)
         {
@@ -227,6 +260,19 @@ namespace Poggus.Levels
         public List<AbstractItem> GetItemList()
         {
             return this.items;
+        }
+        public void AddDoorCondition(Point doorDirection, DoorType doorType)
+        {
+            this.doorConditions.Add(doorDirection, doorType);
+        }
+        public DoorType GetDoorCondition(Point dir)
+        {
+            DoorType outType;
+            if(!this.doorConditions.TryGetValue(dir, out outType))
+            {
+                outType = DoorType.Open;
+            }
+            return outType;
         }
     }
 }
