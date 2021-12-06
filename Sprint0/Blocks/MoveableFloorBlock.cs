@@ -18,19 +18,26 @@ namespace Poggus.Blocks
         public bool opensDoor;
         public Point doorDirToOpen;
         public Point dirToMoveToOpen;
-        private Point startPoint;
+        public bool movedInDir;
 
         public MoveableFloorBlock(Point pos) : base(BlockType.MoveableFloorBlock, pos)
         {
             this.Moveable = true;
-            this.startPoint = pos;
         }
 
         public override void Update(GameTime gameTime)
         {
+            if(opensDoor && movedInDir)
+            {
+                Game1.instance.GetDungeon().GetCurrentLevel().GetDoorFromDirection(doorDirToOpen).OpenDoor();
+            }
             if (isMovingUp) {
                 if (GetPosition().Y > destinationY) {
                     DestRect = new Rectangle(DestRect.Location + new Point(0, -2), DestRect.Size);
+                    if(dirToMoveToOpen == new Point(0,1))
+                    {
+                        movedInDir = true;
+                    }
                 }
                 else {
                     isMovingUp = false;
@@ -41,6 +48,10 @@ namespace Poggus.Blocks
                 if (GetPosition().Y < destinationY)
                 {
                     DestRect = new Rectangle(DestRect.Location + new Point(0, 2), DestRect.Size);
+                    if (dirToMoveToOpen == new Point(0, -1))
+                    {
+                        movedInDir = true;
+                    }
                 }
                 else
                 {
@@ -50,6 +61,10 @@ namespace Poggus.Blocks
             else if (isMovingRight) {
                 if (GetPosition().X < destinationX) {
                     DestRect = new Rectangle(DestRect.Location + new Point(2, 0), DestRect.Size);
+                    if (dirToMoveToOpen == new Point(1, 0))
+                    {
+                        movedInDir = true;
+                    }
                 }
                 else {
                     isMovingRight = false;
@@ -58,6 +73,10 @@ namespace Poggus.Blocks
             else if (isMovingLeft) {
                 if (GetPosition().X > destinationX) {
                     DestRect = new Rectangle(DestRect.Location + new Point(-2, 0), DestRect.Size);
+                    if (dirToMoveToOpen == new Point(-1, 0))
+                    {
+                        movedInDir = true;
+                    }
                 }
                 else {
                     isMovingLeft = false;
