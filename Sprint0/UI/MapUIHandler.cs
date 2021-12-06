@@ -13,9 +13,12 @@ namespace Poggus.UI
         bool visible = true;
         Dungeon dungeon;
         Dictionary<Point, ImageUI> levelLayout;
-        ImageUI linkImage;
+        ImageUI linkImage, triforceImage;
+        public bool displayTriforce;
         Point initialPoint;
         Point initialLinkPoint;
+
+        Point initalTriforcePoint;
         public MapUIHandler(Point initialPoint)
         {
             levelLayout = new Dictionary<Point, ImageUI>();
@@ -63,6 +66,7 @@ namespace Poggus.UI
                     entry.Value.SetPosition(entry.Value.GetPosition() + new Point(-minMapX + 32, 32));
                 }
                 initialLinkPoint = new Point(-minMapX + 32, 32);
+
             }
             
         }

@@ -56,10 +56,37 @@ namespace Poggus.Levels
                         for (int i = 0; i < levelConditions.Length; i++)
                         {
                             char ch = levelConditions[i];
-                            if (ch == 'U')
+                            int doorTypePos = i + 2;
+                            if (ch == 'U' || ch == 'D' || ch == 'L' || ch == 'R')
                             {
-                                char doorTypeChar = levelConditions[i + 2];
-                                doorDir = new Point(0, 1);
+                                char doorTypeChar = 'K';
+                                if (ch == 'U')
+                                {
+                                    doorTypeChar = levelConditions[i + 2];
+                                    doorDir = new Point(0, 1);
+
+                                    i += 2;
+                                }
+                                else if (ch == 'D')
+                                {
+                                    doorTypeChar = levelConditions[i + 2];
+                                    doorDir = new Point(0, -1);
+                                    i += 2;
+                                }
+                                else if (ch == 'L')
+                                {
+                                    doorTypeChar = levelConditions[i + 2];
+                                    doorDir = new Point(-1, 0);
+
+                                    i += 2;
+                                }
+                                else if (ch == 'R')
+                                {
+                                    doorTypeChar = levelConditions[i + 2];
+                                    doorDir = new Point(1, 0);
+                                    i += 2;
+                                }
+
                                 if (doorTypeChar == 'K')
                                 {
                                     doorType = DoorType.Key;
@@ -67,7 +94,7 @@ namespace Poggus.Levels
                                 }
                                 if (doorTypeChar == 'X')
                                 {
-                                    doorType = DoorType.Closed;
+                                    doorType = DoorType.RoomClear;
                                     level.AddDoorCondition(doorDir, doorType);
                                 }
                                 if (doorTypeChar == 'H')
@@ -75,96 +102,49 @@ namespace Poggus.Levels
                                     doorType = DoorType.Hole;
                                     level.AddDoorCondition(doorDir, doorType);
                                 }
-                                i += 2;
-                            }
-                            else if (ch == 'D')
-                            {
-                                char doorTypeChar = levelConditions[i + 2];
-                                doorDir = new Point(0, -1);
-                                if (doorTypeChar == 'K')
-                                {
-                                    doorType = DoorType.Key;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                if (doorTypeChar == 'X')
+                                if (doorTypeChar == 'B')
                                 {
                                     doorType = DoorType.Closed;
                                     level.AddDoorCondition(doorDir, doorType);
+
+                                    int firstComma = levelConditions.IndexOf(",", doorTypePos + 1);
+                                    int secondComma = levelConditions.IndexOf(",", firstComma + 1);
+                                    string dirToMoveX = levelConditions.Substring(doorTypePos + 1, firstComma - (doorTypePos + 1));
+                                    string dirToMoveY = levelConditions.Substring(firstComma + 1, secondComma - firstComma - 1);
+                                    int dirX = int.Parse(dirToMoveX);
+                                    int dirY = int.Parse(dirToMoveY);
+
+                                    Blocks.IBlock[] blocks = level.moveableBlockList.ToArray();
+                                    foreach (Blocks.IBlock block in blocks)
+                                    {
+                                        if (block is Blocks.MoveableFloorBlock)
+                                        {
+                                            Blocks.MoveableFloorBlock moveBlock = (Blocks.MoveableFloorBlock)block;
+                                            moveBlock.opensDoor = true;
+                                            moveBlock.doorDirToOpen = doorDir;
+                                            moveBlock.dirToMoveToOpen = new Point(dirX, dirY);
+                                        }
+                                    }
                                 }
-                                if (doorTypeChar == 'H')
-                                {
-                                    doorType = DoorType.Hole;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                i += 2;
-                            }
-                            else if (ch == 'L')
-                            {
-                                char doorTypeChar = levelConditions[i + 2];
-                                doorDir = new Point(-1, 0);
-                                if (doorTypeChar == 'K')
-                                {
-                                    doorType = DoorType.Key;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                if (doorTypeChar == 'X')
-                                {
-                                    doorType = DoorType.Closed;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                if (doorTypeChar == 'H')
-                                {
-                                    doorType = DoorType.Hole;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                i += 2;
-                            }
-                            else if (ch == 'R')
-                            {
-                                char doorTypeChar = levelConditions[i + 2];
-                                doorDir = new Point(1, 0);
-                                if (doorTypeChar == 'K')
-                                {
-                                    doorType = DoorType.Key;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                if (doorTypeChar == 'X')
-                                {
-                                    doorType = DoorType.Closed;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                if (doorTypeChar == 'H')
-                                {
-                                    doorType = DoorType.Hole;
-                                    level.AddDoorCondition(doorDir, doorType);
-                                }
-                                i += 2;
                             }
                             else if (ch == 'S')
                             {
                                 int nextComma = levelConditions.IndexOf(",", i);
                                 string levelX = levelConditions.Substring(i + 2, nextComma - (i + 2));
-                                string levelY = levelConditions.Substring(nextComma+1);
+                                string levelY = levelConditions.Substring(nextComma + 1);
                                 int levelXVal = int.Parse(levelX);
                                 int levelYVal = int.Parse(levelY);
                                 Blocks.IBlock[] blocks = level.GetBlockArray();
                                 foreach (Blocks.IBlock block in blocks)
                                 {
-                                    if(block is Blocks.Stair)
+                                    if (block is Blocks.Stair)
                                     {
                                         Blocks.Stair stairBlock = (Blocks.Stair)block;
                                         stairBlock.referenceLevelPoint = new Point(levelXVal, levelYVal);
                                     }
                                 }
                             }
-                            else if (ch == 'B')
-                            {
-                                int nextComma = levelConditions.IndexOf(",", i);
-                                string blockMoveDirX = levelConditions.Substring(i + 2, nextComma - (i + 2));
-                                string blockMoveDirY = levelConditions.Substring(nextComma + 1);
-
-                            }
-                            else if(ch == 'Q')
+                            else if (ch == 'Q')
                             {
                                 int nextComma = levelConditions.IndexOf(",", i);
                                 string customSpawnX = levelConditions.Substring(i + 2, nextComma - (i + 2));
@@ -175,7 +155,7 @@ namespace Poggus.Levels
                                 level.customSpawnLocation = new Point((int)(spawnX * Blocks.AbstractBlock.BLOCK_SIZE_X), (int)(spawnY * Blocks.AbstractBlock.BLOCK_SIZE_Y));
                                 i = levelConditions.Length - 1;
                             }
-                            else if(ch == 'Y')
+                            else if (ch == 'Y')
                             {
                                 int nextComma = levelConditions.IndexOf(",", i);
                                 int finalComma = levelConditions.IndexOf(",", nextComma + 1);
@@ -188,7 +168,7 @@ namespace Poggus.Levels
 
                                 i = finalComma;
                             }
-                            else if(ch == 'P')
+                            else if (ch == 'P')
                             {
                                 int nextComma = levelConditions.IndexOf(",", i);
                                 int finalComma = levelConditions.IndexOf(",", nextComma + 1);

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Poggus.Levels
 {
-    public enum DoorType { Key, Hole, Open, Closed }
+    public enum DoorType { Key, Hole, Open, Closed, RoomClear }
     public class LevelDoor
     {
         ISprite sprite;
@@ -16,13 +16,18 @@ namespace Poggus.Levels
         public Rectangle destRect;
         public bool isClosed;
         public DoorType doorType;
+        public bool openOnRoomClear = false;
         
         public LevelDoor(DoorType doorType, ISprite sprite, DoorDirectionEnum direction, Rectangle dest)
         {
             this.doorType = doorType;
-            if(doorType == DoorType.Closed || doorType == DoorType.Key || doorType == DoorType.Hole)
+            if(doorType == DoorType.Closed || doorType == DoorType.Key || doorType == DoorType.Hole || doorType == DoorType.RoomClear)
             {
                 this.isClosed = true;
+            }
+            if(doorType == DoorType.RoomClear)
+            {
+                this.openOnRoomClear = true;
             }
 
             this.sprite = sprite;
@@ -30,6 +35,13 @@ namespace Poggus.Levels
 
             this.doorDirection = direction;
             this.destRect = dest;
+        }
+        public void Update(GameTime gameTime)
+        {
+            if (openOnRoomClear && Game1.instance.GetDungeon().GetCurrentLevel().GetEnemyList().Count == 0)
+            {
+                OpenDoor();
+            }
         }
         public void SetDirection(DoorDirectionEnum direction)
         {
