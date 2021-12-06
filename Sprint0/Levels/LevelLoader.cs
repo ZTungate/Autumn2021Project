@@ -65,6 +65,14 @@ namespace Poggus.Levels
                         Object[] objectParams = new Object[1];
                         objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y * Game1.gameScaleY));
                         Type objectType = Type.GetType("Poggus.Blocks." + blockName);
+                        if(blockName == "MoveableFloorBlock")
+                        {
+                            objectType = Type.GetType("Poggus.Blocks.Floor");
+                            MoveableFloorBlock moveable = new MoveableFloorBlock((Point)(objectParams[0]));
+                            moveable.CreateSprite();
+
+                            newLevel.AddMoveableBlock(moveable);
+                        }
                         object instance = Activator.CreateInstance(objectType, objectParams);
                         AbstractBlock newBlock = (AbstractBlock)instance;
                         newBlock.CreateSprite();
