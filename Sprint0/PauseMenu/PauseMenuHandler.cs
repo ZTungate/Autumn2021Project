@@ -13,15 +13,18 @@ namespace Poggus.PauseMenu
         private static float VOLOFF = 1f;
         private Game1 game;
         ISprite Resume;
+        ISprite Options;
         float volume;
-        Boolean[] cursor = new Boolean[3];
-        Boolean options = false;
+        Boolean cursor = true;
+        public Boolean options = false;
         public PauseMenuHandler(Game1 game)
         {
-            cursor[0] = true;
+            
             this.game = game;
             volume = game.soundManager.volume;
             Resume = game.pauseSpriteFactory.GetNewResumeSprite();
+            Resume.CurrentFrame = 1;
+            Options = game.pauseSpriteFactory.GetNewOptionsSprite();
         }
 
         public void increaseVolume()
@@ -42,6 +45,17 @@ namespace Poggus.PauseMenu
         {
             options = !options;
         }
+        public void executeButton()
+        {
+            if (cursor)
+            {
+                game.togglePause();
+            }
+            else
+            {
+                options = true;
+            }
+        }
 
         public void Draw(SpriteBatch batch, Texture2D fadeImage)
         {
@@ -54,17 +68,28 @@ namespace Poggus.PauseMenu
                 else
                 {
 
-                    Resume = game.pauseSpriteFactory.GetNewResumeSprite();
+                    
                     
                     Resume.Draw(batch, new Rectangle(new Point(330, 100), new Point(384, 64)));
-                    game.pauseSpriteFactory.GetNewOptionsSprite().Draw(batch, new Rectangle(new Point(330, 200), new Point(384, 64)));
+                    Options.Draw(batch, new Rectangle(new Point(330, 200), new Point(384, 64)));
                 }
             }
         }
 
-        public void selectResume()
+        public void selectNext()
         {
-            Resume.CurrentFrame = (Resume.CurrentFrame + 1) % Resume.FrameCount;
+            if (cursor)
+            {
+                Options.CurrentFrame = (Options.CurrentFrame + 1) % (Options.FrameCount - 1);
+                Resume.CurrentFrame = (Resume.CurrentFrame + 1) % (Resume.FrameCount - 1);
+                cursor = !cursor;
+            }
+            else
+            {
+                Resume.CurrentFrame = (Resume.CurrentFrame + 1) % (Resume.FrameCount - 1);
+                Options.CurrentFrame = (Options.CurrentFrame + 1) % (Options.FrameCount - 1);
+                cursor = !cursor;
+            }
         }
     }
 }

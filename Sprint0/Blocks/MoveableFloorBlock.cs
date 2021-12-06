@@ -9,7 +9,8 @@ namespace Poggus.Blocks
     {
         private static int velocity = 1;
         private static int BLOCK_SIZE_Y = (int)(64 * Game1.heightScalar);
-        private bool isMoving = false;
+        private bool isMovingUp = false;
+        private bool isMovingDown = false;
         private int destinationY;
         public MoveableFloorBlock(Point pos) : base(BlockType.MoveableFloorBlock, pos)
         {
@@ -18,12 +19,23 @@ namespace Poggus.Blocks
 
         public override void Update(GameTime gameTime)
         {
-            if (isMoving) {
+            if (isMovingUp) {
                 if (GetPosition().Y > destinationY) {
                     DestRect = new Rectangle(DestRect.Location + new Point(0, -2), DestRect.Size);
                 }
                 else {
-                    isMoving = false;
+                    isMovingUp = false;
+                }
+            }
+            if (isMovingDown)
+            {
+                if (GetPosition().Y < destinationY)
+                {
+                    DestRect = new Rectangle(DestRect.Location + new Point(0, 2), DestRect.Size);
+                }
+                else
+                {
+                    isMovingUp = false;
                 }
             }
         }
@@ -31,12 +43,22 @@ namespace Poggus.Blocks
         public override void MoveUp()
         {
 
-            isMoving = true;
+            isMovingUp = true;
             int X = this.GetPosition().X;
             int Y = this.GetPosition().Y;
             destinationY = Y - BLOCK_SIZE_Y;
             this.Moveable = false;
             
+        }
+        public override void MoveDown()
+        {
+
+            isMovingDown = true;
+            int X = this.GetPosition().X;
+            int Y = this.GetPosition().Y;
+            destinationY = Y + BLOCK_SIZE_Y;
+            this.Moveable = false;
+
         }
     }
 }

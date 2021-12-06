@@ -74,6 +74,7 @@ namespace Poggus
             this.controllerMappings.Add(Keys.Down, new MenuDownCommand(myGame));
             this.controllerMappings.Add(Keys.Right, new MenuRightCommand(myGame));
             this.controllerMappings.Add(Keys.Up, new MenuUpCommand(myGame));
+            this.controllerMappings.Add(Keys.Enter, new MenuEnterCommand(myGame));
             this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
             this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
             this.controllerMappings.Add(Keys.NumPad2, new SwitchLevelCommand(myGame, new Point(0, -1)));
@@ -118,7 +119,27 @@ namespace Poggus
                         {
                             controllerMappings[Keys.Tab].Execute();
                         }
+                    if (state.IsKeyDown(Keys.Up) && !lastState.IsKeyDown(Keys.Up))
+                    {
+                        controllerMappings[Keys.Up].Execute();
                     }
+                    if (state.IsKeyDown(Keys.Down) && !lastState.IsKeyDown(Keys.Down))
+                    {
+                        controllerMappings[Keys.Down].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Right) && !lastState.IsKeyDown(Keys.Right))
+                    {
+                        controllerMappings[Keys.Right].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Left) && !lastState.IsKeyDown(Keys.Left))
+                    {
+                        controllerMappings[Keys.Left].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Enter) && !lastState.IsKeyDown(Keys.Enter))
+                    {
+                        controllerMappings[Keys.Enter].Execute();
+                    }
+                }
                 }
             //Checks if movement controls are released to play the idle animation & stop movement
         }
@@ -130,39 +151,6 @@ namespace Poggus
             {
                 switch (oldKey)
                 {
-                    case Keys.Up:
-                        if (state.IsKeyUp(Keys.Up))
-                        {
-                            //UpIdleMovesprite
-                            ICommand UpIdleCommand = new PlayerUpIdleCommand(myGame);
-                            UpIdleCommand.Execute();
-                        }
-                        break;
-                    case Keys.Right:
-                        if (state.IsKeyUp(Keys.Right))
-                        {
-                            //RightIdleMoveSprite
-                            ICommand rightIdleCommand = new PlayerRightIdleCommand(myGame);
-                            rightIdleCommand.Execute();
-                        }
-                        break;
-                    case Keys.Left:
-                        if (state.IsKeyUp(Keys.Left))
-                        {
-                            //LeftIdleMoveSprite
-                            ICommand leftIdleCommand = new PlayerLeftIdleCommand(myGame);
-                            leftIdleCommand.Execute();
-                        }
-                        break;
-                    case Keys.Down:
-                        if (state.IsKeyUp(Keys.Down))
-                        {
-                            //DownIdleMoveSprite
-                            ICommand downIdleCommand = new PlayerDownIdleCommand(myGame);
-                            downIdleCommand.Execute();
-
-                        }
-                        break;
 
 
                     case Keys.W:

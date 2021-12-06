@@ -50,6 +50,10 @@ namespace Poggus.Blocks
         {
             //only used by moveable blocks
         }
+        virtual public void MoveDown()
+        {
+            //only used by moveable blocks
+        }
         public void SetPosition(Point pos)
         {
             this.DestRect = new Rectangle(pos, DestRect.Size);

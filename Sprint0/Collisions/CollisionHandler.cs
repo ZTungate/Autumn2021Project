@@ -137,7 +137,7 @@ namespace Poggus.Collisions
             foreach (IBlock moveable in myDungeon.GetCurrentLevel().moveableBlockList)
             {
                 L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, moveable);
-                if (linkBlock.IsCollision && !linkBlock.block2.Walkable && (!linkBlock.block2.Moveable || !(linkBlock.direction is ColDirections.South)))
+                if (linkBlock.IsCollision && !linkBlock.block2.Walkable && (!linkBlock.block2.Moveable || !(linkBlock.direction is ColDirections.South || linkBlock.direction is ColDirections.North)))
                 {
                     myLink.SetPosition(myLink.OldPosition);
                 }
@@ -146,6 +146,9 @@ namespace Poggus.Collisions
                     if (linkBlock.direction is ColDirections.South)
                     {
                         linkBlock.block2.MoveUp();
+                    } else if (linkBlock.direction is ColDirections.North)
+                    {
+                        linkBlock.block2.MoveDown();
                     }
                 }
             }
@@ -331,18 +334,22 @@ namespace Poggus.Collisions
                     else if (itemLink.Item2 is BoomerangItem)
                     {
                         itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                        SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is CompassItem)
                     {
                         itemLink.Link1.LinkInventory.AddCompass();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if(itemLink.Item2 is MapItem)
                     {
                         itemLink.Link1.LinkInventory.AddMap();
+                        SoundManager.sound.playItemPickup();
                     }
                     else if(itemLink.Item2 is FairyItem)
                     {
                         itemLink.Link1.Health = itemLink.Link1.maxHealth;
+                        SoundManager.sound.playItemPickup();
                     }
                     else if(itemLink.Item2 is HeartItem)
                     {
