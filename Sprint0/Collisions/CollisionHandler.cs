@@ -122,16 +122,12 @@ namespace Poggus.Collisions
             //handle link block collision
             foreach (IBlock block in myDungeon.GetCurrentLevel().GetBlockArray()) {
                 L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, block);
-                if (linkBlock.IsCollision && !linkBlock.block2.Walkable && (!linkBlock.block2.Moveable || !(linkBlock.direction is ColDirections.South))) {
+                if (linkBlock.IsCollision && !linkBlock.block2.Walkable) {
                     myLink.SetPosition(myLink.OldPosition);
                 }
                 else
                 {
-                    if(linkBlock.direction is ColDirections.South & block is MoveableFloorBlock)
-                    {
-                        linkBlock.block2.MoveUp();
-                        SoundManager.sound.playSecret();
-                    }
+
                     if (linkBlock.IsCollision && block is Stair)
                     {
                         Stair stairBlock = (Stair)block;
@@ -146,18 +142,23 @@ namespace Poggus.Collisions
             foreach (IBlock moveable in myDungeon.GetCurrentLevel().moveableBlockList)
             {
                 L2BCollision linkBlock = (L2BCollision)detector.detectCollision(myLink, moveable);
-                if (linkBlock.IsCollision && !linkBlock.block2.Walkable && (!linkBlock.block2.Moveable || !(linkBlock.direction is ColDirections.South || linkBlock.direction is ColDirections.North)))
-                {
+                if (linkBlock.IsCollision) {
                     myLink.SetPosition(myLink.OldPosition);
-                }
-                else
-                {
-                    if (linkBlock.direction is ColDirections.South)
-                    {
-                        linkBlock.block2.MoveUp();
-                    } else if (linkBlock.direction is ColDirections.North)
-                    {
-                        linkBlock.block2.MoveDown();
+
+                    if (linkBlock.block2.Moveable) {
+                        SoundManager.sound.playSecret();
+                        if (linkBlock.direction is ColDirections.South) {
+                            linkBlock.block2.MoveUp();
+                        }
+                        else if (linkBlock.direction is ColDirections.North) {
+                            linkBlock.block2.MoveDown();
+                        }
+                        else if (linkBlock.direction is ColDirections.East) {
+                            linkBlock.block2.MoveLeft();
+                        }
+                        else if (linkBlock.direction is ColDirections.West) {
+                            linkBlock.block2.MoveRight();
+                        }
                     }
                 }
             }
