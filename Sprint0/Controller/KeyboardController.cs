@@ -84,7 +84,6 @@ namespace Poggus
         KeyboardState state;
         public void Update()
         {
-            
             KeyboardState lastState = state;
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();

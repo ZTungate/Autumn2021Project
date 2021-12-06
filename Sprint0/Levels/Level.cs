@@ -320,6 +320,10 @@ namespace Poggus.Levels
         {
             return this.location;
         }
+        public void SetPosition(Point pos)
+        {
+            this.location = pos;
+        }
         public void AddDoor(LevelDoor door, DoorDirectionEnum dir)
         {
             doors.Add(door);
