@@ -17,7 +17,7 @@ namespace Poggus.Levels
     {
         Dictionary<Point, DoorType> doorConditions;
 
-        List<MoveableFloorBlock> moveableBlockList = new List<MoveableFloorBlock>();
+        public List<MoveableFloorBlock> moveableBlockList = new List<MoveableFloorBlock>();
         List<LevelDoor> doors;
         ISprite backgroundSprite;
         Point location;
