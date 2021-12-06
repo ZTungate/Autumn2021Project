@@ -12,6 +12,7 @@ namespace Poggus.PauseMenu
         private static float VOLFULL = 1f;
         private static float VOLOFF = 1f;
         private Game1 game;
+        ISprite Resume;
         float volume;
         Boolean[] cursor = new Boolean[3];
         Boolean options = false;
@@ -20,6 +21,7 @@ namespace Poggus.PauseMenu
             cursor[0] = true;
             this.game = game;
             volume = game.soundManager.volume;
+            Resume = game.pauseSpriteFactory.GetNewResumeSprite();
         }
 
         public void increaseVolume()
@@ -51,10 +53,18 @@ namespace Poggus.PauseMenu
                 }
                 else
                 {
-                    game.pauseSpriteFactory.GetNewResumeSprite().Draw(batch, new Rectangle(new Point(420, 100), new Point(192, 32)));
+
+                    Resume = game.pauseSpriteFactory.GetNewResumeSprite();
+                    
+                    Resume.Draw(batch, new Rectangle(new Point(420, 100), new Point(192, 32)));
                     game.pauseSpriteFactory.GetNewOptionsSprite().Draw(batch, new Rectangle(new Point(420, 150), new Point(192, 32)));
                 }
             }
+        }
+
+        public void selectResume()
+        {
+            Resume.CurrentFrame = (Resume.CurrentFrame + 1) % Resume.FrameCount;
         }
     }
 }
