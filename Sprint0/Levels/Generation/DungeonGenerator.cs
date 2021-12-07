@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Poggus.Blocks;
+using Poggus.Enemies;
+using Poggus.Items;
 
 namespace Poggus.Levels.Generation
 {
@@ -42,7 +44,6 @@ namespace Poggus.Levels.Generation
 
             newDungeon.SetCurrentLevel(new Point(0, 0));
             newDungeon.UpdateLevelContentPositions();
-
             return newDungeon;
         }
         private void GenerateNewRoomLayout(Dungeon dungeon, string axiom, int numIterations, Dictionary<char,string[]> rules)
@@ -123,11 +124,24 @@ namespace Poggus.Levels.Generation
                 for (int j = 0; j < 7; j++)
                 {
                     double val = noise.Evaluate((level.GetPosition().X + i) / featureSize, (level.GetPosition().Y + j) / featureSize);
+                    Point posInRoom = startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY));
                     if (val > -0.2f || i == 5 || i == 6 || j == 3 )
                     {
-                        AbstractBlock newBlock = new Floor(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
+                        AbstractBlock newBlock = new Floor(posInRoom);
                         newBlock.CreateSprite();
                         level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
+                        if(rand.Next(50) == 0)
+                        {
+                            AbstractEnemy enemy = new Skeleton(posInRoom);
+                            enemy.CreateSprite();
+                            level.AddEnemy(enemy);
+                        }
+                        if(rand.Next(10) == 0)
+                        {
+                            AbstractItem item = new BombItem(posInRoom);
+                            item.CreateSprite();
+                            level.AddItem(item);
+                        }
                     }
                     else
                     {
