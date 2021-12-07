@@ -432,7 +432,7 @@ namespace Poggus.Projectiles
         public void ClearProjectiles()
         {
             foreach (IProjectile projectile in projectiles) {
-                if ((projectile is LinkBoomerangProjectile) | (projectile is BoomerangProjectile)){
+                if (projectile is LinkBoomerangProjectile){
                     boomerangSounds[projectile].Stop();
                 }
             }
