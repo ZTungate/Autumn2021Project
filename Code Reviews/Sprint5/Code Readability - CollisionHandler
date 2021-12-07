@@ -1,0 +1,10 @@
+Author of the code review: Wesley Nguyen
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed:  CollisionHandler
+Author of the .cs file being reviewed: Michael
+Number of minutes taken to complete the review: 5 minutes
+
+The only comments in the code were the ones that were there before.  Many if statements are very long and not immediately clear.  
+There are many lines of code that are commented out that serve no purpose.  Link item collision has an if statement with a ton of branches.  
+This branching probably should have been delegated to another function/class.  
