@@ -433,42 +433,42 @@
     <Enemy>
       <Object>Grabber</Object>
       <Location>234,99</Location>
-      <Conditions> </Conditions>
+      <Conditions>-1,0</Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
       <Location>233,126</Location>
-      <Conditions> </Conditions>
+      <Conditions>-1,0</Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
       <Location>4,110</Location>
-      <Conditions> </Conditions>
+      <Conditions>1,0</Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
       <Location>5,85</Location>
-      <Conditions> </Conditions>
+      <Conditions>1,0</Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
       <Location>63,8</Location>
-      <Conditions> </Conditions>
+      <Conditions>0,1</Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
       <Location>89,8</Location>
-      <Conditions> </Conditions>
+      <Conditions>0,1</Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
       <Location>183,9</Location>
-      <Conditions> </Conditions>
+      <Conditions>0,1</Conditions>
     </Enemy>
     <Enemy>
       <Object>Grabber</Object>
       <Location>207,9</Location>
-      <Conditions> </Conditions>
+      <Conditions>0,1</Conditions>
     </Enemy>
   </Enemies>
 </root>

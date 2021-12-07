@@ -129,13 +129,29 @@ namespace Poggus.Levels
 
                         reader.ReadToDescendant("Conditions");
                         reader.MoveToContent();
+
                         string conditions = reader.ReadElementContentAsString();
+                        int commaIndex = conditions.IndexOf(",");
+                        int xDir = 0, yDir = 0;
+                        if(commaIndex != -1)
+                        {
+                            string xDirString = conditions.Substring(0, commaIndex);
+                            string yDirString = conditions.Substring(commaIndex + 1);
+                            xDir = int.Parse(xDirString);
+                            yDir = int.Parse(yDirString);
+                        }
 
                         Object[] objectParams = new Object[1];
                         objectParams[0] = new Point((int)(x * Game1.gameScaleX), (int)(y* Game1.gameScaleY));
                         Type enemyType = Type.GetType("Poggus.Enemies." + enemyName);
                         object instance = Activator.CreateInstance(enemyType, objectParams);
                         AbstractEnemy enemy = (AbstractEnemy)instance;
+
+                        if(commaIndex != -1 && enemy is Grabber)
+                        {
+                            Grabber grabber = (Grabber)enemy;
+                            grabber.SetStartingState(new Point(xDir, yDir));
+                        }
                         enemy.CreateSprite();
 
                         newLevel.AddEnemy(enemy);

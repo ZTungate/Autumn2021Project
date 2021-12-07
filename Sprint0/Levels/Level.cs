@@ -373,7 +373,10 @@ namespace Poggus.Levels
         }
         public void AddDoorCondition(Point doorDirection, DoorType doorType)
         {
-            this.doorConditions.Add(doorDirection, doorType);
+            if (!this.doorConditions.ContainsKey(doorDirection))
+            {
+                this.doorConditions.Add(doorDirection, doorType);
+            }
         }
         public DoorType GetDoorCondition(Point dir)
         {

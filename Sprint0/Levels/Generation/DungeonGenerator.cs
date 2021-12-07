@@ -30,7 +30,7 @@ namespace Poggus.Levels.Generation
             rules.Add('X', new string[] { "UW", "DW", "RW", "LW", "TXX", "{X"});
             rules.Add('T', new string[] { "XTX" , "}XT"});
 
-            GenerateNewRoomLayout(newDungeon, "TX", 8, rules);
+            GenerateNewRoomLayout(newDungeon, "TX", 6, rules);
 
             Dictionary<Point, Level> dungeonLevels = newDungeon.GetLevelDictionary();
             newDungeon.UpdateLevelPositionOnly();
@@ -197,9 +197,19 @@ namespace Poggus.Levels.Generation
                 AbstractEnemy dragon = new Dragon(new Point(475, 250));
                 dragon.CreateSprite();
                 outerLevel.AddEnemy(dragon);
+                outerLevel.AddDoorCondition(triforceLevelPoint - outerLevelPoint, DoorType.RoomClear);
 
                 Level triforceLevel = new Level(Game1.instance.link, Point.Zero);
                 GenerateRoom(triforceLevel, false, false);
+                foreach(Point dir in directions)
+                {
+                    triforceLevel.AddDoorCondition(dir, DoorType.Key);
+                    if(dungeon.GetLevelDictionary().ContainsKey(dir + triforceLevelPoint))
+                    {
+                        Point flippedDir = new Point(-dir.X, -dir.Y);
+                        dungeon.GetLevelDictionary()[(dir + triforceLevelPoint)].AddDoorCondition(flippedDir, DoorType.Key);
+                    }
+                }
 
                 AbstractItem triforceItem = new TriforcePieceItem(new Point(475, 250));
                 triforceItem.CreateSprite();
