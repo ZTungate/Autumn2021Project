@@ -39,7 +39,7 @@ namespace Poggus.Levels.Generation
             {
                 if (entry.Key != outerLevelPoint)
                 {
-                    GenerateRoom(entry.Value, true, true);
+                    GenerateRoom(entry.Value, entry.Key, newDungeon, true, true);
                 }
             }
             GenerateBossRoomAndTriforce(outerLevelPoint, newDungeon);
@@ -117,7 +117,7 @@ namespace Poggus.Levels.Generation
 
             return finalString;
         }
-        private void GenerateRoom(Level level, bool hasItems, bool hasEnemies)
+        private void GenerateRoom(Level level, Point currentLevelPoint, Dungeon dungeon, bool hasItems, bool hasEnemies)
         {
             Poggus.Generation.OpenSimplexNoise noise = new Poggus.Generation.OpenSimplexNoise(seed);
             Point startPoint = new Point((int)(32 * Game1.gameScaleX), (int)(32 * Game1.gameScaleY));
@@ -133,6 +133,10 @@ namespace Poggus.Levels.Generation
                     if (val > -0.2f || i == 5 || i == 6 || j == 3 )
                     {
                         AbstractBlock newBlock = new Floor(posInRoom);
+                        if (rand.Next(GenerationConstants.chanceSand) == 0)
+                        {
+                            newBlock = new EntryFloor(posInRoom);
+                        }
                         newBlock.CreateSprite();
                         level.AddBlock(startPoint + new Point(i * GenerationConstants.blockScaleX, j * GenerationConstants.blockScaleY), newBlock);
 
@@ -143,6 +147,58 @@ namespace Poggus.Levels.Generation
                         if (rand.Next(GenerationConstants.enemySpawnChance) == 0 && hasEnemies)
                         {
                             level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom));
+
+                            //Add door condition
+                            if(rand.Next(GenerationConstants.chanceClearRoomDoor) == 0)
+                            {
+                                foreach(Point dir in directions)
+                                {
+                                    if(dungeon.GetLevelDictionary().ContainsKey(dir + currentLevelPoint))
+                                    {
+                                        level.AddDoorCondition(dir, DoorType.RoomClear);
+                                        Point flippedDir = new Point(-dir.X, -dir.Y);
+                                        Level dirLevel = dungeon.GetLevelDictionary()[currentLevelPoint + dir];
+                                        dirLevel.AddDoorCondition(flippedDir, DoorType.RoomClear);
+                                        break;
+                                    }
+                                }
+                            }
+                            if (rand.Next(GenerationConstants.chanceLockedDoor) == 0)
+                            {
+                                foreach (Point dir in directions)
+                                {
+                                    if (dungeon.GetLevelDictionary().ContainsKey(dir + currentLevelPoint))
+                                    {
+                                        level.AddDoorCondition(dir, DoorType.Key);
+                                        Point flippedDir = new Point(-dir.X, -dir.Y);
+                                        Level dirLevel = dungeon.GetLevelDictionary()[currentLevelPoint + dir];
+                                        dirLevel.AddDoorCondition(flippedDir, DoorType.Key);
+
+                                        AbstractItem hiddenKey = new KeyItem(new Point(475, 250));
+                                        hiddenKey.spawnOnRoomClear = true;
+                                        
+                                        hiddenKey.CreateSprite();
+
+                                        level.AddItem(hiddenKey);
+
+                                        break;
+                                    }
+                                }
+                            }
+                            if (rand.Next(GenerationConstants.chanceHoleDoor) == 0)
+                            {
+                                foreach (Point dir in directions)
+                                {
+                                    if (dungeon.GetLevelDictionary().ContainsKey(dir + currentLevelPoint))
+                                    {
+                                        level.AddDoorCondition(dir, DoorType.Hole);
+                                        Point flippedDir = new Point(-dir.X, -dir.Y);
+                                        Level dirLevel = dungeon.GetLevelDictionary()[currentLevelPoint + dir];
+                                        dirLevel.AddDoorCondition(flippedDir, DoorType.Hole);
+                                        break;
+                                    }
+                                }
+                            }
                         }
                     }
                     else
@@ -193,14 +249,14 @@ namespace Poggus.Levels.Generation
                     }
                 }
 
-                GenerateRoom(outerLevel, true, false);
+                GenerateRoom(outerLevel, outerLevelPoint, dungeon, true, false);
                 AbstractEnemy dragon = new Dragon(new Point(475, 250));
                 dragon.CreateSprite();
                 outerLevel.AddEnemy(dragon);
                 outerLevel.AddDoorCondition(triforceLevelPoint - outerLevelPoint, DoorType.RoomClear);
 
                 Level triforceLevel = new Level(Game1.instance.link, Point.Zero);
-                GenerateRoom(triforceLevel, false, false);
+                GenerateRoom(triforceLevel, triforceLevelPoint, dungeon, false, false);
                 foreach(Point dir in directions)
                 {
                     triforceLevel.AddDoorCondition(dir, DoorType.Key);

@@ -15,7 +15,7 @@ namespace Poggus.UI
 
         public void LoadContent(ContentManager content)
         {
-            hudFont = content.Load<SpriteFont>("Arial");
+            hudFont = content.Load<SpriteFont>("PixEmu");
             hudSpriteSheet = content.Load<Texture2D>("HUDSpriteSheet");
         }
         public ISprite GetNewBlueBlockSprite()
