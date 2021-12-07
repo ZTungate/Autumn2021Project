@@ -46,6 +46,7 @@ namespace Poggus.Enemies
         public static int grabberHealth = 2;
         public static int dragonHealth = 6;
         public static int bladeTrapHealth = 99; //Note: blade traps do not take damage, so any number > 0 works
+        public static int oldManHealth = 10;
 
         //Enemy Attack Damage
         public static int batDamage = 1;
