@@ -327,6 +327,7 @@ namespace Poggus.Collisions
                                 AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
                                 rupee.CreateSprite();
                                 myDungeon.GetCurrentLevel().AddItem(rupee);
+                                
                             }
                         }
                     }

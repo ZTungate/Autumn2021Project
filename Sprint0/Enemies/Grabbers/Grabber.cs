@@ -67,33 +67,39 @@ namespace Poggus.Enemies
         }
         private void ChangeState()
         {
+            //Set state time and delay the grabber's movement start.
+            stateTime = EnemyConstants.grabberStateTime;
+            RandomDelay();
             switch (currState)
             {
                 case state.emerging:
                     //Set the grabber's state to sliding across the surface, give it velocity to do so.
                     currState = state.overSliding;
-                    stateTime = EnemyConstants.grabberStateTime;
                     velocity = new Point(EnemyConstants.grabberSlideVelocity, 0);
                     break;
                 case state.overSliding:
                     //Set the grabber's state to retracting, and set its velocity for retraction.
                     currState = state.retracting;
-                    stateTime = EnemyConstants.grabberStateTime;
                     velocity = new Point(0, -EnemyConstants.grabberEmergeVelocity);
                     break;
                 case state.underSliding:
                     //Set teh grabber's state to emerging and set its velocity for emergence.
                     currState = state.emerging;
-                    stateTime = EnemyConstants.grabberStateTime;
                     velocity = new Point(0, EnemyConstants.grabberEmergeVelocity);
                     break;
                 case state.retracting:
                     //Set the grabber's velocity and state
                     currState = state.underSliding;
-                    stateTime = EnemyConstants.grabberStateTime;
                     velocity = new Point(-EnemyConstants.grabberSlideVelocity, 0);
                     break;
             }
+        }
+
+        //Stuns the grabber breifly to randomize their movement.
+        private void RandomDelay()
+        {
+            Random r = new Random();
+            StunTimer = r.Next(EnemyConstants.grabberMaxDelay);
         }
     }
 }
