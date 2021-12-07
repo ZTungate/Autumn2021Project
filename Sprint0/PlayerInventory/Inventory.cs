@@ -10,10 +10,10 @@ namespace Poggus.PlayerInventory
 {
     public class Inventory
     {
-        private int arrows = 5; //added for testing: TO REMOVE
-        private int blueArrows = 5;
-        private int bombs = 5;
-        private int rupee = 5;
+        private int arrows = 0; //added for testing: TO REMOVE
+        private int blueArrows = 0;
+        private int bombs = 0;
+        private int rupee = 0;
         private int keys = 0;
         private AbstractItem slotA;
         private AbstractItem slotB;

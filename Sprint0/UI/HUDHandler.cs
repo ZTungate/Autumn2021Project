@@ -16,6 +16,7 @@ namespace Poggus.UI
         TextSprite lifeText, levelText, rupeeAmtText, keyAmtText, bombAmtText, slotAText, slotBText, inventoryText;
         ImageUI hudBlackBackground, aSlotBackground, bSlotBackground, inventoryBackground, keyImage, bombImage, rupeeImage;
         ImageUI slotAItemImage, slotBItemImage;
+        ImageUI inventoryCursor;
         List<ImageUI> heartImages;
         List<ImageUI> inventoryImages;
         private int healthDrawn;
@@ -50,6 +51,7 @@ namespace Poggus.UI
         }
         public void InitHUD()
         {
+
             hudBlackBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlackBlockSprite(), new Point(0, 0), new Point(Game1.instance._graphics.PreferredBackBufferWidth, hudHeight));
             lifeText = new TextSprite(HUDSpriteFactory.instance.hudFont, "--LIFE--", Color.Red, new Point(Game1.instance._graphics.PreferredBackBufferWidth-175, hudHeight - 100));
             levelText = new TextSprite(HUDSpriteFactory.instance.hudFont, Game1.instance.GetDungeon().GetDungeonName(), Color.White, new Point(10, hudHeight - 165));
@@ -72,6 +74,7 @@ namespace Poggus.UI
 
             inventoryText = new TextSprite(HUDSpriteFactory.instance.hudFont, "INVENTORY", Color.Red, new Point(75, 75));
             inventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueSquareBorderSprite(), inventoryText.GetPosition() + new Point(200,50), new Point(300, 150));
+            inventoryCursor = new ImageUI(HUDSpriteFactory.instance.GetInventoryCursorSprite(), inventoryText.GetPosition() + new Point(200, 50), new Point(64, 64));
 
             for (int i = 0; i < link.maxHealth; i+=2)
             {

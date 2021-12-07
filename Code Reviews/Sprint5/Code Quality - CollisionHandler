@@ -1,0 +1,18 @@
+Author of the code review: Mason Pacenta
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed:  CollisionHandler
+Author of the .cs file being reviewed: Wesley
+Number of minutes taken to complete the review: 10:48-10:54 (6 minutes)
+
+CollisionHandler has been around since Sprint 3 but with many changes being added to it
+for Sprint 4 and 5, this is going to be an updated code quality. CollisionHandler has fairly
+poor code quality. It is not very cohesive and has high coupling. This is due in part to the fact
+that the collision handler does the action of destroying enemies, destroying projectiles, creating projectiles
+creating items, and more. Similarly, having a separate collision event type for each object, such as one
+for enemy to link, one for enemy to projectile, etc. could be improved. Since all objects have a rectangle
+object of some kind that could be accessed, a singular method would be required that takes in 2 rectangles
+and determines if they collide. Then a separate method for each collision type would not be needed.
+Also to raise cohesion each object that could be collided with, could have a OnCollision() method
+that is implemented differently in each class, so then on any collision OnCollision() is simply called
+on both objects. This would lower the overall size of collision handler as well.

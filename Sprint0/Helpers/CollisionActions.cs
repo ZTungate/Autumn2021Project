@@ -33,7 +33,7 @@ namespace Poggus.Helpers
                     link.TakeDamage(EnemyConstants.grabberDamage * difficulty, dir);
                     link.SetPosition(LinkConstants.originPos);
                     myDungeon.SetCurrentLevel(new Point(0, 0));
-                    Main.Camera.main.BeginMoveTo(myDungeon.GetCurrentLevel().GetPosition(), 12);
+                    Main.Camera.main.SetPosition(myDungeon.GetCurrentLevel().GetPosition());
                     break;
                 case EnemyType.Skeleton:
                     link.TakeDamage(EnemyConstants.skeletonDamage * difficulty, dir);

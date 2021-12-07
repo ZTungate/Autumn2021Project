@@ -351,6 +351,8 @@ namespace Poggus.Collisions
                     if (itemLink.Item2 is BombItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementBombs();
+                        new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+
                         SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is ArrowItem)
@@ -379,6 +381,8 @@ namespace Poggus.Collisions
                     else if (itemLink.Item2 is BoomerangItem)
                     {
                         itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
+                        new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+
                         SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is CompassItem)

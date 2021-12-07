@@ -172,14 +172,21 @@ namespace Poggus.Levels.Generation
                                         level.AddDoorCondition(dir, DoorType.Key);
                                         Point flippedDir = new Point(-dir.X, -dir.Y);
                                         Level dirLevel = dungeon.GetLevelDictionary()[currentLevelPoint + dir];
-                                        dirLevel.AddDoorCondition(flippedDir, DoorType.Key);
 
                                         AbstractItem hiddenKey = new KeyItem(new Point(475, 250));
                                         hiddenKey.spawnOnRoomClear = true;
-                                        
-                                        hiddenKey.CreateSprite();
 
-                                        level.AddItem(hiddenKey);
+                                        hiddenKey.CreateSprite();
+                                        dirLevel.AddItem(hiddenKey);
+
+                                        dirLevel.AddDoorCondition(flippedDir, DoorType.Key);
+
+                                        AbstractItem hiddenKey2 = new KeyItem(new Point(475, 250));
+                                        hiddenKey2.spawnOnRoomClear = true;
+                                        
+                                        hiddenKey2.CreateSprite();
+
+                                        level.AddItem(hiddenKey2);
 
                                         break;
                                     }
