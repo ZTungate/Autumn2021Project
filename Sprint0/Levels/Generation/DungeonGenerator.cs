@@ -117,50 +117,129 @@ namespace Poggus.Levels.Generation
         {
             Poggus.Generation.OpenSimplexNoise noise = new Poggus.Generation.OpenSimplexNoise(seed);
             Point startPoint = new Point((int)(32 * Game1.gameScaleX), (int)(32 * Game1.gameScaleY));
-            float featureSize = 5f;
             bool water = rand.Next(2) == 0;
+            EnemyType enemyRoomType = GetRandomEnemyType();
             for (int i = 0; i < 12; i++)
             {
                 for (int j = 0; j < 7; j++)
                 {
-                    double val = noise.Evaluate((level.GetPosition().X + i) / featureSize, (level.GetPosition().Y + j) / featureSize);
-                    Point posInRoom = startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY));
+                    double val = noise.Evaluate((level.GetPosition().X + i) / GenerationConstants.featureSize, (level.GetPosition().Y + j) / GenerationConstants.featureSize);
+                    Point posInRoom = startPoint + new Point((int)(i * GenerationConstants.blockScaleX * Game1.gameScaleX), (int)(j * GenerationConstants.blockScaleY * Game1.gameScaleY));
+                    Point blockPos = startPoint + new Point(i * GenerationConstants.blockScaleX, j * GenerationConstants.blockScaleY);
                     if (val > -0.2f || i == 5 || i == 6 || j == 3 )
                     {
                         AbstractBlock newBlock = new Floor(posInRoom);
                         newBlock.CreateSprite();
-                        level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
-                        if(rand.Next(50) == 0)
+                        level.AddBlock(startPoint + new Point(i * GenerationConstants.blockScaleX, j * GenerationConstants.blockScaleY), newBlock);
+
+                        if(rand.Next(GenerationConstants.enemySpawnChance) == 0)
                         {
-                            AbstractEnemy enemy = new Skeleton(posInRoom);
-                            enemy.CreateSprite();
-                            level.AddEnemy(enemy);
+                            level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom + new Point(GenerationConstants.blockScaleX / 2, -GenerationConstants.blockScaleY / 2)));
                         }
-                        if(rand.Next(10) == 0)
+                        if(rand.Next(GenerationConstants.itemSpawnChance) == 0)
                         {
-                            AbstractItem item = new BombItem(posInRoom);
-                            item.CreateSprite();
-                            level.AddItem(item);
+                            level.AddItem(CreateRandomItem(posInRoom + new Point(GenerationConstants.blockScaleX / 2, -GenerationConstants.blockScaleY / 2)));
                         }
                     }
                     else
                     {
                         if (water)
                         {
-                            AbstractBlock newBlock = new Water(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
+                            AbstractBlock newBlock = new Water(posInRoom);
                             newBlock.CreateSprite();
-                            level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
+                            level.AddBlock(blockPos, newBlock);
                         }
                         else
                         {
-                            AbstractBlock newBlock = new FloorBlock(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
+                            AbstractBlock newBlock = new FloorBlock(posInRoom);
                             newBlock.CreateSprite();
-                            level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
+                            level.AddBlock(blockPos, newBlock);
                         }
                     }
                 }
             }
         }
+        public AbstractItem CreateRandomItem(Point pos)
+        {
+            AbstractItem item;
+            if(rand.Next(GenerationConstants.bombChance) == 0)
+            {
+                item = new BombItem(pos);
+            }
+            else if (rand.Next(GenerationConstants.heartChance) == 0)
+            {
+                item = new HeartItem(pos);
+            }
+            else if(rand.Next(GenerationConstants.heartContainerChance) == 0)
+            {
+                item = new HeartContainerItem(pos);
+            }
+            else if(rand.Next(GenerationConstants.fairyChance) == 0)
+            {
+                item = new FairyItem(pos);
+            }
+            else if(rand.Next(GenerationConstants.mapChance) == 0)
+            {
+                item = new MapItem(pos);
+            }
+            else
+            {
+                item = new RupeeItem(pos);
+            }
+            item.CreateSprite();
+            return item;
+        }
+        public EnemyType GetRandomEnemyType()
+        {
+            EnemyType type;
+            if(rand.Next(GenerationConstants.batChance) == 0)
+            {
+                type = EnemyType.Bat;
+            }
+            else if(rand.Next(GenerationConstants.throwerChance) == 0)
+            {
+                type = EnemyType.Thrower;
+            }
+            else if(rand.Next(GenerationConstants.skeletonChance) == 0)
+            {
+                type = EnemyType.Skeleton;
+            }
+            else if(rand.Next(GenerationConstants.bladeChance) == 0)
+            {
+                type = EnemyType.BladeTrap;
+            }
+            else
+            {
+                type = EnemyType.Slime;
+            }
+            return type;
+        }
+        public AbstractEnemy CreateEnemyFromType(EnemyType enemyType, Point pos)
+        {
+            AbstractEnemy enemy;
+            if (enemyType == EnemyType.Bat)
+            {
+                enemy = new Bat(pos);
+            }
+            else if(enemyType == EnemyType.Skeleton)
+            {
+                enemy = new Skeleton(pos);
+            }
+            else if(enemyType == EnemyType.BladeTrap)
+            {
+                enemy = new BladeTrap(pos);
+            }
+            else if(enemyType == EnemyType.Thrower)
+            {
+                enemy = new Thrower(pos);
+            }
+            else
+            {
+                enemy = new Slime(pos);
+            }
 
+            enemy.CreateSprite();
+            return enemy;
+        }
     }
 }
