@@ -59,6 +59,12 @@ namespace Poggus.Sound
 
         }
 
+        public void SetVolume(float newVolume)
+        {
+            sound.SetVolume(newVolume);
+            MediaPlayer.Volume = newVolume;
+        }
+
         public void ToggleSound()
         {
             if (volume == 0) {
