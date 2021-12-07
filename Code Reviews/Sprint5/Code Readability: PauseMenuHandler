@@ -1,0 +1,10 @@
+Author of the code review: Jonah Silsdorf
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed: PauseMenuHandler.cs
+Author of the .cs file being reviewed: Zach
+Number of minutes taken to complete the review: 10 
+
+This file has very few comments, the only ones that are present are there to explain an unclear variable name.
+Most variable names are fine, method names make sense.
+Comments on code would be helpful in understanding exactly what each part of the code is doing.
