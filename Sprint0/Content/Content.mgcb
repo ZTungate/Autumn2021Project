@@ -375,3 +375,10 @@
 /processorParam:TextureFormat=Color
 /build:PC Computer - BIONICLE The Legend of Mata Nui Prototype - Water Ball.png;waterBall.png
 
+#begin PixEmu.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:PixEmu.spritefont
+
