@@ -54,13 +54,13 @@ namespace Poggus.UI
             lifeText = new TextSprite(HUDSpriteFactory.instance.hudFont, "--LIFE--", Color.Red, new Point(Game1.instance._graphics.PreferredBackBufferWidth-175, hudHeight - 100));
             levelText = new TextSprite(HUDSpriteFactory.instance.hudFont, Game1.instance.GetDungeon().GetDungeonName(), Color.White, new Point(10, hudHeight - 165));
 
-            bSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), lifeText.GetPosition() + new Point(-200,0), new Point(40,75));
-            aSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), bSlotBackground.DestRect.Location + new Point(65, 0), new Point(40, 75));            
+            aSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), lifeText.GetPosition() + new Point(-200,0), new Point(40,75));
+            bSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), aSlotBackground.DestRect.Location + new Point(65, 0), new Point(40, 75));            
 
-            slotBText = new TextSprite(HUDSpriteFactory.instance.hudFont, "Z", Color.White, bSlotBackground.DestRect.Location + new Point(12, -25));
-            slotAText = new TextSprite(HUDSpriteFactory.instance.hudFont, "X", Color.White, aSlotBackground.DestRect.Location + new Point(12, -25));
+            slotBText = new TextSprite(HUDSpriteFactory.instance.hudFont, "X", Color.White, bSlotBackground.DestRect.Location + new Point(12, -25));
+            slotAText = new TextSprite(HUDSpriteFactory.instance.hudFont, "Z", Color.White, aSlotBackground.DestRect.Location + new Point(12, -25));
 
-            rupeeAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, slotBText.GetPosition() + new Point(-75, 0));
+            rupeeAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, slotAText.GetPosition() + new Point(-75, 0));
             keyAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, rupeeAmtText.GetPosition() + new Point(0, 30));
             bombAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, keyAmtText.GetPosition() + new Point(0, 30));
 

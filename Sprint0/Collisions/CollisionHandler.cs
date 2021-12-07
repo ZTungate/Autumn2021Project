@@ -303,9 +303,9 @@ namespace Poggus.Collisions
                         if (projEne.enemy2 is Dragon)
                         {
                             //Spawn a heart container when the dragon dies.
-                            AbstractItem heartContainer = new HeartContainerItem(projEne.enemy2.GetPosition());
+/*                            AbstractItem heartContainer = new HeartContainerItem(projEne.enemy2.GetPosition());
                             heartContainer.CreateSprite();
-                            myDungeon.GetCurrentLevel().AddItem(heartContainer);
+                            myDungeon.GetCurrentLevel().AddItem(heartContainer);*/
                         }
                         else
                         {
@@ -397,6 +397,7 @@ namespace Poggus.Collisions
                         new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
                     }else if (itemLink.Item2 is HeartContainerItem)
                     {
+                        SoundManager.sound.playItemPickup();
                         itemLink.Link1.maxHealth+=2;
                         itemLink.Link1.Health += 2;
                     }else if(itemLink.Item2 is ClockItem)
