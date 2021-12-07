@@ -7,6 +7,7 @@ using Poggus.Items;
 using Poggus.PlayerInventory;
 using Poggus.Sound;
 using Poggus.Collisions;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Poggus.Player
 {
@@ -42,7 +43,10 @@ namespace Poggus.Player
 
         public ColDirections knockBackDirection;
         public float knockBackTime = 0;
-        
+
+        private SoundEffectInstance lowHealthSound;
+        private bool isPlayingLow = false;
+
         float invincibilityFramesDuration = LinkConstants.linkInvincibilityDuration;
         float hitStunDuration = LinkConstants.linkHitStunDuration;
         
@@ -92,6 +96,7 @@ namespace Poggus.Player
                     this.collideWithBounds = true;
                 }
             }
+
             updateDamageState(gameTime);
             knockback(gameTime);
             State.Update(gameTime);
@@ -169,6 +174,16 @@ namespace Poggus.Player
                 {
                     knockBackDirection = damageDirection;
                     knockBackTime = LinkConstants.knockBackTime;
+                }
+                if (Health < 2 && !isPlayingLow) {
+                    lowHealthSound = SoundManager.sound.playLowHealthSound();
+                    isPlayingLow = true;
+                }
+                else {
+                    if (!(lowHealthSound is null)) {
+                        lowHealthSound.Stop();
+                        isPlayingLow = false;
+                    }
                 }
             
             }

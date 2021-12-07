@@ -85,7 +85,7 @@ namespace Poggus.Projectiles
                     //Spawn a large explosion.
                     NewBombExplosions(projectile.GetPosition());
                 }
-                else if ((projectile is LinkBoomerangProjectile) | (projectile is BoomerangProjectile)){
+                else if (projectile is LinkBoomerangProjectile){
                     boomerangSounds[projectile].Stop();
                 }
             }
