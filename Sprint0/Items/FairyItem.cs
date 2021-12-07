@@ -9,7 +9,7 @@ namespace Poggus.Items
     public class FairyItem : AbstractItem
     {
         const int RANDMOVE = 4;
-        const int MOVESPEED = 4;
+        const int MOVESPEED = 10;
         public FairyItem(Point pos) : base(ItemEnum.Fairy, pos, Point.Zero)
         {
 
@@ -17,13 +17,18 @@ namespace Poggus.Items
 
         public override void Update(GameTime gameTime)
         {
+            //Update the sprite, check if the frame changed, and move if the frame changed.
+            int lastFrame = sprite.CurrentFrame;
             this.sprite.Update(gameTime);
+            if (lastFrame != sprite.CurrentFrame)
+            {
+                SetPosition(RandomMove());
+            }
         }
         private Point RandomMove()
         {
             Point newPosition = rect.Location;
 
-            //Get a random number from 0-3
             Random rand = new Random();
             int i = rand.Next(RANDMOVE);
 
