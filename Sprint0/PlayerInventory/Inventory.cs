@@ -1,4 +1,5 @@
-﻿using Poggus.Items;
+﻿using Microsoft.Xna.Framework;
+using Poggus.Items;
 using Poggus.Items.ItemSprites;
 using Poggus.Projectiles;
 using System;
@@ -29,8 +30,7 @@ namespace Poggus.PlayerInventory
         
         public Inventory()
         {
-
-            
+            AddItem(new SwordItem(Point.Zero));
         }
         public void setSlotA(AbstractItem item)
         {
@@ -43,12 +43,17 @@ namespace Poggus.PlayerInventory
         }
         public AbstractItem getSlotB()
         {
-            return SlotB;
+            if (itemList.Count > 1) {
+                return itemList[1];
+            }
+            else {
+                return null;
+            }
         }
 
         public AbstractItem getSlotA()
         {
-            return slotA;
+            return itemList[0];
         }
         public void IncrementBlueArrows()
         {
