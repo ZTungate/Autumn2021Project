@@ -329,9 +329,9 @@ namespace Poggus.Collisions
                         if (projEne.enemy2 is Dragon)
                         {
                             //Spawn a heart container when the dragon dies.
-                            AbstractItem heartContainer = new HeartContainerItem(projEne.enemy2.GetPosition());
+/*                            AbstractItem heartContainer = new HeartContainerItem(projEne.enemy2.GetPosition());
                             heartContainer.CreateSprite();
-                            myDungeon.GetCurrentLevel().AddItem(heartContainer);
+                            myDungeon.GetCurrentLevel().AddItem(heartContainer);*/
                         }
                         else
                         {

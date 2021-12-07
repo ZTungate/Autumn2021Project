@@ -426,7 +426,7 @@
     <Item>
       <Object>HeartContainer</Object>
       <Location>193,81</Location>
-      <Conditions> </Conditions>
+      <Conditions>RoomClear</Conditions>
     </Item>
   </Items>
   <Enemies>
