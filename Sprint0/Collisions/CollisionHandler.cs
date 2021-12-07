@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Poggus.Levels;
-using Poggus;
 using Poggus.Blocks;
 using Poggus.Commands;
 using Poggus.Enemies;
@@ -9,9 +8,6 @@ using Poggus.Player;
 using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Poggus.Levels.Sprites;
 using Poggus.Main;
 using Poggus.Sound;
 using Poggus.Helpers;
@@ -313,9 +309,25 @@ namespace Poggus.Collisions
                             Random rand = new Random();
                             if (rand.Next(EnemyConstants.rupeeDropRate) <= 3)
                             {
-                                AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
-                                rupee.CreateSprite();
-                                myDungeon.GetCurrentLevel().AddItem(rupee);
+                                var itemType = rand.Next(EnemyConstants.numItemDropTypes);
+                                switch (itemType) {
+                                    case 0:
+                                        AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
+                                            rupee.CreateSprite();
+                                        myDungeon.GetCurrentLevel().AddItem(rupee);
+                                        break;
+                                    case 1:
+                                        AbstractItem bomb = new BombItem(projEne.enemy2.GetPosition());
+                                        bomb.CreateSprite();
+                                        myDungeon.GetCurrentLevel().AddItem(bomb);
+                                        break;
+                                    case 2:
+                                        AbstractItem heart = new HeartItem(projEne.enemy2.GetPosition());
+                                        heart.CreateSprite();
+                                        myDungeon.GetCurrentLevel().AddItem(heart);
+                                        break;
+
+                                }
                                 
                             }
                         }
