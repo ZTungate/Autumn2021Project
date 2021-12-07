@@ -28,7 +28,7 @@ namespace Poggus.Enemies
 
         public int Health { get; set; }
         public int StunTimer { get; set; }
-
+        public void changeDifficulty(int oldDifficulty, int newDifficulty);
         public Point GetPosition();
         public void SetPosition(Point pos);
         public void TakeDamage(int damageAmount, ColDirections damageDirection);

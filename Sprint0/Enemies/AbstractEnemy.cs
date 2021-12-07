@@ -46,6 +46,10 @@ namespace Poggus.Enemies
         {
             Sprite.Draw(batch, DestRect);
         }
+        public void changeDifficulty(int oldDifficulty, int newDifficulty)
+        {
+            this.Health = (this.Health/oldDifficulty) * newDifficulty;
+        }
         public Point GetPosition()
         {
             return this.DestRect.Location;
