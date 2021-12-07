@@ -34,11 +34,15 @@ namespace Poggus.Levels.Generation
 
             Dictionary<Point, Level> dungeonLevels = newDungeon.GetLevelDictionary();
             newDungeon.UpdateLevelPositionOnly();
-
+            Point outerLevelPoint = GetOuterLevelPoint(newDungeon);
             foreach (KeyValuePair<Point,Level> entry in dungeonLevels)
             {
-                GenerateRoom(entry.Value);
+                if (entry.Key != outerLevelPoint)
+                {
+                    GenerateRoom(entry.Value, true, true);
+                }
             }
+            GenerateBossRoomAndTriforce(outerLevelPoint, newDungeon);
 
             newDungeon.UpdateLevelDoors(Game1.gameScaleX, Game1.gameScaleY);
 
@@ -113,7 +117,7 @@ namespace Poggus.Levels.Generation
 
             return finalString;
         }
-        private void GenerateRoom(Level level)
+        private void GenerateRoom(Level level, bool hasItems, bool hasEnemies)
         {
             Poggus.Generation.OpenSimplexNoise noise = new Poggus.Generation.OpenSimplexNoise(seed);
             Point startPoint = new Point((int)(32 * Game1.gameScaleX), (int)(32 * Game1.gameScaleY));
@@ -132,11 +136,11 @@ namespace Poggus.Levels.Generation
                         newBlock.CreateSprite();
                         level.AddBlock(startPoint + new Point(i * GenerationConstants.blockScaleX, j * GenerationConstants.blockScaleY), newBlock);
 
-                        if(rand.Next(GenerationConstants.enemySpawnChance) == 0)
+                        if(rand.Next(GenerationConstants.enemySpawnChance) == 0 && hasItems)
                         {
-                            level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom + new Point(GenerationConstants.blockScaleX / 2, -GenerationConstants.blockScaleY / 2)));
+                            level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom));
                         }
-                        if(rand.Next(GenerationConstants.itemSpawnChance) == 0)
+                        if(rand.Next(GenerationConstants.itemSpawnChance) == 0 && hasEnemies)
                         {
                             level.AddItem(CreateRandomItem(posInRoom + new Point(GenerationConstants.blockScaleX / 2, -GenerationConstants.blockScaleY / 2)));
                         }
@@ -157,6 +161,51 @@ namespace Poggus.Levels.Generation
                         }
                     }
                 }
+            }
+        }
+        public Point GetOuterLevelPoint(Dungeon dungeon)
+        {
+            Vector2 maxVector = new Vector2(0, 0);
+            Point outerLevelPoint = Point.Zero;
+
+            foreach(KeyValuePair<Point,Level> entry in dungeon.GetLevelDictionary())
+            {
+                if(entry.Key.ToVector2().LengthSquared() >= maxVector.LengthSquared())
+                {
+                    maxVector = entry.Key.ToVector2();
+                    outerLevelPoint = entry.Key;
+                }
+            }
+            return outerLevelPoint;
+        }
+        static Point[] directions = { new Point(1,0), new Point(-1,0), new Point(0,1), new Point(0,-1)};
+        public void GenerateBossRoomAndTriforce(Point outerLevelPoint, Dungeon dungeon)
+        {
+            Level outerLevel = null;
+            if(dungeon.GetLevelDictionary().TryGetValue(outerLevelPoint, out outerLevel))
+            {
+                Point triforceLevelPoint = Point.Zero;
+                foreach(Point dir in directions)
+                {
+                    if(!dungeon.GetLevelDictionary().ContainsKey(dir + outerLevelPoint))
+                    {
+                        triforceLevelPoint = dir + outerLevelPoint;
+                    }
+                }
+
+                GenerateRoom(outerLevel, true, false);
+                AbstractEnemy dragon = new Dragon(new Point(475, 250));
+                dragon.CreateSprite();
+                outerLevel.AddEnemy(dragon);
+
+                Level triforceLevel = new Level(Game1.instance.link, Point.Zero);
+                GenerateRoom(triforceLevel, false, false);
+
+                AbstractItem triforceItem = new TriforcePieceItem(new Point(475, 250));
+                triforceItem.CreateSprite();
+                triforceLevel.AddItem(triforceItem);
+
+                dungeon.AddLevel(triforceLevelPoint, triforceLevel);
             }
         }
         public AbstractItem CreateRandomItem(Point pos)

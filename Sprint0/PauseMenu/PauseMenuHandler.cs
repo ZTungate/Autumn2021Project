@@ -14,10 +14,12 @@ namespace Poggus.PauseMenu
         private static float VOLOFF = 0.0f;
         private const float TINT = 0.8f;
         private Game1 game;
+        public int difficulty = 0;
         ISprite Resume;
         ISprite Options;
         ISprite SoundBar;
         String soundName = "Sound:";
+        Vector2 soundNameLoc = new Vector2(300, 200);
         SpriteFont Font;
         String[] difficulties = new String[3];
         Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
@@ -31,8 +33,8 @@ namespace Poggus.PauseMenu
         public PauseMenuHandler(Game1 game, SpriteFont font)
         {
             difficulties[0] = "Easy";
-            difficulties[0] = "Normal";
-            difficulties[0] = "Hard";
+            difficulties[1] = "Normal";
+            difficulties[2] = "Hard";
             this.game = game;
             this.Font = font;
             volume = game.soundManager.volume;
@@ -122,6 +124,7 @@ namespace Poggus.PauseMenu
                     batch.Draw(fadeImage, Backdrop, Color.Black * TINT);
                     getSoundFrame();
                     if(volume > 0) SoundBar.Draw(batch, SoundLoc);
+                    batch.DrawString(Font, soundName, soundNameLoc, Color.White);
                 }
                 else
                 {
