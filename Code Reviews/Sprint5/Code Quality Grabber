@@ -4,3 +4,10 @@ Sprint number: 5
 Name of the .cs file being reviewed:  Grabber
 Author of the .cs file being reviewed: Jonah
 Number of minutes taken to complete the review: 
+
+There are some magic numbers that can be moved into const variables or a seperate file to be used.
+The loose coupling of grabber not needing link or the room and passing it  off to allow room reseting when grabbed is done well.
+It seems like wall movement might still be an issue and logic for it might not be exact to what it's meant to represent.
+
+
+
