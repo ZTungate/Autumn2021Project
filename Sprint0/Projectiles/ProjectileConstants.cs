@@ -36,8 +36,8 @@ namespace Poggus.Projectiles
 
         public static Point VertArrowSize = new Point(32, 64);
         public static Point HorizArrowSize = new Point(64, 32);
-        public static Point vertSwordBeamSize = new Point(32, 64);
-        public static Point horizSwordBeamSize = new Point(64, 32);
+        public static Point vertSwordBeamSize = new Point(24, 48);
+        public static Point horizSwordBeamSize = new Point(64, 48);
         public static Point BombSize = new Point(32, 64);
         public static Point bombExplosionSize = new Point(64, 64);
         public static Point fireballSize = new Point(32, 32);
