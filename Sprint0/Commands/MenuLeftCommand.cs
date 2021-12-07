@@ -21,6 +21,10 @@ namespace Poggus.Commands
                     {
                         game.menuHandler.decreaseVolume();
                     }
+                    else
+                    {
+                        game.menuHandler.decreaseDifficulty();
+                    }
                 }
             }
         }
