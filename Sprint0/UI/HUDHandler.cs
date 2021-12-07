@@ -50,29 +50,28 @@ namespace Poggus.UI
         }
         public void InitHUD()
         {
-            this.hudBlackBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlackBlockSprite(), new Point(0, 0), new Point(Game1.instance._graphics.PreferredBackBufferWidth, hudHeight));
-            this.lifeText = new TextSprite(HUDSpriteFactory.instance.hudFont, "--LIFE--", Color.Red, new Point(Game1.instance._graphics.PreferredBackBufferWidth-175, hudHeight - 100));
-            this.levelText = new TextSprite(HUDSpriteFactory.instance.hudFont, Game1.instance.GetDungeon().GetDungeonName(), Color.White, new Point(10, hudHeight - 165));
+            hudBlackBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlackBlockSprite(), new Point(0, 0), new Point(Game1.instance._graphics.PreferredBackBufferWidth, hudHeight));
+            lifeText = new TextSprite(HUDSpriteFactory.instance.hudFont, "--LIFE--", Color.Red, new Point(Game1.instance._graphics.PreferredBackBufferWidth-175, hudHeight - 100));
+            levelText = new TextSprite(HUDSpriteFactory.instance.hudFont, Game1.instance.GetDungeon().GetDungeonName(), Color.White, new Point(10, hudHeight - 165));
 
-            this.bSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), this.lifeText.GetPosition() + new Point(-200,0), new Point(40,75));
-            this.aSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), this.bSlotBackground.DestRect.Location + new Point(65, 0), new Point(40, 75));
+            aSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), lifeText.GetPosition() + new Point(-200,0), new Point(40,75));
+            bSlotBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueBorderSprite(), aSlotBackground.DestRect.Location + new Point(65, 0), new Point(40, 75));            
 
-            this.slotAItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(new Items.SwordItem(Point.Zero)), this.aSlotBackground.GetPosition() + new Point(15, 15), this.aSlotBackground.DestRect.Size - new Point(25, 25));
-            this.slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(new Items.BowItem(Point.Zero)), this.bSlotBackground.GetPosition() + new Point(15, 15), this.bSlotBackground.DestRect.Size - new Point(25, 25));
+            slotBText = new TextSprite(HUDSpriteFactory.instance.hudFont, "X", Color.White, bSlotBackground.DestRect.Location + new Point(12, -25));
+            slotAText = new TextSprite(HUDSpriteFactory.instance.hudFont, "Z", Color.White, aSlotBackground.DestRect.Location + new Point(12, -25));
 
-            this.slotBText = new TextSprite(HUDSpriteFactory.instance.hudFont, "B", Color.White, bSlotBackground.DestRect.Location + new Point(10, -15));
-            this.slotAText = new TextSprite(HUDSpriteFactory.instance.hudFont, "A", Color.White, aSlotBackground.DestRect.Location + new Point(10, -15));
+            rupeeAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, slotAText.GetPosition() + new Point(-75, 0));
+            keyAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, rupeeAmtText.GetPosition() + new Point(0, 30));
+            bombAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, keyAmtText.GetPosition() + new Point(0, 30));
 
-            this.rupeeAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, slotBText.GetPosition() + new Point(-75, 0));
-            this.keyAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, rupeeAmtText.GetPosition() + new Point(0, 30));
-            this.bombAmtText = new TextSprite(HUDSpriteFactory.instance.hudFont, "x", Color.White, keyAmtText.GetPosition() + new Point(0, 30));
+            rupeeImage = new ImageUI(HUDSpriteFactory.instance.GetNewRupeeSprite(), rupeeAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
+            keyImage = new ImageUI(HUDSpriteFactory.instance.GetNewKeySprite(), keyAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
+            bombImage = new ImageUI(HUDSpriteFactory.instance.GetNewBombSprite(), bombAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
 
-            this.rupeeImage = new ImageUI(HUDSpriteFactory.instance.GetNewRupeeSprite(), this.rupeeAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
-            this.keyImage = new ImageUI(HUDSpriteFactory.instance.GetNewKeySprite(), this.keyAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
-            this.bombImage = new ImageUI(HUDSpriteFactory.instance.GetNewBombSprite(), this.bombAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
 
-            this.inventoryText = new TextSprite(HUDSpriteFactory.instance.hudFont, "INVENTORY", Color.Red, new Point(75, 75));
-            this.inventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueSquareBorderSprite(), this.inventoryText.GetPosition() + new Point(200,50), new Point(300, 150));
+
+            inventoryText = new TextSprite(HUDSpriteFactory.instance.hudFont, "INVENTORY", Color.Red, new Point(75, 75));
+            inventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueSquareBorderSprite(), inventoryText.GetPosition() + new Point(200,50), new Point(300, 150));
 
             for (int i = 0; i < link.maxHealth; i+=2)
             {
@@ -97,7 +96,7 @@ namespace Poggus.UI
 
             foreach(Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
             {
-                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25,25));
+                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25,25));
                 inventoryImages.Add(itemImage);
             }
         }
@@ -113,14 +112,14 @@ namespace Poggus.UI
                 ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25, 25));
                 inventoryImages.Add(itemImage);
             }
-            /*if (inventory.getSlotA() != null)
+            if (!(inventory.getSlotA() is null))
             {
-                this.slotAItemImage = new ImageUI(inventory.getSlotA(), this.aSlotBackground.GetPosition() + new Point(5, 5), this.aSlotBackground.DestRect.Size - new Point(5, 5));
+                this.slotAItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotA()), this.aSlotBackground.GetPosition() + new Point(5, 5), this.aSlotBackground.DestRect.Size - new Point(5, 5));
             }
-            if (inventory.getSlotB() != null)
+            if (!(inventory.getSlotB() is null))
             {
                 this.slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), this.bSlotBackground.GetPosition() + new Point(5, 5), this.bSlotBackground.DestRect.Size - new Point(5, 5));
-            }*/
+            }
 
             this.rupeeAmtText.SetText("X" + link.LinkInventory.GetRupeeCount());
             this.keyAmtText.SetText("X" + link.LinkInventory.GetKeyCount());
@@ -222,12 +221,14 @@ namespace Poggus.UI
 
                 aSlotBackground.SetPosition(aSlotBackground.GetPosition() + change);
                 slotAText.SetPosition(slotAText.GetPosition() + change);
-                slotAItemImage.SetPosition(slotAItemImage.GetPosition() + change);
-
+                if (slotAItemImage != null) {
+                    slotAItemImage.SetPosition(slotAItemImage.GetPosition() + change);
+                }
                 bSlotBackground.SetPosition(bSlotBackground.GetPosition() + change);
                 slotBText.SetPosition(slotBText.GetPosition() + change);
-                slotBItemImage.SetPosition(slotBItemImage.GetPosition() + change);
-
+                if (slotBItemImage != null) {
+                    slotBItemImage.SetPosition(slotBItemImage.GetPosition() + change);
+                }
                 rupeeImage.SetPosition(rupeeImage.GetPosition() + change);
                 keyImage.SetPosition(keyImage.GetPosition() + change);
                 bombImage.SetPosition(bombImage.GetPosition() + change);
@@ -248,14 +249,16 @@ namespace Poggus.UI
                 }
                 levelText.SetPosition(levelText.GetPosition() + change);
                 mapHandler.UpdatePosition(change);
-
                 aSlotBackground.SetPosition(aSlotBackground.GetPosition() + change);
                 slotAText.SetPosition(slotAText.GetPosition() + change);
-                slotAItemImage.SetPosition(slotAItemImage.GetPosition() + change);
-
+                if (slotAItemImage != null) {
+                    slotAItemImage.SetPosition(slotAItemImage.GetPosition() + change);
+                }
                 bSlotBackground.SetPosition(bSlotBackground.GetPosition() + change);
                 slotBText.SetPosition(slotBText.GetPosition() + change);
-                slotBItemImage.SetPosition(slotBItemImage.GetPosition() + change);
+                if (slotBItemImage != null) {
+                    slotBItemImage.SetPosition(slotBItemImage.GetPosition() + change);
+                }
 
                 rupeeImage.SetPosition(rupeeImage.GetPosition() + change);
                 keyImage.SetPosition(keyImage.GetPosition() + change);

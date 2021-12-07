@@ -18,25 +18,25 @@ namespace Poggus.PauseMenu
         private const float TINT = 0.8f;
         private Game1 game;
         public int difficulty = 0;
-        ISprite Resume;
-        ISprite Options;
-        ISprite SoundBar;
-        String OptionSelector = ">";
-        String soundName = "Sound:";
-        Vector2 soundNameLoc = new Vector2(300, 200);
-        Vector2 soundCursorLoc = new Vector2(280, 200);
-        SpriteFont Font;
-        String[] difficulties = new String[3];
-        Vector2 difficultyLoc = new Vector2(400, 400);
-        String difficultyName = "Difficulty:";
-        Vector2 difficultyNameLoc = new Vector2(300, 400);
-        Vector2 difficultyCursorLoc = new Vector2(280, 400);
-        Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
-        Rectangle OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
-        Rectangle Backdrop = new Rectangle(new Point(0, 0), new Point(1100, 1100));
-        Rectangle SoundLoc = new Rectangle(new Point(400, 200), new Point(95, 32));
-        float volume;
-        Boolean cursor = true; //true = resume false = options selected
+        private ISprite Resume;
+        private ISprite Options;
+        private ISprite SoundBar;
+        private String OptionSelector = ">";
+        private String soundName = "Sound:";
+        private Vector2 soundNameLoc = new Vector2(300, 200);
+        private Vector2 soundCursorLoc = new Vector2(280, 200);
+        private SpriteFont Font;
+        private String[] difficulties = new String[3];
+        private Vector2 difficultyLoc = new Vector2(400, 400);
+        private String difficultyName = "Difficulty:";
+        private Vector2 difficultyNameLoc = new Vector2(300, 400);
+        private Vector2 difficultyCursorLoc = new Vector2(280, 400);
+        private Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
+        private Rectangle OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
+        private Rectangle Backdrop = new Rectangle(new Point(0, 0), new Point(1100, 1100));
+        private Rectangle SoundLoc = new Rectangle(new Point(400, 200), new Point(95, 32));
+        private float volume;
+        public Boolean cursor = true; //true = resume false = options selected
         public Boolean options = false; //true = in options false = normal page
         public Boolean optionCursor = false; //true = difficulty false = volume
         
@@ -104,7 +104,6 @@ namespace Poggus.PauseMenu
             {
                 foreach(IEnemy enemy in entry.Value.GetEnemyList()) enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
             }
-            
         }
         public void decreaseDifficulty()
         {
@@ -119,7 +118,6 @@ namespace Poggus.PauseMenu
                 foreach (IEnemy enemy in entry.Value.GetEnemyList()) enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
             }
         }
-        
         public void increaseVolume()
         {
             if(volume < VOLFULL)
@@ -149,7 +147,6 @@ namespace Poggus.PauseMenu
         {
             if (!options)
             {
-                
                 if (cursor)
                 {
                     game.togglePause();
@@ -160,7 +157,6 @@ namespace Poggus.PauseMenu
                 }
             }
         }
-
         public void Draw(SpriteBatch batch, Texture2D fadeImage)
         {
             if (game.Paused() && !game.inventoryOpen)
