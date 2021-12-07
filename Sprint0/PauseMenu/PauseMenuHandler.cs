@@ -16,6 +16,9 @@ namespace Poggus.PauseMenu
         ISprite Resume;
         ISprite Options;
         ISprite SoundBar;
+        String soundName = "Sound:";
+        SpriteFont Font;
+        String[] difficulties = new String[3];
         Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
         Rectangle OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
         Rectangle Backdrop = new Rectangle(new Point(0, 0), new Point(1100, 1100));
@@ -24,9 +27,13 @@ namespace Poggus.PauseMenu
         Boolean cursor = true; //true = resume false = options selected
         public Boolean options = false; //true = in options false = normal page
         public Boolean optionCursor = false; //true = difficulty false = volume
-        public PauseMenuHandler(Game1 game)
-        {   
+        public PauseMenuHandler(Game1 game, SpriteFont font)
+        {
+            difficulties[0] = "Easy";
+            difficulties[0] = "Normal";
+            difficulties[0] = "Hard";
             this.game = game;
+            this.Font = font;
             volume = game.soundManager.volume;
             Resume = game.pauseSpriteFactory.GetNewResumeSprite();
             Resume.CurrentFrame = 1;
