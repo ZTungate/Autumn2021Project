@@ -12,6 +12,7 @@ namespace Poggus.PauseMenu
         private static float VOLSCALE = 0.2f;
         private static float VOLFULL = 1.0f;
         private static float VOLOFF = 0.0f;
+        private const float TINT = 0.8f;
         private Game1 game;
         ISprite Resume;
         ISprite Options;
@@ -77,7 +78,7 @@ namespace Poggus.PauseMenu
             {
                 volume += VOLSCALE;
             }
-            game.soundManager.volume = volume;
+            game.soundManager.sound.SetVolume(volume);
         }
         public void decreaseVolume()
         {
@@ -85,7 +86,8 @@ namespace Poggus.PauseMenu
             {
                 volume -= VOLSCALE;
             }
-            game.soundManager.volume = volume;
+            game.soundManager.sound.SetVolume(volume);
+            
         }
         public void selectNextOptions()
         {
@@ -117,7 +119,7 @@ namespace Poggus.PauseMenu
             {
                 if (options)
                 {
-                    batch.Draw(fadeImage, Backdrop, Color.Black);
+                    batch.Draw(fadeImage, Backdrop, Color.Black * TINT);
                     getSoundFrame();
                     if(volume > 0) SoundBar.Draw(batch, SoundLoc);
                 }
