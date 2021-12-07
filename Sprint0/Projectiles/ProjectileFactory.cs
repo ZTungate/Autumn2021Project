@@ -74,19 +74,23 @@ namespace Poggus.Projectiles
                 projectiles.Remove(projectile);
 
                 //special after effects for some projectiles
-                if (projectile is SwordBeamProjectile) {
+                if (projectile is SwordBeamProjectile)
+                {
                     NewSwordBeamExplosions(projectile.GetPosition());
                 }
-                else if (projectile is BlueArrowProjectile | projectile is RegArrowProjectile) {
+                else if (projectile is BlueArrowProjectile | projectile is RegArrowProjectile)
+                {
                     NewArrowPoof(projectile.GetPosition());
-                }else if(projectile is BombProjectile)
+                }
+                else if (projectile is BombProjectile)
                 {
                     bombSounds[projectile].Stop();
                     //Spawn a large explosion.
                     NewBombExplosions(projectile.GetPosition());
                 }
-                else if ((projectile is LinkBoomerangProjectile) | (projectile is BoomerangProjectile)){
-                    boomerangSounds[projectile].Stop();
+                else if ((projectile is LinkBoomerangProjectile) | (projectile is BoomerangProjectile))
+                {   
+                    boomerangSounds[projectile].Stop();   
                 }
             }
         }
