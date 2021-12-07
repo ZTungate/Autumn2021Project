@@ -12,16 +12,17 @@ namespace Poggus.Enemies
     {
         const int RANDMOVE = 4;
         private bool vertical;
-        private enum state { emerging, retracting, overSliding, underSliding };
+        private enum state { RightSlide, LeftSlide, UpSlide, DownSlide };
         private state currState;
         private int stateTime;
 
         private Point velocity;
 
+
         public Grabber(Point pos) : base(EnemyType.Grabber, pos, EnemyConstants.stdEnemySize.Size)
         {
             Health = EnemyConstants.grabberHealth;
-            currState = state.emerging;
+            currState = state.RightSlide;
             stateTime = EnemyConstants.grabberStateTime;
             velocity = new Point(0, 0);
         }
@@ -67,32 +68,59 @@ namespace Poggus.Enemies
         }
         private void ChangeState()
         {
+            //Set state time and delay the grabber's movement start.
+            stateTime = EnemyConstants.grabberStateTime;
+            RandomDelay();
             switch (currState)
             {
-                case state.emerging:
+                case state.RightSlide:
                     //Set the grabber's state to sliding across the surface, give it velocity to do so.
-                    currState = state.overSliding;
-                    stateTime = EnemyConstants.grabberStateTime;
-                    velocity = new Point(EnemyConstants.grabberSlideVelocity, 0);
+                    currState = state.UpSlide;
+                    velocity = new Point(EnemyConstants.grabberSlideVelocity, 0);//Move to the right
                     break;
-                case state.overSliding:
+                case state.UpSlide:
                     //Set the grabber's state to retracting, and set its velocity for retraction.
-                    currState = state.retracting;
-                    stateTime = EnemyConstants.grabberStateTime;
-                    velocity = new Point(0, -EnemyConstants.grabberEmergeVelocity);
+                    currState = state.LeftSlide;
+                    velocity = new Point(0, -EnemyConstants.grabberEmergeVelocity);//Move up
                     break;
-                case state.underSliding:
+                case state.DownSlide:
                     //Set teh grabber's state to emerging and set its velocity for emergence.
-                    currState = state.emerging;
-                    stateTime = EnemyConstants.grabberStateTime;
-                    velocity = new Point(0, EnemyConstants.grabberEmergeVelocity);
+                    currState = state.RightSlide;
+                    velocity = new Point(0, EnemyConstants.grabberEmergeVelocity);//Move down
                     break;
-                case state.retracting:
+                case state.LeftSlide:
                     //Set the grabber's velocity and state
-                    currState = state.underSliding;
-                    stateTime = EnemyConstants.grabberStateTime;
-                    velocity = new Point(-EnemyConstants.grabberSlideVelocity, 0);
+                    currState = state.DownSlide;
+                    velocity = new Point(-EnemyConstants.grabberSlideVelocity, 0);//Move Left
                     break;
+            }
+        }
+
+        //Stuns the grabber breifly to randomize their movement.
+        private void RandomDelay()
+        {
+            Random r = new Random();
+            StunTimer = r.Next(EnemyConstants.grabberMaxDelay);
+        }
+
+        public void SetStartingState(Point dir)
+        {
+            if (dir == new Point(0, -1))//Up
+            {
+                currState = state.UpSlide;
+            }
+            else if (dir == new Point(0, 1))//Down
+            {
+                currState = state.DownSlide;
+            }
+            else if (dir == new Point(-1, 0))//Left
+            {
+                currState = state.LeftSlide;
+
+            }
+            else//Right
+            {
+                currState = state.RightSlide;
             }
         }
     }

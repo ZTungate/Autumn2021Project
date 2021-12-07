@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Poggus.Enemies;
+using Poggus.Levels;
 using Poggus.Main;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,7 @@ namespace Poggus.PauseMenu
     {
         private static float VOLSCALE = 0.2f;
         private static float VOLFULL = 1.0f;
+        private const int ARRAYOFFSET = 1;
         private static float VOLOFF = 0.0f;
         private const float TINT = 0.8f;
         private Game1 game;
@@ -18,13 +21,16 @@ namespace Poggus.PauseMenu
         ISprite Resume;
         ISprite Options;
         ISprite SoundBar;
+        String OptionSelector = ">";
         String soundName = "Sound:";
         Vector2 soundNameLoc = new Vector2(300, 200);
+        Vector2 soundCursorLoc = new Vector2(280, 200);
         SpriteFont Font;
         String[] difficulties = new String[3];
         Vector2 difficultyLoc = new Vector2(400, 400);
         String difficultyName = "Difficulty:";
         Vector2 difficultyNameLoc = new Vector2(300, 400);
+        Vector2 difficultyCursorLoc = new Vector2(280, 400);
         Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
         Rectangle OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
         Rectangle Backdrop = new Rectangle(new Point(0, 0), new Point(1100, 1100));
@@ -50,6 +56,14 @@ namespace Poggus.PauseMenu
             Options.IsUISprite = true;
             Resume.IsUISprite = true;
             SoundBar.IsUISprite = true;
+        }
+        public void Reset()
+        {
+            Resume.CurrentFrame = 1;
+            cursor = true;
+            options = false;
+            optionCursor = false;
+            difficulty = 0;
         }
         private void getSoundFrame()
         {
@@ -80,18 +94,32 @@ namespace Poggus.PauseMenu
         }
         public void increaseDifficulty()
         {
+            int oldDifficulty = difficulty;
             if(difficulty < 2)
             {
                 difficulty++;
             }
+            Dictionary<Point, Level> dungeonLevels = game.GetDungeon().GetLevelDictionary();
+            foreach (KeyValuePair<Point, Level> entry in dungeonLevels)
+            {
+                foreach(IEnemy enemy in entry.Value.GetEnemyList()) enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
+            }
+            
         }
         public void decreaseDifficulty()
         {
+            int oldDifficulty = difficulty;
             if (difficulty > 0)
             {
                 difficulty--;
             }
+            Dictionary<Point, Level> dungeonLevels = game.GetDungeon().GetLevelDictionary();
+            foreach (KeyValuePair<Point, Level> entry in dungeonLevels)
+            {
+                foreach (IEnemy enemy in entry.Value.GetEnemyList()) enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
+            }
         }
+        
         public void increaseVolume()
         {
             if(volume < VOLFULL)
@@ -145,6 +173,14 @@ namespace Poggus.PauseMenu
                     batch.DrawString(Font, soundName, soundNameLoc, Color.White);
                     batch.DrawString(Font, difficultyName, difficultyNameLoc, Color.White);
                     batch.DrawString(Font, difficulties[difficulty], difficultyLoc, Color.White);
+                    if (optionCursor)
+                    {
+                        batch.DrawString(Font, OptionSelector, difficultyCursorLoc, Color.White);
+                    }
+                    else
+                    {
+                        batch.DrawString(Font, OptionSelector, soundCursorLoc, Color.White);
+                    }
                 }
                 else
                 {

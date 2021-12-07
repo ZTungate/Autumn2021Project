@@ -29,10 +29,6 @@ namespace Poggus
                 Keys.A,
                 Keys.S,
                 Keys.D,
-                Keys.Up,
-                Keys.Left,
-                Keys.Down,
-                Keys.Right
             };
 
         }
@@ -75,6 +71,7 @@ namespace Poggus
             this.controllerMappings.Add(Keys.Right, new MenuRightCommand(myGame));
             this.controllerMappings.Add(Keys.Up, new MenuUpCommand(myGame));
             this.controllerMappings.Add(Keys.Enter, new MenuEnterCommand(myGame));
+            this.controllerMappings.Add(Keys.Back, new MenuBackCommand(myGame));
             this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
             this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
             this.controllerMappings.Add(Keys.NumPad2, new SwitchLevelCommand(myGame, new Point(0, -1)));
@@ -134,6 +131,14 @@ namespace Poggus
                 }
                 if (state.IsKeyDown(Keys.Enter) && !lastState.IsKeyDown(Keys.Enter)) {
                     controllerMappings[Keys.Enter].Execute();
+                }
+                if (state.IsKeyDown(Keys.Back) && !lastState.IsKeyDown(Keys.Back))
+                {
+                    controllerMappings[Keys.Back].Execute();
+                }
+                if (state.IsKeyDown(Keys.Q) && !lastState.IsKeyDown(Keys.Q))
+                {
+                    controllerMappings[Keys.Q].Execute();
                 }
             }
                 

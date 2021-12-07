@@ -233,6 +233,17 @@ namespace Poggus.Collisions
                     }
                 }
             }
+            foreach(IBlock moveBlock in myDungeon.GetCurrentLevel().moveableBlockList)
+            {
+                foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList())
+                {
+                    E2RCollision eneBlock = (E2RCollision)detector.detectCollision(ene, moveBlock.DestRect);
+                    if (eneBlock.IsCollision && !(eneBlock.enemy1 is Bat))
+                    {
+                        ene.SetPosition(ene.oldPosition);
+                    }
+                }
+            }
 
             foreach(IProjectile proj in myGame.projectileFactory.getProjs())
             {
@@ -331,6 +342,7 @@ namespace Poggus.Collisions
                                 AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
                                 rupee.CreateSprite();
                                 myDungeon.GetCurrentLevel().AddItem(rupee);
+                                
                             }
                         }
                     }

@@ -70,7 +70,16 @@ namespace Poggus.UI
                 initialLinkPoint = new Point(-minMapX + 32, 32);
                 initalTriforcePoint = new Point(-minMapX + 32, 32);
             }
-            
+            if (minMapY < 50)
+            {
+                foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)
+                {
+                    entry.Value.SetPosition(entry.Value.GetPosition() + new Point(0, minMapY));
+                }
+                initialLinkPoint = initialLinkPoint + new Point(0, minMapY);
+                initalTriforcePoint = initalTriforcePoint + new Point(0, minMapY);
+            }
+
         }
         public void UpdatePosition(Point pos)
         {
