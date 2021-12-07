@@ -12,11 +12,13 @@ namespace Poggus.UI
         public static HUDSpriteFactory instance = new HUDSpriteFactory();
         public SpriteFont hudFont;
         public Texture2D hudSpriteSheet;
+        public Texture2D inventoryCursorSheet;
 
         public void LoadContent(ContentManager content)
         {
             hudFont = content.Load<SpriteFont>("Arial");
             hudSpriteSheet = content.Load<Texture2D>("HUDSpriteSheet");
+            inventoryCursorSheet = content.Load<Texture2D>("NES - The Legend of Zelda - HUD & Pause Screen");
         }
         public ISprite GetNewBlueBlockSprite()
         {
@@ -78,6 +80,11 @@ namespace Poggus.UI
             ISprite sprite = Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(item.itemType);
             sprite.IsUISprite = true;
             return sprite;
+        }
+
+        public ISprite GetInventoryCursorSprite()
+        {
+            return new InventoryCursorSprite(inventoryCursorSheet);
         }
         public ISprite GetNewBlueBorderSprite()
         {

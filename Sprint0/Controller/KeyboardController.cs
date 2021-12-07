@@ -62,11 +62,12 @@ namespace Poggus
             this.controllerMappings.Add(Keys.D4, new PlayerUseBlueArrowCommand(myGame));
             this.controllerMappings.Add(Keys.D5, new PlayerUseBombCommand(myGame));
             this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
+            */
             this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
             this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
             this.controllerMappings.Add(Keys.NumPad2, new SwitchLevelCommand(myGame, new Point(0, -1)));
             this.controllerMappings.Add(Keys.NumPad4, new SwitchLevelCommand(myGame, new Point(-1, 0)));
-            */
+            
             this.controllerMappings.Add(Keys.Tab, new HUDToggleCommand(myGame));
             
             //GAME CONTROLS
@@ -89,7 +90,7 @@ namespace Poggus
             Keys[] pressedKeys = state.GetPressedKeys();
 
 
-            if (!myGame.Paused()) {
+            if (!myGame.Paused() && !myGame.inventoryOpen) {
                 if (!myGame.link.movingTo) {
                     checkPlayerIdle(lastState, state);
 
@@ -120,34 +121,37 @@ namespace Poggus
                 }
             }
             else {
-                if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P)) {
-                    controllerMappings[Keys.P].Execute();
+                if (myGame.Paused()) {
+                    if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P)) {
+                        controllerMappings[Keys.P].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab)) {
+                        controllerMappings[Keys.Tab].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Up) && !lastState.IsKeyDown(Keys.Up)) {
+                        controllerMappings[Keys.Up].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Down) && !lastState.IsKeyDown(Keys.Down)) {
+                        controllerMappings[Keys.Down].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Right) && !lastState.IsKeyDown(Keys.Right)) {
+                        controllerMappings[Keys.Right].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Left) && !lastState.IsKeyDown(Keys.Left)) {
+                        controllerMappings[Keys.Left].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Enter) && !lastState.IsKeyDown(Keys.Enter)) {
+                        controllerMappings[Keys.Enter].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Back) && !lastState.IsKeyDown(Keys.Back)) {
+                        controllerMappings[Keys.Back].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Q) && !lastState.IsKeyDown(Keys.Q)) {
+                        controllerMappings[Keys.Q].Execute();
+                    }
                 }
-                if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab)) {
-                    controllerMappings[Keys.Tab].Execute();
-                }
-                if (state.IsKeyDown(Keys.Up) && !lastState.IsKeyDown(Keys.Up)) {
-                    controllerMappings[Keys.Up].Execute();
-                }
-                if (state.IsKeyDown(Keys.Down) && !lastState.IsKeyDown(Keys.Down)) {
-                    controllerMappings[Keys.Down].Execute();
-                }
-                if (state.IsKeyDown(Keys.Right) && !lastState.IsKeyDown(Keys.Right)) {
-                    controllerMappings[Keys.Right].Execute();
-                }
-                if (state.IsKeyDown(Keys.Left) && !lastState.IsKeyDown(Keys.Left)) {
-                    controllerMappings[Keys.Left].Execute();
-                }
-                if (state.IsKeyDown(Keys.Enter) && !lastState.IsKeyDown(Keys.Enter)) {
-                    controllerMappings[Keys.Enter].Execute();
-                }
-                if (state.IsKeyDown(Keys.Back) && !lastState.IsKeyDown(Keys.Back))
-                {
-                    controllerMappings[Keys.Back].Execute();
-                }
-                if (state.IsKeyDown(Keys.Q) && !lastState.IsKeyDown(Keys.Q))
-                {
-                    controllerMappings[Keys.Q].Execute();
+                else if (myGame.inventoryOpen) {
+
                 }
             }
                 
