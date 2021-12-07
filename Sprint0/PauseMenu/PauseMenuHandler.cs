@@ -78,7 +78,7 @@ namespace Poggus.PauseMenu
             {
                 volume += VOLSCALE;
             }
-            game.soundManager.sound.SetVolume(volume);
+            game.soundManager.volume = volume;
         }
         public void decreaseVolume()
         {
@@ -86,8 +86,7 @@ namespace Poggus.PauseMenu
             {
                 volume -= VOLSCALE;
             }
-            game.soundManager.sound.SetVolume(volume);
-            
+            game.soundManager.volume = volume;
         }
         public void selectNextOptions()
         {
