@@ -27,7 +27,7 @@ namespace Poggus.Blocks
 
         public override void Update(GameTime gameTime)
         {
-            if(opensDoor && movedInDir)
+            if(opensDoor && (isMovingDown || isMovingLeft || isMovingRight || isMovingUp))
             {
                 Game1.instance.GetDungeon().GetCurrentLevel().GetDoorFromDirection(doorDirToOpen).OpenDoor();
             }

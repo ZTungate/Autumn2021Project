@@ -1,0 +1,12 @@
+Author of the code review: Mason Pacenta
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed:  CollisionActions
+Author of the .cs file being reviewed: Jonah Silsdorf
+Number of minutes taken to complete the review: 10:56-11:01 (5 minutes)
+
+CollisionActions is a very readable class, it has a singular static method that is used to
+deal damage to link, each enemy type is clearly defined in its action. The only thing that
+may improve this class is to map the EnemyType in a dictionary, that way the method could be much shorter
+and you could just call some enemy damage dictionary. It may be wise to move this code though into link itself,
+and call it when the enemy collides with link however. But other than that its very readable code.
