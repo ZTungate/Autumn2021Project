@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Poggus.Enemies;
+using Poggus.Levels;
 using Poggus.Main;
 using System;
 using System.Collections.Generic;
@@ -98,10 +99,12 @@ namespace Poggus.PauseMenu
             {
                 difficulty++;
             }
-            foreach(IEnemy enemy in game.GetDungeon().GetCurrentLevel().GetEnemyList())
+            Dictionary<Point, Level> dungeonLevels = game.GetDungeon().GetLevelDictionary();
+            foreach (KeyValuePair<Point, Level> entry in dungeonLevels)
             {
-                enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
+                foreach(IEnemy enemy in entry.Value.GetEnemyList()) enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
             }
+            
         }
         public void decreaseDifficulty()
         {
@@ -110,9 +113,10 @@ namespace Poggus.PauseMenu
             {
                 difficulty--;
             }
-            foreach (IEnemy enemy in game.GetDungeon().GetCurrentLevel().GetEnemyList())
+            Dictionary<Point, Level> dungeonLevels = game.GetDungeon().GetLevelDictionary();
+            foreach (KeyValuePair<Point, Level> entry in dungeonLevels)
             {
-                enemy.changeDifficulty(oldDifficulty+ARRAYOFFSET, difficulty+ARRAYOFFSET);
+                foreach (IEnemy enemy in entry.Value.GetEnemyList()) enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
             }
         }
         
