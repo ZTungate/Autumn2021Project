@@ -101,10 +101,13 @@ namespace Poggus.Sound
             playSound();
         }
 
-        public void playBombDrop()
+        public SoundEffectInstance playBombDrop()
         {
             instance = bombDrop.CreateInstance();
-            playSound();
+            instance.Volume = myVolume;
+            instance.IsLooped = true;
+            instance.Play();
+            return instance;
         }
 
         public void playBombBlow()

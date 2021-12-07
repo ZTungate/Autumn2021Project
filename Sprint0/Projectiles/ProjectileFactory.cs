@@ -22,6 +22,7 @@ namespace Poggus.Projectiles
         private static ProjectileFactory instance = new ProjectileFactory();
 
         private Dictionary<IProjectile, SoundEffectInstance> boomerangSounds = new Dictionary<IProjectile, SoundEffectInstance>();
+        private Dictionary<IProjectile, SoundEffectInstance> bombSounds = new Dictionary<IProjectile, SoundEffectInstance>();
 
         public static ProjectileFactory Instance
         {
@@ -80,6 +81,7 @@ namespace Poggus.Projectiles
                     NewArrowPoof(projectile.GetPosition());
                 }else if(projectile is BombProjectile)
                 {
+                    bombSounds[projectile].Stop();
                     //Spawn a large explosion.
                     NewBombExplosions(projectile.GetPosition());
                 }
@@ -325,6 +327,7 @@ namespace Poggus.Projectiles
             IProjectile bomb = new BombProjectile(position);
             projectiles.Add(bomb);
             bomb.Sprite = CreateBombSprite();
+            bombSounds.Add(bomb, soundManager.sound.playBombDrop());
         }
         public void NewBombExplosions(Point pos)
         {
@@ -356,7 +359,6 @@ namespace Poggus.Projectiles
             IProjectile boomerang = new BoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBoomerangSprite();
-            boomerangSounds.Add(boomerang, soundManager.sound.playBoomerang());
 
         }
 
@@ -376,7 +378,6 @@ namespace Poggus.Projectiles
             IProjectile boomerang = new BoomerangProjectile(position, velocity);
             projectiles.Add(boomerang);
             boomerang.Sprite = CreateBlueBoomerangSprite();
-            boomerangSounds.Add(boomerang, soundManager.sound.playBoomerang());
 
         }
 
