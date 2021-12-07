@@ -7,7 +7,7 @@ namespace Poggus.Enemies
 {
     public static class EnemyConstants
     {
-
+        //private static int difficulty = Game1.instance.menuHandler.difficulty;
         public static int invincibilityTime = 500;
         //Enemy movement speeds
         public static int batMoveSpeed = 8;
