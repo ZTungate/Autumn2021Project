@@ -1,4 +1,5 @@
 Eagle-Dungeon
+ItemLevel1:0,-1
 EntryRoom:0,0(U=K)
 BatKeyLevel:-1,0
 SkeletonRightRoom:1,0
