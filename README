@@ -1,29 +1,30 @@
 Boggus Poggus Group
 
 Program Controls: 
-Arrow keys and WASD to move 
-Z and N to use sword
-R to reset
-Q to quit
-M to mute volume
-1 to throw regular boomerang
-2 to throw magic boomerang
-3 to fire a regular arrow
-4 to fire a blue arrow
-5 to place a bomb
-6 to cast a fireball
-Instead of using mouse controls to change rooms: numpad8 goes north, numpad2 goes south, numpad4 goes west, numpad6 goes east.
-
-Known Bugs:
-Multiple key presses with links movement doesn't behave properly.
-Can throw multiple of the same projectile.
-Going into doors puts you too far into the room.
+WASD to move 
+Z to use Sword
+X to use slot B
+Tab to open Inventory
+P to Pause Game
+Up/Down Keys to traverse pause and options menu
+Left/Right to change options in options menu
+Back to return to pause screen from options menu
+Enter to select button on pause menu
+Q to quit game
+J to generate new dungeon
+R to reset game
 
 
 
-Following is not implemented
-No full inventory
-Test rooms: Not full dungeon 1
+Extras Implemented:
+Pause Menu: sprite credits go to:https://www.spriters-resource.com/ds_dsi/wreckitralph/sheet/62107/
+Difficulty selection in options menu
+Sound changing in options menu
+Procedual dungeon generation
+
+Note:
+Inventory Selection not fully implemented
+
 We used code metrics to keep track of varying stats about our code base to try and get a general idea of how everything is progressing.
 
 Sprint 2:
