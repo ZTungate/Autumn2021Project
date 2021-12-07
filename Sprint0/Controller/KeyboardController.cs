@@ -88,58 +88,55 @@ namespace Poggus
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();
 
-            if(!myGame.link.movingTo)
-                {
-                    if (!myGame.Paused())
-                    {
-                        checkPlayerIdle(lastState, state);
 
-                        foreach (Keys key in pressedKeys)
-                        {
-                            if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key))
-                            {
-                                //If this key is bound to a command, and was not down last tick, execute the relevant command.
-                                controllerMappings[key].Execute();
-                            }
-                            else if (controllerMappings.ContainsKey(key) && movementKeys.Contains(key))
-                            {
-                                //If this key is pressed, was pressed last tick, and is a movement key, execute the command.
-                                controllerMappings[key].Execute();
-                            }
+            if (!myGame.Paused()) {
+                if (!myGame.link.movingTo) {
+                    checkPlayerIdle(lastState, state);
+
+                    foreach (Keys key in pressedKeys) {
+                        if (controllerMappings.ContainsKey(key) && !lastState.IsKeyDown(key)) {
+                            //If this key is bound to a command, and was not down last tick, execute the relevant command.
+                            controllerMappings[key].Execute();
                         }
-                    }
-                    else
-                    {
-                        if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P))
-                        {
-                            controllerMappings[Keys.P].Execute();
+                        else if (controllerMappings.ContainsKey(key) && movementKeys.Contains(key)) {
+                            //If this key is pressed, was pressed last tick, and is a movement key, execute the command.
+                            controllerMappings[key].Execute();
                         }
-                        if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab))
-                        {
-                            controllerMappings[Keys.Tab].Execute();
-                        }
-                    if (state.IsKeyDown(Keys.Up) && !lastState.IsKeyDown(Keys.Up))
-                    {
-                        controllerMappings[Keys.Up].Execute();
-                    }
-                    if (state.IsKeyDown(Keys.Down) && !lastState.IsKeyDown(Keys.Down))
-                    {
-                        controllerMappings[Keys.Down].Execute();
-                    }
-                    if (state.IsKeyDown(Keys.Right) && !lastState.IsKeyDown(Keys.Right))
-                    {
-                        controllerMappings[Keys.Right].Execute();
-                    }
-                    if (state.IsKeyDown(Keys.Left) && !lastState.IsKeyDown(Keys.Left))
-                    {
-                        controllerMappings[Keys.Left].Execute();
-                    }
-                    if (state.IsKeyDown(Keys.Enter) && !lastState.IsKeyDown(Keys.Enter))
-                    {
-                        controllerMappings[Keys.Enter].Execute();
                     }
                 }
+                else {
+                    if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P)) {
+                        controllerMappings[Keys.P].Execute();
+                    }
+                    if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab)) {
+                        controllerMappings[Keys.Tab].Execute();
+                    }
                 }
+            }
+            else {
+                if (state.IsKeyDown(Keys.P) && !lastState.IsKeyDown(Keys.P)) {
+                    controllerMappings[Keys.P].Execute();
+                }
+                if (state.IsKeyDown(Keys.Tab) && !lastState.IsKeyDown(Keys.Tab)) {
+                    controllerMappings[Keys.Tab].Execute();
+                }
+                if (state.IsKeyDown(Keys.Up) && !lastState.IsKeyDown(Keys.Up)) {
+                    controllerMappings[Keys.Up].Execute();
+                }
+                if (state.IsKeyDown(Keys.Down) && !lastState.IsKeyDown(Keys.Down)) {
+                    controllerMappings[Keys.Down].Execute();
+                }
+                if (state.IsKeyDown(Keys.Right) && !lastState.IsKeyDown(Keys.Right)) {
+                    controllerMappings[Keys.Right].Execute();
+                }
+                if (state.IsKeyDown(Keys.Left) && !lastState.IsKeyDown(Keys.Left)) {
+                    controllerMappings[Keys.Left].Execute();
+                }
+                if (state.IsKeyDown(Keys.Enter) && !lastState.IsKeyDown(Keys.Enter)) {
+                    controllerMappings[Keys.Enter].Execute();
+                }
+            }
+                
             //Checks if movement controls are released to play the idle animation & stop movement
         }
 

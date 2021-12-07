@@ -184,6 +184,12 @@ namespace Poggus.Sound
             instance = shieldDeflect.CreateInstance();
             playSound();
         }
+        public void playFireballSound()
+        {
+            instance = bossScream.CreateInstance();
+            playSound();
+        }
+
         public void playSound()
         {
             instance.Volume = myVolume;

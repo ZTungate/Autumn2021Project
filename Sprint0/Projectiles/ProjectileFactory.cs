@@ -319,6 +319,7 @@ namespace Poggus.Projectiles
             IProjectile fireball = new FireballProjectile(position, velocity);
             projectiles.Add(fireball);
             fireball.Sprite = CreateFireballSprite();
+            soundManager.sound.playFireballSound();
         }
 
         public void NewBomb(Point position)
