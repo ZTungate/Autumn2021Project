@@ -47,6 +47,10 @@ namespace Poggus.Levels
                     int y = int.Parse(yString);
                     Level level = LevelLoader.instance.GetLevel(levelName);
 
+                    if(line.IndexOf("~") != -1)
+                    {
+                        level.displayInMinimap = false;
+                    }
                     if (closedParen != -1)
                     {
                         string levelConditions = line.Substring(openParen + 1, closedParen - openParen - 1);

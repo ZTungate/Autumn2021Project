@@ -35,6 +35,7 @@ namespace Poggus.Levels
         List<Rectangle> boundingBoxList;
         ILink link;
 
+        public bool displayInMinimap = true;
         public bool enemySpawnAnimation = true;
 
         Rectangle backgroundRectangle;

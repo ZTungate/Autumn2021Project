@@ -17,4 +17,4 @@ TriforceFinalLevel:3,4
 SkeletonWaterLevel1:0,4(U=K)
 ThrowerKeyLevel:0,5(D=K,L=K)
 StairBladeLevel:-1,5(R=K,S=-2,1)
-LadderLevel:-2,1(P:-1,5,Y:6,7,Q:3,0)
+LadderLevel:-2,1(P:-1,5,Y:6,7,Q:3,0)~
