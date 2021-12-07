@@ -125,6 +125,15 @@ namespace Poggus.Sound
             return instance;
         }
 
+        public SoundEffectInstance playLowHealthSound()
+        {
+            instance = lowHealth.CreateInstance();
+            instance.Volume = myVolume;
+            instance.IsLooped = true;
+            instance.Play();
+            return instance;
+        }
+
         public void playFanfare()
         {
             instance = fanfare.CreateInstance();
