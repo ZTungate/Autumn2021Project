@@ -38,6 +38,13 @@ namespace Poggus.Levels
             {directions[2],DoorDirectionEnum.Down},
             {directions[3],DoorDirectionEnum.Left},
         };
+        public static Dictionary<DoorDirectionEnum, Point> doorPointFromDir = new Dictionary<DoorDirectionEnum, Point>
+        {
+            {DoorDirectionEnum.Up,directions[0]},
+            {DoorDirectionEnum.Right,directions[1]},
+            {DoorDirectionEnum.Down,directions[2]},
+            {DoorDirectionEnum.Left,directions[3]},
+        };
         public void UpdateLevelPositionOnly()
         {
             foreach (KeyValuePair<Point, Level> entry in levelDictionary)

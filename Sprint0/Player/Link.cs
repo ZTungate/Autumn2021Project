@@ -55,9 +55,9 @@ namespace Poggus.Player
         {
             State = new InitialLinkState(this,null); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
             DestRect = new Rectangle(new Point(LinkX, LinkY), new Point(size, size));
-            System.Diagnostics.Debug.WriteLine(DestRect);
+            //System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
-            //LinkInventory.setSlotA(Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Arrow)); //temp to set sword
+            //LinkInventory.setSlotA(Poggus.Items.ItemSprites.ItemSpriteFactory.Instance.GetItemSprite(Items.ItemEnum.Arrow)); //Debug items
             //LinkInventory.setSlotA(new SwordItem(new Point()));
             //LinkInventory.AddItem(new BowItem(new Point())); //temp to add item
             //LinkInventory.AddItem(new SwordItem(new Point())); //temp to add item

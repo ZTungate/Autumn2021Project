@@ -149,7 +149,7 @@ namespace Poggus.Levels.Generation
                             level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom));
 
                             //Add door condition
-                            if(rand.Next(GenerationConstants.chanceClearRoomDoor) == 0)
+                            if(enemyRoomType != EnemyType.BladeTrap && rand.Next(GenerationConstants.chanceClearRoomDoor) == 0)
                             {
                                 foreach(Point dir in directions)
                                 {
@@ -163,7 +163,7 @@ namespace Poggus.Levels.Generation
                                     }
                                 }
                             }
-                            if (rand.Next(GenerationConstants.chanceLockedDoor) == 0)
+                            if (enemyRoomType != EnemyType.BladeTrap && rand.Next(GenerationConstants.chanceLockedDoor) == 0)
                             {
                                 foreach (Point dir in directions)
                                 {

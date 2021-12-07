@@ -41,6 +41,12 @@ namespace Poggus.Levels
             }
             return GetNewOpenDoor(pos, size, dir);
         }
+        public AbstractSprite GetNewOverlaySprite(DoorDirectionEnum dir)
+        {
+            AbstractSprite overlaySprite = new DoorOverlaySprite(doorSpriteSheet);
+            overlaySprite.CurrentFrame = (int)dir;
+            return overlaySprite;
+        }
         public LevelDoor GetNewClosedDoor(Point pos, Point size, DoorDirectionEnum dir)
         {
             LevelDoor door = new LevelDoor(DoorType.Closed,new DoorClosedSprite(doorSpriteSheet), dir, new Rectangle(pos,size));

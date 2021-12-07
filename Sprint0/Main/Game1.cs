@@ -215,6 +215,11 @@ namespace Poggus
             //Draw Link
             link.Draw(_spriteBatch);
 
+            foreach (KeyValuePair<Point, Level> entry in dungeon.GetLevelDictionary())
+            {
+                entry.Value.DrawDoorOverlay(_spriteBatch);
+            }
+
             hudHandler.Draw(_spriteBatch);
             menuHandler.Draw(_spriteBatch, fadeImage);
             stateChange.fadeOut();

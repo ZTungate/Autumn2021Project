@@ -1,0 +1,15 @@
+Author of the code review: Zach Tungate
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed:  DungeonGenerator
+Author of the .cs file being reviewed: Mason
+Number of minutes taken to complete the review: 10 minutes
+
+The file is quite readable for the amount of complex things that are happening.
+One thing that is hard to follow is why the values are chosen for i/j in the for loops.
+Some added comments about what some lines are doing would be nice like in the actual generation and telling the percentages in comments.
+
+Other than those changes the file is well organized.
+
+
+
