@@ -194,7 +194,7 @@ namespace Poggus.Collisions
                 }
                 foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                     P2RCollision boundProj = (P2RCollision)detector.detectCollision(proj, rectangle);
-                    if (boundProj.IsCollision)
+                    if (boundProj.IsCollision && !(proj is EnemyPoofProjectile))
                     {
                         //Boomerangs bounce off the walls, other projectiles just break.
                         if (boundProj.proj1 is BoomerangProjectile || boundProj.proj1 is LinkBoomerangProjectile)
@@ -237,7 +237,7 @@ namespace Poggus.Collisions
                     if(door.doorType == DoorType.Hole && door.isClosed)
                     {
                         P2RCollision projRect = (P2RCollision)detector.detectCollision(proj, door.destRect);
-                        if (projRect.IsCollision && proj is BombProjectile)
+                        if (projRect.IsCollision && proj is BombExplosionProjectile)
                         {
                             door.BlowUp();
                         }
