@@ -15,6 +15,8 @@ namespace Poggus.Levels
 {
     public class Level
     {
+        List<AbstractSprite> doorOverlaySprites = new List<AbstractSprite>();
+
         Dictionary<Point, DoorType> doorConditions;
         public bool hasCustomSpawn = false;
         public Point customSpawnLocation = Point.Zero;
@@ -315,6 +317,19 @@ namespace Poggus.Levels
             {
                 door.Draw(batch);
             }
+
+        }
+        public void DrawDoorOverlay(SpriteBatch batch)
+        {
+            foreach (DoorOverlaySprite sprite in doorOverlaySprites)
+            {
+                DoorDirectionEnum dirEnum = (DoorDirectionEnum)sprite.CurrentFrame;
+                LevelDoor door;
+                if ((door = GetDoorFromDirection(Dungeon.doorPointFromDir[dirEnum])) != null)
+                {
+                    sprite.Draw(batch, door.destRect);
+                }
+            }
         }
         public Point GetPosition()
         {
@@ -328,6 +343,9 @@ namespace Poggus.Levels
         {
             doors.Add(door);
             door.SetDirection(dir);
+
+            //Overlay so link is under door when going through
+            doorOverlaySprites.Add(DoorFactory.instance.GetNewOverlaySprite(dir));
         }
         public bool AddBlock(Point p, IBlock block)
         {
