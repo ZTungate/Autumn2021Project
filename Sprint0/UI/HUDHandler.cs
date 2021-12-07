@@ -16,6 +16,7 @@ namespace Poggus.UI
         TextSprite lifeText, levelText, rupeeAmtText, keyAmtText, bombAmtText, slotAText, slotBText, inventoryText;
         ImageUI hudBlackBackground, aSlotBackground, bSlotBackground, inventoryBackground, keyImage, bombImage, rupeeImage;
         ImageUI slotAItemImage, slotBItemImage;
+        ImageUI inventoryCursor;
         List<ImageUI> heartImages;
         List<ImageUI> inventoryImages;
         private int healthDrawn;
