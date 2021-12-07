@@ -1,0 +1,11 @@
+Author of the code review: Jonah Silsdorf
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed: AbstractEnemy.cs (Specifically methods knockback and knockbackMove)
+Author of the .cs file being reviewed: Michael
+Number of minutes taken to complete the review: 10 minutes
+
+This file has reasonably high cohesion, it does not appear to be doing anything unneccssary.
+Knockback and KnockbackMove are reasonably simple, they do nothing beyond what is required of them and operate reasonably efficently.
+Knockback and knockbackMove both violate the naming convention of having a capital first letter for method names.
+The Knockback method is commented, but all coments are single line comments. 

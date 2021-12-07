@@ -53,14 +53,19 @@ namespace Poggus
 
             //Player Controls
 
-            this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
+
             /* Debug commands
+            this.controllerMappings.Add(Keys.E, new PlayerTakeDamageCommand(myGame));
             this.controllerMappings.Add(Keys.D1, new PlayerUseRegBoomerangCommand(myGame));
             this.controllerMappings.Add(Keys.D2, new PlayerUseBlueBoomerangCommand(myGame));
             this.controllerMappings.Add(Keys.D3, new PlayerUseRegArrowCommand(myGame));
             this.controllerMappings.Add(Keys.D4, new PlayerUseBlueArrowCommand(myGame));
             this.controllerMappings.Add(Keys.D5, new PlayerUseBombCommand(myGame));
             this.controllerMappings.Add(Keys.D6, new PlayerUseFireCommand(myGame));
+            this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
+            this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
+            this.controllerMappings.Add(Keys.NumPad2, new SwitchLevelCommand(myGame, new Point(0, -1)));
+            this.controllerMappings.Add(Keys.NumPad4, new SwitchLevelCommand(myGame, new Point(-1, 0)));
             */
             this.controllerMappings.Add(Keys.Tab, new HUDToggleCommand(myGame));
             
@@ -73,10 +78,7 @@ namespace Poggus
             this.controllerMappings.Add(Keys.Up, new MenuUpCommand(myGame));
             this.controllerMappings.Add(Keys.Enter, new MenuEnterCommand(myGame));
             this.controllerMappings.Add(Keys.Back, new MenuBackCommand(myGame));
-            this.controllerMappings.Add(Keys.NumPad8, new SwitchLevelCommand(myGame, new Point(0, 1)));
-            this.controllerMappings.Add(Keys.NumPad6, new SwitchLevelCommand(myGame, new Point(1, 0)));
-            this.controllerMappings.Add(Keys.NumPad2, new SwitchLevelCommand(myGame, new Point(0, -1)));
-            this.controllerMappings.Add(Keys.NumPad4, new SwitchLevelCommand(myGame, new Point(-1, 0)));
+            
         }
 
         KeyboardState state;
