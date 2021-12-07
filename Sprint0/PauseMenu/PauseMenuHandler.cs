@@ -22,6 +22,9 @@ namespace Poggus.PauseMenu
         Vector2 soundNameLoc = new Vector2(300, 200);
         SpriteFont Font;
         String[] difficulties = new String[3];
+        Vector2 difficultyLoc = new Vector2(400, 400);
+        String difficultyName = "Difficulty:";
+        Vector2 difficultyNameLoc = new Vector2(300, 400);
         Rectangle ResumeLoc = new Rectangle(new Point(330, 100), new Point(384, 64));
         Rectangle OptionsLoc = new Rectangle(new Point(330, 200), new Point(384, 64));
         Rectangle Backdrop = new Rectangle(new Point(0, 0), new Point(1100, 1100));
@@ -30,11 +33,13 @@ namespace Poggus.PauseMenu
         Boolean cursor = true; //true = resume false = options selected
         public Boolean options = false; //true = in options false = normal page
         public Boolean optionCursor = false; //true = difficulty false = volume
+        
+
         public PauseMenuHandler(Game1 game, SpriteFont font)
         {
-            difficulties[0] = "Easy";
-            difficulties[1] = "Normal";
-            difficulties[2] = "Hard";
+            difficulties[0] = "Normal";
+            difficulties[1] = "Hard";
+            difficulties[2] = "Insane";
             this.game = game;
             this.Font = font;
             volume = game.soundManager.volume;
@@ -73,7 +78,20 @@ namespace Poggus.PauseMenu
             OptionsLoc = new Rectangle(new Point(330, 300), new Point(384, 64));
             getSoundFrame();
         }
-
+        public void increaseDifficulty()
+        {
+            if(difficulty < 2)
+            {
+                difficulty++;
+            }
+        }
+        public void decreaseDifficulty()
+        {
+            if (difficulty > 0)
+            {
+                difficulty--;
+            }
+        }
         public void increaseVolume()
         {
             if(volume < VOLFULL)
@@ -125,6 +143,8 @@ namespace Poggus.PauseMenu
                     getSoundFrame();
                     if(volume > 0) SoundBar.Draw(batch, SoundLoc);
                     batch.DrawString(Font, soundName, soundNameLoc, Color.White);
+                    batch.DrawString(Font, difficultyName, difficultyNameLoc, Color.White);
+                    batch.DrawString(Font, difficulties[difficulty], difficultyLoc, Color.White);
                 }
                 else
                 {

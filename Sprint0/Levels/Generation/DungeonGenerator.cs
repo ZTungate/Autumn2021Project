@@ -136,13 +136,13 @@ namespace Poggus.Levels.Generation
                         newBlock.CreateSprite();
                         level.AddBlock(startPoint + new Point(i * GenerationConstants.blockScaleX, j * GenerationConstants.blockScaleY), newBlock);
 
-                        if(rand.Next(GenerationConstants.enemySpawnChance) == 0 && hasItems)
-                        {
-                            level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom));
-                        }
-                        if(rand.Next(GenerationConstants.itemSpawnChance) == 0 && hasEnemies)
+                        if(rand.Next(GenerationConstants.itemSpawnChance) == 0 && hasItems)
                         {
                             level.AddItem(CreateRandomItem(posInRoom + new Point(GenerationConstants.blockScaleX / 2, -GenerationConstants.blockScaleY / 2)));
+                        }
+                        if (rand.Next(GenerationConstants.enemySpawnChance) == 0 && hasEnemies)
+                        {
+                            level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom));
                         }
                     }
                     else
