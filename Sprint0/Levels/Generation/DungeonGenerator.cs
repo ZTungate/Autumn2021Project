@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Poggus.Blocks;
 
 namespace Poggus.Levels.Generation
 {
@@ -49,7 +50,7 @@ namespace Poggus.Levels.Generation
             dungeon.AddLevel(Point.Zero, new Level(Game1.instance.link, Point.Zero));
 
             string generatedString = ReplaceAxiom(axiom, numIterations, rules);
-            System.Diagnostics.Debug.WriteLine(generatedString);
+
             Point savedPoint = Point.Zero;
             Point currentPoint = Point.Zero;
             foreach(char ch in generatedString)
@@ -115,24 +116,33 @@ namespace Poggus.Levels.Generation
         {
             Poggus.Generation.OpenSimplexNoise noise = new Poggus.Generation.OpenSimplexNoise(seed);
             Point startPoint = new Point((int)(32 * Game1.gameScaleX), (int)(32 * Game1.gameScaleY));
-            float featureSize = 10f;
-            for(int i = 0; i < 12; i++)
+            float featureSize = 5f;
+            bool water = rand.Next(2) == 0;
+            for (int i = 0; i < 12; i++)
             {
-                for(int j = 0; j < 7; j++)
+                for (int j = 0; j < 7; j++)
                 {
                     double val = noise.Evaluate((level.GetPosition().X + i) / featureSize, (level.GetPosition().Y + j) / featureSize);
-                    val = val * 2 + 1;
-                    if(val > 0f)
+                    if (val > -0.2f || i == 5 || i == 6 || j == 3 )
                     {
-                        Blocks.AbstractBlock newBlock = new Blocks.Floor(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
+                        AbstractBlock newBlock = new Floor(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
                         newBlock.CreateSprite();
                         level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
                     }
                     else
                     {
-                        Blocks.AbstractBlock newBlock = new Blocks.Water(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
-                        newBlock.CreateSprite();
-                        level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
+                        if (water)
+                        {
+                            AbstractBlock newBlock = new Water(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
+                            newBlock.CreateSprite();
+                            level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
+                        }
+                        else
+                        {
+                            AbstractBlock newBlock = new FloorBlock(startPoint + new Point((int)(i * 16 * Game1.gameScaleX), (int)(j * 16 * Game1.gameScaleY)));
+                            newBlock.CreateSprite();
+                            level.AddBlock(startPoint + new Point(i * 16, j * 16), newBlock);
+                        }
                     }
                 }
             }

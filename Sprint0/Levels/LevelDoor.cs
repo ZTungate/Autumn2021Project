@@ -44,7 +44,7 @@ namespace Poggus.Levels
             }
             if (!isClosed)
             {
-                collider = new Rectangle(destRect.Location + new Point(10, 10), destRect.Size + new Point(-20, -20));
+                collider = new Rectangle(destRect.Location + new Point(18, 18), destRect.Size + new Point(-36, -36));
             }
             else
             {

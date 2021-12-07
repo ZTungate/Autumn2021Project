@@ -15,7 +15,7 @@ namespace Poggus.Player
 
         //Game class contains a sprite factory, which creates each sprite with a source rectangle. this is saved in spriteBatch
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
-        const int LinkX = 300;
+        const int LinkX = 475;
         const int LinkY = 250;
         const int size = 64;
         public ILinkState State { get; set; }
@@ -71,7 +71,7 @@ namespace Poggus.Player
             Sprite.Color = Color.White;
 
             State = new InitialLinkState(this, Sprite); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            DestRect = new Rectangle(new Point(300, 250), new Point(64, 64));
+            DestRect = new Rectangle(new Point(475, 250), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
             //Set link's health and maxHealth
