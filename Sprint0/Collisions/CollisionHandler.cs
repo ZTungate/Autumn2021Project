@@ -14,6 +14,7 @@ using System.Text;
 using Poggus.Levels.Sprites;
 using Poggus.Main;
 using Poggus.Sound;
+using Poggus.Helpers;
 
 namespace Poggus.Collisions
 {
@@ -49,34 +50,7 @@ namespace Poggus.Collisions
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(ene, myLink);
                 if (eneLink.IsCollision && myLink.collideWithBounds && ene.interactable) {
                     //Link gets hurt, damage him based on the enemy contacted.
-                    switch (eneLink.enemy2.EnemyType)
-                    {
-                        case EnemyType.Bat:
-                            eneLink.Link1.TakeDamage(EnemyConstants.batDamage, eneLink.direction);
-                            break;
-                        case EnemyType.BladeTrap:
-                            eneLink.Link1.TakeDamage(EnemyConstants.bladeTrapDamage, eneLink.direction);
-                            break;
-                        case EnemyType.Dragon:
-                            eneLink.Link1.TakeDamage(EnemyConstants.dragonDamage, eneLink.direction);
-                            break;
-                        case EnemyType.Grabber:
-                            eneLink.Link1.TakeDamage(EnemyConstants.grabberDamage, eneLink.direction);
-                            eneLink.Link1.SetPosition(LinkConstants.originPos);
-                            myDungeon.SetCurrentLevel(new Point(0,0));
-                            Main.Camera.main.BeginMoveTo(myDungeon.GetCurrentLevel().GetPosition(), 12);
-                            break;
-                        case EnemyType.Skeleton:
-                            eneLink.Link1.TakeDamage(EnemyConstants.skeletonDamage, eneLink.direction);
-                            break;
-                        case EnemyType.Slime:
-                            eneLink.Link1.TakeDamage(EnemyConstants.slimeDamage, eneLink.direction);
-                            break;
-                        case EnemyType.Thrower:
-                            eneLink.Link1.TakeDamage(EnemyConstants.throwerDamage, eneLink.direction);
-                            break;
-                    }
-                    
+                    CollisionActions.HurtLink(eneLink.Link1, eneLink.enemy2, eneLink.direction, myGame);
                 }
             }
 
