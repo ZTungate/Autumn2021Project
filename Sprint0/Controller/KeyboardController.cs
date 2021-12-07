@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using Poggus.Commands;
+using Poggus.Items;
 
 namespace Poggus
 {
@@ -100,10 +101,10 @@ namespace Poggus
                             controllerMappings[key].Execute();
                         }
                         if (state.IsKeyDown(Keys.Z) && !lastState.IsKeyDown(Keys.Z)) {
-                            //executeItem(myGame.link.LinkInventory.getSlotA());
+                            executeItem(myGame.link.LinkInventory.getSlotA());
                         }
                         if (state.IsKeyDown(Keys.X) && !lastState.IsKeyDown(Keys.X)) {
-                            //executeItem(myGame.link.LinkInventory.getSlotB());
+                            executeItem(myGame.link.LinkInventory.getSlotB());
                         }
                     }
                 }
@@ -150,7 +151,21 @@ namespace Poggus
                 
             //Checks if movement controls are released to play the idle animation & stop movement
         }
-
+        private void executeItem(AbstractItem item)
+        {
+            if (item is SwordItem) {
+                new PlayerSwordCommand(myGame).Execute();
+            }
+            else if (item is BombItem) {
+                new PlayerUseBombCommand(myGame).Execute();
+            }
+            else if (item is BowItem) {
+                new PlayerUseRegArrowCommand(myGame).Execute();
+            }
+            else if (item is BoomerangItem) {
+                new PlayerUseRegBoomerangCommand(myGame).Execute();
+            }
+        }
         void checkPlayerIdle(KeyboardState lastState, KeyboardState state)
         {
             Keys[] oldPressedKeys = lastState.GetPressedKeys();
