@@ -136,6 +136,7 @@ namespace Poggus
             DoorFactory.instance.LoadContent(Content);
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
+            dungeon.GetCurrentLevel().DoEnemySpawnAnimation();
 
             hudHandler = new HUDHandler(this.link);
             menuHandler = new PauseMenuHandler(this, font);
@@ -252,6 +253,7 @@ namespace Poggus
                 SoundManager = soundManager
             };
 
+            dungeon.GetCurrentLevel().DoEnemySpawnAnimation();
         }
         //DO NOT MODIFY THIS FUNCTION (IT IS NOT THE RESET FUNCTION!)
         public void TempGenerateNewDungeon()
@@ -264,8 +266,8 @@ namespace Poggus
             DungeonLoader.instance.ResetDungeon();
             LevelLoader.instance.LoadAllLevels(Content);
             DungeonLoader.instance.LoadDungeons();
-
             DungeonGenerator dungeonGenerator = new DungeonGenerator();
+
             dungeon = dungeonGenerator.GenerateDungeon();
 
             ProjectileFactory.Instance.ClearProjectiles();
@@ -285,6 +287,7 @@ namespace Poggus
             {
                 SoundManager = soundManager
             };
+            dungeon.GetCurrentLevel().DoEnemySpawnAnimation();
         }
         public void toggleWin()
         {

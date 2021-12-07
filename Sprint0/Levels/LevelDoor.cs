@@ -13,7 +13,7 @@ namespace Poggus.Levels
     {
         ISprite sprite;
         DoorDirectionEnum doorDirection;
-        public Rectangle destRect;
+        public Rectangle destRect, collider;
         public bool isClosed;
         public DoorType doorType;
         public bool openOnRoomClear = false;
@@ -41,6 +41,14 @@ namespace Poggus.Levels
             if (openOnRoomClear && Game1.instance.GetDungeon().GetCurrentLevel().GetEnemyList().Count == 0)
             {
                 OpenDoor();
+            }
+            if (!isClosed)
+            {
+                collider = new Rectangle(destRect.Location + new Point(18, 18), destRect.Size + new Point(-36, -36));
+            }
+            else
+            {
+                collider = destRect;
             }
         }
         public void SetDirection(DoorDirectionEnum direction)

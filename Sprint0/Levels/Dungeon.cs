@@ -38,6 +38,13 @@ namespace Poggus.Levels
             {directions[2],DoorDirectionEnum.Down},
             {directions[3],DoorDirectionEnum.Left},
         };
+        public void UpdateLevelPositionOnly()
+        {
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                entry.Value.SetPosition(new Point(entry.Key.X * levelWidth, -entry.Key.Y * levelHeight));
+            }
+        }
         public void UpdateLevelDoors(float scaleX, float scaleY)
         {
             foreach(KeyValuePair<Point,Level> entry in levelDictionary)
@@ -68,6 +75,13 @@ namespace Poggus.Levels
                         entry.Value.AddDoor(DoorFactory.instance.GetNewDoor(entry.Value.GetDoorCondition(dir), doorPos.ToPoint(), new Point(scaledDoorWidth, scaledDoorHeight), doorDir[dir]), doorDir[dir]);
                     }
                 }
+            }
+        }
+        public void ConstructLevelBounds()
+        {
+            foreach (KeyValuePair<Point, Level> entry in levelDictionary)
+            {
+                entry.Value.ConstructLevelBounds();
             }
         }
         public void UpdateCurrent(GameTime gameTime)

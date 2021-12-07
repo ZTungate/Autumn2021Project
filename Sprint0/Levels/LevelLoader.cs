@@ -105,6 +105,10 @@ namespace Poggus.Levels
                         Type itemType = Type.GetType("Poggus.Items." + itemName);
                         object instance = Activator.CreateInstance(itemType, objectParams);
                         AbstractItem item = (AbstractItem)instance;
+                        if (conditions == "RoomClear")
+                        {
+                            item.spawnOnRoomClear = true;
+                        }
                         item.CreateSprite();
 
                         newLevel.AddItem(item);
@@ -138,7 +142,6 @@ namespace Poggus.Levels
                     }
                     reader.MoveToElement();
                 }
-                newLevel.ConstructLevelBounds();
                 levels.Add(levelName, newLevel);
             }
         }

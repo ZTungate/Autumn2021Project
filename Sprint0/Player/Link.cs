@@ -15,7 +15,7 @@ namespace Poggus.Player
 
         //Game class contains a sprite factory, which creates each sprite with a source rectangle. this is saved in spriteBatch
         //spritebatch is passed down to the state in the player class (this file), which is sent to the state. The state actually draws the image.
-        const int LinkX = 300;
+        const int LinkX = 475;
         const int LinkY = 250;
         const int size = 64;
         public ILinkState State { get; set; }
@@ -38,6 +38,7 @@ namespace Poggus.Player
         public bool isDamaged = false;
         public bool canAttack = true;
         public bool canUseItems = true;
+        public bool movingTo { get; set; }
 
         public ColDirections knockBackDirection;
         public float knockBackTime = 0;
@@ -70,7 +71,7 @@ namespace Poggus.Player
             Sprite.Color = Color.White;
 
             State = new InitialLinkState(this, Sprite); //start the player in the right idle state, initial sprite is null, will be fixed during content loading in game1
-            DestRect = new Rectangle(new Point(300, 250), new Point(64, 64));
+            DestRect = new Rectangle(new Point(475, 250), new Point(64, 64));
             System.Diagnostics.Debug.WriteLine(DestRect);
             LinkInventory = new Inventory();
             //Set link's health and maxHealth
@@ -84,7 +85,7 @@ namespace Poggus.Player
             if (movingTo)
             {
                 this.SetPosition(this.GetPosition() + moveDir);
-                if((this.GetPosition().ToVector2() - nextPoint.ToVector2()).LengthSquared() <= 2f)
+                if((this.GetPosition().ToVector2() - nextPoint.ToVector2()).LengthSquared() <= 4f)
                 {
                     this.SetPosition(nextPoint);
                     this.movingTo = false;
@@ -96,10 +97,9 @@ namespace Poggus.Player
             State.Update(gameTime);
             Sprite.Update(gameTime);
 
-            ColliderRect = new Rectangle(DestRect.Location + new Point(4, (int)(DestRect.Height / 2f) - 4), new Point(DestRect.Width - 4, (int)(DestRect.Height / 2f)));
+            ColliderRect = new Rectangle(DestRect.Location + new Point(8, (int)(DestRect.Height / 2f)), new Point(DestRect.Width - 16, (int)(DestRect.Height / 2f) - 12));
         }
         Point nextPoint, moveDir;
-        bool movingTo;
         public void StartMoveToNewRoom(Point nextPoint)
         {
             if (!movingTo)

@@ -84,12 +84,11 @@ namespace Poggus
         KeyboardState state;
         public void Update()
         {
-            
             KeyboardState lastState = state;
             state = Keyboard.GetState();
             Keys[] pressedKeys = state.GetPressedKeys();
 
-            if(!Main.Camera.main.IsMoving())
+            if(!myGame.link.movingTo)
                 {
                     if (!myGame.Paused())
                     {

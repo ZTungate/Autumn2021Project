@@ -11,6 +11,7 @@ namespace Poggus.Enemies
 {
     public abstract class AbstractEnemy : IEnemy
     {
+        public bool interactable { get; set; } = true;
         public ISprite Sprite { get; set; }
         public IEnemyState State { get; set; }
         public Rectangle DestRect { get; set; }

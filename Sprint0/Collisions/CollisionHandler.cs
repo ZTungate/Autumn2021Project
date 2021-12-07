@@ -47,7 +47,7 @@ namespace Poggus.Collisions
             //handle link enemy collision
             foreach (IEnemy ene in myDungeon.GetCurrentLevel().GetEnemyList()) {
                 L2ECollision eneLink = (L2ECollision)detector.detectCollision(ene, myLink);
-                if (eneLink.IsCollision && myLink.collideWithBounds) {
+                if (eneLink.IsCollision && myLink.collideWithBounds && ene.interactable) {
                     //Link gets hurt, damage him based on the enemy contacted.
                     switch (eneLink.enemy2.EnemyType)
                     {
@@ -194,7 +194,7 @@ namespace Poggus.Collisions
                 }
                 foreach (IProjectile proj in myGame.projectileFactory.getProjs()) {
                     P2RCollision boundProj = (P2RCollision)detector.detectCollision(proj, rectangle);
-                    if (boundProj.IsCollision)
+                    if (boundProj.IsCollision && !(proj is EnemyPoofProjectile))
                     {
                         //Boomerangs bounce off the walls, other projectiles just break.
                         if (boundProj.proj1 is BoomerangProjectile || boundProj.proj1 is LinkBoomerangProjectile)
@@ -237,7 +237,7 @@ namespace Poggus.Collisions
                     if(door.doorType == DoorType.Hole && door.isClosed)
                     {
                         P2RCollision projRect = (P2RCollision)detector.detectCollision(proj, door.destRect);
-                        if (projRect.IsCollision && proj is BombProjectile)
+                        if (projRect.IsCollision && proj is BombExplosionProjectile)
                         {
                             door.BlowUp();
                         }
@@ -344,7 +344,7 @@ namespace Poggus.Collisions
 
             foreach (AbstractItem item in myDungeon.GetCurrentLevel().GetItemList()) {
                 L2ICollision itemLink = (L2ICollision)detector.detectCollision(myLink, item);
-                if (itemLink.IsCollision) {
+                if (itemLink.IsCollision && item.interactable) {
                     itemToRemove.Add(itemLink.Item2);
                     if (itemLink.Item2 is BombItem)
                     {
@@ -434,11 +434,14 @@ namespace Poggus.Collisions
                     E2RCollision boundEnemy = (E2RCollision)detector.detectCollision(ene, door.destRect);
                     if (boundEnemy.IsCollision)
                     {
-                        ene.SetPosition(ene.oldPosition);
+                        if (!(boundEnemy.enemy1 is Grabber))
+                        {
+                            ene.SetPosition(ene.oldPosition);
+                        }
                     }
                 }
                 //Boundary and door collisions
-                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.destRect);
+                L2RCollision boundLink = (L2RCollision)detector.detectCollision(myLink, door.collider);
                 if (boundLink.IsCollision && myLink.collideWithBounds)
                 {
                     Point dir = Dungeon.directions[(int)door.GetDirection()];
@@ -494,6 +497,7 @@ namespace Poggus.Collisions
                     }
                     else
                     {
+                        myLink.SetPosition(myLink.OldPosition);
                         if (door.doorType == DoorType.Key && myLink.LinkInventory.GetKeyCount() > 0)
                         {
                             myLink.LinkInventory.DecrementKeys();

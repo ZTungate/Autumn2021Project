@@ -7,6 +7,8 @@ namespace Poggus.Items
 {
     public abstract class AbstractItem : IItem
     {
+        public bool interactable { get; set; } = true;
+        public bool spawnOnRoomClear;
         protected ISprite sprite;
         protected Rectangle rect;
 
@@ -25,11 +27,37 @@ namespace Poggus.Items
         }
         public virtual void Update(GameTime gameTime)
         {
-            this.sprite.Update(gameTime);
+            if (spawnOnRoomClear)
+            {
+                if(Game1.instance.GetDungeon().GetCurrentLevel().GetEnemyList().Count == 0)
+                {
+                    interactable = true;
+                    this.sprite.Update(gameTime);
+                }
+                else
+                {
+                    interactable = false;
+                }
+            }
+            else
+            {
+                interactable = true;
+                this.sprite.Update(gameTime);
+            }
         }
         public virtual void Draw(SpriteBatch batch)
         {
-            this.sprite.Draw(batch, this.rect);
+            if (spawnOnRoomClear)
+            {
+                if (Game1.instance.GetDungeon().GetCurrentLevel().GetEnemyList().Count == 0)
+                {
+                    this.sprite.Draw(batch, this.rect);
+                }
+            }
+            else
+            {
+                this.sprite.Draw(batch, this.rect);
+            }
         }
         public virtual void SetRectangle(Rectangle rect)
         {
