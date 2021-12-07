@@ -6,4 +6,3 @@ We set more appropriate goals this sprint than we had previously, and gave ourse
 This was reasonably effective, but there is still room for improvement in ensuring all our work is done on time.
 Our goal and time tracking improved this sprint, with most of our work logged in a special channel on our group discord server.
 We found this to be more effective than GitHub's native time tracking systems, since it reqired very little extra effort to detail what we did and when.
-That said, we still ran into some issues with procrastination.
