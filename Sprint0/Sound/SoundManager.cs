@@ -15,6 +15,7 @@ namespace Poggus.Sound
 
         public SoundItem sound;
 
+        private float oldVolume = 0;
         private static SoundManager instance = new SoundManager();
 
         public static SoundManager Instance
@@ -68,11 +69,12 @@ namespace Poggus.Sound
 
         public void ToggleSound()
         {
-            if (volume == 0) {
-                volume = 1;
+            if (volume != 0) {
+                oldVolume = volume;
+                volume = 0;
             }
             else {
-                volume = 0;
+                volume = oldVolume;
             }
 
             sound.SetVolume(volume);
