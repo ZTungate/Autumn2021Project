@@ -73,6 +73,7 @@ namespace Poggus.UI
 
             inventoryText = new TextSprite(HUDSpriteFactory.instance.hudFont, "INVENTORY", Color.Red, new Point(75, 75));
             inventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueSquareBorderSprite(), inventoryText.GetPosition() + new Point(200,50), new Point(300, 150));
+            inventoryCursor = new ImageUI(HUDSpriteFactory.instance.GetInventoryCursorSprite(), inventoryText.GetPosition() + new Point(200, 50), new Point(64, 64));
 
             for (int i = 0; i < link.maxHealth; i+=2)
             {
