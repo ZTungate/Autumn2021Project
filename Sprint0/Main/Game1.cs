@@ -139,7 +139,7 @@ namespace Poggus
             dungeon.GetCurrentLevel().DoEnemySpawnAnimation();
 
             hudHandler = new HUDHandler(this.link);
-            menuHandler = new PauseMenuHandler(this);
+            menuHandler = new PauseMenuHandler(this, font);
             //Load sounds
             soundManager.LoadContent(Content);
 

@@ -16,8 +16,8 @@ namespace Poggus.PlayerInventory
         private int keys = 0;
         private AbstractItem slotA;
         private AbstractItem slotB;
-        protected bool hasMap = false;
-        protected bool hasCompass = false;
+        protected bool hasMap = true;
+        protected bool hasCompass = true;
         protected List<AbstractItem> itemList = new List<AbstractItem>();
         protected int Arrows { get => arrows; set => arrows = value; }
         protected int BlueArrows { get => blueArrows; set => blueArrows = value; }

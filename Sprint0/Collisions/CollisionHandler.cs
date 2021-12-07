@@ -88,15 +88,19 @@ namespace Poggus.Collisions
                     if (projLink.link2.State is DownIdleLinkState && projLink.direction is ColDirections.South && projLink.proj1 is BoomerangProjectile) {
                         //Set the boomerang to continue to live only as long as it has already (this will perfectly return it to the thrower)
                         projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
+                        SoundManager.sound.playShieldSound();
                     }
                     else if (projLink.link2.State is RightIdleLinkState && projLink.direction is ColDirections.East && projLink.proj1 is BoomerangProjectile) {
                         projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
+                        SoundManager.sound.playShieldSound();
                     }
                     else if (projLink.link2.State is LeftIdleLinkState && projLink.direction is ColDirections.West && projLink.proj1 is BoomerangProjectile) {
                         projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
+                        SoundManager.sound.playShieldSound();
                     }
                     else if (projLink.link2.State is UpIdleLinkState && projLink.direction is ColDirections.North && projLink.proj1 is BoomerangProjectile) {
                         projLink.proj1.Life = ProjectileConstants.boomerangLife - projLink.proj1.Life;
+                        SoundManager.sound.playShieldSound();
                     }
                     else {//hurt link by the damage of the projectile that hit him.
                         if(projLink.proj1 is BoomerangProjectile)

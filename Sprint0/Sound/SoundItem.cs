@@ -11,30 +11,30 @@ namespace Poggus.Sound
         public float myVolume;
 
         //sound effects
-        public SoundEffect swordSlash;
-        public SoundEffect swordBeam;
-        public SoundEffect swordCombined;
-        public SoundEffect shieldDeflect;
-        public SoundEffect arrowBoomerang;
-        public SoundEffect bombDrop;
-        public SoundEffect bombBlow;
-        public SoundEffect enemyHit;
-        public SoundEffect enemyDeath;
-        public SoundEffect linkHit;
-        public SoundEffect linkDeath;
-        public SoundEffect lowHealth;
-        public SoundEffect fanfare;
-        public SoundEffect getItem;
-        public SoundEffect getHeart;
-        public SoundEffect getRupee;
-        public SoundEffect refillLoop;
-        public SoundEffect textLoop;
-        public SoundEffect slowTextLoop;
-        public SoundEffect keyAppear;
-        public SoundEffect bossScream;
-        public SoundEffect bossHurt;
-        public SoundEffect stairs;
-        public SoundEffect secret;
+        private SoundEffect swordSlash;
+        private SoundEffect swordBeam;
+        private SoundEffect swordCombined;
+        private SoundEffect shieldDeflect;
+        private SoundEffect arrowBoomerang;
+        private SoundEffect bombDrop;
+        private SoundEffect bombBlow;
+        private SoundEffect enemyHit;
+        private SoundEffect enemyDeath;
+        private SoundEffect linkHit;
+        private SoundEffect linkDeath;
+        private SoundEffect lowHealth;
+        private SoundEffect fanfare;
+        private SoundEffect getItem;
+        private SoundEffect getHeart;
+        private SoundEffect getRupee;
+        private SoundEffect refillLoop;
+        private SoundEffect textLoop;
+        private SoundEffect slowTextLoop;
+        private SoundEffect keyAppear;
+        private SoundEffect bossScream;
+        private SoundEffect bossHurt;
+        private SoundEffect stairs;
+        private SoundEffect secret;
 
         public SoundEffectInstance instance;
 
@@ -101,10 +101,13 @@ namespace Poggus.Sound
             playSound();
         }
 
-        public void playBombDrop()
+        public SoundEffectInstance playBombDrop()
         {
             instance = bombDrop.CreateInstance();
-            playSound();
+            instance.Volume = myVolume;
+            instance.IsLooped = true;
+            instance.Play();
+            return instance;
         }
 
         public void playBombBlow()
@@ -173,6 +176,17 @@ namespace Poggus.Sound
         public void playSecret()
         {
             instance = secret.CreateInstance();
+            playSound();
+        }
+
+        public void playShieldSound()
+        {
+            instance = shieldDeflect.CreateInstance();
+            playSound();
+        }
+        public void playFireballSound()
+        {
+            instance = bossScream.CreateInstance();
             playSound();
         }
 
