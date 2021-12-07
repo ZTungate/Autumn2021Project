@@ -462,25 +462,26 @@ namespace Poggus.Collisions
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, -1));
                             linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y - (linkRect.Height));
-                            linkNewPos.X = myLink.GetPosition().X;
+                            myLink.SetPosition(new Point(linkNewPos.X, myLink.GetPosition().Y));
+
                         }
                         if (dir == new Point(1, 0))
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(-1, 0));
                             linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height / 2);
-                            linkNewPos.Y = myLink.GetPosition().Y;
+                            myLink.SetPosition(new Point(myLink.GetPosition().X, linkNewPos.Y));
                         }
                         if (dir == new Point(0, -1))
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(0, 1));
                             linkNewPos = new Point(oppositeDoor.destRect.X + oppositeDoor.destRect.Width / 2 - linkRect.Width / 2, oppositeDoor.destRect.Y + oppositeDoor.destRect.Height - linkRect.Height / 2 + 5);
-                            linkNewPos.X = myLink.GetPosition().X;
+                            myLink.SetPosition(new Point(linkNewPos.X, myLink.GetPosition().Y));
                         }
                         if (dir == new Point(-1, 0))
                         {
                             oppositeDoor = myGame.GetDungeon().GetCurrentLevel().GetDoorFromDirection(new Point(1, 0));
                             linkNewPos = new Point(oppositeDoor.destRect.X - (linkRect.Width), oppositeDoor.destRect.Y + oppositeDoor.destRect.Height / 2 - linkRect.Height / 2);
-                            linkNewPos.Y = myLink.GetPosition().Y;
+                            myLink.SetPosition(new Point(myLink.GetPosition().X, linkNewPos.Y));
                         }
                         if(oppositeDoor != null && oppositeDoor.isClosed)
                         {
