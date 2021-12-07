@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Poggus.Enemies;
 using Poggus.Main;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Poggus.PauseMenu
     {
         private static float VOLSCALE = 0.2f;
         private static float VOLFULL = 1.0f;
+        private const int ARRAYOFFSET = 1;
         private static float VOLOFF = 0.0f;
         private const float TINT = 0.8f;
         private Game1 game;
@@ -54,6 +56,14 @@ namespace Poggus.PauseMenu
             Resume.IsUISprite = true;
             SoundBar.IsUISprite = true;
         }
+        public void Reset()
+        {
+            Resume.CurrentFrame = 1;
+            cursor = true;
+            options = false;
+            optionCursor = false;
+            difficulty = 0;
+        }
         private void getSoundFrame()
         {
             volume = game.soundManager.volume;
@@ -83,18 +93,29 @@ namespace Poggus.PauseMenu
         }
         public void increaseDifficulty()
         {
+            int oldDifficulty = difficulty;
             if(difficulty < 2)
             {
                 difficulty++;
             }
+            foreach(IEnemy enemy in game.GetDungeon().GetCurrentLevel().GetEnemyList())
+            {
+                enemy.changeDifficulty(oldDifficulty + ARRAYOFFSET, difficulty + ARRAYOFFSET);
+            }
         }
         public void decreaseDifficulty()
         {
+            int oldDifficulty = difficulty;
             if (difficulty > 0)
             {
                 difficulty--;
             }
+            foreach (IEnemy enemy in game.GetDungeon().GetCurrentLevel().GetEnemyList())
+            {
+                enemy.changeDifficulty(oldDifficulty+ARRAYOFFSET, difficulty+ARRAYOFFSET);
+            }
         }
+        
         public void increaseVolume()
         {
             if(volume < VOLFULL)
