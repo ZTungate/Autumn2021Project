@@ -40,6 +40,7 @@ namespace Poggus.Player
         public bool canAttack = true;
         public bool canUseItems = true;
         public bool movingTo { get; set; }
+        public bool hasPickedUpBombs { get; set; }
 
         public ColDirections knockBackDirection;
         public float knockBackTime = 0;
@@ -67,6 +68,7 @@ namespace Poggus.Player
             //Set link's health and maxHealth
             Health = LinkConstants.linkInitialHealth;
             maxHealth = Health;
+            hasPickedUpBombs = false;
         }
         public void Reset()
         {
@@ -81,6 +83,7 @@ namespace Poggus.Player
             //Set link's health and maxHealth
             Health = LinkConstants.linkInitialHealth;
             maxHealth = Health;
+            hasPickedUpBombs = false;
 
         }
         public void Update(GameTime gameTime)

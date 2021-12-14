@@ -351,8 +351,11 @@ namespace Poggus.Collisions
                     if (itemLink.Item2 is BombItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementBombs();
-                        new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
-
+                        if (!itemLink.Link1.hasPickedUpBombs)
+                        {
+                            new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+                            itemLink.Link1.hasPickedUpBombs = true;
+                        }
                         SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is ArrowItem)
@@ -418,7 +421,8 @@ namespace Poggus.Collisions
                         itemLink.Link1.Health += 2;
                     }else if(itemLink.Item2 is ClockItem)
                     {
-                        foreach(IEnemy enemy in myDungeon.GetCurrentLevel().GetEnemyList())
+                        SoundManager.sound.playItemPickup();
+                        foreach (IEnemy enemy in myDungeon.GetCurrentLevel().GetEnemyList())
                         {
                             enemy.StunTimer = EnemyConstants.clockStunTime;
                         }
