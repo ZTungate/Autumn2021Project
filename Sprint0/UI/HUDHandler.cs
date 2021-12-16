@@ -6,6 +6,7 @@ using Poggus.Player;
 using Poggus.PlayerInventory;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Poggus.Items;
 
 namespace Poggus.UI
 {
@@ -16,7 +17,7 @@ namespace Poggus.UI
         TextSprite lifeText, levelText, rupeeAmtText, keyAmtText, bombAmtText, slotAText, slotBText, inventoryText;
         ImageUI hudBlackBackground, aSlotBackground, bSlotBackground, inventoryBackground, keyImage, bombImage, rupeeImage;
         ImageUI slotAItemImage, slotBItemImage;
-        ImageUI inventoryCursor;
+        ImageUI inventoryCursor, fullInventoryBackground;
         List<ImageUI> heartImages;
         List<ImageUI> inventoryImages;
         private int healthDrawn;
@@ -71,10 +72,10 @@ namespace Poggus.UI
             bombImage = new ImageUI(HUDSpriteFactory.instance.GetNewBombSprite(), bombAmtText.GetPosition() + new Point(-26, 0), new Point(25, 25));
 
 
-
-            inventoryText = new TextSprite(HUDSpriteFactory.instance.hudFont, "INVENTORY", Color.Red, new Point(75, 75));
-            inventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueSquareBorderSprite(), inventoryText.GetPosition() + new Point(200,50), new Point(300, 150));
-            inventoryCursor = new ImageUI(HUDSpriteFactory.instance.GetInventoryCursorSprite(), inventoryText.GetPosition() + new Point(200, 50), new Point(64, 64));
+            fullInventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewInventoryBackgroundSprite(), new Point(0, 0), new Point(256*4, 88*4));
+            //inventoryText = new TextSprite(HUDSpriteFactory.instance.hudFont, "INVENTORY", Color.Red, new Point(75, 75));
+            //inventoryBackground = new ImageUI(HUDSpriteFactory.instance.GetNewBlueSquareBorderSprite(), inventoryText.GetPosition() + new Point(200,50), new Point(300, 150));
+            inventoryCursor = new ImageUI(HUDSpriteFactory.instance.GetInventoryCursorSprite(), new Point(128 * 4, 48 * 4), new Point(64, 64));
 
             for (int i = 0; i < link.maxHealth; i+=2)
             {
@@ -97,11 +98,6 @@ namespace Poggus.UI
                 heartImages.Add(new ImageUI(currentHeartType, new Point(Game1.instance._graphics.PreferredBackBufferWidth - 200 + (heartImages.Count % 5) * 30, hudHeight - 65 + (heartImages.Count / 5) * 30), new Point(25, 25)));
             }
 
-            foreach(Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
-            {
-                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25,25));
-                inventoryImages.Add(itemImage);
-            }
         }
         public void Update(GameTime gameTime)
         {
@@ -110,9 +106,10 @@ namespace Poggus.UI
             updateLinkHealth();
 
             inventoryImages.Clear();
-            foreach (Poggus.Items.AbstractItem item in link.LinkInventory.GetItemList())
+            List<AbstractItem> itemList = inventory.GetItemList();
+            for (int i = 1; i < itemList.Count; i++)
             {
-                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(item), this.inventoryBackground.GetPosition() + new Point(10 + (inventoryImages.Count % 10) * 26, 10 + (inventoryImages.Count / 10) * 26), new Point(25, 25));
+                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(itemList[i]), new Point(132 * 4, 48 * 4) + new Point((inventoryImages.Count % 10) * 26, (inventoryImages.Count / 10) * 26), new Point(32, 64));
                 inventoryImages.Add(itemImage);
             }
             if (!(inventory.getSlotA() is null))
@@ -197,9 +194,11 @@ namespace Poggus.UI
             lifeText.Draw(batch);
             if (fullHUD)
             {
-                this.inventoryBackground.Draw(batch);
-                this.inventoryText.Draw(batch);
+                fullInventoryBackground.Draw(batch);
 
+                //this.inventoryBackground.Draw(batch);
+                //this.inventoryText.Draw(batch);
+                inventoryCursor.Draw(batch);
                 foreach(ImageUI image in inventoryImages)
                 {
                     image.Draw(batch);

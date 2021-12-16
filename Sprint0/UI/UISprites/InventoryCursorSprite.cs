@@ -10,7 +10,7 @@ namespace Poggus.UI.UISprites
     {
         public InventoryCursorSprite(Texture2D texture) : base(texture, new Rectangle[1])
         {
-            SourceRect[0] = new Rectangle(9, 0, 1, 1);
+            SourceRect[0] = new Rectangle(519, 137, 16, 16);
             IsUISprite = true;
         }
     }

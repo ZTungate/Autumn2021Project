@@ -95,5 +95,9 @@ namespace Poggus.UI
             return new BlueSquareBorderSprite(hudSpriteSheet);
         }
 
+        public ISprite GetNewInventoryBackgroundSprite()
+        {
+            return new InventoryBackgroundSprite(inventoryCursorSheet);
+        }
     }
 }

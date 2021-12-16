@@ -32,11 +32,7 @@ namespace Poggus.PlayerInventory
         {
             AddItem(new SwordItem(Point.Zero));
         }
-        public void setSlotA(AbstractItem item)
-        {
-            item.CreateSprite();
-            SlotA = item;
-        }
+
         public void setSlotB(AbstractItem item)
         {
             SlotB = item;
