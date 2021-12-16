@@ -123,6 +123,30 @@ namespace Poggus.Levels.Generation
             Point startPoint = new Point((int)(32 * Game1.gameScaleX), (int)(32 * Game1.gameScaleY));
             bool water = rand.Next(2) == 0;
             EnemyType enemyRoomType = GetRandomEnemyType();
+
+            if (rand.Next(GenerationConstants.moveBlockChance) == 0 && currentLevelPoint != Point.Zero)
+            {
+                foreach (Point dir in directions)
+                {
+                    if (dungeon.GetLevelDictionary().ContainsKey(dir + currentLevelPoint))
+                    {
+                        Blocks.MoveableFloorBlock moveBlock = new MoveableFloorBlock(startPoint + new Point((int)(5 * GenerationConstants.blockScaleX * Game1.gameScaleX), (int)(3 * GenerationConstants.blockScaleY * Game1.gameScaleY)));
+                        moveBlock.opensDoor = true;
+                        moveBlock.doorDirToOpen = dir;
+                        moveBlock.dirToMoveToOpen = new Point(0, 0);
+                        moveBlock.CreateSprite();
+
+                        level.AddMoveableBlock(moveBlock);
+
+                        level.AddDoorCondition(dir, DoorType.Closed);
+                        Point flippedDir = new Point(-dir.X, -dir.Y);
+                        Level dirLevel = dungeon.GetLevelDictionary()[currentLevelPoint + dir];
+                        dirLevel.AddDoorCondition(flippedDir, DoorType.Closed);
+
+                        break;
+                    }
+                }
+            }
             for (int i = 0; i < 12; i++)
             {
                 for (int j = 0; j < 7; j++)
@@ -140,11 +164,11 @@ namespace Poggus.Levels.Generation
                         newBlock.CreateSprite();
                         level.AddBlock(startPoint + new Point(i * GenerationConstants.blockScaleX, j * GenerationConstants.blockScaleY), newBlock);
 
-                        if(rand.Next(GenerationConstants.itemSpawnChance) == 0 && hasItems)
+                        if(rand.Next(GenerationConstants.itemSpawnChance) == 0 && hasItems && (i != 0 && i != 11 && j != 0 && j != 6))
                         {
                             level.AddItem(CreateRandomItem(posInRoom + new Point(GenerationConstants.blockScaleX / 2, -GenerationConstants.blockScaleY / 2)));
                         }
-                        if (rand.Next(GenerationConstants.enemySpawnChance) == 0 && hasEnemies)
+                        if (rand.Next(GenerationConstants.enemySpawnChance) == 0 && hasEnemies && (i != 0 && i != 11 && j != 0 && j != 6))
                         {
                             level.AddEnemy(CreateEnemyFromType(enemyRoomType, posInRoom));
 
@@ -303,6 +327,10 @@ namespace Poggus.Levels.Generation
             else if(rand.Next(GenerationConstants.mapChance) == 0)
             {
                 item = new MapItem(pos);
+            }
+            else if(rand.Next(GenerationConstants.bowChance) == 0)
+            {
+                item = new BowItem(pos);
             }
             else
             {
