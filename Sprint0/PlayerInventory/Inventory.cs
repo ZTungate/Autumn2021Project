@@ -26,7 +26,7 @@ namespace Poggus.PlayerInventory
         protected int Rupees { get => rupee; set => rupee = value; }
         protected int Keys { get => keys; set => keys = value; }
         protected AbstractItem SlotA { get => slotA; set => slotA = value; }
-        protected AbstractItem SlotB { get => slotB; set => slotB = value; }
+        int slotBIndex = 1;
         
         public Inventory()
         {
@@ -35,12 +35,14 @@ namespace Poggus.PlayerInventory
 
         public void setSlotB(AbstractItem item)
         {
-            SlotB = item;
+            slotBIndex = itemList.IndexOf(item);
+
+
         }
         public AbstractItem getSlotB()
         {
             if (itemList.Count > 1) {
-                return itemList[1];
+                return itemList[slotBIndex];
             }
             else {
                 return null;
@@ -103,6 +105,19 @@ namespace Poggus.PlayerInventory
         public void DecrementBombs()
         {
             Bombs--;
+            if (Bombs == 0) {
+                
+                AbstractItem bombToRemove = null;
+                foreach (AbstractItem item in itemList) {
+                    if (item is BombItem) {
+                        bombToRemove = item;
+                    }
+                }
+                itemList.Remove(bombToRemove);
+                if (itemList.Count > 1) {
+                    slotBIndex = 1;
+                }
+            }
         }
 
         public int GetBombCount()

@@ -350,12 +350,14 @@ namespace Poggus.Collisions
                     itemToRemove.Add(itemLink.Item2);
                     if (itemLink.Item2 is BombItem)
                     {
-                        itemLink.Link1.LinkInventory.IncrementBombs();
-                        if (!itemLink.Link1.hasPickedUpBombs)
+                        if (itemLink.Link1.LinkInventory.GetBombCount() == 0)
                         {
                             new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+                            itemLink.Link1.LinkInventory.AddItem(itemLink.Item2);
                             itemLink.Link1.hasPickedUpBombs = true;
                         }
+                        itemLink.Link1.LinkInventory.IncrementBombs();
+
                         SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is ArrowItem)

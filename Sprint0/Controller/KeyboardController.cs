@@ -150,8 +150,22 @@ namespace Poggus
                         controllerMappings[Keys.Q].Execute();
                     }
                 }
-                else if (myGame.inventoryOpen) {
-
+                if (myGame.inventoryOpen) {
+                    if (state.IsKeyDown(Keys.W) && !lastState.IsKeyDown(Keys.W)) {
+                        new InventoryUpCommand(myGame).Execute();
+                    }
+                    if (state.IsKeyDown(Keys.S) && !lastState.IsKeyDown(Keys.S)) {
+                        new InventoryDownCommand(myGame).Execute();
+                    }
+                    if (state.IsKeyDown(Keys.D) && !lastState.IsKeyDown(Keys.D)) {
+                        new InventoryRightCommand(myGame).Execute();
+                    }
+                    if (state.IsKeyDown(Keys.A) && !lastState.IsKeyDown(Keys.A)) {
+                        new InventoryLeftCommand(myGame).Execute();
+                    }
+                    if (state.IsKeyDown(Keys.X) && !lastState.IsKeyDown(Keys.X)) {
+                        new InventorySelectCommand(myGame).Execute();
+                    }
                 }
             }
                 

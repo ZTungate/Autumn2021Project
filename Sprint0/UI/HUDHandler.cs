@@ -17,7 +17,8 @@ namespace Poggus.UI
         TextSprite lifeText, levelText, rupeeAmtText, keyAmtText, bombAmtText, slotAText, slotBText, inventoryText;
         ImageUI hudBlackBackground, aSlotBackground, bSlotBackground, inventoryBackground, keyImage, bombImage, rupeeImage;
         ImageUI slotAItemImage, slotBItemImage;
-        ImageUI inventoryCursor, fullInventoryBackground;
+        ImageUI inventoryCursor, fullInventoryBackground, activeItem;
+        int hoveredItem = 0;
         List<ImageUI> heartImages;
         List<ImageUI> inventoryImages;
         private int healthDrawn;
@@ -109,16 +110,26 @@ namespace Poggus.UI
             List<AbstractItem> itemList = inventory.GetItemList();
             for (int i = 1; i < itemList.Count; i++)
             {
-                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(itemList[i]), new Point(132 * 4, 48 * 4) + new Point((inventoryImages.Count % 10) * 26, (inventoryImages.Count / 10) * 26), new Point(32, 64));
+                ImageUI itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(itemList[i]), new Point(132 * 4, 48 * 4) + new Point(((i - 1) % 4) * 64, ((i - 1) / 4) * 64), new Point(32, 64));
+                if (itemList[i] is BowItem) {
+                    itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(new ArrowItem(Point.Zero)), new Point(132 * 4 - 16, 48 * 4) + new Point(((i - 1) % 4) * 64, ((i - 1) / 4) * 64), new Point(32, 64));
+                    inventoryImages.Add(itemImage);
+                    itemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(itemList[i]), new Point(132 * 4 + 16, 48 * 4) + new Point(((i - 1) % 4) * 64, ((i - 1) / 4) * 64), new Point(32, 64));
+
+                }
                 inventoryImages.Add(itemImage);
             }
-            if (!(inventory.getSlotA() is null))
-            {
-                this.slotAItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotA()), this.aSlotBackground.GetPosition() + new Point(5, 5), this.aSlotBackground.DestRect.Size - new Point(5, 5));
-            }
+
+            this.slotAItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotA()), this.aSlotBackground.GetPosition() + new Point(5, 5), this.aSlotBackground.DestRect.Size - new Point(5, 5));
+
             if (!(inventory.getSlotB() is null))
             {
                 this.slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), this.bSlotBackground.GetPosition() + new Point(5, 5), this.bSlotBackground.DestRect.Size - new Point(5, 5));
+                activeItem = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), new Point(68*4,48*4), new Point(32, 64));
+            }
+            else {
+                slotBItemImage = null;
+                activeItem = null;
             }
 
             this.rupeeAmtText.SetText("X" + link.LinkInventory.GetRupeeCount());
@@ -174,10 +185,9 @@ namespace Poggus.UI
             bSlotBackground.Draw(batch);
             slotBText.Draw(batch);
 
-            if (slotAItemImage != null) 
-            {
-                this.slotAItemImage.Draw(batch);
-            }
+
+            this.slotAItemImage.Draw(batch);
+            
             if (slotBItemImage != null) 
             {
                 this.slotBItemImage.Draw(batch);
@@ -199,7 +209,10 @@ namespace Poggus.UI
                 //this.inventoryBackground.Draw(batch);
                 //this.inventoryText.Draw(batch);
                 inventoryCursor.Draw(batch);
-                foreach(ImageUI image in inventoryImages)
+                if (activeItem != null) {
+                    activeItem.Draw(batch);
+                }
+               foreach(ImageUI image in inventoryImages)
                 {
                     image.Draw(batch);
                 }
@@ -269,6 +282,47 @@ namespace Poggus.UI
                 rupeeAmtText.SetPosition(rupeeAmtText.GetPosition() + change);
                 keyAmtText.SetPosition(keyAmtText.GetPosition() + change);
                 bombAmtText.SetPosition(bombAmtText.GetPosition() + change);
+            }
+        }
+
+        public void moveCursorUp()
+        {
+            if (hoveredItem / 4 >= 1) {
+                hoveredItem -= 4;
+            }
+            inventoryCursor.SetPosition(new Point(128 * 4, 48 * 4) + new Point((hoveredItem % 4) * 64, (hoveredItem / 4) * 64));
+        }
+
+        public void moveCursorDown()
+        {
+            if (hoveredItem / 4 < 1 && hoveredItem + 4 < inventory.GetItemList().Count - 1) {
+                hoveredItem += 4;
+            }
+            inventoryCursor.SetPosition(new Point(128 * 4, 48 * 4) + new Point((hoveredItem % 4) * 64, (hoveredItem / 4) * 64));
+        }
+
+        public void moveCursorLeft()
+        {
+            if (hoveredItem > 0) {
+                --hoveredItem;
+            }
+            inventoryCursor.SetPosition(new Point(128 * 4, 48 * 4) + new Point((hoveredItem % 4) * 64, (hoveredItem / 4) * 64));
+        }
+
+        public void moveCursorRight()
+        {
+            if (hoveredItem < inventory.GetItemList().Count - 2) {
+                ++hoveredItem;
+            }
+            inventoryCursor.SetPosition(new Point(128 * 4, 48 * 4) + new Point((hoveredItem % 4) * 64, (hoveredItem / 4) * 64));
+        }
+
+        public void selectItem()
+        {
+            if (!(inventory.GetItemList()[hoveredItem + 1] is null)) {
+                inventory.setSlotB(inventory.GetItemList()[hoveredItem + 1]);
+                activeItem = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), new Point(68 * 4, 48 * 4), new Point(32, 64));
+                slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), this.bSlotBackground.GetPosition() + new Point(5, 5), this.bSlotBackground.DestRect.Size - new Point(5, 5));
             }
         }
     }
