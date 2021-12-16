@@ -244,6 +244,8 @@ namespace Poggus.UI
                 if (slotBItemImage != null) {
                     slotBItemImage.SetPosition(slotBItemImage.GetPosition() + change);
                 }
+                hoveredItem = inventory.getSlotBIndex();
+
                 rupeeImage.SetPosition(rupeeImage.GetPosition() + change);
                 keyImage.SetPosition(keyImage.GetPosition() + change);
                 bombImage.SetPosition(bombImage.GetPosition() + change);
@@ -325,5 +327,6 @@ namespace Poggus.UI
                 slotBItemImage = new ImageUI(HUDSpriteFactory.instance.GetUIItemSprite(inventory.getSlotB()), this.bSlotBackground.GetPosition() + new Point(5, 5), this.bSlotBackground.DestRect.Size - new Point(5, 5));
             }
         }
+
     }
 }

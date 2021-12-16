@@ -66,7 +66,7 @@ namespace Poggus.Enemies
 
         public static int roomHeight = 1000;
         public static int roomLength = 1000;
-        public static int rupeeDropRate = 3;
+        public static int rupeeDropRate = 30;
         public static int grabberMaxDelay = 1000;
 
         public static int numItemDropTypes = 3;

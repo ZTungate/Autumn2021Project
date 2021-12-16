@@ -13,7 +13,9 @@ namespace Poggus.Commands
         }
         public void Execute()
         {
-            game.hudHandler.selectItem();
+            if (game.link.LinkInventory.GetItemList().Count > 1) {
+                game.hudHandler.selectItem();
+            }
         }
     }
 }

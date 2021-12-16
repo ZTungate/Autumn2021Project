@@ -39,6 +39,11 @@ namespace Poggus.PlayerInventory
 
 
         }
+
+        public int getSlotBIndex()
+        {
+            return slotBIndex;
+        }
         public AbstractItem getSlotB()
         {
             if (itemList.Count > 1) {
@@ -48,6 +53,7 @@ namespace Poggus.PlayerInventory
                 return null;
             }
         }
+
 
         public AbstractItem getSlotA()
         {
