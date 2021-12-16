@@ -1,0 +1,10 @@
+
+Author of the code review: Wesley
+Date of the code review: 12/6/21
+Sprint number: 5
+Name of the .cs file being reviewed:  HUDHandler
+Author of the .cs file being reviewed: Mason
+Number of minutes taken to complete the review: 10:48-10:54 (10 minutes)
+
+The quality of this code is ok.  HUDHandler has relatively loose coupling with methods only being haivng one or two references.  There are no comments to explain the code, which delayed my progress
+this sprint significantly.  The class is responsible for drawing the UI like the inventory and hud.  HUDHandler has relatively strong cohesion with fewer methods.  There is not too much branching.

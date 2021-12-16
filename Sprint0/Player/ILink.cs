@@ -27,6 +27,8 @@ namespace Poggus.Player
         public int maxHealth { get; set; }
         public bool collideWithBounds { get; set; }
         public bool movingTo { get; set; }
+
+        public bool hasPickedUpBombs { get; set; }
         public Inventory LinkInventory { get;}
         void TakeDamage(int damageAmount, ColDirections damageDir);
         void Update(GameTime gameTime);

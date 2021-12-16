@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Poggus.Levels;
-using Poggus;
 using Poggus.Blocks;
 using Poggus.Commands;
 using Poggus.Enemies;
@@ -9,9 +8,6 @@ using Poggus.Player;
 using Poggus.Projectiles;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
-using Poggus.Levels.Sprites;
 using Poggus.Main;
 using Poggus.Sound;
 using Poggus.Helpers;
@@ -313,9 +309,25 @@ namespace Poggus.Collisions
                             Random rand = new Random();
                             if (rand.Next(EnemyConstants.rupeeDropRate) <= 3)
                             {
-                                AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
-                                rupee.CreateSprite();
-                                myDungeon.GetCurrentLevel().AddItem(rupee);
+                                var itemType = rand.Next(EnemyConstants.numItemDropTypes);
+                                switch (itemType) {
+                                    case 0:
+                                        AbstractItem rupee = new RupeeItem(projEne.enemy2.GetPosition());
+                                            rupee.CreateSprite();
+                                        myDungeon.GetCurrentLevel().AddItem(rupee);
+                                        break;
+                                    case 1:
+                                        AbstractItem bomb = new BombItem(projEne.enemy2.GetPosition());
+                                        bomb.CreateSprite();
+                                        myDungeon.GetCurrentLevel().AddItem(bomb);
+                                        break;
+                                    case 2:
+                                        AbstractItem heart = new HeartItem(projEne.enemy2.GetPosition());
+                                        heart.CreateSprite();
+                                        myDungeon.GetCurrentLevel().AddItem(heart);
+                                        break;
+
+                                }
                                 
                             }
                         }
@@ -339,8 +351,11 @@ namespace Poggus.Collisions
                     if (itemLink.Item2 is BombItem)
                     {
                         itemLink.Link1.LinkInventory.IncrementBombs();
-                        new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
-
+                        if (!itemLink.Link1.hasPickedUpBombs)
+                        {
+                            new PlayerPickUpCommand(myGame, itemLink.Item2).Execute();
+                            itemLink.Link1.hasPickedUpBombs = true;
+                        }
                         SoundManager.sound.playItemPickup();
                     }
                     else if (itemLink.Item2 is ArrowItem)
@@ -406,7 +421,8 @@ namespace Poggus.Collisions
                         itemLink.Link1.Health += 2;
                     }else if(itemLink.Item2 is ClockItem)
                     {
-                        foreach(IEnemy enemy in myDungeon.GetCurrentLevel().GetEnemyList())
+                        SoundManager.sound.playItemPickup();
+                        foreach (IEnemy enemy in myDungeon.GetCurrentLevel().GetEnemyList())
                         {
                             enemy.StunTimer = EnemyConstants.clockStunTime;
                         }

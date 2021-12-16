@@ -36,7 +36,10 @@ namespace Poggus.UI
 
             foreach (KeyValuePair<Point, Level> entry in this.dungeon.GetLevelDictionary())
             {
-                levelLayout.Add(entry.Key, new ImageUI(HUDSpriteFactory.instance.GetNewBlueBlockSprite(), initialPoint + entry.Key * new Point(38, -11), new Point(35, 8)));
+                if (entry.Value.displayInMinimap)
+                {
+                    levelLayout.Add(entry.Key, new ImageUI(HUDSpriteFactory.instance.GetNewBlueBlockSprite(), initialPoint + entry.Key * new Point(38, -11), new Point(35, 8)));
+                }
             }
 
             foreach (KeyValuePair<Point, ImageUI> entry in levelLayout)

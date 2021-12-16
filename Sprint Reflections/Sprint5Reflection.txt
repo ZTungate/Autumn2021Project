@@ -1,0 +1,8 @@
+Group: Boggus Poggus
+
+Starting this sprint we intended to have most of our bugfixing and polishing the sprint 4 material done by Wednesday 11/24.
+We accomplished some cleaning and refactoring in that time, but still faced delays due to the high end of semester workload in all our other classes.
+We set more appropriate goals this sprint than we had previously, and gave ourselves a specific deadline to get as much done as possible to prevent procrastination issues.
+This was reasonably effective, but there is still room for improvement in ensuring all our work is done on time.
+Our goal and time tracking improved this sprint, with most of our work logged in a special channel on our group discord server.
+We found this to be more effective than GitHub's native time tracking systems, since it reqired very little extra effort to detail what we did and when.
